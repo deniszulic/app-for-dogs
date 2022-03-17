@@ -12,13 +12,13 @@ const pool = new Pool({
 });
 
 const createUser = async (request, response) => {
-    console.log(request.body);
-    const { email, admin, datumreg, ime, prezime, lozinka } = request.body;
+    //console.log(request.body);
+    const { email, datumreg, ime, prezime, lozinka, tipkorisnika } = request.body;
     const salt = bcrypt.genSaltSync(8);
     const hash = bcrypt.hashSync(lozinka, salt);
     pool.query(
-      "INSERT INTO korisnik (email, lozinka, admin, datumreg, ime, prezime) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
-      [email, hash, admin, datumreg, ime, prezime],
+      "INSERT INTO korisnik (email, lozinka, datumreg, ime, prezime, tipkorisnika) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
+      [email, hash, datumreg, ime, prezime, tipkorisnika],
       (error, results) => {
         try {
             console.log(results.rows[0].id)
@@ -30,8 +30,39 @@ const createUser = async (request, response) => {
     );
   };
 
+  const login = async (request, response) => {
+    const { email, lozinka } = request.body;
+    console.log(request.body)
+    pool.query(
+      "SELECT lozinka, tipkorisnika, email, id, ime, prezime FROM korisnik WHERE email=$1",
+      [email],
+      (error, results) => {
+        try {
+          bcrypt
+            .compare(lozinka, results.rows[0].lozinka)
+            .then(function (result) {
+              if (result && results.rows[0].lozinka) {
+                delete results.rows[0].lozinka;
+                let token = jwt.sign(
+                  email,
+                  process.env.JWT_KEY,
+                  { algorithm: "HS512" },
+                  { expiresIn: "7d" }
+                );
+                response.status(200).json(results.rows);
+              } else {
+                throw new Error("Cannot authenticate");
+              }
+            });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  };
+
   const createasylum = async (request, response) => {
-    console.log(request.body);
+    //console.log(request.body);
     const { oib, ulica, kucnibr, grad, postanskibr, id } = request.body;
     pool.query(
         "INSERT INTO azil (oib, ulica, kucnibr, grad, postanskibr, korisnik_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
@@ -60,5 +91,6 @@ const createUser = async (request, response) => {
   module.exports = {
     createUser,
     createasylum,
-    deleteuser
+    deleteuser,
+    login
   };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "@/store"
 
 let Service = axios.create({
   baseURL: "http://localhost:3000/",
@@ -14,7 +15,53 @@ let login_signup={
       },
       async deleteuser(id){
         return await Service.delete(`delete/${id}`)
+      },
+      async login(data){
+        let response= await Service.post("/login", data);
+        let user=response.data
+        localStorage.setItem("user", JSON.stringify(user))
       }
 }
+let Auth = {
+  getUser(){
+    return JSON.parse(localStorage.getItem("user"))
+},
+logout(){
+    localStorage.removeItem('user');
+},
+state:{
+  get name(){
+    let user=Auth.getUser();
+    if(user){
+      return user[0].ime;
+    }
+  },
+  get surname(){
+    let user=Auth.getUser();
+    if(user){
+      return user[0].prezime;
+    }
+  },
+  get id(){
+    let user=Auth.getUser();
+    if(user){
+      return user[0].id;
+    }
+  },
+  get email(){
+    let user=Auth.getUser();
+    if(user){
+      return user[0].email;
+    }
+  },
+  get typeofuser(){
+    let user=Auth.getUser();
+    if(user){
+      store.tipkorisnika=user[0].tipkorisnika;
+      return user[0].tipkorisnika;
+    }
+  },
+}
+}
 
-export {login_signup};
+export {login_signup, Auth};

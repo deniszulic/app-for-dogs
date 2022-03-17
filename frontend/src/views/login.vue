@@ -8,21 +8,21 @@
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					<form>
+					<form @submit.prevent="login">
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="Email">
+							<input type="text" name="" class="form-control input_user" value="" placeholder="Email" v-model="email">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="Lozinka">
+							<input type="password" name="" class="form-control input_pass" value="" placeholder="Lozinka" v-model="lozinka">
 						</div>
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="button" name="button" class="btn login_btn">PRIJAVA</button>
+				 	<button type="submit" name="button" class="btn login_btn">PRIJAVA</button>
 				   </div>
 					</form>
 				</div>
@@ -36,39 +36,50 @@
 			</div>
 		</div>
 	</div>
-
-    <!-- <div class="d-flex justify-content-center">
-    <div class="card text-center above col-sm-6">
-        <div class="d-flex justify-content-center">
-        <img src="../assets/paw.svg" class="logo" alt="Logo">
-        </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content. 
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-</div> -->
 </template>
 <script>
+import {login_signup} from "@/services";
+import {Auth} from "@/services";
 export default {
 	name:"login",
 	data(){
 		return{
-
+			email:"",
+			lozinka:""
+		}
+	},
+	methods:{
+		async login(){
+			let log={
+				email:this.email,
+				lozinka:this.lozinka
+			}
+			try{
+				await login_signup.login(log)
+				if(Auth.state.typeofuser=="korisnik"){
+					this.$router.push({ name: "pocetnakorisnik" });
+				}
+				else if(Auth.state.typeofuser=="azil"){
+					this.$router.push({ name: "pocetnaazil" });
+				}
+				else if(Auth.state.typeofuser=="admin"){
+					this.$router.push({ name: "admin" });
+				}
+			}catch(e){
+				console.log(e);
+			}
 		}
 	}
 }
 </script>
 <style>
-body{
+/* body{
     background: url('../assets/background.png') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
+} */
 .logo{
     height: 150px;
 			width: 150px;
@@ -100,7 +111,7 @@ body{
 			top: -75px;
 			border-radius: 50%;
 			/*background: #fff;*/
-            background-color: rgba(0,0,0,0.5) !important;
+            background-color: rgba(0,0,0,0.2) !important;
 			padding: 10px;
 			text-align: center;
 		}

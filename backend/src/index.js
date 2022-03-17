@@ -18,6 +18,7 @@ app.use(
 )
 
 app.post('/register', db.createUser)
+app.post('/login', db.login)
 app.post('/registerasylum', db.createasylum)
 app.delete('/delete/:id', db.deleteuser)
 

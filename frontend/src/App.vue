@@ -23,10 +23,16 @@
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
                     <!-- <a class="nav-link" href="#">Link</a> -->
-                    <router-link to="login" class="nav-link">Prijava</router-link>
+                    <router-link to="login" class="nav-link" v-if="store.tipkorisnika==null">Prijava</router-link>
                   </li>
                   <li class="nav-item">
-                    <router-link to="register" class="nav-link">Registracija</router-link>
+                    <router-link to="register" class="nav-link" v-if="store.tipkorisnika==null">Registracija</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" v-if="store.tipkorisnika!=null" @click.prevent="logout" href="#">Odjava</a>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="nestanakpsa" class="nav-link" v-if="store.tipkorisnika!=null">Prijavi nestanak psa</router-link>
                   </li>
                 </ul>
               </div>
@@ -62,9 +68,24 @@
 //     }
 //   }
 // }
+ 
+  body {
+background: url("../src/assets/background.png") no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
 </style>
 <script>
+import store from "@/store.js";
+import { Auth } from "@/services";
 export default {
+  data(){
+    return{
+      store
+    }
+  },
   mounted() {
     $(".fa-spin-hover").hover(
       function () {
@@ -75,5 +96,12 @@ export default {
       }
     );
   },
+  methods:{
+    logout() {
+      Auth.logout();
+      this.store.tipkorisnika = null;
+      this.$router.push({ path: "login" });
+    }
+  }
 };
 </script>

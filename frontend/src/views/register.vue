@@ -176,11 +176,12 @@ export default {
         prezime:this.prezime,
         email:this.email,
         lozinka:this.password,
-        admin:false,
+        tipkorisnika:this.tipkorisnika,
         datumreg:Date.now()
       }
       try{
         await login_signup.register_user(data_user)
+        this.$router.push({ name: "login" });
       }catch(error){
         console.log(error)
       }
@@ -192,7 +193,7 @@ export default {
         prezime:this.prezime,
         email:this.email,
         lozinka:this.password,
-        admin:false,
+        tipkorisnika:this.tipkorisnika,
         datumreg:Date.now()
       }
         
@@ -210,6 +211,7 @@ export default {
       }
         try{
         await login_signup.register_asylum(data_asylum)
+        this.$router.push({ name: "login" });
       }catch(error){
         console.log(error)
         await login_signup.deleteuser(id.data)
@@ -309,11 +311,11 @@ export default {
 }
 </style>
 <style>
-body{
+/* body{
     background: url('../assets/background.png') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
+} */
 </style>
