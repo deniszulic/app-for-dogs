@@ -20,6 +20,7 @@ app.use(
 app.post('/register', db.createUser)
 app.post('/login', db.login)
 app.post('/registerasylum', db.createasylum)
+app.post('/dogmissing', db.reportmissingdog)
 app.delete('/delete/:id', db.deleteuser)
 
 app.listen(port, () => {

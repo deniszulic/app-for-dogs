@@ -22,6 +22,11 @@ let login_signup={
         localStorage.setItem("user", JSON.stringify(user))
       }
 }
+let dog_data={
+  async missing_dog(data) {
+    return await Service.post("/dogmissing", data);
+  }
+}
 let Auth = {
   getUser(){
     return JSON.parse(localStorage.getItem("user"))
@@ -64,4 +69,4 @@ state:{
 }
 }
 
-export {login_signup, Auth};
+export {login_signup, Auth, dog_data};

@@ -12,7 +12,7 @@
         <input
           type="text"
           class="form-control"
-          id="inputEmail4"
+          id="inputEmail4" v-model="ime" required
         />
       </div>
       <div class="form-group col-md-6">
@@ -20,7 +20,7 @@
         <input
           type="text"
           class="form-control"
-          id="inputPassword4"
+          id="inputPassword4" v-model="prezime" required
         />
       </div>
     </div>
@@ -29,17 +29,17 @@
       <input
         type="text"
         class="form-control"
-        id="inputAddress"
+        id="inputAddress" v-model="adresa" required
       />
     </div>
     <div class="form-row" id="grad_postnum">
       <div class="form-group col-md-8">
         <label for="inputCity">Grad</label>
-        <input type="text" class="form-control" id="inputCity" />
+        <input type="text" class="form-control" id="inputCity" v-model="grad" required/>
       </div>
       <div class="form-group col-md-4">
         <label for="inputZip">Poštanski br.</label>
-        <input type="number" class="form-control" id="inputZip" />
+        <input type="number" class="form-control" id="inputZip" v-model="postbr" required/>
       </div>
     </div>
     <div class="form-row" id="boja_starost">
@@ -56,7 +56,7 @@
         <input
           type="text"
           class="form-control"
-          id="inputPassword4"
+          id="inputPassword4" v-model="boja" required
         />
       </div>
       <div class="form-group col-md-6">
@@ -64,14 +64,14 @@
         <input
           type="number"
           class="form-control"
-          id="inputEmail4"
+          id="inputEmail4" v-model="starost" required
         />
       </div>
     </div>
     <div class="form-row" id="dlaka_lokacija">
       <div class="form-group col-md-6">
         <label for="inputState">Dlaka</label>
-        <select id="inputState" class="form-control">
+        <select id="inputState" class="form-control" v-model="dlaka" required>
           <option>Kratka</option>
           <option>Duga</option>
         </select>
@@ -81,7 +81,7 @@
         <input
           type="text"
           class="form-control"
-          id="inputEmail4"
+          id="inputEmail4" v-model="vet_lokacija" required
         />
       </div>
     </div>
@@ -91,15 +91,22 @@
         <input
           type="text"
           class="form-control"
-          id="inputPassword4"
+          id="inputPassword4" v-model="ime_psa" required
         />
       </div>
-      <div class="form-group col-md-6" id="steril">
+      <!-- <div class="form-group col-md-6" id="steril">
         <label for="inputState1">Steriliziran / kastriran</label>
         <select id="inputState1" class="form-control">
           <option>Da</option>
           <option>Ne</option>
           <option>Ne znam</option>
+        </select>
+      </div> -->
+      <div class="form-group col-md-6" id="steril">
+        <label for="inputState1">Spol</label>
+        <select id="inputState1" class="form-control" v-model="spol" required>
+          <option>M</option>
+          <option>Ž</option>
         </select>
       </div>
     </div>
@@ -108,7 +115,7 @@
         <label for="inputPassword4">Datum kada je pas izgubljen</label>
         <input
           type="date"
-          class="form-control" v-model="datum"
+          class="form-control" v-model="datum" required
         />
       </div>
       <div class="form-group col-md-6" id="noticeid">
@@ -119,42 +126,75 @@
     <div class="form-row">
       <div class="form-group col-md-12" id="pictureofdog">
         <label for="dog_img">Slika psa</label><br>
-        <input type="file" accept="image/png, image/gif, image/jpeg" ref="fileupload"/>
+        <input type="file" accept="image/png, image/jpeg" ref="fileupload" @change="onFileChange"/>
       </div>
     </div>
     <div class="d-flex justify-content-center" >
     <button type="submit" class="btn btn-primary" id="submitbutton">Pošalji</button></div>
   </form>
-  <div class="d-flex justify-content-end" style="margin-right:10px;margin-bottom:5px;" >
+  <!-- <div class="d-flex justify-content-end" style="margin-right:10px;margin-bottom:5px;" >
     <button type="button" class="rounded-circle" style="background-color:#0275d8;" @click="next" id="rightarrow"><i class="fa-solid fa-arrow-right-long" style="color:white;"></i></button>
     </div>
     <div class="d-flex justify-content-start" style="margin-left:10px;margin-bottom:5px;" >
     <button type="button" class="btn1 rounded-circle" style="background-color:#0275d8;" @click="back" id="leftarrow"><i class="fa-solid fa-arrow-left-long" style="color:white;"></i></button>
+    </div> -->
+  <div class="progress">
+  <div class="progress-bar" :style="`width:`+postotak+`%`" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+  </div>
+  </div>
+<div class="modal fade" id="modalnotice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Potvrda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Podatci su uspješno poslani!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Zatvori</button>
+      </div>
     </div>
   </div>
-  </div>
+</div>
   </div>
 </template>
 <script>
+import { Auth } from "@/services";
+import { dog_data } from "@/services";
 export default {
   name: "nestanakpsa",
   data() {
     return {
+      ime:"",
+      prezime:"",
+      adresa:"",
+      grad:"",
+      boja:"",
+      starost:"",
+      dlaka:"",
+      postbr:"",
+      vet_lokacija:"",
+      ime_psa:"",
+      spol:"",
       napomena:"",
-      datum:""
+      datum:"",
+      slika:null,
+      postotak:null
     }
   },
   mounted(){
-  //   $(".btn1").click(function(){
-  //   $("#dateid").fadeOut();
-  // });
-  $("#dateid").hide();
-      $("#noticeid").hide();
-      $("#pictureofdog").hide();
-      $("#steril").hide();
-      $("#dogname").hide();
-      $("#submitbutton").css('display', 'none');
-      $("#leftarrow").css('display', 'none');
+  // $("#dateid").hide();
+  //     $("#noticeid").hide();
+  //     $("#pictureofdog").hide();
+  //     $("#steril").hide();
+  //     $("#dogname").hide();
+  //     $("#submitbutton").css('display', 'none');
+  //     $("#leftarrow").css('display', 'none');
   },
   methods:{
     next(){
@@ -190,12 +230,115 @@ export default {
       $("#dlaka_lokacija").fadeIn();
       $("#rightarrow").css('display', 'block');
     },
+    onFileChange(e) {
+      //const selected = e.target.files[0];
+      this.slika = e.target.files[0];
+      //console.log(JSON.stringify(this.slika))
+    },
     send_data(){
-      this.napomena=""
-      this.datum=""
-      $("#dateid").fadeIn();
-      $("#noticeid").fadeIn();
-      this.$refs.fileupload.value=null
+      // this.napomena=""
+      // this.datum=""
+      // $("#dateid").fadeIn();
+      // $("#noticeid").fadeIn();
+      // this.$refs.fileupload.value=null
+
+    //var ref = firebase.storage().ref(Auth.state.email+"/"+Date.now()+".png");
+    if(this.slika!=null){
+    let uploadTask=firebase.storage().ref(Auth.state.email+"/"+Date.now()+".png").put(this.slika)
+//     .then((snapshot) => {
+//   console.log('Uploaded a blob or file!');
+// });
+uploadTask.on('state_changed', 
+  (snapshot) => {
+    this.postotak = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  }, 
+  (error) => {
+    console.log(error.message)
+  }, 
+  () => {
+    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+      let podaci={
+        ime:this.ime,
+        prezime:this.prezime,
+        adresa:this.adresa,
+        grad:this.grad,
+        postanski_broj:this.postbr,
+        boja:this.boja,
+        starost:this.starost,
+        dlaka:this.dlaka,
+        vet_lokacija:this.vet_lokacija,
+        ime_psa:this.ime_psa,
+        spol:this.spol,
+        datum_izgubljen:this.datum,
+        napomena:this.napomena,
+        postavljeno:Date.now(),
+        Korisnik_id:Auth.state.id,
+        url_slike:downloadURL
+      }
+      try{
+        dog_data.missing_dog(podaci)
+        $("#modalnotice").modal("show");
+        this.$refs.fileupload.value=null
+        this.postotak=null
+        this.ime=""
+        this.prezime=""
+        this.adresa=""
+        this.grad=""
+        this.postbr=""
+        this.boja=""
+        this.starost=""
+        this.dlaka=""
+        this.vet_lokacija=""
+        this.ime_psa=""
+        this.spol=""
+        this.datum=""
+        this.napomena=""
+      }catch(e){
+        console.log(e)
+      }
+    });
+  }
+);
+    }
+    else{
+let podaci={
+        ime:this.ime,
+        prezime:this.prezime,
+        adresa:this.adresa,
+        grad:this.grad,
+        postanski_broj:this.postbr,
+        boja:this.boja,
+        starost:this.starost,
+        dlaka:this.dlaka,
+        vet_lokacija:this.vet_lokacija,
+        ime_psa:this.ime_psa,
+        spol:this.spol,
+        datum_izgubljen:this.datum,
+        napomena:this.napomena,
+        postavljeno:Date.now(),
+        Korisnik_id:Auth.state.id
+      }
+      try{
+        dog_data.missing_dog(podaci)
+        $("#modalnotice").modal("show");
+        this.$refs.fileupload.value=null
+        this.ime=""
+        this.prezime=""
+        this.adresa=""
+        this.grad=""
+        this.postbr=""
+        this.boja=""
+        this.starost=""
+        this.dlaka=""
+        this.vet_lokacija=""
+        this.ime_psa=""
+        this.spol=""
+        this.datum=""
+        this.napomena=""
+      }catch(e){
+        console.log(e)
+      }
+    }
     }
   }
 };
