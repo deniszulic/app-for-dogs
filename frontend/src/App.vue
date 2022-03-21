@@ -32,7 +32,10 @@
                     <a class="nav-link" v-if="store.tipkorisnika!=null" @click.prevent="logout" href="#">Odjava</a>
                   </li>
                   <li class="nav-item">
-                    <router-link to="nestanakpsa" class="nav-link" v-if="store.tipkorisnika!=null">Prijavi nestanak psa</router-link>
+                    <router-link to="nestanakpsa" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Prijavi nestanak psa</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="preglednestalih" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Nestali psi</router-link>
                   </li>
                 </ul>
               </div>

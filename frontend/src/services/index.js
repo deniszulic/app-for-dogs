@@ -25,6 +25,10 @@ let login_signup={
 let dog_data={
   async missing_dog(data) {
     return await Service.post("/dogmissing", data);
+  },
+  async getmissingdogs(){
+    let response = await Service.get('/getmissingdogs');
+    return response.data
   }
 }
 let Auth = {

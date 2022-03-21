@@ -45,6 +45,11 @@ const routes = [
     path: '/nestanakpsa',
     name: 'nestanakpsa',
     component: () => import('../views/nestanakpsa.vue')
+  },
+  {
+    path: '/preglednestalih',
+    name: 'preglednestalih',
+    component: () => import('../views/preglednestalih.vue')
   }
 ]
 

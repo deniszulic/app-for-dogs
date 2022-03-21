@@ -89,10 +89,10 @@ const createUser = async (request, response) => {
   };
   const reportmissingdog = async (request, response) => {
     console.log(request.body);
-    const { ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, url_slike } = request.body;
+    const { ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, url_slike } = request.body;
     pool.query(
-      "INSERT INTO nestanak (ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, url_slike) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING id",
-      [ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, url_slike],
+      "INSERT INTO nestanak (ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, url_slike) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING id",
+      [ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, url_slike],
       (error, results) => {
         try {
           response.status(201).send(results.rows[0].id.toString());
@@ -102,11 +102,21 @@ const createUser = async (request, response) => {
       }
     );
   };
+  const getmissingdogs = (request, response) => {
+    pool.query("SELECT id, ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, url_slike, postavljeno FROM nestanak ORDER BY postavljeno DESC;", (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
 
   module.exports = {
     createUser,
     createasylum,
     deleteuser,
     login,
-    reportmissingdog
+    reportmissingdog,
+    getmissingdogs
   };

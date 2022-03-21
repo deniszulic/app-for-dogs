@@ -24,13 +24,23 @@
         />
       </div>
     </div>
-    <div class="form-group" id="adresa">
-      <label for="inputAddress">Adresa</label>
+    <div class="form-row" id="boja_starost">
+      <div class="form-group col-md-6">
+        <label for="inputAddress">Adresa</label>
       <input
         type="text"
         class="form-control"
         id="inputAddress" v-model="adresa" required
       />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Telefonski br.</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputEmail4" v-model="telefonskibr" required
+        />
+      </div>
     </div>
     <div class="form-row" id="grad_postnum">
       <div class="form-group col-md-8">
@@ -181,8 +191,9 @@ export default {
       vet_lokacija:"",
       ime_psa:"",
       spol:"",
-      napomena:"",
+      napomena:null,
       datum:"",
+      telefonskibr:"",
       slika:null,
       postotak:null
     }
@@ -257,6 +268,9 @@ uploadTask.on('state_changed',
   }, 
   () => {
     uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+      if(this.napomena==""){
+        this.napomena=null
+      }
       let podaci={
         ime:this.ime,
         prezime:this.prezime,
@@ -272,6 +286,7 @@ uploadTask.on('state_changed',
         datum_izgubljen:this.datum,
         napomena:this.napomena,
         postavljeno:Date.now(),
+        telefonskibr:this.telefonskibr,
         Korisnik_id:Auth.state.id,
         url_slike:downloadURL
       }
@@ -292,7 +307,8 @@ uploadTask.on('state_changed',
         this.ime_psa=""
         this.spol=""
         this.datum=""
-        this.napomena=""
+        this.napomena=null
+        this.telefonskibr=""
       }catch(e){
         console.log(e)
       }
@@ -301,6 +317,9 @@ uploadTask.on('state_changed',
 );
     }
     else{
+      if(this.napomena==""){
+        this.napomena=null
+      }
 let podaci={
         ime:this.ime,
         prezime:this.prezime,
@@ -315,6 +334,7 @@ let podaci={
         spol:this.spol,
         datum_izgubljen:this.datum,
         napomena:this.napomena,
+        telefonskibr:this.telefonskibr,
         postavljeno:Date.now(),
         Korisnik_id:Auth.state.id
       }
@@ -334,7 +354,8 @@ let podaci={
         this.ime_psa=""
         this.spol=""
         this.datum=""
-        this.napomena=""
+        this.napomena=null
+        this.telefonskibr=""
       }catch(e){
         console.log(e)
       }
