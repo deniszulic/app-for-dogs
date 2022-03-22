@@ -111,6 +111,53 @@ const createUser = async (request, response) => {
       }
     });
   };
+  const getspecificdog = (request, response) => {
+    const id = request.params.id;
+    pool.query("SELECT id, ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, url_slike, postavljeno FROM nestanak WHERE id=$1 ORDER BY postavljeno DESC", [id], (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const commentsfordog = async (request, response) => {
+    console.log(request.body)
+    const { komentar, postavljeno, Nestanak_id } = request.body;
+    pool.query(
+        "INSERT INTO komentar (komentar, postavljeno, Nestanak_id) VALUES ($1, $2, $3) RETURNING id",
+        [komentar, postavljeno, Nestanak_id],
+        (error, results) => {
+          try {
+            response.status(201).send(`User added with ID: ${results.rows[0].id}`);
+          } catch (e) {
+            console.log(e);
+          }
+        }
+      );
+  };
+
+  const getcomments = (request, response) => {
+    pool.query("SELECT * from komentar ORDER BY postavljeno ASC", (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const deletecomment = (request, response) => {
+    const id = request.params.id;
+    pool.query("DELETE FROM komentar WHERE id=$1", [id], (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
 
   module.exports = {
     createUser,
@@ -118,5 +165,9 @@ const createUser = async (request, response) => {
     deleteuser,
     login,
     reportmissingdog,
-    getmissingdogs
+    getmissingdogs,
+    getspecificdog,
+    commentsfordog,
+    getcomments,
+    deletecomment
   };

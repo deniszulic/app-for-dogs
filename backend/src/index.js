@@ -21,8 +21,12 @@ app.post('/register', db.createUser)
 app.post('/login', db.login)
 app.post('/registerasylum', db.createasylum)
 app.post('/dogmissing', db.reportmissingdog)
+app.post('/getcommentsfordog', db.commentsfordog)
 app.delete('/delete/:id', db.deleteuser)
+app.delete('/deletecomment/:id', db.deletecomment)
 app.get('/getmissingdogs', db.getmissingdogs)
+app.get('/getmissingdogs/:id', db.getspecificdog)
+app.get('/getcomments', db.getcomments)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);

@@ -15,7 +15,7 @@
   </div>
 </div> -->
 
-<article class="postcard light blue">
+<article class="postcard light blue" v-if="showcomments==null">
 			<a class="postcard__img_link"  v-if="data.url_slike!=null">
 				<img class="postcard__img" :src="data.url_slike" alt="Image Title" @click="$emit('change', data.url_slike)"/>
 			</a>
@@ -83,34 +83,117 @@
 						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
 					</li> -->
 				</ul>
+				<div class="d-flex justify-content-center">
+			<button class="btn btn-primary" @click="opencard(data.id)">Komentiraj</button></div>
 			</div>
 		</article>
-   <!-- <div class="modal fade" id="picturemodal" tabindex="-1" role="dialog" aria-labelledby="pictureModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="pictureModalLabel">Slika</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img :src="url" class="img-fluid"/>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Zatvori</button>
-      </div>
+		<article class="postcard light blue" v-if="showcomments">
+			<a class="postcard__img_link"  v-if="data[0].url_slike!=null">
+				<img class="postcard__img" :src="data[0].url_slike" alt="Image Title" @click="openimg(data[0].url_slike)"/>
+			</a>
+			<div class="postcard__text t-dark">
+				<h1 class="postcard__title blue">Ime psa: {{data[0].ime_psa}}</h1>
+				<div class="postcard__subtitle small">
+					<time>
+						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ timestamp(data[0].postavljeno) }}
+					</time>
+				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">
+                    <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <p>Ime vlasnika:{{data[0].ime}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Prezime vlasnika:{{data[0].prezime}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Adresa vlasnika:{{data[0].adresa}}</p>
     </div>
   </div>
-</div> -->
-
-
-<!-- <div
+  <div class="row">
+    <div class="col-sm">
+      <p>Telefonski broj:{{data[0].telefonskibr}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Grad:{{data[0].grad}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Poštanski broj:{{data[0].postanski_broj}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <p>Boja psa:{{data[0].boja}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Starost:{{data[0].starost}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Dlaka:{{data[0].dlaka}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <p>Vet. lokacija:{{data[0].vet_lokacija}}</p>
+    </div>
+    <div class="col-sm-4">
+      <p>Spol:{{data[0].spol}}</p>
+    </div>
+  </div>
+</div>             
+                </div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-clock mr-2"></i>Izgubljen: {{moment(data[0].datum_izgubljen).format("DD.MM.YYYY")}}</li>
+				</ul>
+			<div class="comments list-group">
+            <!-- <a
+              :key="c.posted_at"
+              v-for="c in g.comments"
+              href="#"
+              class="animate list-group-item list-group-item-action flex-column align-items-start"
+            > -->
+			<a :key="a.postavljeno" v-for="a in comments"
+              href="#"
+              class="animate list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <!-- <small>{{ c.email }}</small> -->
+				<small>{{a.postavljeno}}</small>
+                <!-- <a
+                  v-if="(store.koremail == g.email) || (c.email == store.koremail) || (store.tipKorisnika=='admin')"
+                  @click="removeComment(c.id)"
+                  href="#"
+                >Obriši</a> -->
+				<a @click="deletecom(a.id)"
+                  href="#"
+                >Obriši</a>
+              </div>
+              <!-- {{ c.comment }} -->
+			  {{a.komentar}}
+            </a>
+          </div>
+		  <form @submit.prevent="posaljikomentar" class="form-inline mb-5">
+            <div class="form-group">
+              <input
+                v-model="komentar"
+                type="text"
+                class="form-control"
+                id="imageUrl"
+                placeholder="Komentar"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary ml-2">Post</button>
+          </form>
+			</div>
+		</article>
+		<div
             class="modal fade"
-            id="picusrModal"
+            id="pictureModal1"
             tabindex="-1"
             role="dialog"
-            aria-labelledby="picusrModalLabel"
+            aria-labelledby="pictureModalLabel"
             aria-hidden="true"
           >
             <div class="modal-dialog" role="document">
@@ -120,23 +203,27 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <img class="modal-content" :src="store.url" />
+                <img class="modal-content" :src="url" />
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="close">Zatvori</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
 </div>
 </template>
 <script>
 //import store from "@/store.js";
 import moment from 'moment';
+import { dog_data } from "@/services";
 export default {
-    props: ["data", "picture"],
+    props: ["data", "showcomments"],
     data(){
         return{
-            moment
+            moment,
+			url:"",
+			komentar:"",
+			comments:[]
         }
     },
 //     computed: {
@@ -149,6 +236,12 @@ export default {
     mounted(){
     moment.locale('hr')
     },
+	created() {
+    this.getcomm();
+  },
+  watch: {
+    $route: "getcomm",
+  },
     methods:{
         timestamp(data){
         let date = new Date(parseInt(data))
@@ -162,14 +255,46 @@ export default {
     //     // console.log(this.url)
     //     $("#picusrModal").modal("show");
     // }
+	opencard(data){
+		this.$router.push({ path: `preglednestalih/${data}` });
+	},
+	openimg(data){
+		this.url=data
+		$("#pictureModal1").modal("show");
+	},
+	async getcomm(){
+		this.comments=await dog_data.getcomments()
+	},
+	async deletecom(data){
+		try{
+			await dog_data.deletecomment(data)
+			this.getcomm()
+		}catch(e){
+			console.log(e)
+		}
+	},
+	async posaljikomentar(){
+		let data={
+			komentar:this.komentar,
+			postavljeno:Date.now(),
+			Nestanak_id:this.data[0].id
+		}
+		try{
+			await dog_data.comments(data)
+			this.getcomm()
+			this.komentar=""
+		}catch(e){
+			console.log(e)
+		}
+	}
     }
 }
 </script>
-<style scoped>
+<style>
 /* p{
     white-space: nowrap ;
 } */
-@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
  .light {
 	 background: #f3f5f7;
 }
@@ -186,6 +311,7 @@ export default {
 	 overflow: hidden;
 	 position: relative;
 	 color: #fff;
+     width:1200px;
 }
  .postcard.dark {
 	 background-color: #18151f;
@@ -339,23 +465,6 @@ export default {
 		 background: #e1e5ea;
 	}
 }
-/* COLORS */
- /* .postcard .postcard__tagbox .green.play:hover {
-	 background: #79dd09;
-	 color: black;
-}
- .green .postcard__title:hover {
-	 color: #79dd09;
-}
- .green .postcard__bar {
-	 background-color: #79dd09;
-}
- .green::before {
-	 background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
-}
- .green:nth-child(2n)::before {
-	 background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
-} */
  .postcard .postcard__tagbox .blue.play:hover {
 	 background: #0076bd;
 }
@@ -371,61 +480,12 @@ export default {
  .blue:nth-child(2n)::before {
 	 background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
 }
- /* .postcard .postcard__tagbox .red.play:hover {
-	 background: #bd150b;
-}
- .red .postcard__title:hover {
-	 color: #bd150b;
-}
- .red .postcard__bar {
-	 background-color: #bd150b;
-}
- .red::before {
-	 background-image: linear-gradient(-30deg, rgba(189, 21, 11, 0.1), transparent 50%);
-}
- .red:nth-child(2n)::before {
-	 background-image: linear-gradient(30deg, rgba(189, 21, 11, 0.1), transparent 50%);
-}
- .postcard .postcard__tagbox .yellow.play:hover {
-	 background: #bdbb49;
-	 color: black;
-}
- .yellow .postcard__title:hover {
-	 color: #bdbb49;
-}
- .yellow .postcard__bar {
-	 background-color: #bdbb49;
-}
- .yellow::before {
-	 background-image: linear-gradient(-30deg, rgba(189, 187, 73, 0.1), transparent 50%);
-}
- .yellow:nth-child(2n)::before {
-	 background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
-} */
  @media screen and (min-width: 769px) {
-	 /* .green::before {
-		 background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
-	}
-	 .green:nth-child(2n)::before {
-		 background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
-	} */
 	 .blue::before {
 		 background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
 	}
 	 .blue:nth-child(2n)::before {
 		 background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
 	}
-	 /* .red::before {
-		 background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
-	}
-	 .red:nth-child(2n)::before {
-		 background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
-	}
-	 .yellow::before {
-		 background-image: linear-gradient(-80deg, rgba(189, 187, 73, 0.1), transparent 50%);
-	}
-	 .yellow:nth-child(2n)::before {
-		 background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
-	} */
-}
+} */
 </style>

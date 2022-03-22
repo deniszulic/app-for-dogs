@@ -1,5 +1,5 @@
 <template>
-<div class="background" style="overflow: hidden;">
+<div class="background rounded" style="overflow: hidden;">
     <div class="row">
         <div class="col-sm-6 dogimg" >
             <!-- <img src="../assets/dog.jpg" class="img-fluid"/> -->

@@ -9,7 +9,15 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    children:[
+      {
+        path: 'preglednestalih/:id',
+        props: true,
+            name: 'dog-details',
+        component: () => import('../views/detaljipsa.vue')
+      }
+    ]
   },
   {
     path: '/about',

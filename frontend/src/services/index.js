@@ -29,6 +29,20 @@ let dog_data={
   async getmissingdogs(){
     let response = await Service.get('/getmissingdogs');
     return response.data
+  },
+  async getmissingdogsid(id){
+    let response = await Service.get(`/getmissingdogs/${id}`);
+    return response.data
+  },
+  async comments(data){
+    return await Service.post("/getcommentsfordog", data);
+  },
+  async getcomments(){
+    let response = await Service.get(`/getcomments`);
+    return response.data
+  },
+  async deletecomment(id){
+    return await Service.delete(`deletecomment/${id}`)
   }
 }
 let Auth = {
