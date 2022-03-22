@@ -27,27 +27,61 @@
 					</time>
 				</div>
 				<div class="postcard__bar"></div>
-                    <div class="container">
 				<div class="postcard__preview-txt">
+                    <div class="container">
   <div class="row">
     <div class="col-sm">
-      <p>Ime vlasnika:{{data.ime}}</p><br><p>Prezime vlasnika:{{data.prezime}}</p><br><p>Adresa vlasnika:{{data.adresa}}</p><br><p>Telefonski broj:{{data.telefonskibr}}</p>
+      <p>Ime vlasnika:{{data.ime}}</p>
     </div>
     <div class="col-sm">
-      <p>Grad:{{data.grad}}</p><br><p>Poštanski broj:{{data.postanski_broj}}</p><br><p>Boja psa:{{data.boja}}</p><br><p>Starost:{{data.starost}}</p>
+      <p>Prezime vlasnika:{{data.prezime}}</p>
     </div>
     <div class="col-sm">
-      <p>Dlaka:{{data.dlaka}}</p><br><p>Vet. lokacija:{{data.vet_lokacija}}</p><br><p>Ime psa:{{data.ime_psa}}</p><br><p>Spol:{{data.spol}}</p>
+      <p>Adresa vlasnika:{{data.adresa}}</p>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <p>Telefonski broj:{{data.telefonskibr}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Grad:{{data.grad}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Poštanski broj:{{data.postanski_broj}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <p>Boja psa:{{data.boja}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Starost:{{data.starost}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Dlaka:{{data.dlaka}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <p>Vet. lokacija:{{data.vet_lokacija}}</p>
+    </div>
+    <div class="col-sm-4">
+      <!-- <p>Ime psa:{{data.ime_psa}}</p> -->
+      <p>Spol:{{data.spol}}</p>
+    </div>
+    <!-- <div class="col-sm">
+      <p>Spol:{{data.spol}}</p>
+    </div> -->
   </div>
 </div>             
                 </div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
-					<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
-					<li class="tag__item play blue">
+					<!-- <li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li> -->
+					<li class="tag__item"><i class="fas fa-clock mr-2"></i>Izgubljen: {{moment(data.datum_izgubljen).format("DD.MM.YYYY")}}</li>
+					<!-- <li class="tag__item play blue">
 						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</article>
@@ -132,9 +166,9 @@ export default {
 }
 </script>
 <style scoped>
-p{
+/* p{
     white-space: nowrap ;
-}
+} */
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
  .light {
 	 background: #f3f5f7;
@@ -251,15 +285,15 @@ p{
 		 justify-content: start;
 	}
 	 .postcard .postcard__img {
-		 max-width: 200px;
+		 max-width: 300px;
 		 max-height: 100%;
 		 transition: transform 0.3s ease;
 	}
 	 .postcard .postcard__text {
 		 padding: 3rem;
 		 width: 100%;
-	}
-	 .postcard .media.postcard__text:before {
+	} 
+	  .postcard .media.postcard__text:before {
 		 content: "";
 		 position: absolute;
 		 display: block;
@@ -296,7 +330,7 @@ p{
 		 display: block;
 		 top: -20%;
 		 height: 130%;
-		 width: 55px;
+		 width: 48px;
 	}
 	 .postcard.dark .postcard__text:before {
 		 background: #18151f;
@@ -306,7 +340,7 @@ p{
 	}
 }
 /* COLORS */
- .postcard .postcard__tagbox .green.play:hover {
+ /* .postcard .postcard__tagbox .green.play:hover {
 	 background: #79dd09;
 	 color: black;
 }
@@ -321,7 +355,7 @@ p{
 }
  .green:nth-child(2n)::before {
 	 background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
-}
+} */
  .postcard .postcard__tagbox .blue.play:hover {
 	 background: #0076bd;
 }
@@ -337,7 +371,7 @@ p{
  .blue:nth-child(2n)::before {
 	 background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
 }
- .postcard .postcard__tagbox .red.play:hover {
+ /* .postcard .postcard__tagbox .red.play:hover {
 	 background: #bd150b;
 }
  .red .postcard__title:hover {
@@ -367,21 +401,21 @@ p{
 }
  .yellow:nth-child(2n)::before {
 	 background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
-}
+} */
  @media screen and (min-width: 769px) {
-	 .green::before {
+	 /* .green::before {
 		 background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
 	}
 	 .green:nth-child(2n)::before {
 		 background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
-	}
+	} */
 	 .blue::before {
 		 background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
 	}
 	 .blue:nth-child(2n)::before {
 		 background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
 	}
-	 .red::before {
+	 /* .red::before {
 		 background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
 	}
 	 .red:nth-child(2n)::before {
@@ -392,6 +426,6 @@ p{
 	}
 	 .yellow:nth-child(2n)::before {
 		 background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
-	}
+	} */
 }
 </style>
