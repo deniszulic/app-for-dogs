@@ -37,8 +37,8 @@ let dog_data={
   async comments(data){
     return await Service.post("/getcommentsfordog", data);
   },
-  async getcomments(){
-    let response = await Service.get(`/getcomments`);
+  async getcomments(id){
+    let response = await Service.get(`/getcomments/${id}`);
     return response.data
   },
   async deletecomment(id){

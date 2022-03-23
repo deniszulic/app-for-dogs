@@ -297,7 +297,7 @@ export default {
     logout() {
       Auth.logout();
       this.store.tipkorisnika = null;
-      this.$router.push({ path: "login" });
+      this.$router.push({ name: 'login' });
     }
   }
 };

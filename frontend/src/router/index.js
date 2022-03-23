@@ -16,6 +16,11 @@ const routes = [
         props: true,
             name: 'dog-details',
         component: () => import('../views/detaljipsa.vue')
+      },
+      {
+        path: '/preglednestalih',
+        name: 'preglednestalih',
+        component: () => import('../views/preglednestalih.vue')
       }
     ]
   },
@@ -54,11 +59,11 @@ const routes = [
     name: 'nestanakpsa',
     component: () => import('../views/nestanakpsa.vue')
   },
-  {
-    path: '/preglednestalih',
-    name: 'preglednestalih',
-    component: () => import('../views/preglednestalih.vue')
-  }
+  // {
+  //   path: '/preglednestalih',
+  //   name: 'preglednestalih',
+  //   component: () => import('../views/preglednestalih.vue')
+  // }
 ]
 
 const router = new VueRouter({

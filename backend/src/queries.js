@@ -139,7 +139,8 @@ const createUser = async (request, response) => {
   };
 
   const getcomments = (request, response) => {
-    pool.query("SELECT * from komentar ORDER BY postavljeno ASC", (error, results) => {
+    const id = request.params.id;
+    pool.query("SELECT * from komentar WHERE nestanak_id=$1 ORDER BY postavljeno ASC", [id], (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {

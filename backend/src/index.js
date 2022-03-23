@@ -26,7 +26,7 @@ app.delete('/delete/:id', db.deleteuser)
 app.delete('/deletecomment/:id', db.deletecomment)
 app.get('/getmissingdogs', db.getmissingdogs)
 app.get('/getmissingdogs/:id', db.getspecificdog)
-app.get('/getcomments', db.getcomments)
+app.get('/getcomments/:id', db.getcomments)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);

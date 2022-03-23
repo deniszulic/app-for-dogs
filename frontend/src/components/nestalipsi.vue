@@ -16,8 +16,8 @@
 </div> -->
 
 <article class="postcard light blue" v-if="showcomments==null">
-			<a class="postcard__img_link"  v-if="data.url_slike!=null">
-				<img class="postcard__img" :src="data.url_slike" alt="Image Title" @click="$emit('change', data.url_slike)"/>
+			<a class="postcard__img_link"  v-if="data.url_slike!=null" href="javascript:void(0)">
+				<img class="postcard__img" :src="data.url_slike" alt="Image Title" @click="$emit('change', data.url_slike) "/>
 			</a>
 			<div class="postcard__text t-dark">
 				<h1 class="postcard__title blue">Ime psa: {{data.ime_psa}}</h1>
@@ -88,7 +88,7 @@
 			</div>
 		</article>
 		<article class="postcard light blue" v-if="showcomments">
-			<a class="postcard__img_link"  v-if="data[0].url_slike!=null">
+			<a class="postcard__img_link"  v-if="data[0].url_slike!=null" href="javascript:void(0)">
 				<img class="postcard__img" :src="data[0].url_slike" alt="Image Title" @click="openimg(data[0].url_slike)"/>
 			</a>
 			<div class="postcard__text t-dark">
@@ -154,8 +154,8 @@
               href="#"
               class="animate list-group-item list-group-item-action flex-column align-items-start"
             > -->
-			<a :key="a.postavljeno" v-for="a in comments"
-              href="#"
+			<a :key="a.postavljeno" v-for="a in podaci"
+              href="javascript:void(0)"
               class="animate list-group-item list-group-item-action flex-column align-items-start"
             >
               <div class="d-flex w-100 justify-content-between">
@@ -167,7 +167,7 @@
                   href="#"
                 >Obriši</a> -->
 				<a @click="deletecom(a.id)"
-                  href="#"
+                  href="javascript:void(0)"
                 >Obriši</a>
               </div>
               <!-- {{ c.comment }} -->
@@ -184,7 +184,7 @@
                 placeholder="Komentar"
               />
             </div>
-            <button type="submit" class="btn btn-primary ml-2">Post</button>
+            <button type="submit" class="btn btn-primary ml-2">Pošalji</button>
           </form>
 			</div>
 		</article>
@@ -217,13 +217,13 @@
 import moment from 'moment';
 import { dog_data } from "@/services";
 export default {
-    props: ["data", "showcomments"],
+    props: ["data", "showcomments","com"],
     data(){
         return{
             moment,
 			url:"",
 			komentar:"",
-			comments:[]
+			podaci:this.com
         }
     },
 //     computed: {
@@ -237,7 +237,9 @@ export default {
     moment.locale('hr')
     },
 	created() {
+		if(this.showcomments==true){
     this.getcomm();
+		}
   },
   watch: {
     $route: "getcomm",
@@ -263,7 +265,8 @@ export default {
 		$("#pictureModal1").modal("show");
 	},
 	async getcomm(){
-		this.comments=await dog_data.getcomments()
+		//this.comments=await dog_data.getcomments(this.data[0].id)
+		this.podaci=await dog_data.getcomments(this.data[0].id)
 	},
 	async deletecom(data){
 		try{
@@ -290,7 +293,10 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
+a:hover{
+	color:blue
+}
 /* p{
     white-space: nowrap ;
 } */
