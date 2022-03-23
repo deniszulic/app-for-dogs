@@ -124,10 +124,10 @@ const createUser = async (request, response) => {
 
   const commentsfordog = async (request, response) => {
     console.log(request.body)
-    const { komentar, postavljeno, Nestanak_id } = request.body;
+    const { komentar, postavljeno, Nestanak_id, Korisnik_id } = request.body;
     pool.query(
-        "INSERT INTO komentar (komentar, postavljeno, Nestanak_id) VALUES ($1, $2, $3) RETURNING id",
-        [komentar, postavljeno, Nestanak_id],
+        "INSERT INTO komentar (komentar, postavljeno, Nestanak_id, Korisnik_id) VALUES ($1, $2, $3, $4) RETURNING id",
+        [komentar, postavljeno, Nestanak_id, Korisnik_id],
         (error, results) => {
           try {
             response.status(201).send(`User added with ID: ${results.rows[0].id}`);
@@ -140,7 +140,7 @@ const createUser = async (request, response) => {
 
   const getcomments = (request, response) => {
     const id = request.params.id;
-    pool.query("SELECT * from komentar WHERE nestanak_id=$1 ORDER BY postavljeno ASC", [id], (error, results) => {
+    pool.query("SELECT korisnik.email, komentar.id, komentar.komentar, komentar.postavljeno FROM korisnik LEFT JOIN komentar ON korisnik.id=komentar.korisnik_id WHERE komentar.nestanak_id=$1 ORDER BY komentar.postavljeno ASC", [id], (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {

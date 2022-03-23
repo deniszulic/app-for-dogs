@@ -160,7 +160,8 @@
             >
               <div class="d-flex w-100 justify-content-between">
                 <!-- <small>{{ c.email }}</small> -->
-				<small>{{a.postavljeno}}</small>
+				<small>{{a.email}}</small>
+				<small>{{timestamp(a.postavljeno)}}</small>
                 <!-- <a
                   v-if="(store.koremail == g.email) || (c.email == store.koremail) || (store.tipKorisnika=='admin')"
                   @click="removeComment(c.id)"
@@ -216,6 +217,7 @@
 //import store from "@/store.js";
 import moment from 'moment';
 import { dog_data } from "@/services";
+import {Auth} from "@/services";
 export default {
     props: ["data", "showcomments","com"],
     data(){
@@ -247,10 +249,15 @@ export default {
     methods:{
         timestamp(data){
         let date = new Date(parseInt(data))
-        //return date.toUTCString()
         let month = date.getUTCMonth()+1
-        return date.getUTCDate()+"."+month+"."+date.getUTCFullYear()
+		let hours=date.getUTCHours()+1
+		if(hours==24) hours=0;
+        return date.getUTCDate()+"."+month+"."+date.getUTCFullYear()+" "+this.addzero(hours)+":"+this.addzero(date.getUTCMinutes());
     },
+	addzero(i) {
+  if (i < 10) {i = "0" + i}
+  return i;
+},
     // showimg(data){
     //     //this.url=data
     //     // this.store.url=data
@@ -280,7 +287,8 @@ export default {
 		let data={
 			komentar:this.komentar,
 			postavljeno:Date.now(),
-			Nestanak_id:this.data[0].id
+			Nestanak_id:this.data[0].id,
+			Korisnik_id:Auth.state.id
 		}
 		try{
 			await dog_data.comments(data)

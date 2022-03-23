@@ -1,11 +1,11 @@
 <template>
 <div>
     <div v-if="data">
-        <button @click="back">Nazad</button>
+        <button @click="back" class="btn btn-primary" style="margin-top:5px;">Nazad</button>
         <nestalipsi :data="data" :showcomments="true" :com="com" />
     </div>
     <div v-else>
-        among
+        Something went wrong
     </div></div>
 </template>
 <script>
