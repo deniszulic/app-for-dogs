@@ -26,6 +26,9 @@ let dog_data={
   async missing_dog(data) {
     return await Service.post("/dogmissing", data);
   },
+  async adopt_dog(data) {
+    return await Service.post("/adoptdog", data);
+  },
   async getmissingdogs(){
     let response = await Service.get('/getmissingdogs');
     return response.data

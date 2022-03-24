@@ -59,6 +59,11 @@ const routes = [
     name: 'nestanakpsa',
     component: () => import('../views/nestanakpsa.vue')
   },
+  {
+    path: '/udomljavanjepsa',
+    name: 'udomljavanjepsa',
+    component: () => import('../views/udomljavanjepsa.vue')
+  },
   // {
   //   path: '/preglednestalih',
   //   name: 'preglednestalih',

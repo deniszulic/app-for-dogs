@@ -53,14 +53,6 @@
       </div>
     </div>
     <div class="form-row" id="boja_starost">
-      <!-- <div class="form-group col-md-6">
-        <label for="inputEmail4">Vrsta životinje</label>
-        <input
-          type="text"
-          class="form-control"
-          id="inputEmail4"
-        />
-      </div> -->
       <div class="form-group col-md-6">
         <label for="inputPassword4">Boja</label>
         <input
@@ -104,14 +96,6 @@
           id="inputPassword4" v-model="ime_psa" required
         />
       </div>
-      <!-- <div class="form-group col-md-6" id="steril">
-        <label for="inputState1">Steriliziran / kastriran</label>
-        <select id="inputState1" class="form-control">
-          <option>Da</option>
-          <option>Ne</option>
-          <option>Ne znam</option>
-        </select>
-      </div> -->
       <div class="form-group col-md-6" id="steril">
         <label for="inputState1">Spol</label>
         <select id="inputState1" class="form-control" v-model="spol" required>
@@ -122,10 +106,10 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-6" id="dateid">
-        <label for="inputPassword4">Datum kada je pas izgubljen</label>
+        <label for="inputPassword4">Kilaža (kg)</label>
         <input
-          type="date"
-          class="form-control" v-model="datum" required
+          type="number"
+          class="form-control" v-model="kg" required
         />
       </div>
       <div class="form-group col-md-6" id="noticeid">
@@ -135,6 +119,22 @@
           class="form-control"
           id="inputPassword4" v-model="pasmina" required
         />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" id="dateid">
+        <label for="inputPassword4">Kastrat</label>
+        <select id="inputState1" class="form-control" v-model="kastrat" required>
+          <option>Da</option>
+          <option>Ne</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6" id="noticeid">
+        <label for="napomena">Opasna životinja?</label>
+        <select id="inputState1" class="form-control" v-model="opasnost" required>
+          <option>Da</option>
+          <option>Ne</option>
+        </select>
       </div>
     </div>
     <div class="form-row">
@@ -152,12 +152,7 @@
     <div class="d-flex justify-content-center" >
     <button type="submit" class="btn btn-primary" id="submitbutton">Pošalji</button></div>
   </form>
-  <!-- <div class="d-flex justify-content-end" style="margin-right:10px;margin-bottom:5px;" >
-    <button type="button" class="rounded-circle" style="background-color:#0275d8;" @click="next" id="rightarrow"><i class="fa-solid fa-arrow-right-long" style="color:white;"></i></button>
-    </div>
-    <div class="d-flex justify-content-start" style="margin-left:10px;margin-bottom:5px;" >
-    <button type="button" class="btn1 rounded-circle" style="background-color:#0275d8;" @click="back" id="leftarrow"><i class="fa-solid fa-arrow-left-long" style="color:white;"></i></button>
-    </div> -->
+  
   <div class="progress">
   <div class="progress-bar" :style="`width:`+postotak+`%`" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
@@ -187,7 +182,7 @@
 import { Auth } from "@/services";
 import { dog_data } from "@/services";
 export default {
-  name: "nestanakpsa",
+  name: "udomljavanjepsa",
   data() {
     return {
       ime:"",
@@ -202,74 +197,22 @@ export default {
       ime_psa:"",
       spol:"",
       napomena:null,
-      datum:"",
+      kg:"",
       telefonskibr:"",
       pasmina:"",
+      kastrat:"",
+      opasnost:"",
       slika:null,
       postotak:null
     }
   },
-  mounted(){
-  // $("#dateid").hide();
-  //     $("#noticeid").hide();
-  //     $("#pictureofdog").hide();
-  //     $("#steril").hide();
-  //     $("#dogname").hide();
-  //     $("#submitbutton").css('display', 'none');
-  //     $("#leftarrow").css('display', 'none');
-  },
   methods:{
-    next(){
-      $("#name_surname").hide();
-      $("#adresa").hide();
-      $("#grad_postnum").hide();
-      $("#boja_starost").hide();
-      $("#dlaka_lokacija").hide();
-      $("#dateid").fadeIn();
-      $("#noticeid").fadeIn();
-      $("#pictureofdog").fadeIn();
-      $("#steril").fadeIn();
-      $("#dogname").fadeIn();
-      $("#submitbutton").css('display', 'block');
-      $("#rightarrow").css('display', 'none');
-      $("#leftarrow").css('display', 'block');
-      //$("#submitbutton").fadeIn();
-    },
-    back(){
-      $("#dateid").hide();
-      $("#noticeid").hide();
-      $("#pictureofdog").hide();
-      $("#steril").hide();
-      $("#dogname").hide();
-      $("#submitbutton").css('display', 'none');
-      $("#leftarrow").css('display', 'none');
-      //$("#submitbutton").hide();
-
-      $("#name_surname").fadeIn();
-      $("#adresa").fadeIn();
-      $("#grad_postnum").fadeIn();
-      $("#boja_starost").fadeIn();
-      $("#dlaka_lokacija").fadeIn();
-      $("#rightarrow").css('display', 'block');
-    },
     onFileChange(e) {
-      //const selected = e.target.files[0];
       this.slika = e.target.files[0];
-      //console.log(JSON.stringify(this.slika))
     },
     send_data(){
-      // this.napomena=""
-      // this.datum=""
-      // $("#dateid").fadeIn();
-      // $("#noticeid").fadeIn();
-      // this.$refs.fileupload.value=null
-
-    //var ref = firebase.storage().ref(Auth.state.email+"/"+Date.now()+".png");
     if(this.slika!=null){
-    let uploadTask=firebase.storage().ref("missing_dogs/"+Auth.state.email+"/"+Date.now()+".png").put(this.slika)
-//     .then((snapshot) => {
-//   console.log('Uploaded a blob or file!');
-// });
+    let uploadTask=firebase.storage().ref("adopt_dog/"+Auth.state.email+"/"+Date.now()+".png").put(this.slika)
 uploadTask.on('state_changed', 
   (snapshot) => {
     this.postotak = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -297,13 +240,16 @@ uploadTask.on('state_changed',
         datum_izgubljen:this.datum,
         napomena:this.napomena,
         pasmina:this.pasmina,
+        kg:this.kg,
+        kastrat:this.kastrat,
+        opasnost:this.opasnost,
         postavljeno:Date.now(),
         telefonskibr:this.telefonskibr,
         Korisnik_id:Auth.state.id,
         url_slike:downloadURL
       }
       try{
-        dog_data.missing_dog(podaci)
+        dog_data.adopt_dog(podaci)
         $("#modalnotice").modal("show");
         this.$refs.fileupload.value=null
         this.postotak=null
@@ -321,8 +267,11 @@ uploadTask.on('state_changed',
         this.datum=""
         this.napomena=null
         this.telefonskibr=""
-        this.slika=null
         this.pasmina=""
+        this.kg=""
+        this.kastrat=""
+        this.opasnost=""
+        this.slika=null
       }catch(e){
         console.log(e)
       }
@@ -347,6 +296,9 @@ let podaci={
         ime_psa:this.ime_psa,
         spol:this.spol,
         datum_izgubljen:this.datum,
+        kg:this.kg,
+        kastrat:this.kastrat,
+        opasnost:this.opasnost,
         napomena:this.napomena,
         telefonskibr:this.telefonskibr,
         pasmina:this.pasmina,
@@ -354,7 +306,7 @@ let podaci={
         Korisnik_id:Auth.state.id
       }
       try{
-        dog_data.missing_dog(podaci)
+        dog_data.adopt_dog(podaci)
         $("#modalnotice").modal("show");
         this.$refs.fileupload.value=null
         this.ime=""
@@ -372,6 +324,9 @@ let podaci={
         this.napomena=null
         this.telefonskibr=""
         this.pasmina=""
+        this.kg=""
+        this.kastrat=""
+        this.opasnost=""
       }catch(e){
         console.log(e)
       }
@@ -385,29 +340,12 @@ let podaci={
         background-color: #fff;
         margin-top:50px;
         margin-bottom: 50px;
-
-         /* margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); */
-
-  /*margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);*/
     }
     form{
         padding: 20px;
     }
-    .img{
-        /* width:100%;
-    height: 100%; */
-    }
     .dogimg{
-      background: url("../assets/dog.jpg") top left/cover no-repeat;
+      background: url("../assets/adopt_dog.png") top left/cover no-repeat;
       display: block;
     width: 100%;
     height: auto;
@@ -415,24 +353,13 @@ let podaci={
     background-size: cover;
     transform: scale(1.0);
     transition: transform 0.3s ease;
-
-    /* display: block;
-    width: 100%;
-    padding-top: 400px;
-    background-position: center center;
-    overflow: hidden;display:block;   */
     }
     .dogimg:hover{
     transform: scale(0.9);
     transition: transform 0.3s ease;
     }
-    .dogimg:after{
-      /* transform: scale(1.0); */
-    /* transition: transform 0.3s ease; */
-    }
     @media (max-width: 767px) {
       .dogimg {
-    /* display: block; */
     width: 100%;
     padding-top: 400px;
     background-position: center center;

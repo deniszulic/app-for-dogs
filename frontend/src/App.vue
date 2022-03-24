@@ -37,6 +37,9 @@
                   <li class="nav-item">
                     <router-link to="preglednestalih" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Nestali psi</router-link>
                   </li>
+				  <li class="nav-item">
+                    <router-link to="udomljavanjepsa" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Udomi psa</router-link>
+                  </li>
                 </ul>
               </div>
             </nav>

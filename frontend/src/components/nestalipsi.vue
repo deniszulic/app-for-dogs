@@ -64,12 +64,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm">
       <p>Vet. lokacija:{{data.vet_lokacija}}</p>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm">
       <!-- <p>Ime psa:{{data.ime_psa}}</p> -->
       <p>Spol:{{data.spol}}</p>
+    </div>
+	<div class="col-sm">
+      <p>Pasmina:{{data.pasmina}}</p>
     </div>
     <!-- <div class="col-sm">
       <p>Spol:{{data.spol}}</p>
@@ -136,11 +139,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm">
       <p>Vet. lokacija:{{data[0].vet_lokacija}}</p>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm">
       <p>Spol:{{data[0].spol}}</p>
+    </div>
+	<div class="col-sm">
+      <p>Pasmina:{{data[0].pasmina}}</p>
     </div>
   </div>
 </div>             

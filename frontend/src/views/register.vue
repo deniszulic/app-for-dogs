@@ -18,7 +18,7 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Ime" v-model="ime"
+                placeholder="Ime" v-model="ime" required
               />
             </div>
             <div class="input-group mb-3">
@@ -27,7 +27,7 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Prezime" v-model="prezime"
+                placeholder="Prezime" v-model="prezime" required
               />
             </div>
             <div class="input-group mb-3">
@@ -48,7 +48,7 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="OIB" v-model="oib"
+                placeholder="OIB" v-model="oib" id="oib_input"
               />
             </div>
             <div class="row">
@@ -58,7 +58,7 @@
                   name=""
                   class="form-control input_user"
                   value=""
-                  placeholder="Ulica" v-model="ulica"
+                  placeholder="Ulica" v-model="ulica" id="street_input"
                 />
               </div>
               <div class="input-group mb-3 col-5" id="homenum">
@@ -67,7 +67,7 @@
                   name=""
                   class="form-control input_user"
                   value=""
-                  placeholder="Kućni broj" v-model="kucnibr"
+                  placeholder="Kućni broj" v-model="kucnibr" id="homenum_input"
                 />
               </div>
             </div>
@@ -78,7 +78,7 @@
                   name=""
                   class="form-control input_user"
                   value=""
-                  placeholder="Grad" v-model="grad"
+                  placeholder="Grad" v-model="grad" id="city_input"
                 />
               </div>
               <div class="input-group mb-3 col-6" id="postnum">
@@ -87,7 +87,7 @@
                   name=""
                   class="form-control input_user"
                   value=""
-                  placeholder="Poštanski broj" v-model="postnum"
+                  placeholder="Poštanski broj" v-model="postnum" id="postnum_input"
                 />
               </div>
             </div>
@@ -97,7 +97,7 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Email" v-model="email"
+                placeholder="Email" v-model="email" required
               />
             </div>
             <div class="input-group mb-3" id="passwordreg">
@@ -106,7 +106,7 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Lozinka" v-model="password"
+                placeholder="Lozinka" v-model="password" required
               />
             </div>
             <div class="d-flex justify-content-center mt-3 login_container">
@@ -153,12 +153,17 @@ export default {
       console.log(event.target.value);
       if (event.target.value == "korisnik") {
         $("#oib").hide();
-        $("#street").hide();
-        $("#homenum").hide();
-        $("#city").hide();
-        $("#postnum").hide();
-        $("#emailreg").show();
-        $("#passwordreg").show();
+    $("#oib_input").attr("required",false);
+    $("#street").hide();
+    $("#street_input").attr("required",false);
+    $("#homenum").hide();
+    $("#homenum_input").attr("required",false);
+    $("#city").hide();
+    $("#city_input").attr("required",false);
+    $("#postnum").hide();
+    $("#postnum_input").attr("required",false);
+    $("#emailreg").show();
+    $("#passwordreg").show();
       } else {
         $("#oib").show();
         $("#street").show();
@@ -167,6 +172,11 @@ export default {
         $("#postnum").show();
         $("#emailreg").show();
         $("#passwordreg").show();
+        $("#oib_input").attr("required",true);
+$("#street_input").attr("required",true);
+$("#homenum_input").attr("required",true);
+$("#city_input").attr("required",true);
+$("#postnum_input").attr("required",true);
       }
     },
     async register(){
@@ -225,12 +235,19 @@ export default {
   },
   mounted() {
     $("#oib").hide();
+    $("#oib").prop('required',false);
     $("#street").hide();
+    $("#street").prop('required',false);
     $("#homenum").hide();
+    $("#homenum").prop('required',false);
     $("#city").hide();
+    $("#city").prop('required',false);
     $("#postnum").hide();
+    $("#postnum").prop('required',false);
     $("#emailreg").hide();
+    $("#emailreg").prop('required',false);
     $("#passwordreg").hide();
+    $("#passwordreg").prop('required',false);
   },
 };
 </script>
