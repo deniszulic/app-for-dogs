@@ -32,7 +32,7 @@
                     <a class="nav-link" v-if="store.tipkorisnika!=null" @click.prevent="logout" href="#">Odjava</a>
                   </li>
                   <li class="nav-item">
-                    <router-link to="nestanakpsa" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Prijavi nestanak psa</router-link>
+                    <router-link to="/nestanakpsa" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Prijavi nestanak psa</router-link>
                   </li>
                   <li class="nav-item">
                     <router-link to="preglednestalih" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Nestali psi</router-link>
@@ -121,7 +121,7 @@ background-size: cover;
  .postcard .postcard__title {
 	 font-size: 1.75rem;
 }
- .postcard .postcard__img {
+ .postcard .postcard__img{
 	 max-height: 180px;
 	 width: 100%;
 	 object-fit: cover;
@@ -197,7 +197,8 @@ background-size: cover;
 	}
 	 .postcard .postcard__img {
 		 max-width: 300px;
-		 max-height: 100%;
+		//  max-height: 100%;
+		max-height: 580px;
 		 transition: transform 0.3s ease;
 	}
 	 .postcard .postcard__text {

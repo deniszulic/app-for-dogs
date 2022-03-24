@@ -1,7 +1,7 @@
 <template>
 <div>
     <div v-if="data">
-        <button @click="back" class="btn btn-primary" style="margin-top:5px;">Nazad</button>
+        <button @click="back" class="btn btn-primary" style="margin-top:5px;"><i class="fa-solid fa-arrow-left-long"></i> Nazad</button>
         <nestalipsi :data="data" :showcomments="true" :com="com" />
     </div>
     <div v-else>
@@ -24,8 +24,12 @@ export default {
     };
   },
   async mounted(){
-      this.data=await dog_data.getmissingdogsid(this.id)
-      this.com=await dog_data.getcomments(this.id)
+      try{
+        this.data=await dog_data.getmissingdogsid(this.id)
+        this.com=await dog_data.getcomments(this.id)
+      }catch(e){
+          console.log(e)
+      }
   },
   methods:{
       back(){

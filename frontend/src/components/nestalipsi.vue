@@ -1,5 +1,6 @@
 <template>
-<div class="d-flex justify-content-center" style="margin-top:10px;">
+<div>
+<div class="d-flex justify-content-center" style="margin-top:10px;margin-bottom:-32px;">
     <!-- <div class="card">
         <div v-if="data.url_slike!=null">
   <img class="card-img-top" :src="data.url_slike" alt="Card image cap">
@@ -23,7 +24,7 @@
 				<h1 class="postcard__title blue">Ime psa: {{data.ime_psa}}</h1>
 				<div class="postcard__subtitle small">
 					<time>
-						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ timestamp(data.postavljeno) }}
+						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data.postavljeno)).format('DD.MM.YYYY')}}
 					</time>
 				</div>
 				<div class="postcard__bar"></div>
@@ -95,7 +96,7 @@
 				<h1 class="postcard__title blue">Ime psa: {{data[0].ime_psa}}</h1>
 				<div class="postcard__subtitle small">
 					<time>
-						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ timestamp(data[0].postavljeno) }}
+						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data[0].postavljeno)).format('lll') }}
 					</time>
 				</div>
 				<div class="postcard__bar"></div>
@@ -154,39 +155,9 @@
               href="#"
               class="animate list-group-item list-group-item-action flex-column align-items-start"
             > -->
-			<a :key="a.postavljeno" v-for="a in podaci"
-              href="javascript:void(0)"
-              class="animate list-group-item list-group-item-action flex-column align-items-start"
-            >
-              <div class="d-flex w-100 justify-content-between">
-                <!-- <small>{{ c.email }}</small> -->
-				<small>{{a.email}}</small>
-				<small>{{timestamp(a.postavljeno)}}</small>
-                <!-- <a
-                  v-if="(store.koremail == g.email) || (c.email == store.koremail) || (store.tipKorisnika=='admin')"
-                  @click="removeComment(c.id)"
-                  href="#"
-                >Obriši</a> -->
-				<a @click="deletecom(a.id)"
-                  href="javascript:void(0)"
-                >Obriši</a>
-              </div>
-              <!-- {{ c.comment }} -->
-			  {{a.komentar}}
-            </a>
+
           </div>
-		  <form @submit.prevent="posaljikomentar" class="form-inline mb-5">
-            <div class="form-group">
-              <input
-                v-model="komentar"
-                type="text"
-                class="form-control"
-                id="imageUrl"
-                placeholder="Komentar"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary ml-2">Pošalji</button>
-          </form>
+		  
 			</div>
 		</article>
 		<div
@@ -212,6 +183,36 @@
             </div>
           </div>
 </div>
+ <a :key="a.postavljeno" v-for="a in podaci"
+              href="javascript:void(0)"
+              class="animate list-group-item list-group-item-action flex-column align-items-start light blue"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <!-- <small>{{ c.email }}</small> -->
+				<small>{{a.email}}</small>
+				<small>{{moment(parseInt(a.postavljeno)).format('lll')}}</small>
+                <!-- <a
+                  v-if="(store.koremail == g.email) || (c.email == store.koremail) || (store.tipKorisnika=='admin')"
+                  @click="removeComment(c.id)"
+                  href="#"
+                >Obriši</a> -->
+				<a @click="deletecom(a.id)"
+                  href="javascript:void(0)"
+                >Obriši</a>
+              </div>
+              <!-- {{ c.comment }} -->
+			  {{a.komentar}}
+            </a>
+			<form @submit.prevent="posaljikomentar" class="form-inline" style="margin-top:10px;" v-if="showcomments">
+              <input
+                v-model="komentar"
+                type="text"
+                class="form-control mb-2 mr-sm-2"
+                id="imageUrl"
+                placeholder="Komentar"
+              />
+            <button type="submit" class="btn btn-primary form-control mb-2 mr-sm-2">Pošalji</button>
+          </form></div>
 </template>
 <script>
 //import store from "@/store.js";
@@ -247,17 +248,17 @@ export default {
     $route: "getcomm",
   },
     methods:{
-        timestamp(data){
-        let date = new Date(parseInt(data))
-        let month = date.getUTCMonth()+1
-		let hours=date.getUTCHours()+1
-		if(hours==24) hours=0;
-        return date.getUTCDate()+"."+month+"."+date.getUTCFullYear()+" "+this.addzero(hours)+":"+this.addzero(date.getUTCMinutes());
-    },
-	addzero(i) {
-  if (i < 10) {i = "0" + i}
-  return i;
-},
+//         timestamp(data){
+//         let date = new Date(parseInt(data))
+//         let month = date.getUTCMonth()+1
+// 		let hours=date.getUTCHours()+1
+// 		if(hours==24) hours=0;
+//         return date.getUTCDate()+"."+month+"."+date.getUTCFullYear()+" "+this.addzero(hours)+":"+this.addzero(date.getUTCMinutes());
+//     },
+// 	addzero(i) {
+//   if (i < 10) {i = "0" + i}
+//   return i;
+// },
     // showimg(data){
     //     //this.url=data
     //     // this.store.url=data
@@ -284,6 +285,7 @@ export default {
 		}
 	},
 	async posaljikomentar(){
+		if(this.komentar!=""){
 		let data={
 			komentar:this.komentar,
 			postavljeno:Date.now(),
@@ -297,6 +299,7 @@ export default {
 		}catch(e){
 			console.log(e)
 		}
+		}
 	}
     }
 }
@@ -304,6 +307,9 @@ export default {
 <style scoped>
 a:hover{
 	color:blue
+}
+.back{
+	background: rgba(83, 83, 83, 0.4);
 }
 /* p{
     white-space: nowrap ;
