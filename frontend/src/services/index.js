@@ -55,6 +55,10 @@ let dog_data={
     let response = await Service.get(`/getmymissingdogs/${id}`);
     return response.data
   },
+  async getmyadopteddogs(email){
+    let response = await Service.get(`/getmyadopteddogs/${email}`);
+    return response.data
+  }
 }
 let Auth = {
   getUser(){

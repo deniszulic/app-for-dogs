@@ -207,7 +207,10 @@
                   @click="removeComment(c.id)"
                   href="#"
                 >Obriši</a> -->
-				<a @click="deletecom(a.id)"
+				<a @click="deletecom(a.id)" v-if="(email==data[0].email)"
+                  href="javascript:void(0)"
+                >Obriši</a>
+				<a @click="deletecom(a.id)" v-if="(email!=data[0].email) && email==a.email"
                   href="javascript:void(0)"
                 >Obriši</a>
               </div>
@@ -237,7 +240,8 @@ export default {
             moment,
 			url:"",
 			komentar:"",
-			podaci:this.com
+			podaci:this.com,
+			email:Auth.state.email
         }
     },
 //     computed: {

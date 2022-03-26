@@ -30,6 +30,7 @@ app.get('/getadopteddogs', db.getadopteddogs)
 app.get('/getmissingdogs/:id', db.getspecificdog)
 app.get('/getcomments/:id', db.getcomments)
 app.get('/getmymissingdogs/:id', db.getmymissingdogs)
+app.get('/getmyadopteddogs/:email', db.getmyadopteddogs)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);
