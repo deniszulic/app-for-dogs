@@ -40,6 +40,12 @@
 				  <li class="nav-item">
                     <router-link to="udomljavanjepsa" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Udomi psa</router-link>
                   </li>
+				  <li class="nav-item">
+                    <router-link to="udomipsaoglasi" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Udomi psa oglasi</router-link>
+                  </li>
+				  <li class="nav-item">
+                    <router-link to="mojioglasi" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Moji oglasi</router-link>
+                  </li>
                 </ul>
               </div>
             </nav>

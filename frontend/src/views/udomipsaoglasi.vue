@@ -1,0 +1,214 @@
+<template>
+    <div>
+        <udomipsa v-for="data in adoptingdogs" :key="data.id" :data="data" @change="listen" @alldata="form" />
+        <div
+            class="modal fade"
+            id="pictureModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="pictureModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" style="display:inline-block;">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <img class="modal-content" :src="url" />
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+    <div class="modal fade" id="prijavaudomipsa" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Id: {{id}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <!-- <input type="text" class="form-control" v-model="id" disabled> -->
+      <div class="form-group">
+      <h5 class="modal-title">Osnovni podaci oglasa</h5></div>
+       <div class="form-group">
+      <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="">Ime i prezime vlasnika</span>
+  </div>
+  <input type="text" class="form-control" v-model="ime" disabled>
+  <input type="text" class="form-control" v-model="prezime" disabled>
+</div>
+       </div>
+       <div class="form-group">
+      <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="">Adresa, grad i poštanski broj</span>
+  </div>
+  <input type="text" class="form-control" v-model="adresa" disabled>
+  <input type="text" class="form-control" v-model="grad" disabled>
+  <input type="text" class="form-control" v-model="postanski_broj" disabled>
+</div>
+       </div>
+       <div class="form-group">
+      <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="">Ime psa, kilaža i pasmina</span>
+  </div>
+  <input type="text" class="form-control" v-model="ime_psa" disabled>
+  <input type="text" class="form-control" v-model="kilaza" disabled>
+  <input type="text" class="form-control" v-model="pasmina" disabled>
+</div>
+       </div>
+       <template v-if="url!=null">
+        <img class="modal-content" :src="url" />
+        </template>
+        <!-- <div class="form-group">
+      <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">aaaaaaaaaa</span>
+  </div>
+  <input type="text" class="form-control" placeholder="Username" v-model="id" disabled>
+</div>
+</div> -->
+<hr>
+<div class="form-group">
+<h5 class="modal-title">Podaci za prijavu</h5>
+</div>
+<div class="form-group">
+      <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Ime</span>
+  </div>
+  <input type="text" class="form-control" v-model="ime_obrazac">
+</div>
+</div>
+<div class="form-group">
+      <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Prezime</span>
+  </div>
+  <input type="text" class="form-control" v-model="prezime_obrazac">
+</div>
+</div>
+<div class="form-group">
+      <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Adresa</span>
+  </div>
+  <input type="text" class="form-control" v-model="adresa_obrazac">
+</div>
+</div>
+<div class="form-group">
+      <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Grad</span>
+  </div>
+  <input type="text" class="form-control" v-model="grad_obrazac">
+</div>
+</div>
+<div class="form-group">
+      <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Pošt. broj</span>
+  </div>
+  <input type="text" class="form-control" v-model="postbr_obrazac">
+</div>
+</div>
+<div class="form-group">
+      <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Kontakt</span>
+  </div>
+  <input type="text" class="form-control" v-model="kontakt_obrazac">
+</div>
+</div>
+<div class="form-group">
+  <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Razlog prijave</span>
+  </div>
+  <textarea class="form-control" aria-label="With textarea" v-model="prijava"></textarea>
+</div>
+                  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+        <button type="button" class="btn btn-primary">Spremi</button>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+</template>
+<script>
+import { dog_data } from "@/services";
+import udomipsa from "@/components/udomipsa.vue";
+export default {
+    name:"udomipsaoglasi",
+    components: {
+    udomipsa
+  },
+  data(){
+      return{
+          adoptingdogs:[],
+          url:"",
+          id:"",
+          ime:"",
+          prezime:"",
+          grad:"",
+          adresa:"",
+          postanski_broj:"",
+          ime_psa:"",
+          kilaza:"",
+          pasmina:"",
+          url:"",
+          prijava:"",
+          ime_obrazac:"",
+          prezime_obrazac:"",
+          adresa_obrazac:"",
+          grad_obrazac:"",
+          postbr_obrazac:"",
+          kontakt_obrazac:""
+      }
+  },
+  created() {
+    this.getdata();
+  },
+  watch: {
+    $route: "getdata",
+  },
+  methods:{
+      async getdata() {
+      try {
+        this.adoptingdogs = await dog_data.getadopteddogs();
+      } catch (e) {
+        this.errormsg = e.message;
+      }
+    },
+    listen(event){
+      this.url=event
+      $("#pictureModal").modal("show");
+    },
+    form(event){
+      this.id=event.id
+      this.ime=event.ime
+      this.prezime=event.prezime
+      this.adresa=event.adresa
+      this.postanski_broj=event.postanski_broj
+      this.grad=event.grad
+      this.ime_psa=event.ime_psa
+      this.kilaza=event.kilaza
+      this.pasmina=event.pasmina
+      this.url=event.url_slike
+      $("#prijavaudomipsa").modal("show");
+    }
+  }
+}
+</script>

@@ -1,6 +1,18 @@
 <template>
     <div>
-        <nestalipsi v-for="data in missingdogs" :key="data.id" :data="data" @change="listen" />
+        <div class="d-flex justify-content-center" style="margin-top:10px;">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Nestanak psa</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Udomljeni psi</a>
+  </li>
+</ul>
+</div>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+      <mojinestalipsi v-for="data in missingdogs" :key="data.id" :data="data" @change="listen" />
 
         <div
             class="modal fade"
@@ -24,34 +36,39 @@
               </div>
             </div>
           </div>
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">.s..</div>
+</div>
     </div>
 </template>
 <script>
+import {Auth} from "@/services";
 import { dog_data } from "@/services";
-import nestalipsi from "@/components/nestalipsi.vue";
+import mojinestalipsi from "@/components/mojinestalipsi.vue";
 export default {
-    name:"preglednestalih",
+    name:"mojioglasi",
     components: {
-    nestalipsi
+    mojinestalipsi
   },
-  data(){
+    data(){
       return{
           missingdogs:[],
           url:""
       }
   },
   created() {
-    this.getdata();
+    this.getdataa();
   },
   watch: {
-    $route: "getdata",
+    $route: "getdataa",
   },
   methods:{
-      async getdata() {
+      async getdataa() {
       try {
-        this.missingdogs = await dog_data.getmissingdogs();
+        this.missingdogs=await dog_data.getmymissingdogs(Auth.state.id);
       } catch (e) {
         this.errormsg = e.message;
+        console.log(e)
       }
     },
     listen(event){

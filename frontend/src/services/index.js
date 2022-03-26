@@ -33,6 +33,10 @@ let dog_data={
     let response = await Service.get('/getmissingdogs');
     return response.data
   },
+  async getadopteddogs(){
+    let response = await Service.get('/getadopteddogs');
+    return response.data
+  },
   async getmissingdogsid(id){
     let response = await Service.get(`/getmissingdogs/${id}`);
     return response.data
@@ -46,7 +50,11 @@ let dog_data={
   },
   async deletecomment(id){
     return await Service.delete(`deletecomment/${id}`)
-  }
+  },
+  async getmymissingdogs(id){
+    let response = await Service.get(`/getmymissingdogs/${id}`);
+    return response.data
+  },
 }
 let Auth = {
   getUser(){

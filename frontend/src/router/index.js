@@ -21,7 +21,18 @@ const routes = [
         path: '/preglednestalih',
         name: 'preglednestalih',
         component: () => import('../views/preglednestalih.vue')
-      }
+      },
+      {
+        path: '/mojioglasi',
+        name: 'mojioglasi',
+        component: () => import('../views/mojioglasi.vue')
+      },
+      {
+        path: 'mojioglasi/:id',
+        props: true,
+            name: 'my-dog-details',
+        component: () => import('../views/mojidetaljipsa.vue')
+      },
     ]
   },
   {
@@ -63,6 +74,11 @@ const routes = [
     path: '/udomljavanjepsa',
     name: 'udomljavanjepsa',
     component: () => import('../views/udomljavanjepsa.vue')
+  },
+  {
+    path: '/udomipsaoglasi',
+    name: 'udomipsaoglasi',
+    component: () => import('../views/udomipsaoglasi.vue')
   },
   // {
   //   path: '/preglednestalih',
