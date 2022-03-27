@@ -86,8 +86,8 @@
             </li>
           </ul>
           <div class="d-flex justify-content-center" >
-            <button class="btn btn-primary" @click="$emit('alldata', data)">
-              Udomi psa
+            <button class="btn btn-warning" @click="$emit('changedata_adoptdog', data)">
+              Promjena podataka
             </button>
           </div>
         </div>

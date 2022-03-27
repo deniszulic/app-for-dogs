@@ -9,7 +9,7 @@
 				<h1 class="postcard__title blue">Ime psa: {{data.ime_psa}}</h1>
 				<div class="postcard__subtitle small">
 					<time>
-						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data.postavljeno)).format('DD.MM.YYYY')}}
+						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data.postavljeno)).format('DD.MM.YYYY.')}}
 					</time>
 				</div>
 				<div class="postcard__bar"></div>
@@ -65,7 +65,9 @@
 					<li class="tag__item"><i class="fas fa-clock mr-2"></i>Izgubljen: {{moment(data.datum_izgubljen).format("DD.MM.YYYY")}}</li>
 				</ul>
 				<div class="d-flex justify-content-center">
-			<button class="btn btn-primary" @click="opencard(data.id)">Komentiraj</button></div>
+			<button class="btn btn-primary" @click="opencard(data.id)" style="margin-right:10px;">Komentiraj</button>
+      <button class="btn btn-warning" @click="$emit('changedata_missingdog', data)">Promjena podataka</button>
+      </div>
 			</div>
 		</article>
 		<article class="postcard light blue" v-if="showcomments">

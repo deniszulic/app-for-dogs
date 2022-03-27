@@ -51,14 +51,20 @@ let dog_data={
   async deletecomment(id){
     return await Service.delete(`deletecomment/${id}`)
   },
-  async getmymissingdogs(id){
-    let response = await Service.get(`/getmymissingdogs/${id}`);
+  async getmymissingdogs(email){
+    let response = await Service.get(`/getmymissingdogs/${email}`);
     return response.data
   },
   async getmyadopteddogs(email){
     let response = await Service.get(`/getmyadopteddogs/${email}`);
     return response.data
-  }
+  },
+  async updatemydataadopteddog(id, data){
+    return await Service.patch(`/updateadopteddog/${id}`, data)
+  },
+  async updatemydatamissingddog(id, data){
+    return await Service.patch(`/updatemissingdog/${id}`, data)
+  },
 }
 let Auth = {
   getUser(){

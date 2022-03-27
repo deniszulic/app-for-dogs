@@ -187,8 +187,8 @@ const createUser = async (request, response) => {
   };
 
   const getmymissingdogs = (request, response) => {
-    const id = request.params.id;
-    pool.query("SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena, nestanak.url_slike, nestanak.postavljeno, nestanak.pasmina FROM nestanak LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE korisnik.id=$1 ORDER BY nestanak.postavljeno DESC;", [id],  (error, results) => {
+    const email = request.params.email;
+    pool.query("SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena, nestanak.url_slike, nestanak.postavljeno, nestanak.pasmina FROM nestanak LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY nestanak.postavljeno DESC;", [email],  (error, results) => {
       try {
         response.status(200).json(results.rows);
         //console.log(results.rows)
@@ -201,6 +201,30 @@ const createUser = async (request, response) => {
   const getmyadopteddogs = (request, response) => {
     const email = request.params.email;
     pool.query("SELECT udomljavanje.id, udomljavanje.ime, udomljavanje.prezime, udomljavanje.adresa, udomljavanje.telefonskibr, udomljavanje.grad, udomljavanje.postanski_broj, udomljavanje.boja, udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.napomena, udomljavanje.url_slike, udomljavanje.postavljeno, udomljavanje.pasmina, udomljavanje.kilaza, udomljavanje.kastrat, udomljavanje.opasnost FROM udomljavanje LEFT JOIN korisnik ON udomljavanje.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY udomljavanje.postavljeno DESC", [email],  (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const updateadopteddog = (request, response) => {
+    const id = request.params.id;
+    const { ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, kilaza, kastrat, opasnost, napomena } = request.body;
+    pool.query("UPDATE udomljavanje SET ime=$1, prezime=$2, adresa=$3, telefonskibr=$4, grad=$5, postanski_broj=$6, boja=$7, starost=$8, dlaka=$9, vet_lokacija=$10, ime_psa=$11, spol=$12, pasmina=$13, kilaza=$14, kastrat=$15, opasnost=$16, napomena=$17 WHERE id=$18", [ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, kilaza, kastrat, opasnost, napomena, id],  (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const updatemissingdog = (request, response) => {
+    const id = request.params.id;
+    const { ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, napomena, datum_izgubljen } = request.body;
+    pool.query("UPDATE nestanak SET ime=$1, prezime=$2, adresa=$3, telefonskibr=$4, grad=$5, postanski_broj=$6, boja=$7, starost=$8, dlaka=$9, vet_lokacija=$10, ime_psa=$11, spol=$12, pasmina=$13, napomena=$14, datum_izgubljen=$15 WHERE id=$16", [ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, napomena, datum_izgubljen, id],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -223,5 +247,7 @@ const createUser = async (request, response) => {
     adoptdog,
     getadopteddogs,
     getmymissingdogs,
-    getmyadopteddogs
+    getmyadopteddogs,
+    updateadopteddog,
+    updatemissingdog
   };
