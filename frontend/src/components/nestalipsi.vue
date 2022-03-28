@@ -87,8 +87,13 @@
 						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
 					</li> -->
 				</ul>
-				<div class="d-flex justify-content-center">
-			<button class="btn btn-primary" @click="opencard(data.id)">Komentiraj</button></div>
+				<div class="d-flex justify-content-center" v-if="Auth.state.email!=data.email">
+			<button class="btn btn-primary" style="margin-right:10px;" @click="opencard(data.id)">Komentiraj</button>
+			<button class="btn btn-success" @click="$emit('form_missing_dog', data.id)">Pronašao sam psa</button>
+			</div>
+			<div class="d-flex justify-content-center" v-else>
+			<button class="btn btn-primary" @click="opencard(data.id)">Komentiraj</button>
+			</div>
 			</div>
 		</article>
 		<article class="postcard light blue" v-if="showcomments">
@@ -241,7 +246,8 @@ export default {
 			url:"",
 			komentar:"",
 			podaci:this.com,
-			email:Auth.state.email
+			email:Auth.state.email,
+			Auth
         }
     },
 //     computed: {

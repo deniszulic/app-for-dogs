@@ -140,7 +140,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
-        <button type="button" class="btn btn-primary">Spremi</button>
+        <button type="button" class="btn btn-primary" @click="form_adoptdog">Spremi</button>
       </div>
     </div>
   </div>
@@ -150,6 +150,7 @@
 <script>
 import { dog_data } from "@/services";
 import udomipsa from "@/components/udomipsa.vue";
+import {Auth} from "@/services";
 export default {
     name:"udomipsaoglasi",
     components: {
@@ -175,7 +176,8 @@ export default {
           adresa_obrazac:"",
           grad_obrazac:"",
           postbr_obrazac:"",
-          kontakt_obrazac:""
+          kontakt_obrazac:"",
+          Auth
       }
   },
   created() {
@@ -208,6 +210,35 @@ export default {
       this.pasmina=event.pasmina
       this.url=event.url_slike
       $("#prijavaudomipsa").modal("show");
+    },
+    async form_adoptdog(){
+      let data={
+        ime:this.ime_obrazac,
+        prezime:this.prezime_obrazac,
+        adresa:this.adresa_obrazac,
+        grad:this.grad_obrazac,
+        postanski_broj:this.postbr_obrazac,
+        kontakt:this.kontakt_obrazac,
+        razlog_prijave:this.prijava,
+        prihvaceno:"obrada",
+        postavljeno:Date.now(),
+        udomljavanje_id:this.id,
+        korisnik_id:this.Auth.state.id
+      }
+      try{
+        await dog_data.adopt_dog_application(data).then(()=>{
+          $("#prijavaudomipsa").modal("hide");
+          this.ime_obrazac=""
+          this.prezime_obrazac=""
+        this.adresa_obrazac=""
+        this.grad_obrazac=""
+        this.postbr_obrazac=""
+        this.kontakt_obrazac=""
+        this.prijava=""
+        })
+      }catch(e){
+        console.log(e)
+      }
     }
   }
 }

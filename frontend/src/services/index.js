@@ -65,6 +65,20 @@ let dog_data={
   async updatemydatamissingddog(id, data){
     return await Service.patch(`/updatemissingdog/${id}`, data)
   },
+  async report_missing_dog(data) {
+    return await Service.post("/reportmissingdog", data);
+  },
+  async adopt_dog_application(data) {
+    return await Service.post("/adoptdogapplication", data);
+  },
+  async getmyreportdisapp(email) {
+    let response = await Service.get(`/getmyreportdisapp/${email}`);
+    return response.data
+  },
+  async getmyreportadoptdog(email) {
+    let response = await Service.get(`/getmyreportadoptdog/${email}`);
+    return response.data
+  },
 }
 let Auth = {
   getUser(){

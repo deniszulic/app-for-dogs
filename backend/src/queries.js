@@ -103,7 +103,7 @@ const createUser = async (request, response) => {
     );
   };
   const getmissingdogs = (request, response) => {
-    pool.query("SELECT id, ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, url_slike, postavljeno, pasmina FROM nestanak ORDER BY postavljeno DESC;", (error, results) => {
+    pool.query("SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena, nestanak.url_slike, nestanak.postavljeno, nestanak.pasmina, korisnik.email FROM nestanak LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id ORDER BY postavljeno DESC;", (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -233,6 +233,58 @@ const createUser = async (request, response) => {
     });
   };
 
+  const report_missing_dog = async (request, response) => {
+    const { ime, prezime, napomena, adresa_pronalaska, adresa_za_pokupiti_psa, postavljeno, korisnik_id, nestanak_id } = request.body;
+    pool.query(
+        "INSERT INTO prijava_nestanka (ime, prezime, napomena, adresa_pronalaska, adresa_za_pokupiti_psa, postavljeno, korisnik_id, nestanak_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id",
+        [ime, prezime, napomena, adresa_pronalaska, adresa_za_pokupiti_psa, postavljeno, korisnik_id, nestanak_id],
+        (error, results) => {
+          try {
+            response.status(201).send(`User added with ID: ${results.rows[0].id}`);
+          } catch (e) {
+            console.log(e);
+          }
+        }
+      );
+  };
+
+  const adopt_dog_application = async (request, response) => {
+    const { ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id } = request.body;
+    pool.query(
+      "INSERT INTO prijava_na_udomljavanje (ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
+      [ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id],
+      (error, results) => {
+        try {
+          response.status(201).send(results.rows[0].id.toString());
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    );
+  };
+
+  const getmyreportdisapp = (request, response) => {
+    const email = request.params.email;
+    pool.query("SELECT prijava_nestanka.ime, prijava_nestanka.prezime, prijava_nestanka.adresa_pronalaska, prijava_nestanka.adresa_za_pokupiti_psa, prijava_nestanka.napomena, prijava_nestanka.postavljeno FROM prijava_nestanka LEFT JOIN korisnik ON prijava_nestanka.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY prijava_nestanka.postavljeno DESC", [email],  (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const getmyreportadoptdog = (request, response) => {
+    const email = request.params.email;
+    pool.query("SELECT prijava_na_udomljavanje.ime, prijava_na_udomljavanje.prezime, prijava_na_udomljavanje.adresa, prijava_na_udomljavanje.grad, prijava_na_udomljavanje.postanski_broj, prijava_na_udomljavanje.kontakt, prijava_na_udomljavanje.razlog_prijave, prijava_na_udomljavanje.prihvaceno, prijava_na_udomljavanje.postavljeno FROM prijava_na_udomljavanje LEFT JOIN korisnik ON prijava_na_udomljavanje.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY prijava_na_udomljavanje.postavljeno DESC", [email],  (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
   module.exports = {
     createUser,
     createasylum,
@@ -249,5 +301,9 @@ const createUser = async (request, response) => {
     getmymissingdogs,
     getmyadopteddogs,
     updateadopteddog,
-    updatemissingdog
+    updatemissingdog,
+    report_missing_dog,
+    adopt_dog_application,
+    getmyreportdisapp,
+    getmyreportadoptdog
   };

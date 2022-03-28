@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nestalipsi v-for="data in missingdogs" :key="data.id" :data="data" @change="listen" />
+        <nestalipsi v-for="data in missingdogs" :key="data.id" :data="data" @change="listen" @form_missing_dog="form_missing_dog" />
 
         <div
             class="modal fade"
@@ -24,11 +24,117 @@
               </div>
             </div>
           </div>
+          <div
+          class="modal fade"
+          id="form_missingdog"
+          tabindex="-1"
+          role="dialog"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Id: {{ id }}</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <h5 class="modal-title">Prijava pronalska</h5>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Ime</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="ime" required
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Prezime</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="prezime" required
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Adresa pronalaska</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="adresa_pronalaska"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Adresa za pokupiti psa</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="adresa_pas"
+                    />
+                  </div>
+                </div>
+<div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Napomena</span>
+                    </div>
+                    <textarea
+                      class="form-control"
+                      aria-label="With textarea"
+                      v-model="napomena"
+                    ></textarea>
+                  </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Zatvori
+                </button>
+                <button type="button" class="btn btn-primary" @click="findmissingdog">Spremi</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 </template>
 <script>
 import { dog_data } from "@/services";
 import nestalipsi from "@/components/nestalipsi.vue";
+import {Auth} from "@/services";
 export default {
     name:"preglednestalih",
     components: {
@@ -37,7 +143,13 @@ export default {
   data(){
       return{
           missingdogs:[],
-          url:""
+          url:"",
+          adresa_pronalaska:"",
+          id:"",
+          ime:"",
+          prezime:"",
+          adresa_pas:"",
+          napomena:""
       }
   },
   created() {
@@ -57,6 +169,29 @@ export default {
     listen(event){
       this.url=event
       $("#pictureModal").modal("show");
+    },
+    form_missing_dog(event){
+       this.id=event
+      $("#form_missingdog").modal("show");
+    },
+    async findmissingdog(){
+      let data={
+        ime:this.ime,
+        prezime:this.prezime,
+        napomena:this.napomena,
+        adresa_pronalaska:this.adresa_pronalaska,
+        adresa_za_pokupiti_psa:this.adresa_pas,
+        postavljeno:Date.now(),
+        korisnik_id:Auth.state.id,
+        nestanak_id:this.id
+      }
+      try{
+        await dog_data.report_missing_dog(data).then(()=>{
+          $("#form_missingdog").modal("hide");
+        })
+      }catch(e){
+        console.log(e)
+      }
     }
   }
 }

@@ -80,6 +80,11 @@ const routes = [
     name: 'udomipsaoglasi',
     component: () => import('../views/udomipsaoglasi.vue')
   },
+  {
+    path: '/mojeprijave',
+    name: 'mojeprijave',
+    component: () => import('../views/mojeprijave.vue')
+  },
   // {
   //   path: '/preglednestalih',
   //   name: 'preglednestalih',
