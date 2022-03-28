@@ -220,7 +220,7 @@ export default {
         postanski_broj:this.postbr_obrazac,
         kontakt:this.kontakt_obrazac,
         razlog_prijave:this.prijava,
-        prihvaceno:"obrada",
+        prihvaceno:"Obrada",
         postavljeno:Date.now(),
         udomljavanje_id:this.id,
         korisnik_id:this.Auth.state.id
