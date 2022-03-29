@@ -85,6 +85,11 @@ const routes = [
     name: 'mojeprijave',
     component: () => import('../views/mojeprijave.vue')
   },
+  {
+    path: '/prijavenamojoglas',
+    name: 'prijavenamojoglas',
+    component: () => import('../views/prijavenamojoglas.vue')
+  },
   // {
   //   path: '/preglednestalih',
   //   name: 'preglednestalih',

@@ -82,6 +82,13 @@ let dog_data={
   async update_adoptdog_report(id, data){
     return await Service.patch(`/updateadoptdogreport/${id}`, data)
   },
+  async reportsonmyadopteddogs(email) {
+    let response = await Service.get(`/reportsonmyadopteddogs/${email}`);
+    return response.data
+  },
+  async update_my_adoptdog_report(id, data){
+    return await Service.patch(`/updatemyadopteddogreports/${id}`, data)
+  },
 }
 let Auth = {
   getUser(){

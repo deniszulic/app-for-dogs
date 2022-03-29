@@ -28,7 +28,7 @@
         <td v-if="data.prihvaceno=='Obrada'"><span class="badge badge-pill badge-warning">{{data.prihvaceno}}</span></td>
         <td v-if="data.prihvaceno=='False'"><span class="badge badge-pill badge-danger">{{data.prihvaceno}}</span></td>
         <td v-if="data.prihvaceno=='True'"><span class="badge badge-pill badge-success">{{data.prihvaceno}}</span></td>
-        <td><button class="btn btn-primary rounded-circle" @click="$emit('myreports_adopteddogs', data)"><i class="fa-solid fa-circle-info"></i></button></td>
+        <td><button class="btn btn-primary rounded-circle" @click="$emit('reportsonmyadadopteddogs', data)"><i class="fa-solid fa-circle-info"></i></button></td>
     </tr>
   </tbody>
 </table>

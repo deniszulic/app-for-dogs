@@ -49,6 +49,9 @@
 				  <li class="nav-item">
                     <router-link to="mojeprijave" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Moje prijave</router-link>
                   </li>
+				  <li class="nav-item">
+                    <router-link to="prijavenamojoglas" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Prijave na moj oglas</router-link>
+                  </li>
                 </ul>
               </div>
             </nav>

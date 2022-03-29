@@ -35,9 +35,11 @@ app.get('/getmymissingdogs/:email', db.getmymissingdogs)
 app.get('/getmyadopteddogs/:email', db.getmyadopteddogs)
 app.get('/getmyreportdisapp/:email', db.getmyreportdisapp)
 app.get('/getmyreportadoptdog/:email', db.getmyreportadoptdog)
+app.get('/reportsonmyadopteddogs/:email', db.reportsonmyadopteddogs)
 app.patch('/updateadopteddog/:id', db.updateadopteddog)
 app.patch('/updatemissingdog/:id', db.updatemissingdog)
 app.patch('/updateadoptdogreport/:id', db.update_adoptdog_report)
+app.patch('/updatemyadopteddogreports/:id', db.updatemyadopteddogreports)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);

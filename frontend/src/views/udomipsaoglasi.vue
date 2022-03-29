@@ -118,7 +118,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Pošt. broj</span>
   </div>
-  <input type="text" class="form-control" v-model="postbr_obrazac">
+  <input type="number" class="form-control" v-model="postbr_obrazac">
 </div>
 </div>
 <div class="form-group">

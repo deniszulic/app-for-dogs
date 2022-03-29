@@ -276,7 +276,7 @@ const createUser = async (request, response) => {
 
   const getmyreportadoptdog = (request, response) => {
     const email = request.params.email;
-    pool.query("SELECT prijava_na_udomljavanje.ime, prijava_na_udomljavanje.prezime, prijava_na_udomljavanje.adresa, prijava_na_udomljavanje.grad, prijava_na_udomljavanje.postanski_broj, prijava_na_udomljavanje.kontakt, prijava_na_udomljavanje.razlog_prijave, prijava_na_udomljavanje.prihvaceno, prijava_na_udomljavanje.postavljeno, prijava_na_udomljavanje.id FROM prijava_na_udomljavanje LEFT JOIN korisnik ON prijava_na_udomljavanje.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY prijava_na_udomljavanje.postavljeno DESC", [email],  (error, results) => {
+    pool.query("SELECT prijava_na_udomljavanje.ime, prijava_na_udomljavanje.prezime, prijava_na_udomljavanje.adresa, prijava_na_udomljavanje.grad, prijava_na_udomljavanje.postanski_broj, prijava_na_udomljavanje.kontakt, prijava_na_udomljavanje.razlog_prijave, prijava_na_udomljavanje.prihvaceno, prijava_na_udomljavanje.postavljeno, prijava_na_udomljavanje.napomena, prijava_na_udomljavanje.id FROM prijava_na_udomljavanje LEFT JOIN korisnik ON prijava_na_udomljavanje.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY prijava_na_udomljavanje.postavljeno DESC", [email],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -289,6 +289,29 @@ const createUser = async (request, response) => {
     const id = request.params.id;
     const { ime, prezime, adresa, grad, kontakt, postanski_broj, razlog_prijave } = request.body;
     pool.query("UPDATE prijava_na_udomljavanje SET ime=$1, prezime=$2, adresa=$3, grad=$4, kontakt=$5, postanski_broj=$6, razlog_prijave=$7 WHERE id=$8", [ime, prezime, adresa, grad, kontakt, postanski_broj, razlog_prijave, id],  (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const reportsonmyadopteddogs = (request, response) => {
+    const email = request.params.email;
+    pool.query("SELECT prijava_na_udomljavanje.ime, prijava_na_udomljavanje.prezime, prijava_na_udomljavanje.adresa, prijava_na_udomljavanje.grad, prijava_na_udomljavanje.postanski_broj, prijava_na_udomljavanje.kontakt, prijava_na_udomljavanje.razlog_prijave, prijava_na_udomljavanje.prihvaceno, prijava_na_udomljavanje.postavljeno, prijava_na_udomljavanje.napomena, prijava_na_udomljavanje.id from prijava_na_udomljavanje left join udomljavanje ON prijava_na_udomljavanje.udomljavanje_id=udomljavanje.id left join korisnik on udomljavanje.korisnik_id=korisnik.id WHERE korisnik.email=$1", [email],  (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const updatemyadopteddogreports = (request, response) => {
+    const id = request.params.id;
+    const { napomena, prihvaceno } = request.body;
+    pool.query("UPDATE prijava_na_udomljavanje SET napomena=$1, prihvaceno=$2 WHERE id=$3", [napomena, prihvaceno, id],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -318,5 +341,7 @@ const createUser = async (request, response) => {
     adopt_dog_application,
     getmyreportdisapp,
     getmyreportadoptdog,
-    update_adoptdog_report
+    update_adoptdog_report,
+    reportsonmyadopteddogs,
+    updatemyadopteddogreports
   };
