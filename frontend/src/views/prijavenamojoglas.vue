@@ -265,7 +265,15 @@ export default {
             prihvaceno:this.prihvaceno
         }
         try{
-            await dog_data.update_my_adoptdog_report(this.id, update)
+            await dog_data.update_my_adoptdog_report(this.id, update).then(()=>{
+              for (let [i, x] of this.reportsonmyad.entries()) {
+              if (x.id == this.id) {
+                x.napomena=update.napomena
+                x.prihvaceno=update.prihvaceno
+                break;
+              }
+              }
+            }).then(()=>{$("#reportmyadopteddog").modal("hide")})
         }catch(e){
             console.log(e)
         }

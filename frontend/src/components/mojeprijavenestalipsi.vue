@@ -8,7 +8,9 @@
       <th scope="col">Adresa pronalaksa</th>
       <th scope="col">Adresa za pokupiti psa</th>
       <th scope="col">Napomena</th>
+      <th scope="col">Kontakt</th>
       <th scope="col">Postavljeno</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +20,9 @@
       <td>{{data.adresa_pronalaska}}</td>
       <td>{{data.adresa_za_pokupiti_psa}}</td>
       <td>{{data.napomena}}</td>
+      <td>{{data.kontakt}}</td>
       <td>{{moment(parseInt(data.postavljeno)).format('lll')}}</td>
+      <td><button class="btn btn-primary rounded-circle" @click="$emit('myreportmissingdog', data)"><i class="fa-solid fa-circle-info"></i></button></td>
     </tr>
   </tbody>
 </table>

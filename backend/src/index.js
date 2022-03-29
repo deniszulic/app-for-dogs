@@ -40,6 +40,7 @@ app.patch('/updateadopteddog/:id', db.updateadopteddog)
 app.patch('/updatemissingdog/:id', db.updatemissingdog)
 app.patch('/updateadoptdogreport/:id', db.update_adoptdog_report)
 app.patch('/updatemyadopteddogreports/:id', db.updatemyadopteddogreports)
+app.patch('/updatemymissingdogreport/:id', db.update_my_missingdog_report)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);

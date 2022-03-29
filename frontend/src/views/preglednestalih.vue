@@ -103,6 +103,20 @@
                     />
                   </div>
                 </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Kontakt</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="kontakt" required
+                    />
+                  </div>
+                </div>
 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -149,7 +163,8 @@ export default {
           ime:"",
           prezime:"",
           adresa_pas:"",
-          napomena:""
+          napomena:"",
+          kontakt:""
       }
   },
   created() {
@@ -183,7 +198,8 @@ export default {
         adresa_za_pokupiti_psa:this.adresa_pas,
         postavljeno:Date.now(),
         korisnik_id:Auth.state.id,
-        nestanak_id:this.id
+        nestanak_id:this.id,
+        kontakt:this.kontakt
       }
       try{
         await dog_data.report_missing_dog(data).then(()=>{
