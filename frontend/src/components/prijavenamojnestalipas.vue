@@ -22,7 +22,7 @@
         <td>{{data.kontakt}}</td>
         <td>{{data.napomena}}</td>
       <td>{{moment(parseInt(data.postavljeno)).format('lll')}}</td>
-        <!-- <td><button class="btn btn-primary rounded-circle" @click="$emit('reportsonmyadadopteddogs', data)"><i class="fa-solid fa-circle-info"></i></button></td> -->
+        <td><button class="btn btn-primary rounded-circle" @click="$emit('reportmissingdogs', data)"><i class="fa-solid fa-circle-info"></i></button></td>
     </tr>
   </tbody>
 </table>
