@@ -92,6 +92,10 @@ let dog_data={
   async update_my_missingdog_report(id, data){
     return await Service.patch(`/updatemymissingdogreport/${id}`, data)
   },
+  async reportsonmymissingdogs(email) {
+    let response = await Service.get(`/reportsonmymissingdogs/${email}`);
+    return response.data
+  }
 }
 let Auth = {
   getUser(){

@@ -332,6 +332,17 @@ const createUser = async (request, response) => {
     });
   };
 
+  const reportsonmymissingdogs = (request, response) => {
+    const email = request.params.email;
+    pool.query("SELECT prijava_nestanka.ime, prijava_nestanka.prezime, prijava_nestanka.adresa_pronalaska, prijava_nestanka.adresa_za_pokupiti_psa, prijava_nestanka.kontakt, prijava_nestanka.napomena, prijava_nestanka.postavljeno, prijava_nestanka.id FROM prijava_nestanka LEFT JOIN nestanak ON prijava_nestanka.nestanak_id=nestanak.id LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE korisnik.email=$1", [email],  (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
   module.exports = {
     createUser,
     createasylum,
@@ -356,5 +367,6 @@ const createUser = async (request, response) => {
     update_adoptdog_report,
     reportsonmyadopteddogs,
     updatemyadopteddogreports,
-    update_my_missingdog_report
+    update_my_missingdog_report,
+    reportsonmymissingdogs
   };

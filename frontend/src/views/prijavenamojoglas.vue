@@ -12,6 +12,7 @@
     </div>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <prijavenamojnestalipas :data="reportsonmymissingdog" />
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
       <prijavenamojudomljenpas :data="reportsonmyad" @reportsonmyadadopteddogs="openmodal"/>      
@@ -206,16 +207,19 @@
 import { dog_data } from "@/services";
 import {Auth} from "@/services";
 import prijavenamojudomljenpas from "@/components/prijavenamojudomljenpas.vue";
+import prijavenamojnestalipas from "@/components/prijavenamojnestalipas.vue";
 import moment from 'moment';
 export default {
     name:"prijavenamojoglas",
     //select prijava_na_udomljavanje.ime, prijava_na_udomljavanje.prezime, prijava_na_udomljavanje.adresa, prijava_na_udomljavanje.grad, prijava_na_udomljavanje.postanski_broj, prijava_na_udomljavanje.kontakt, prijava_na_udomljavanje.razlog_prijave, prijava_na_udomljavanje.prihvaceno, prijava_na_udomljavanje.postavljeno, prijava_na_udomljavanje.id from prijava_na_udomljavanje left join udomljavanje on prijava_na_udomljavanje.udomljavanje_id=udomljavanje.id left join korisnik on udomljavanje.korisnik_id=korisnik.id where korisnik.email='b@b.com'
     components: {
-    prijavenamojudomljenpas
+    prijavenamojudomljenpas,
+    prijavenamojnestalipas
   },
     data(){
         return{
             reportsonmyad:[],
+            reportsonmymissingdog:[],
             Auth,
             razlog_prijave:"",
           ime:"",
@@ -233,14 +237,23 @@ export default {
     },
     created() {
     this.getdata();
+    this.getmissingdogs();
   },
   watch: {
     $route: "getdata",
+    $route: "getmissingdogs"
   },
   methods:{
       async getdata() {
       try {
         this.reportsonmyad = await dog_data.reportsonmyadopteddogs(Auth.state.email);
+      } catch (e) {
+        this.errormsg = e.message;
+      }
+    },
+    async getmissingdogs() {
+      try {
+        this.reportsonmymissingdog = await dog_data.reportsonmymissingdogs(Auth.state.email);
       } catch (e) {
         this.errormsg = e.message;
       }
