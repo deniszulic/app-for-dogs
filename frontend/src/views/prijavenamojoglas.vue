@@ -277,7 +277,7 @@
                     ></textarea>
                   </div>
                   <template v-if="url_slike!=null">
-                  <img class="modal-content" :src="url_slike" />
+                  <img class="modal-content" style="margin-top:10px;" :src="url_slike" />
                 </template>
 
                 <hr/>
@@ -674,7 +674,7 @@
                     ></textarea>
                   </div>
                   <template v-if="url_slike!=null">
-                  <img class="modal-content" :src="url_slike" />
+                  <img class="modal-content" style="margin-top:10px;" :src="url_slike" />
                 </template>
 
                 <hr />
@@ -929,7 +929,7 @@ export default {
         this.nestanak_prezime=event.nestanak_prezime
         this.nestanak_napomena=event.nestanak_napomena
         this.adresa=event.adresa
-        this.datum_izgubljen=event.datum_izgubljen
+        this.datum_izgubljen=this.moment(event.datum_izgubljen).format("DD.MM.YYYY.")
         this.ime_psa=event.ime_psa
         this.telefonskibr=event.telefonskibr
         this.url_slike=event.url_slike

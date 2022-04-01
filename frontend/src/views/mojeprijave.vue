@@ -964,6 +964,7 @@ export default {
             this.postavljeno=""
       },
       myreportmissingdog(event){
+        this.telefonskibr=event.telefonskibr
         this.ime_nestanak=event.ime_nestanak
         this.prezime_nestanak=event.prezime_nestanak
         this.adresa=event.adresa
