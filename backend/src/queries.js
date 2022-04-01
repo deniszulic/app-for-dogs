@@ -89,10 +89,10 @@ const createUser = async (request, response) => {
   };
   const reportmissingdog = async (request, response) => {
     //console.log(request.body);
-    const { ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, url_slike } = request.body;
+    const { ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, aktivan, url_slike } = request.body;
     pool.query(
-      "INSERT INTO nestanak (ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, url_slike) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING id",
-      [ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina,  url_slike],
+      "INSERT INTO nestanak (ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, aktivan, url_slike) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) RETURNING id",
+      [ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, aktivan, url_slike],
       (error, results) => {
         try {
           response.status(201).send(results.rows[0].id.toString());
@@ -103,7 +103,7 @@ const createUser = async (request, response) => {
     );
   };
   const getmissingdogs = (request, response) => {
-    pool.query("SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena, nestanak.url_slike, nestanak.postavljeno, nestanak.pasmina, korisnik.email FROM nestanak LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id ORDER BY postavljeno DESC;", (error, results) => {
+    pool.query("SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena, nestanak.url_slike, nestanak.postavljeno, nestanak.pasmina, korisnik.email FROM nestanak LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE nestanak.aktivan=true ORDER BY postavljeno DESC;", (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -162,10 +162,10 @@ const createUser = async (request, response) => {
 
   const adoptdog = async (request, response) => {
     //console.log(request.body);
-    const { ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, kg, kastrat, opasnost, url_slike } = request.body;
+    const { ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, kg, kastrat, opasnost, aktivan, url_slike } = request.body;
     pool.query(
-      "INSERT INTO udomljavanje (ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, kilaza, kastrat, opasnost, url_slike) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING id",
-      [ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, kg, kastrat, opasnost, url_slike],
+      "INSERT INTO udomljavanje (ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, kilaza, kastrat, opasnost, aktivan, url_slike) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21) RETURNING id",
+      [ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, kg, kastrat, opasnost, aktivan, url_slike],
       (error, results) => {
         try {
           response.status(201).send(results.rows[0].id.toString());
@@ -177,7 +177,7 @@ const createUser = async (request, response) => {
   };
 
   const getadopteddogs = (request, response) => {
-    pool.query("SELECT udomljavanje.id, udomljavanje.ime, udomljavanje.prezime, udomljavanje.adresa, udomljavanje.telefonskibr, udomljavanje.grad, udomljavanje.postanski_broj, udomljavanje.boja, udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.napomena, udomljavanje.url_slike, udomljavanje.postavljeno, udomljavanje.pasmina, udomljavanje.kilaza, udomljavanje.kastrat, udomljavanje.opasnost, korisnik.email FROM udomljavanje LEFT JOIN korisnik ON udomljavanje.korisnik_id=korisnik.id ORDER BY udomljavanje.postavljeno DESC", (error, results) => {
+    pool.query("SELECT udomljavanje.id, udomljavanje.ime, udomljavanje.prezime, udomljavanje.adresa, udomljavanje.telefonskibr, udomljavanje.grad, udomljavanje.postanski_broj, udomljavanje.boja, udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.napomena, udomljavanje.url_slike, udomljavanje.postavljeno, udomljavanje.pasmina, udomljavanje.kilaza, udomljavanje.kastrat, udomljavanje.opasnost, korisnik.email FROM udomljavanje LEFT JOIN korisnik ON udomljavanje.korisnik_id=korisnik.id WHERE udomljavanje.aktivan=true ORDER BY udomljavanje.postavljeno DESC", (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -188,7 +188,7 @@ const createUser = async (request, response) => {
 
   const getmymissingdogs = (request, response) => {
     const email = request.params.email;
-    pool.query("SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena, nestanak.url_slike, nestanak.postavljeno, nestanak.pasmina FROM nestanak LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY nestanak.postavljeno DESC;", [email],  (error, results) => {
+    pool.query("SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena, nestanak.url_slike, nestanak.postavljeno, nestanak.pasmina, nestanak.aktivan FROM nestanak LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY nestanak.postavljeno DESC;", [email],  (error, results) => {
       try {
         response.status(200).json(results.rows);
         //console.log(results.rows)
@@ -200,7 +200,7 @@ const createUser = async (request, response) => {
 
   const getmyadopteddogs = (request, response) => {
     const email = request.params.email;
-    pool.query("SELECT udomljavanje.id, udomljavanje.ime, udomljavanje.prezime, udomljavanje.adresa, udomljavanje.telefonskibr, udomljavanje.grad, udomljavanje.postanski_broj, udomljavanje.boja, udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.napomena, udomljavanje.url_slike, udomljavanje.postavljeno, udomljavanje.pasmina, udomljavanje.kilaza, udomljavanje.kastrat, udomljavanje.opasnost FROM udomljavanje LEFT JOIN korisnik ON udomljavanje.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY udomljavanje.postavljeno DESC", [email],  (error, results) => {
+    pool.query("SELECT udomljavanje.id, udomljavanje.ime, udomljavanje.prezime, udomljavanje.adresa, udomljavanje.telefonskibr, udomljavanje.grad, udomljavanje.postanski_broj, udomljavanje.boja, udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.napomena, udomljavanje.url_slike, udomljavanje.postavljeno, udomljavanje.pasmina, udomljavanje.kilaza, udomljavanje.kastrat, udomljavanje.opasnost, udomljavanje.aktivan FROM udomljavanje LEFT JOIN korisnik ON udomljavanje.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY udomljavanje.postavljeno DESC", [email],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -211,8 +211,8 @@ const createUser = async (request, response) => {
 
   const updateadopteddog = (request, response) => {
     const id = request.params.id;
-    const { ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, kilaza, kastrat, opasnost, napomena } = request.body;
-    pool.query("UPDATE udomljavanje SET ime=$1, prezime=$2, adresa=$3, telefonskibr=$4, grad=$5, postanski_broj=$6, boja=$7, starost=$8, dlaka=$9, vet_lokacija=$10, ime_psa=$11, spol=$12, pasmina=$13, kilaza=$14, kastrat=$15, opasnost=$16, napomena=$17 WHERE id=$18", [ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, kilaza, kastrat, opasnost, napomena, id],  (error, results) => {
+    const { ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, kilaza, kastrat, opasnost, napomena, aktivan } = request.body;
+    pool.query("UPDATE udomljavanje SET ime=$1, prezime=$2, adresa=$3, telefonskibr=$4, grad=$5, postanski_broj=$6, boja=$7, starost=$8, dlaka=$9, vet_lokacija=$10, ime_psa=$11, spol=$12, pasmina=$13, kilaza=$14, kastrat=$15, opasnost=$16, napomena=$17, aktivan=$19 WHERE id=$18", [ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, kilaza, kastrat, opasnost, napomena, id, aktivan],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -223,8 +223,8 @@ const createUser = async (request, response) => {
 
   const updatemissingdog = (request, response) => {
     const id = request.params.id;
-    const { ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, napomena, datum_izgubljen } = request.body;
-    pool.query("UPDATE nestanak SET ime=$1, prezime=$2, adresa=$3, telefonskibr=$4, grad=$5, postanski_broj=$6, boja=$7, starost=$8, dlaka=$9, vet_lokacija=$10, ime_psa=$11, spol=$12, pasmina=$13, napomena=$14, datum_izgubljen=$15 WHERE id=$16", [ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, napomena, datum_izgubljen, id],  (error, results) => {
+    const { ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, napomena, datum_izgubljen, aktivan } = request.body;
+    pool.query("UPDATE nestanak SET ime=$1, prezime=$2, adresa=$3, telefonskibr=$4, grad=$5, postanski_broj=$6, boja=$7, starost=$8, dlaka=$9, vet_lokacija=$10, ime_psa=$11, spol=$12, pasmina=$13, napomena=$14, datum_izgubljen=$15, aktivan=$17 WHERE id=$16", [ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, napomena, datum_izgubljen, id, aktivan],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {

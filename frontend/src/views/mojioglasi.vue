@@ -313,6 +313,19 @@
                 <template v-if="url != null">
                   <img class="modal-content" :src="url" />
                 </template>
+                <hr/>
+               <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=true v-model="aktivan">
+  <label class="form-check-label" for="flexRadioDefault1">
+    <span class="badge badge-pill badge-success">Aktivan oglas</span>
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value=false v-model="aktivan">
+  <label class="form-check-label" for="flexRadioDefault2">
+    <span class="badge badge-pill badge-danger">Neaktivan oglas</span>
+  </label>
+</div>
               </div>
               <div class="modal-footer">
                 <button
@@ -599,6 +612,19 @@
                 <template v-if="url != null">
                   <img class="modal-content" :src="url" />
                 </template>
+                <hr/>
+                <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=true v-model="aktivan">
+  <label class="form-check-label" for="flexRadioDefault1">
+    <span class="badge badge-pill badge-success">Aktivan oglas</span>
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value=false v-model="aktivan">
+  <label class="form-check-label" for="flexRadioDefault2">
+    <span class="badge badge-pill badge-danger">Neaktivan oglas</span>
+  </label>
+</div>
               </div>
               <div class="modal-footer">
                 <button
@@ -690,7 +716,8 @@ export default {
           starost:"",
           tel_br:"",
           vet_lokacija:"",
-          datum_izgubljen:""
+          datum_izgubljen:"",
+          aktivan: null
     };
   },
   created() {
@@ -743,6 +770,7 @@ export default {
       this.starost=event.starost
       this.tel_br=event.telefonskibr
       this.vet_lokacija=event.vet_lokacija
+      this.aktivan=event.aktivan
       $("#promjenaudomipsa").modal("show");
     },
     form_missingdog(event){
@@ -764,6 +792,7 @@ export default {
       this.tel_br=event.telefonskibr
       this.vet_lokacija=event.vet_lokacija
       this.datum_izgubljen=this.moment(event.datum_izgubljen).format('YYYY-MM-DD')
+      this.aktivan=event.aktivan
       $("#promjenanestanakpsa").modal("show");
     },
     async updateadoptdog(){
@@ -784,7 +813,8 @@ export default {
       spol:this.spol,
       starost:this.starost,
       telefonskibr:this.tel_br,
-      vet_lokacija:this.vet_lokacija
+      vet_lokacija:this.vet_lokacija,
+      aktivan:this.aktivan
       }
       try{
         await dog_data.updatemydataadopteddog(this.id, update).then(()=>{
@@ -808,6 +838,7 @@ export default {
                 x.telefonskibr=update.telefonskibr
                 x.vet_lokacija=update.vet_lokacija
                 x.napomena=update.napomena
+                x.aktivan=update.aktivan
                 break;
               }
           }
@@ -832,7 +863,8 @@ export default {
       starost:this.starost,
       telefonskibr:this.tel_br,
       vet_lokacija:this.vet_lokacija,
-      datum_izgubljen:this.datum_izgubljen
+      datum_izgubljen:this.datum_izgubljen,
+      aktivan: this.aktivan
       }
       try{
         await dog_data.updatemydatamissingddog(this.id, update).then(()=>{
@@ -853,6 +885,7 @@ export default {
                 x.telefonskibr=update.telefonskibr
                 x.vet_lokacija=update.vet_lokacija
                 x.datum_izgubljen=update.datum_izgubljen
+                x.aktivan=update.aktivan
                 break;
               }
           }

@@ -246,7 +246,8 @@ uploadTask.on('state_changed',
         postavljeno:Date.now(),
         telefonskibr:this.telefonskibr,
         Korisnik_id:Auth.state.id,
-        url_slike:downloadURL
+        url_slike:downloadURL,
+        aktivan: true
       }
       try{
         dog_data.adopt_dog(podaci)
@@ -303,7 +304,8 @@ let podaci={
         telefonskibr:this.telefonskibr,
         pasmina:this.pasmina,
         postavljeno:Date.now(),
-        Korisnik_id:Auth.state.id
+        Korisnik_id:Auth.state.id,
+        aktivan: true
       }
       try{
         dog_data.adopt_dog(podaci)
