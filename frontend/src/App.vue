@@ -5,9 +5,12 @@
         <div class="row">
           <div class="col">
             <nav class="navbar navbar-expand-lg navbar-dark">
-              <a class="navbar-brand" href="#"
-                ><i class="fa-solid fa-paw fa-spin-hover"></i
-              ></a>
+				<router-link to="/pocetnakorisnik" class="navbar-brand" v-if="store.tipkorisnika=='korisnik'">
+              <!-- <a class="navbar-brand" href="#"
+                > -->
+				<i class="fa-solid fa-paw fa-spin-hover"></i
+              ></router-link>
+			  <!-- </a> -->
               <button
                 class="navbar-toggler"
                 type="button"
@@ -22,35 +25,43 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                    <!-- <a class="nav-link" href="#">Link</a> -->
-                    <router-link to="login" class="nav-link" v-if="store.tipkorisnika==null">Prijava</router-link>
+                    <router-link to="/login" class="nav-link" v-if="store.tipkorisnika==null"><i class="fa-solid fa-right-to-bracket"></i> Prijava</router-link>
                   </li>
                   <li class="nav-item">
-                    <router-link to="register" class="nav-link" v-if="store.tipkorisnika==null">Registracija</router-link>
+                    <router-link to="/register" class="nav-link" v-if="store.tipkorisnika==null"><i class="fa-solid fa-user-plus"></i> Registracija</router-link>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" v-if="store.tipkorisnika!=null" @click.prevent="logout" href="#">Odjava</a>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="/nestanakpsa" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Prijavi nestanak psa</router-link>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="preglednestalih" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Nestali psi</router-link>
-                  </li>
-				  <li class="nav-item">
-                    <router-link to="udomljavanjepsa" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Udomi psa</router-link>
-                  </li>
-				  <li class="nav-item">
-                    <router-link to="udomipsaoglasi" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Udomi psa oglasi</router-link>
-                  </li>
-				  <li class="nav-item">
-                    <router-link to="mojioglasi" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Moji oglasi</router-link>
-                  </li>
-				  <li class="nav-item">
-                    <router-link to="mojeprijave" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Moje prijave</router-link>
-                  </li>
-				  <li class="nav-item">
-                    <router-link to="prijavenamojoglas" class="nav-link" v-if="store.tipkorisnika=='korisnik'">Prijave na moj oglas</router-link>
+				   <li class="nav-item dropdown"  v-if="store.tipkorisnika=='korisnik'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Obrasci
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			<router-link to="/nestanakpsa" class="dropdown-item">Prijavi nestanak psa</router-link>
+			<router-link to="/udomljavanjepsa" class="dropdown-item">Udomi psa</router-link>
+        </div>
+      </li>
+	  <li class="nav-item dropdown"  v-if="store.tipkorisnika=='korisnik'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Oglasi
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+			<router-link to="/preglednestalih" class="dropdown-item">Nestali psi</router-link>
+			<router-link to="/udomipsaoglasi" class="dropdown-item">Udomi psa</router-link>
+        </div>
+      </li>
+	  <li class="nav-item dropdown" v-if="store.tipkorisnika=='korisnik'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Moji oglasi
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+			<!-- <router-link to="preglednestalih" class="dropdown-item">Nestali psi</router-link>
+			<router-link to="udomipsaoglasi" class="dropdown-item">Udomi psa</router-link> -->
+			<router-link to="/mojioglasi" class="dropdown-item">Moji oglasi</router-link>
+			<router-link to="/mojeprijave" class="dropdown-item">Moje prijave</router-link>
+			<router-link to="/prijavenamojoglas" class="dropdown-item">Prijave na moj oglas</router-link>
+        </div>
+      </li>
+	  <li class="nav-item">
+                    <a class="nav-link" v-if="store.tipkorisnika!=null" @click.prevent="logout" href="#"><i class="fa-solid fa-right-to-bracket"></i> Odjava</a>
                   </li>
                 </ul>
               </div>

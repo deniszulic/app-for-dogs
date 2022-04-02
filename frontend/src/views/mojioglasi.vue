@@ -614,14 +614,14 @@
                 </template>
                 <hr/>
                 <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=true v-model="aktivan">
-  <label class="form-check-label" for="flexRadioDefault1">
+  <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault3" value=true v-model="aktivan">
+  <label class="form-check-label" for="flexRadioDefault3">
     <span class="badge badge-pill badge-success">Aktivan oglas</span>
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value=false v-model="aktivan">
-  <label class="form-check-label" for="flexRadioDefault2">
+  <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault4" value=false v-model="aktivan">
+  <label class="form-check-label" for="flexRadioDefault4">
     <span class="badge badge-pill badge-danger">Neaktivan oglas</span>
   </label>
 </div>
