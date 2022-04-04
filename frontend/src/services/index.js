@@ -37,6 +37,10 @@ let dog_data={
     let response = await Service.get('/getadopteddogs');
     return response.data
   },
+  async getshelters(){
+    let response = await Service.get('/getshelters');
+    return response.data
+  },
   async getmissingdogsid(id){
     let response = await Service.get(`/getmissingdogs/${id}`);
     return response.data
@@ -95,7 +99,25 @@ let dog_data={
   async reportsonmymissingdogs(email) {
     let response = await Service.get(`/reportsonmymissingdogs/${email}`);
     return response.data
-  }
+  },
+  async sendreqshelter(data) {
+    return await Service.post("/sendreqshelter", data);
+  },
+  async getmissingdogsshelterreports(email) {
+    let response = await Service.get(`/getmissingdogsshelterreports/${email}`);
+    return response.data
+  },
+  async updatereportmissingdog(id, data){
+    return await Service.patch(`/updatereportmissingdog/${id}`, data)
+  },
+  async getacceptedmissingdogsshelterreports(email) {
+    let response = await Service.get(`/getacceptedmissingdogsshelterreports/${email}`);
+    return response.data
+  },
+  async getrejectedmissingdogsshelterreports(email) {
+    let response = await Service.get(`/getrejectedmissingdogsshelterreports/${email}`);
+    return response.data
+  },
 }
 let Auth = {
   getUser(){

@@ -301,7 +301,8 @@ uploadTask.on('state_changed',
         telefonskibr:this.telefonskibr,
         Korisnik_id:Auth.state.id,
         url_slike:downloadURL,
-        aktivan: true
+        aktivan: true,
+        oglas_azila: false
       }
       try{
         dog_data.missing_dog(podaci)
@@ -353,7 +354,8 @@ let podaci={
         pasmina:this.pasmina,
         postavljeno:Date.now(),
         Korisnik_id:Auth.state.id,
-        aktivan: true
+        aktivan: true,
+        oglas_azila: false
       }
       try{
         dog_data.missing_dog(podaci)

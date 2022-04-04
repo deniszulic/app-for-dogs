@@ -33,6 +33,17 @@ const routes = [
             name: 'my-dog-details',
         component: () => import('../views/mojidetaljipsa.vue')
       },
+      {
+        path: '/potvrdioglasazil',
+        name: 'potvrdioglasazil',
+        component: () => import('../views/potvrdioglasazil.vue')
+      },
+      {
+        path: 'potvrdioglasazil/:id',
+        props: true,
+        name: 'potvrdioglasazildetails',
+        component: () => import('../views/potvrdioglasazildetails.vue')
+      },
     ]
   },
   {

@@ -51,6 +51,15 @@
                 placeholder="OIB" v-model="oib" id="oib_input"
               />
             </div>
+            <div class="input-group mb-3" id="naziv">
+              <input
+                type="text"
+                name=""
+                class="form-control input_user"
+                value=""
+                placeholder="Naziv" v-model="naziv" id="naziv_input"
+              />
+            </div>
             <div class="row">
               <div class="input-group mb-3 col-7" id="street">
                 <input
@@ -145,13 +154,16 @@ export default {
       oib:"",
       ulica:"",
       kucnibr:"",
-      grad:""
+      grad:"",
+      naziv:""
     };
   },
   methods: {
     onChange(event) {
       console.log(event.target.value);
       if (event.target.value == "korisnik") {
+        $("#naziv").hide();
+        $("#naziv_input").attr("required",false);
         $("#oib").hide();
     $("#oib_input").attr("required",false);
     $("#street").hide();
@@ -165,6 +177,7 @@ export default {
     $("#emailreg").show();
     $("#passwordreg").show();
       } else {
+        $("#naziv").show();
         $("#oib").show();
         $("#street").show();
         $("#homenum").show();
@@ -173,6 +186,7 @@ export default {
         $("#emailreg").show();
         $("#passwordreg").show();
         $("#oib_input").attr("required",true);
+        $("#naziv_input").attr("required",true);
 $("#street_input").attr("required",true);
 $("#homenum_input").attr("required",true);
 $("#city_input").attr("required",true);
@@ -217,7 +231,8 @@ $("#postnum_input").attr("required",true);
         kucnibr:this.kucnibr,
         grad:this.grad,
         postanskibr:this.postnum,
-        id:id.data
+        id:id.data,
+        naziv: this.naziv
       }
         try{
         await login_signup.register_asylum(data_asylum)
@@ -234,6 +249,8 @@ $("#postnum_input").attr("required",true);
     }
   },
   mounted() {
+    $("#naziv").hide();
+    $("#naziv_input").attr("required",false);
     $("#oib").hide();
     $("#oib").prop('required',false);
     $("#street").hide();

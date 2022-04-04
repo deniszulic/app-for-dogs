@@ -30,6 +30,9 @@
                   <li class="nav-item">
                     <router-link to="/register" class="nav-link" v-if="store.tipkorisnika==null"><i class="fa-solid fa-user-plus"></i> Registracija</router-link>
                   </li>
+				  <li class="nav-item">
+                    <router-link to="/potvrdioglasazil" class="nav-link" v-if="store.tipkorisnika=='azil'">Zahtjevi korisnika</router-link>
+                  </li>
 				   <li class="nav-item dropdown"  v-if="store.tipkorisnika=='korisnik'">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Obrasci

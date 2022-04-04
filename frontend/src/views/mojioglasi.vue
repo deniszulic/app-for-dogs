@@ -41,6 +41,7 @@
           :data="data"
           @change="listen"
           @changedata_missingdog="form_missingdog"
+          @getid="sendtoshelter"
         />
 
       <div
@@ -164,20 +165,6 @@
                     />
                   </div>
                 </div>
-                <!-- <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id=""
-                        >Kilaža</span
-                      >
-                    </div>
-                    <input
-                      type="number"
-                      class="form-control"
-                      v-model="kilaza"
-                    />
-                  </div>
-                </div> -->
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -257,24 +244,6 @@
     <option value="Duga">Duga</option>
   </select>
 </div>
-<!-- <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="inputGroupSelect01">Kastrat</label>
-  </div>
-  <select class="custom-select" id="inputGroupSelect01" v-model="kastrat">
-    <option value="Da">Da</option>
-    <option value="Ne">Ne</option>
-  </select>
-</div> -->
-<!-- <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="inputGroupSelect01">Moguća opasnost psa?</label>
-  </div>
-  <select class="custom-select" id="inputGroupSelect01" v-model="opasnost">
-    <option value="Da">Da</option>
-    <option value="Ne">Ne</option>
-  </select>
-</div> -->
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <label class="input-group-text" for="inputGroupSelect01">Spol</label>
@@ -674,6 +643,74 @@
             </div>
           </div>
         </div>
+
+        <div
+          class="modal fade"
+          id="shelterreport"
+          tabindex="-1"
+          role="dialog"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Id: {{ id }}</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="requestforshelter">
+                <select class="form-select form-select-lg mb-3" aria-label="Default select example" v-model="odabranavet">
+  <option v-for="(a, index) in shelters" :key="index">{{a.naziv}}, {{a.grad}}</option>
+</select>
+  <div class="d-flex justify-content-center">
+                <button v-if="prihvaceno==null" class="btn btn-primary" type="submit" @click="sendrequest">Pošalji molbu azilu</button></div>
+              </div>
+
+               <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=true v-model="prihvaceno_azil" disabled>
+  <label class="form-check-label" for="flexRadioDefault1">
+    <span class="badge badge-pill badge-success">Prihvaćeno</span>
+  </label>
+</div>
+<div class="form-check">    
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value=false v-model="prihvaceno_azil" disabled>
+  <label class="form-check-label" for="flexRadioDefault2">
+    <span class="badge badge-pill badge-danger">Odbijeno</span>
+  </label>
+</div>
+<div class="form-group" style="margin-top:10px;">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Razlog</span>
+                    </div>
+                    <textarea
+                      class="form-control"
+                      aria-label="With textarea"
+                      v-model="azil_nestanak_napomena" disabled
+                    ></textarea>
+                  </div>
+                  </div>
+                
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Zatvori
+                </button>
+                <button type="button" class="btn btn-primary">Spremi</button>
+              </div>
+            </div>
+          </div>
+        </div>
   </div>
 </template>
 <script>
@@ -688,7 +725,7 @@ export default {
     mojinestalipsi,
     mojiudomipsa,
   },
-  mounted(){
+  async mounted(){
     moment.locale('hr')
     },
   data() {
@@ -717,16 +754,24 @@ export default {
           tel_br:"",
           vet_lokacija:"",
           datum_izgubljen:"",
-          aktivan: null
+          aktivan: null,
+          prihvaceno: null,
+          shelters:[],
+          odabranavet:"",
+          shelterid:"",
+          prihvaceno_azil:"",
+          azil_nestanak_napomena:""
     };
   },
   created() {
     this.getdatamissingdogs();
     this.getdataadopteddogs();
+    this.getshelters();
   },
   watch: {
     $route: "getdatamissingdogs",
     $route: "getdataadopteddogs",
+    $route: "getshelters"
   },
   methods: {
     async getdatamissingdogs() {
@@ -890,6 +935,42 @@ export default {
               }
           }
         }).then(() => $("#promjenanestanakpsa").modal("hide"))
+      }catch(e){
+        console.log(e)
+      }
+    },
+    async getshelters(){
+    try{
+      this.shelters = await dog_data.getshelters();
+    }catch(e){
+      console.log(e)
+    }
+  },
+    sendtoshelter(event){
+      if(event.prihvaceno!=null) $("#requestforshelter").hide();
+      this.id=event.id
+      this.azil_nestanak_napomena=event.napomena
+      this.prihvaceno_azil=event.prihvaceno
+      $("#shelterreport").modal("show");
+    },
+    async sendrequest(){
+      let a = this.odabranavet.substr(0, this.odabranavet.indexOf(','))
+      for (let [i, x] of this.shelters.entries()) {
+              if (x.naziv == a) {
+                this.shelterid=x.id
+                console.log(x.id)
+                break;
+              }
+      }
+      let data = {
+        nestanak_id: this.id,
+        korisnik_id: this.shelterid,
+        postavljeno: Date.now()
+      }
+      try{
+        await dog_data.sendreqshelter(data).then(()=>{
+           $("#requestforshelter").hide();
+        })
       }catch(e){
         console.log(e)
       }
