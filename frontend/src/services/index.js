@@ -118,6 +118,24 @@ let dog_data={
     let response = await Service.get(`/getrejectedmissingdogsshelterreports/${email}`);
     return response.data
   },
+  async sendreqadopt(data) {
+    return await Service.post("/sendreqadopt", data);
+  },
+  async getadopteddogsshelterreports(email) {
+    let response = await Service.get(`/getadopteddogsshelterreports/${email}`);
+    return response.data
+  },
+  async getacceptedadopteddogsshelterreports(email) {
+    let response = await Service.get(`/getacceptedadopteddogsshelterreports/${email}`);
+    return response.data
+  },
+  async getrejectedadopteddogsshelterreports(email) {
+    let response = await Service.get(`/getrejectedadopteddogsshelterreports/${email}`);
+    return response.data
+  },
+  async updatereportadopteddog(id, data){
+    return await Service.patch(`/updatereportadopteddog/${id}`, data)
+  },
 }
 let Auth = {
   getUser(){

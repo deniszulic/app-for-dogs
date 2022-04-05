@@ -79,16 +79,17 @@
               </div>
             </div>
           </div>
-          <ul class="postcard__tagbox">
+          <!-- <ul class="postcard__tagbox">
             <li class="tag__item">
               <i class="fas fa-clock mr-2"></i>Izgubljen:
               {{ moment(data.datum_izgubljen).format("DD.MM.YYYY") }}
             </li>
-          </ul>
+          </ul> -->
           <div class="d-flex justify-content-center" >
-            <button class="btn btn-warning" @click="$emit('changedata_adoptdog', data)">
+            <button class="btn btn-warning" @click="$emit('changedata_adoptdog', data)" style="margin-right:10px;">
               Promjena podataka
             </button>
+            <button class="btn btn-warning" @click="$emit('getadoptedid', data)">Azil</button>
           </div>
         </div>
       </article>

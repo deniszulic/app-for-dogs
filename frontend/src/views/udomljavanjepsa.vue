@@ -237,7 +237,6 @@ uploadTask.on('state_changed',
         vet_lokacija:this.vet_lokacija,
         ime_psa:this.ime_psa,
         spol:this.spol,
-        datum_izgubljen:this.datum,
         napomena:this.napomena,
         pasmina:this.pasmina,
         kg:this.kg,
@@ -247,7 +246,8 @@ uploadTask.on('state_changed',
         telefonskibr:this.telefonskibr,
         Korisnik_id:Auth.state.id,
         url_slike:downloadURL,
-        aktivan: true
+        aktivan: true,
+        oglas_azila: false
       }
       try{
         dog_data.adopt_dog(podaci)
@@ -265,7 +265,6 @@ uploadTask.on('state_changed',
         this.vet_lokacija=""
         this.ime_psa=""
         this.spol=""
-        this.datum=""
         this.napomena=null
         this.telefonskibr=""
         this.pasmina=""
@@ -296,7 +295,6 @@ let podaci={
         vet_lokacija:this.vet_lokacija,
         ime_psa:this.ime_psa,
         spol:this.spol,
-        datum_izgubljen:this.datum,
         kg:this.kg,
         kastrat:this.kastrat,
         opasnost:this.opasnost,
@@ -305,7 +303,8 @@ let podaci={
         pasmina:this.pasmina,
         postavljeno:Date.now(),
         Korisnik_id:Auth.state.id,
-        aktivan: true
+        aktivan: true,
+        oglas_azila: false
       }
       try{
         dog_data.adopt_dog(podaci)
@@ -322,7 +321,6 @@ let podaci={
         this.vet_lokacija=""
         this.ime_psa=""
         this.spol=""
-        this.datum=""
         this.napomena=null
         this.telefonskibr=""
         this.pasmina=""

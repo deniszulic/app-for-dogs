@@ -101,6 +101,11 @@ const routes = [
     name: 'prijavenamojoglas',
     component: () => import('../views/prijavenamojoglas.vue')
   },
+  {
+    path: '/potvrdioglaszaudomit',
+    name: 'potvrdioglaszaudomit',
+    component: () => import('../views/potvrdioglaszaudomit.vue')
+  },
   // {
   //   path: '/preglednestalih',
   //   name: 'preglednestalih',

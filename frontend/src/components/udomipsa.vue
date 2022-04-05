@@ -79,12 +79,12 @@
               </div>
             </div>
           </div>
-          <ul class="postcard__tagbox">
+          <!-- <ul class="postcard__tagbox">
             <li class="tag__item">
               <i class="fas fa-clock mr-2"></i>Izgubljen:
-              {{ moment(data.datum_izgubljen).format("DD.MM.YYYY") }}
+              {{ moment(data.datum_izgubljen).format("DD.MM.YYYY.") }}
             </li>
-          </ul>
+          </ul> -->
           <div class="d-flex justify-content-center" v-if="email_prijavljen!=data.email">
             <button class="btn btn-primary" @click="$emit('alldata', data)">
               Udomi psa

@@ -16,17 +16,20 @@
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
-    <nestalipsipotvrdaazil v-for="data in missingdogsrequests" :key="data.id" :data="data" @change="listen" @getid="updaterequest" />
+    <!-- <nestalipsipotvrdaazil v-for="data in missingdogsrequests" :key="data.id" :data="data" @change="listen" @getid="updaterequest" /> -->
+    <udomljenipsipotvrdaazil v-for="data in adopteddogsrequests" :key="data.id" :data="data" @change="listen" @getid="updaterequest" />
 
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
       
-      <nestalipsiprihvacenepotvrde v-for="data in acceptedreq" :key="data.id" :data="data" @change="listen" @getid="updaterequest" />
+      <!-- <nestalipsiprihvacenepotvrde v-for="data in acceptedreq" :key="data.id" :data="data" @change="listen" @getid="updaterequest" /> -->
+      <udomljenipsiprihvacenepotvrde v-for="data in acceptedreq" :key="data.id" :data="data" @change="listen" @getid="updaterequest" />
 
   </div>
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+<udomljenipsiodbijenepotvrde v-for="data in rejectedreq" :key="data.id" :data="data" @change="listen" @getid="updaterequest" />
+<!-- <nestalipsiodbijenepotvrde v-for="data in rejectedreq" :key="data.id" :data="data" @change="listen" @getid="updaterequest" /> -->
 
-<nestalipsiodbijenepotvrde v-for="data in rejectedreq" :key="data.id" :data="data" @change="listen" @getid="updaterequest" />
 
   </div>
 </div>
@@ -326,7 +329,7 @@
                     <textarea
                       class="form-control"
                       aria-label="With textarea"
-                      v-model="azil_nestanak_napomena"
+                      v-model="azil_udomljavanje_napomena"
                     ></textarea>
                   </div>
                   </div>
@@ -339,7 +342,7 @@
                 >
                   Zatvori
                 </button>
-                <button type="button" class="btn btn-primary" @click="updatereportmissingdog">Spremi</button>
+                <button type="button" class="btn btn-primary" @click="updatereportadopteddog">Spremi</button>
               </div>
             </div>
           </div>
@@ -350,19 +353,25 @@
 import moment from 'moment';
 import { Auth } from "@/services";
 import { dog_data } from "@/services";
-import nestalipsipotvrdaazil from "@/components/nestalipsipotvrdaazil.vue";
-import nestalipsiprihvacenepotvrde from "@/components/nestalipsiprihvacenepotvrde.vue";
-import nestalipsiodbijenepotvrde from "@/components/nestalipsiodbijenepotvrde.vue";
+import udomljenipsipotvrdaazil from '../components/udomljenipsipotvrdaazil.vue';
+import udomljenipsiprihvacenepotvrde from '../components/udomljenipsiprihvacenepotvrde.vue';
+import udomljenipsiodbijenepotvrde from '../components/udomljenipsiodbijenepotvrde.vue';
+// import nestalipsipotvrdaazil from "@/components/nestalipsipotvrdaazil.vue";
+// import nestalipsiprihvacenepotvrde from "@/components/nestalipsiprihvacenepotvrde.vue";
+// import nestalipsiodbijenepotvrde from "@/components/nestalipsiodbijenepotvrde.vue";
 export default {
-  name: "potvrdioglasazil",
+  name: "potvrdioglaszaudomit",
   components: {
-    nestalipsipotvrdaazil,
-    nestalipsiprihvacenepotvrde,
-    nestalipsiodbijenepotvrde
+    udomljenipsipotvrdaazil,
+    udomljenipsiprihvacenepotvrde,
+    udomljenipsiodbijenepotvrde
+    // nestalipsipotvrdaazil,
+    // nestalipsiprihvacenepotvrde,
+    // nestalipsiodbijenepotvrde
   },
   data() {
     return {
-      missingdogsrequests: [],
+      adopteddogsrequests: [],
       acceptedreq:[],
       rejectedreq:[],
       Auth,
@@ -385,7 +394,7 @@ export default {
       napomena:"",
       postavljeno:"",
       aktivan:"",
-      azil_nestanak_napomena:"",
+      azil_udomljavanje_napomena:"",
       prihvaceno: null,
       moment
     };
@@ -403,7 +412,7 @@ export default {
   methods: {
     async getdata() {
       try {
-        this.missingdogsrequests = await dog_data.getmissingdogsshelterreports(
+        this.adopteddogsrequests = await dog_data.getadopteddogsshelterreports(
           Auth.state.email
         );
       } catch (e) {
@@ -412,7 +421,7 @@ export default {
     },
     async getaccepteddata() {
       try {
-        this.acceptedreq = await dog_data.getacceptedmissingdogsshelterreports(
+        this.acceptedreq = await dog_data.getacceptedadopteddogsshelterreports(
           Auth.state.email
         );
       } catch (e) {
@@ -421,7 +430,7 @@ export default {
     },
     async getrejecteddata() {
       try {
-        this.rejectedreq = await dog_data.getrejectedmissingdogsshelterreports(
+        this.rejectedreq = await dog_data.getrejectedadopteddogsshelterreports(
           Auth.state.email
         );
       } catch (e) {
@@ -449,24 +458,24 @@ export default {
         this.datum_izgubljen=this.moment(data.datum_izgubljen).format('YYYY-MM-DD')
         this.dlaka=data.dlaka
         this.spol=data.spol
-        this.napomena=data.nestanak_napomena
-        this.azil_nestanak_napomena=data.azil_nestanak_napomena
+        this.napomena=data.napomena
+        this.azil_udomljavanje_napomena=data.azil_udomljavanje_napomena
         this.postavljeno=this.moment(parseInt(data.postavljeno)).format('DD.MM.YYYY.')
         this.aktivan=data.aktivan
         this.prihvaceno=data.prihvaceno
         $("#acceptorrejectmissingdog").modal("show");
     },
-    async updatereportmissingdog(){
+    async updatereportadopteddog(){
         let data ={
-            napomena: this.azil_nestanak_napomena,
+            napomena: this.azil_udomljavanje_napomena,
             prihvaceno: this.prihvaceno
         }
         try{
-            await dog_data.updatereportmissingdog(this.id, data)
+            await dog_data.updatereportadopteddog(this.id, data)
             .then(()=>{
             //     for (let [i, x] of this.rejectedreq.entries()) {
             //     if (x.id == this.id) {
-            //         x.azil_nestanak_napomena=data.napomena
+            //         x.azil_udomljavanje_napomena=data.napomena
             //         x.prihvaceno=data.prihvaceno
             //         break;
             //     }
