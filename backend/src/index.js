@@ -30,6 +30,8 @@ app.post('/sendreqadopt', db.sendreqadopt)
 app.delete('/delete/:id', db.deleteuser)
 app.delete('/deletecomment/:id', db.deletecomment)
 app.get('/getmissingdogs', db.getmissingdogs)
+app.get('/getadopteddogsshelter', db.getadopteddogsshelter)
+app.get('/getmissingdogsshelter', db.getmissingdogsshelter)
 app.get('/getadopteddogs', db.getadopteddogs)
 app.get('/getshelters', db.getshelters)
 app.get('/getmissingdogs/:id', db.getspecificdog)
@@ -53,6 +55,8 @@ app.patch('/updatemyadopteddogreports/:id', db.updatemyadopteddogreports)
 app.patch('/updatemymissingdogreport/:id', db.update_my_missingdog_report)
 app.patch('/updatereportmissingdog/:id', db.updatereportmissingdog)
 app.patch('/updatereportadopteddog/:id', db.updatereportadopteddog)
+app.patch('/updateadoptad/:id', db.updateadoptad)
+app.patch('/updatemissingad/:id', db.updatemissingad)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);

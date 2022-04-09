@@ -45,6 +45,15 @@
 			<router-link to="/udomljavanjepsa" class="dropdown-item">Udomi psa</router-link>
         </div>
       </li>
+	  <li class="nav-item dropdown"  v-if="store.tipkorisnika=='azil'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Obrasci
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+			<router-link to="/nestanakpsaazil" class="dropdown-item">Prijavi nestanak psa</router-link>
+			<router-link to="/udomljavanjepsaazil" class="dropdown-item">Udomi psa</router-link>
+        </div>
+      </li>
 	  <li class="nav-item dropdown"  v-if="store.tipkorisnika=='korisnik'">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Oglasi

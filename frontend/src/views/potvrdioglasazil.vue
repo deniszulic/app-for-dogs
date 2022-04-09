@@ -387,7 +387,8 @@ export default {
       aktivan:"",
       azil_nestanak_napomena:"",
       prihvaceno: null,
-      moment
+      moment,
+      nestanakid: null
     };
   },
   created() {
@@ -454,12 +455,23 @@ export default {
         this.postavljeno=this.moment(parseInt(data.postavljeno)).format('DD.MM.YYYY.')
         this.aktivan=data.aktivan
         this.prihvaceno=data.prihvaceno
+        this.nestanakid=data.nestanak_id
         $("#acceptorrejectmissingdog").modal("show");
     },
     async updatereportmissingdog(){
         let data ={
             napomena: this.azil_nestanak_napomena,
             prihvaceno: this.prihvaceno
+        }
+        if(this.prihvaceno=="true"){
+            let azilad = {
+              oglas_azila: true
+            }
+          try{
+            await dog_data.updatemissingad(this.nestanakid, azilad)
+          }catch(e){
+            console.log(e)
+          }
         }
         try{
             await dog_data.updatereportmissingdog(this.id, data)

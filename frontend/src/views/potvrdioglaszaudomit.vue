@@ -396,7 +396,8 @@ export default {
       aktivan:"",
       azil_udomljavanje_napomena:"",
       prihvaceno: null,
-      moment
+      moment,
+      udomljavanjeid:null
     };
   },
   created() {
@@ -463,12 +464,23 @@ export default {
         this.postavljeno=this.moment(parseInt(data.postavljeno)).format('DD.MM.YYYY.')
         this.aktivan=data.aktivan
         this.prihvaceno=data.prihvaceno
+        this.udomljavanjeid=data.udomljavanje_id
         $("#acceptorrejectmissingdog").modal("show");
     },
     async updatereportadopteddog(){
         let data ={
             napomena: this.azil_udomljavanje_napomena,
             prihvaceno: this.prihvaceno
+        }
+        if(this.prihvaceno=="true"){
+            let azilad = {
+              oglas_azila: true
+            }
+          try{
+            await dog_data.updateadoptad(this.udomljavanjeid, azilad)
+          }catch(e){
+            console.log(e)
+          }
         }
         try{
             await dog_data.updatereportadopteddog(this.id, data)

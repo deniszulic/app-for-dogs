@@ -74,6 +74,17 @@
               </div>
               <div class="row">
                 <div class="col-sm">
+                  <p>Kastrat: {{data.kastrat}}</p>
+                </div>
+                <div class="col-sm">
+                  <p>Kilaža: {{data.kilaza}}</p>
+                </div>
+                <div class="col-sm">
+                  <p>Opasnost: {{data.opasnost}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
                   <p>Napomena:{{ data.napomena }}</p>
                 </div>
               </div>

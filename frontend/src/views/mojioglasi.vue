@@ -1025,6 +1025,7 @@ export default {
     },
     sendtoshelteradopt(event){
       if(event.prihvaceno!=null) $("#requestforshelteradopt").hide();
+      //udomljavanje id ne od adopt
       this.id=event.id
       this.azil_nestanak_napomena=event.azil_udomljavanje_napomena
       this.prihvaceno_azil=event.prihvaceno

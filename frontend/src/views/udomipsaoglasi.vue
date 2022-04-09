@@ -1,6 +1,26 @@
 <template>
     <div>
-        <udomipsa v-for="data in adoptingdogs" :key="data.id" :data="data" @change="listen" @alldata="form" />
+
+      <div class="d-flex justify-content-center" style="margin-top: 10px">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Oglasi korisnika</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Oglasi azila</a>
+  </li>
+</ul>
+</div>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <udomipsa v-for="data in adoptingdogs" :key="data.id" :data="data" @change="listen" @alldata="form" />
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+     
+    <udomipsa v-for="data in getadopteddogsshelter" :key="data.id" :data="data" @change="listen" @alldata="form" />
+
+  </div>
+</div>
         <div
             class="modal fade"
             id="pictureModal"
@@ -159,6 +179,7 @@ export default {
   data(){
       return{
           adoptingdogs:[],
+          getadopteddogsshelter:[],
           url:"",
           id:"",
           ime:"",
@@ -182,14 +203,23 @@ export default {
   },
   created() {
     this.getdata();
+    this.getadopteddogs();
   },
   watch: {
     $route: "getdata",
+    $route: "getadopteddogs"
   },
   methods:{
       async getdata() {
       try {
         this.adoptingdogs = await dog_data.getadopteddogs();
+      } catch (e) {
+        this.errormsg = e.message;
+      }
+    },
+    async getadopteddogs() {
+      try {
+        this.getadopteddogsshelter = await dog_data.getadopteddogsshelter();
       } catch (e) {
         this.errormsg = e.message;
       }

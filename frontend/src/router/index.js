@@ -106,6 +106,16 @@ const routes = [
     name: 'potvrdioglaszaudomit',
     component: () => import('../views/potvrdioglaszaudomit.vue')
   },
+  {
+    path: '/nestanakpsaazil',
+    name: 'nestanakpsaazil',
+    component: () => import('../views/nestanakpsaazil.vue')
+  },
+  {
+    path: '/udomljavanjepsaazil',
+    name: 'udomljavanjepsaazil',
+    component: () => import('../views/udomljavanjepsaazil.vue')
+  },
   // {
   //   path: '/preglednestalih',
   //   name: 'preglednestalih',
