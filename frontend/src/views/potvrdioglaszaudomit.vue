@@ -472,16 +472,16 @@ export default {
             napomena: this.azil_udomljavanje_napomena,
             prihvaceno: this.prihvaceno
         }
-        if(this.prihvaceno=="true"){
-            let azilad = {
-              oglas_azila: true
-            }
-          try{
-            await dog_data.updateadoptad(this.udomljavanjeid, azilad)
-          }catch(e){
-            console.log(e)
-          }
-        }
+        // if(this.prihvaceno=="true"){
+        //     let azilad = {
+        //       oglas_azila: true
+        //     }
+        //   try{
+        //     await dog_data.updateadoptad(this.udomljavanjeid, azilad)
+        //   }catch(e){
+        //     console.log(e)
+        //   }
+        // }
         try{
             await dog_data.updatereportadopteddog(this.id, data)
             .then(()=>{

@@ -463,16 +463,16 @@ export default {
             napomena: this.azil_nestanak_napomena,
             prihvaceno: this.prihvaceno
         }
-        if(this.prihvaceno=="true"){
-            let azilad = {
-              oglas_azila: true
-            }
-          try{
-            await dog_data.updatemissingad(this.nestanakid, azilad)
-          }catch(e){
-            console.log(e)
-          }
-        }
+        // if(this.prihvaceno=="true"){
+        //     let azilad = {
+        //       oglas_azila: true
+        //     }
+        //   try{
+        //     await dog_data.updatemissingad(this.nestanakid, azilad)
+        //   }catch(e){
+        //     console.log(e)
+        //   }
+        // }
         try{
             await dog_data.updatereportmissingdog(this.id, data)
             .then(()=>{

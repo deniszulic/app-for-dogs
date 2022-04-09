@@ -6,50 +6,14 @@
         </div>
         <div class="col-sm-6">
   <form @submit.prevent="send_data">
-    <div class="form-row" id="name_surname">
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">Ime</label>
-        <input
-          type="text"
-          class="form-control"
-          id="inputEmail4" v-model="ime" required
-        />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword4">Prezime</label>
-        <input
-          type="text"
-          class="form-control"
-          id="inputPassword4" v-model="prezime" required
-        />
-      </div>
-    </div>
     <div class="form-row" id="boja_starost">
-      <div class="form-group col-md-6">
-        <label for="inputAddress">Adresa</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputAddress" v-model="adresa" required
-      />
-      </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
         <label for="inputEmail4">Telefonski br.</label>
         <input
           type="text"
           class="form-control"
           id="inputEmail4" v-model="telefonskibr" required
         />
-      </div>
-    </div>
-    <div class="form-row" id="grad_postnum">
-      <div class="form-group col-md-8">
-        <label for="inputCity">Grad</label>
-        <input type="text" class="form-control" id="inputCity" v-model="grad" required/>
-      </div>
-      <div class="form-group col-md-4">
-        <label for="inputZip">Poštanski br.</label>
-        <input type="number" class="form-control" id="inputZip" v-model="postbr" required/>
       </div>
     </div>
     <div class="form-row" id="boja_starost">
@@ -71,20 +35,12 @@
       </div>
     </div>
     <div class="form-row" id="dlaka_lokacija">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
         <label for="inputState">Dlaka</label>
         <select id="inputState" class="form-control" v-model="dlaka" required>
           <option>Kratka</option>
           <option>Duga</option>
         </select>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">Iz koje vet. stanice</label>
-        <input
-          type="text"
-          class="form-control"
-          id="inputEmail4" v-model="vet_lokacija" required
-        />
       </div>
     </div>
     <div class="form-row">
@@ -185,15 +141,9 @@ export default {
   name: "udomljavanjepsaazil",
   data() {
     return {
-      ime:"",
-      prezime:"",
-      adresa:"",
-      grad:"",
       boja:"",
       starost:"",
       dlaka:"",
-      postbr:"",
-      vet_lokacija:"",
       ime_psa:"",
       spol:"",
       napomena:null,
@@ -226,15 +176,9 @@ uploadTask.on('state_changed',
         this.napomena=null
       }
       let podaci={
-        ime:this.ime,
-        prezime:this.prezime,
-        adresa:this.adresa,
-        grad:this.grad,
-        postanski_broj:this.postbr,
         boja:this.boja,
         starost:this.starost,
         dlaka:this.dlaka,
-        vet_lokacija:this.vet_lokacija,
         ime_psa:this.ime_psa,
         spol:this.spol,
         napomena:this.napomena,
@@ -254,15 +198,9 @@ uploadTask.on('state_changed',
         $("#modalnotice").modal("show");
         this.$refs.fileupload.value=null
         this.postotak=null
-        this.ime=""
-        this.prezime=""
-        this.adresa=""
-        this.grad=""
-        this.postbr=""
         this.boja=""
         this.starost=""
         this.dlaka=""
-        this.vet_lokacija=""
         this.ime_psa=""
         this.spol=""
         this.napomena=null
@@ -284,15 +222,9 @@ uploadTask.on('state_changed',
         this.napomena=null
       }
 let podaci={
-        ime:this.ime,
-        prezime:this.prezime,
-        adresa:this.adresa,
-        grad:this.grad,
-        postanski_broj:this.postbr,
         boja:this.boja,
         starost:this.starost,
         dlaka:this.dlaka,
-        vet_lokacija:this.vet_lokacija,
         ime_psa:this.ime_psa,
         spol:this.spol,
         kg:this.kg,
@@ -310,15 +242,9 @@ let podaci={
         dog_data.adopt_dog(podaci)
         $("#modalnotice").modal("show");
         this.$refs.fileupload.value=null
-        this.ime=""
-        this.prezime=""
-        this.adresa=""
-        this.grad=""
-        this.postbr=""
         this.boja=""
         this.starost=""
         this.dlaka=""
-        this.vet_lokacija=""
         this.ime_psa=""
         this.spol=""
         this.napomena=null
