@@ -17,7 +17,7 @@
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
      
-    <nestalipsi v-for="data in missingdogsshelter" :key="data.id" :data="data" @change="listen" @form_missing_dog="form_missing_dog" />
+    <nestalipsiazil v-for="data in missingdogsshelter" :key="data.id" :data="data" @change="listen" @form_missing_dog="form_missing_dog" />
 
   </div>
 </div>
@@ -169,11 +169,13 @@
 <script>
 import { dog_data } from "@/services";
 import nestalipsi from "@/components/nestalipsi.vue";
+import nestalipsiazil from "@/components/nestalipsiazil.vue";
 import {Auth} from "@/services";
 export default {
     name:"preglednestalih",
     components: {
-    nestalipsi
+    nestalipsi,
+    nestalipsiazil
   },
   data(){
       return{

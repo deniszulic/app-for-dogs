@@ -45,6 +45,10 @@ let dog_data={
     let response = await Service.get(`/getmissingdogs/${id}`);
     return response.data
   },
+  async getspecificdogshelter(id){
+    let response = await Service.get(`/getspecificdogshelter/${id}`);
+    return response.data
+  },
   async comments(data){
     return await Service.post("/getcommentsfordog", data);
   },

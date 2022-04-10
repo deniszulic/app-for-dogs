@@ -18,6 +18,12 @@ const routes = [
         component: () => import('../views/detaljipsa.vue')
       },
       {
+        path: 'preglednestalihazil/:id',
+        props: true,
+            name: 'dog-details-shelter',
+        component: () => import('../views/detaljipsaazil.vue')
+      },
+      {
         path: '/preglednestalih',
         name: 'preglednestalih',
         component: () => import('../views/preglednestalih.vue')

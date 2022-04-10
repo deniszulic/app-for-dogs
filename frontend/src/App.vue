@@ -30,12 +30,12 @@
                   <li class="nav-item">
                     <router-link to="/register" class="nav-link" v-if="store.tipkorisnika==null"><i class="fa-solid fa-user-plus"></i> Registracija</router-link>
                   </li>
-				  <li class="nav-item">
+				  <!-- <li class="nav-item">
                     <router-link to="/potvrdioglasazil" class="nav-link" v-if="store.tipkorisnika=='azil'">Zahtjevi korisnika</router-link>
                   </li>
 				  <li class="nav-item">
                     <router-link to="/potvrdioglaszaudomit" class="nav-link" v-if="store.tipkorisnika=='azil'">Zahtjevi korisnika udomljavanje psa</router-link>
-                  </li>
+                  </li> -->
 				   <li class="nav-item dropdown"  v-if="store.tipkorisnika=='korisnik'">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Obrasci
@@ -52,6 +52,15 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
 			<router-link to="/nestanakpsaazil" class="dropdown-item">Prijavi nestanak psa</router-link>
 			<router-link to="/udomljavanjepsaazil" class="dropdown-item">Udomi psa</router-link>
+        </div>
+      </li>
+				  <li class="nav-item dropdown"  v-if="store.tipkorisnika=='azil'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Zahtjevi korisnika
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+			<router-link to="/potvrdioglasazil" class="dropdown-item" >Nestanak psa</router-link>
+			<router-link to="/potvrdioglaszaudomit" class="dropdown-item">Udomi psa</router-link>
         </div>
       </li>
 	  <li class="nav-item dropdown"  v-if="store.tipkorisnika=='korisnik'">
