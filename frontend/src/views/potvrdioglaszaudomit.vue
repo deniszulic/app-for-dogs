@@ -295,7 +295,7 @@
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
-                        >Postavljeno</span
+                        >Dostavljen zahtjev</span
                       >
                     </div>
                     <input
@@ -461,7 +461,7 @@ export default {
         this.spol=data.spol
         this.napomena=data.napomena
         this.azil_udomljavanje_napomena=data.azil_udomljavanje_napomena
-        this.postavljeno=this.moment(parseInt(data.postavljeno)).format('DD.MM.YYYY.')
+        this.postavljeno=this.moment(parseInt(data.azil_udomljavanje_postavljeno)).format('DD.MM.YYYY.')
         this.aktivan=data.aktivan
         this.prihvaceno=data.prihvaceno
         this.udomljavanjeid=data.udomljavanje_id

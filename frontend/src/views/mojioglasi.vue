@@ -261,7 +261,7 @@
                     <textarea
                       class="form-control"
                       aria-label="With textarea"
-                      v-model="napomena"
+                      v-model="nestanak_napomena"
                     ></textarea>
                   </div>
                   </div>
@@ -830,7 +830,8 @@ export default {
           shelterid:"",
           prihvaceno_azil:"",
           azil_nestanak_napomena:"",
-          prihvaceno_azil_missing:""
+          prihvaceno_azil_missing:"",
+          nestanak_napomena:""
     };
   },
   created() {
@@ -908,6 +909,7 @@ export default {
       this.vet_lokacija=event.vet_lokacija
       this.datum_izgubljen=this.moment(event.datum_izgubljen).format('YYYY-MM-DD')
       this.aktivan=event.aktivan
+      this.nestanak_napomena=event.nestanak_napomena
       $("#promjenanestanakpsa").modal("show");
     },
     async updateadoptdog(){
@@ -973,7 +975,7 @@ export default {
       pasmina:this.pasmina,
       boja:this.boja,
       dlaka:this.dlaka,
-      napomena:this.napomena,
+      napomena:this.nestanak_napomena,
       spol:this.spol,
       starost:this.starost,
       telefonskibr:this.tel_br,
@@ -994,7 +996,7 @@ export default {
                 x.pasmina=update.pasmina
                 x.boja=update.boja
                 x.dlaka=update.dlaka
-                x.napomena=update.napomena
+                x.nestanak_napomena=update.napomena
                 x.spol=update.spol
                 x.starost=update.starost
                 x.telefonskibr=update.telefonskibr

@@ -292,7 +292,7 @@
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
-                        >Postavljeno</span
+                        >Dostavljen zahtjev</span
                       >
                     </div>
                     <input

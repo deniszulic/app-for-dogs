@@ -36,6 +36,15 @@
 				  <li class="nav-item">
                     <router-link to="/potvrdioglaszaudomit" class="nav-link" v-if="store.tipkorisnika=='azil'">Zahtjevi korisnika udomljavanje psa</router-link>
                   </li> -->
+	  <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Oglasi
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+			<router-link to="/preglednestalih" class="dropdown-item">Nestali psi</router-link>
+			<router-link to="/udomipsaoglasi" class="dropdown-item">Udomi psa</router-link>
+        </div>
+      </li>
 				   <li class="nav-item dropdown"  v-if="store.tipkorisnika=='korisnik'">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Obrasci
@@ -61,15 +70,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
 			<router-link to="/potvrdioglasazil" class="dropdown-item" >Nestanak psa</router-link>
 			<router-link to="/potvrdioglaszaudomit" class="dropdown-item">Udomi psa</router-link>
-        </div>
-      </li>
-	  <li class="nav-item dropdown"  v-if="store.tipkorisnika=='korisnik'">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Oglasi
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-			<router-link to="/preglednestalih" class="dropdown-item">Nestali psi</router-link>
-			<router-link to="/udomipsaoglasi" class="dropdown-item">Udomi psa</router-link>
         </div>
       </li>
 	  <li class="nav-item dropdown" v-if="store.tipkorisnika=='korisnik'">
