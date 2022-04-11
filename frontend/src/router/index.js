@@ -50,6 +50,17 @@ const routes = [
         name: 'potvrdioglasazildetails',
         component: () => import('../views/potvrdioglasazildetails.vue')
       },
+      {
+        path: '/mojioglasiazil',
+        name: 'mojioglasiazil',
+        component: () => import('../views/mojioglasiazil.vue')
+      },
+      {
+        path: 'mojioglasiazil/:id',
+        props: true,
+            name: 'my-dog-details-shelter',
+        component: () => import('../views/mojidetaljipsaazil.vue')
+      },
     ]
   },
   {
@@ -121,6 +132,11 @@ const routes = [
     path: '/udomljavanjepsaazil',
     name: 'udomljavanjepsaazil',
     component: () => import('../views/udomljavanjepsaazil.vue')
+  },
+  {
+    path: '/prijavenamojoglasazil',
+    name: 'prijavenamojoglasazil',
+    component: () => import('../views/prijavenamojoglasazil.vue')
   },
   // {
   //   path: '/preglednestalih',

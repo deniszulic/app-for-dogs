@@ -10,6 +10,12 @@
                 > -->
 				<i class="fa-solid fa-paw fa-spin-hover"></i
               ></router-link>
+			  <router-link to="/pocetnaazil" class="navbar-brand" v-if="store.tipkorisnika=='azil'">
+				<i class="fa-solid fa-paw fa-spin-hover"></i
+              ></router-link>
+			  <router-link to="/admin" class="navbar-brand" v-if="store.tipkorisnika=='admin'">
+				<i class="fa-solid fa-paw fa-spin-hover"></i
+              ></router-link>
 			  <!-- </a> -->
               <button
                 class="navbar-toggler"
@@ -82,6 +88,17 @@
 			<router-link to="/mojioglasi" class="dropdown-item">Moji oglasi</router-link>
 			<router-link to="/mojeprijave" class="dropdown-item">Moje prijave</router-link>
 			<router-link to="/prijavenamojoglas" class="dropdown-item">Prijave na moj oglas</router-link>
+        </div>
+      </li>
+	  <li class="nav-item dropdown" v-if="store.tipkorisnika=='azil'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Moji oglasi
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+			<!-- <router-link to="preglednestalih" class="dropdown-item">Nestali psi</router-link>
+			<router-link to="udomipsaoglasi" class="dropdown-item">Udomi psa</router-link> -->
+			<router-link to="/mojioglasiazil" class="dropdown-item">Moji oglasi</router-link>
+			<router-link to="/prijavenamojoglasazil" class="dropdown-item">Prijave na moj oglas</router-link>
         </div>
       </li>
 	  <li class="nav-item">
