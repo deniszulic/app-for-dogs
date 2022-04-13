@@ -155,6 +155,18 @@ let dog_data={
   //   return await Service.patch(`/updatemissingad/${id}`, data)
   // },
 }
+let profile={
+  async changeuserdata(email){
+    let response = await Service.get(`/changeuserdata/${email}`);
+    return response.data
+  },
+  async updatemydata(id, data){
+    return await Service.patch(`/updatemydata/${id}`, data)
+  },
+  async updatepass(id, data){
+    return await Service.patch(`/updatepass/${id}`, data)
+  }
+}
 let Auth = {
   getUser(){
     return JSON.parse(localStorage.getItem("user"))
@@ -197,4 +209,4 @@ state:{
 }
 }
 
-export {login_signup, Auth, dog_data};
+export {login_signup, Auth, dog_data, profile};

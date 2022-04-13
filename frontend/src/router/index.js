@@ -138,6 +138,11 @@ const routes = [
     name: 'prijavenamojoglasazil',
     component: () => import('../views/prijavenamojoglasazil.vue')
   },
+  {
+    path: '/profil',
+    name: 'profil',
+    component: () => import('../views/profil.vue')
+  },
   // {
   //   path: '/preglednestalih',
   //   name: 'preglednestalih',

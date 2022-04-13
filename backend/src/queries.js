@@ -504,6 +504,47 @@ const createUser = async (request, response) => {
     });
   };
 
+  const changeuserdata = (request, response) => {
+    const id = request.params.email;
+    pool.query("SELECT ime, prezime, id, datumreg FROM korisnik WHERE email=$1", [id], (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const updatemydata = (request, response) => {
+    const id = request.params.id;
+    const { ime, prezime} = request.body;
+    pool.query("UPDATE korisnik SET ime=$1, prezime=$2 WHERE id=$3", [ime, prezime, id],  (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const updatepass = async (request, response) => {
+    const { lozinka } = request.body;
+    const id = request.params.id;
+    const salt = bcrypt.genSaltSync(8);
+    const hash = bcrypt.hashSync(lozinka, salt);
+    pool.query(
+      "UPDATE korisnik SET lozinka=$2 WHERE id=$1",
+      [id, hash],
+      (error, results) => {
+        try {
+          response.status(200).json(results.rows);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    );
+  };
+
   // const updateadoptad = (request, response) => {
   //   const id = request.params.id;
   //   const { oglas_azila } = request.body;
@@ -567,5 +608,8 @@ const createUser = async (request, response) => {
     updatereportadopteddog,
     getmissingdogsshelter,
     getadopteddogsshelter,
-    getspecificdogshelter
+    getspecificdogshelter,
+    changeuserdata,
+    updatemydata,
+    updatepass
   };
