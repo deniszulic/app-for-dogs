@@ -12,9 +12,9 @@
 </div>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <nestalipsiadmintablica :data="missingdogs" @myreportmissingdog="openmodal"/></div>
+    <udomljenipsiadmintablica :data="missingdogs" @myreportmissingdog="openmodal"/></div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-      <nestalipsiadmintablicaazil :data="missingdogsshelter" @myreportmissingdog="openmodalshelter"/>
+      <udomljenipsiadmintablicaazil :data="missingdogsshelter" @myreportmissingdog="openmodalshelter"/>
   </div>
 </div>
 
@@ -239,6 +239,38 @@
                     ></textarea>
                   </div>
                   </div>
+                <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Moguća opasnost psa?</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01" v-model="opasnost">
+    <option value="Da">Da</option>
+    <option value="Ne">Ne</option>
+  </select>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Kastrat</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01" v-model="kastrat">
+    <option value="Da">Da</option>
+    <option value="Ne">Ne</option>
+  </select>
+</div>
+<div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Kilaža</span
+                      >
+                    </div>
+                    <input
+                      type="number"
+                      class="form-control"
+                      v-model="kilaza"
+                    />
+                  </div>
+                </div>
                   <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -256,19 +288,6 @@
                 <template v-if="url_slike != null">
                   <img class="modal-content" :src="url_slike" />
                 </template>
-                
-                <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" value=true v-model="aktivan_user">
-  <label class="form-check-label" for="flexRadioDefault1">
-    <span class="badge badge-pill badge-success">Aktivan oglas</span>
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" value=false v-model="aktivan_user">
-  <label class="form-check-label" for="flexRadioDefault2">
-    <span class="badge badge-pill badge-danger">Neaktivan oglas</span>
-  </label>
-</div>
                 <hr/>
                 <div class="form-group">
                   <h5 class="modal-title">Podaci korisnika</h5>
@@ -315,6 +334,18 @@
                     />
                   </div>
                 </div>
+                <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" value=true v-model="aktivan_user">
+  <label class="form-check-label" for="flexRadioDefault1">
+    <span class="badge badge-pill badge-success">Aktivan oglas</span>
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" value=false v-model="aktivan_user">
+  <label class="form-check-label" for="flexRadioDefault2">
+    <span class="badge badge-pill badge-danger">Neaktivan oglas</span>
+  </label>
+</div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-warning mr-auto" @click="deletedata">Obriši</button>
@@ -468,6 +499,38 @@
                     ></textarea>
                   </div>
                   </div>
+                  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Moguća opasnost psa?</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01" v-model="opasnost">
+    <option value="Da">Da</option>
+    <option value="Ne">Ne</option>
+  </select>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Kastrat</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01" v-model="kastrat">
+    <option value="Da">Da</option>
+    <option value="Ne">Ne</option>
+  </select>
+</div>
+<div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Kilaža</span
+                      >
+                    </div>
+                    <input
+                      type="number"
+                      class="form-control"
+                      v-model="kilaza"
+                    />
+                  </div>
+                </div>
                   <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -590,14 +653,14 @@
 </template>
 <script>
 import { dog_data } from "@/services";
-import nestalipsiadmintablica from "@/components/nestalipsiadmintablica.vue";
-import nestalipsiadmintablicaazil from "@/components/nestalipsiadmintablicaazil.vue";
+import udomljenipsiadmintablica from "@/components/udomljenipsiadmintablica.vue";
+import udomljenipsiadmintablicaazil from "@/components/udomljenipsiadmintablicaazil.vue";
 import moment from 'moment';
 export default {
   name: "nestalipsiadmin",
   components: {
-    nestalipsiadmintablica,
-    nestalipsiadmintablicaazil
+    udomljenipsiadmintablica,
+    udomljenipsiadmintablicaazil
   },
   data() {
     return {
@@ -628,7 +691,10 @@ export default {
         aktivan:null,
         aktivan_user:null,
         azil_grad:"",
-        naziv:""
+        naziv:"",
+        kastrat:"",
+        kilaza:"",
+        opasnost:""
     };
   },
   created() {
@@ -642,20 +708,23 @@ export default {
   methods: {
     async getdata() {
       try {
-        this.missingdogs = await dog_data.getmissingdogsadmin();
+        this.missingdogs = await dog_data.getadopteddogsadmin();
       } catch (e) {
         this.errormsg = e.message;
       }
     },
     async getdatashelter() {
       try {
-        this.missingdogsshelter = await dog_data.getmissingdogsadminshelter();
+        this.missingdogsshelter = await dog_data.getadopteddogsadminshelter();
       } catch (e) {
         this.errormsg = e.message;
       }
     },
     openmodal(event){
         this.id=event.id
+        this.kilaza=event.kilaza
+        this.kastrat=event.kastrat
+        this.opasnost=event.opasnost
         this.adresa=event.adresa
         this.boja=event.boja
         this.datum_izgubljen=this.moment(event.datum_izgubljen).format('YYYY-MM-DD')
@@ -681,6 +750,9 @@ export default {
     },
     openmodalshelter(event){
         this.id=event.id
+        this.kilaza=event.kilaza
+        this.kastrat=event.kastrat
+        this.opasnost=event.opasnost
         this.boja=event.boja
         this.datum_izgubljen=this.moment(event.datum_izgubljen).format('YYYY-MM-DD')
         this.dlaka=event.dlaka
@@ -702,8 +774,10 @@ export default {
     },
     async updatedatamissingdog(){
         let data={
+            kilaza:this.kilaza,
+            kastrat:this.kastrat,
+            opasnost:this.opasnost,
             boja:this.boja,
-            datum_izgubljen:this.datum_izgubljen,
             dlaka:this.dlaka,
             grad:this.grad,
             ime:this.ime,
@@ -720,7 +794,7 @@ export default {
             aktivan: this.aktivan
         }
         try{
-            await dog_data.updatemydatamissingddog(this.id, data).then(()=>{
+            await dog_data.updatemydataadopteddog(this.id, data).then(()=>{
                 $("#missingdogadminshelter").modal("hide")
                 this.getdatashelter();
             })
@@ -730,8 +804,10 @@ export default {
     },
     async updatedatamissingdoguser(){
       let data={
+            kilaza:this.kilaza,
+            kastrat:this.kastrat,
+            opasnost:this.opasnost,
             boja:this.boja,
-            datum_izgubljen:this.datum_izgubljen,
             dlaka:this.dlaka,
             grad:this.grad,
             ime:this.ime,
@@ -748,7 +824,7 @@ export default {
             aktivan: this.aktivan_user
         }
         try{
-            await dog_data.updatemydatamissingddog(this.id, data).then(()=>{
+            await dog_data.updatemydataadopteddog(this.id, data).then(()=>{
                 $("#missingdogadmin").modal("hide")
                 this.getdata();
             })
@@ -758,7 +834,7 @@ export default {
     },
     async deletedata(){
       try{
-        await dog_data.deletespecificdata(this.id)
+        await dog_data.deleteadopted(this.id)
         .then(()=>{
           $("#missingdogadmin").modal("hide")
           $("#missingdogadminshelter").modal("hide")

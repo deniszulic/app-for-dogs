@@ -148,6 +148,11 @@ const routes = [
     name: 'nestalipsiadmin',
     component: () => import('../views/nestalipsiadmin.vue')
   },
+  {
+    path: '/udomljenipsiadmin',
+    name: 'udomljenipsiadmin',
+    component: () => import('../views/udomljenipsiadmin.vue')
+  },
 ]
 
 const router = new VueRouter({

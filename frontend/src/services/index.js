@@ -37,6 +37,14 @@ let dog_data={
     let response = await Service.get('/getadopteddogs');
     return response.data
   },
+  async getadopteddogsadmin(){
+    let response = await Service.get('/getadopteddogsadmin');
+    return response.data
+  },
+  async getadopteddogsadminshelter(){
+    let response = await Service.get('/getadopteddogsadminshelter');
+    return response.data
+  },
   async getshelters(){
     let response = await Service.get('/getshelters');
     return response.data
@@ -164,6 +172,9 @@ let dog_data={
   },
   async deletespecificdata(id){
     return await Service.delete(`/deletedata/${id}`)
+  },
+  async deleteadopted(id){
+    return await Service.delete(`/deleteadopted/${id}`)
   }
   // async updatemissingad(id, data){
   //   return await Service.patch(`/updatemissingad/${id}`, data)

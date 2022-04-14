@@ -576,6 +576,37 @@ const createUser = async (request, response) => {
     });
   };
 
+  const getadopteddogsadmin = (request, response) => {
+    pool.query("SELECT udomljavanje.id, udomljavanje.ime, udomljavanje.prezime, udomljavanje.adresa, udomljavanje.telefonskibr, udomljavanje.grad, udomljavanje.postanski_broj, udomljavanje.boja, udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.napomena, udomljavanje.url_slike, udomljavanje.postavljeno, udomljavanje.pasmina, udomljavanje.kilaza, udomljavanje.kastrat, udomljavanje.opasnost, udomljavanje.aktivan, korisnik.email, korisnik.ime as korisnik_ime, korisnik.prezime as korisnik_prezime FROM udomljavanje LEFT JOIN korisnik ON udomljavanje.korisnik_id=korisnik.id WHERE udomljavanje.oglas_azila IS NOT true ORDER BY udomljavanje.postavljeno DESC", (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const getadopteddogsadminshelter = (request, response) => {
+    pool.query("SELECT udomljavanje.id, udomljavanje.ime, udomljavanje.prezime, udomljavanje.adresa, udomljavanje.telefonskibr, udomljavanje.grad, udomljavanje.postanski_broj, udomljavanje.boja, udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.napomena, udomljavanje.url_slike, udomljavanje.postavljeno, udomljavanje.pasmina, udomljavanje.kilaza, udomljavanje.kastrat, udomljavanje.opasnost, udomljavanje.aktivan, korisnik.email, korisnik.ime as korisnik_ime, korisnik.prezime as korisnik_prezime, azil.naziv, azil.grad as azil_grad FROM udomljavanje LEFT JOIN korisnik ON udomljavanje.korisnik_id=korisnik.id LEFT JOIN azil ON korisnik.id=azil.korisnik_id WHERE udomljavanje.oglas_azila IS true ORDER BY udomljavanje.postavljeno DESC", (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const deletedataadopteddog = (request, response) => {
+    const id = request.params.id;
+    pool.query("DELETE FROM udomljavanje WHERE id=$1", [id], (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
   // const updatedatamissingdogs = (request, response) => {
   //   const id = request.params.id;
   //   const { boja, datum_izgubljen, dlaka, grad, ime, prezime, ime_psa, napomena, pasmina, postanski_broj, spol, starost, telefonskibr, vet_lokacija, adresa, aktivan} = request.body;
@@ -658,5 +689,8 @@ const createUser = async (request, response) => {
     getmissingdogsadmin,
     //updatedatamissingdogs,
     getmissingdogsadminshelter,
-    deletedatamissingdog
+    deletedatamissingdog,
+    getadopteddogsadmin,
+    getadopteddogsadminshelter,
+    deletedataadopteddog
   };

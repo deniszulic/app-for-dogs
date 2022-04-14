@@ -105,6 +105,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
 			<router-link to="/nestalipsiadmin" class="dropdown-item">Nestali psi</router-link>
+			<router-link to="/udomljenipsiadmin" class="dropdown-item">Udomljeni psi</router-link>
         </div>
       </li>
 	  <li class="nav-item" v-if="store.tipkorisnika!='admin'">
