@@ -675,13 +675,13 @@
               </div>
 
                <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="true" v-model="prihvaceno_azil_missing" disabled>
+  <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" value="true" v-model="prihvaceno_azil_missing" disabled>
   <label class="form-check-label" for="flexRadioDefault1">
     <span class="badge badge-pill badge-success">Prihvaćeno</span>
   </label>
 </div>
 <div class="form-check">    
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="false" v-model="prihvaceno_azil_missing" disabled>
+  <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" value="false" v-model="prihvaceno_azil_missing" disabled>
   <label class="form-check-label" for="flexRadioDefault2">
     <span class="badge badge-pill badge-danger">Odbijeno</span>
   </label>
@@ -743,13 +743,13 @@
               </div>
 
                <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="true" v-model="prihvaceno_azil" disabled>
+  <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault3" value="true" v-model="prihvaceno_azil" disabled>
   <label class="form-check-label" for="flexRadioDefault3">
     <span class="badge badge-pill badge-success">Prihvaćeno</span>
   </label>
 </div>
 <div class="form-check">    
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" value=false v-model="prihvaceno_azil" disabled>
+  <input class="form-check-input" type="radio" name="flexRadioDefault4" id="flexRadioDefault4" value=false v-model="prihvaceno_azil" disabled>
   <label class="form-check-label" for="flexRadioDefault4">
     <span class="badge badge-pill badge-danger">Odbijeno</span>
   </label>
