@@ -302,8 +302,21 @@
                     />
                   </div>
                 </div>
+                <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" value=true v-model="aktivan_user">
+  <label class="form-check-label" for="flexRadioDefault1">
+    <span class="badge badge-pill badge-success">Aktivan oglas</span>
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" value=false v-model="aktivan_user">
+  <label class="form-check-label" for="flexRadioDefault2">
+    <span class="badge badge-pill badge-danger">Neaktivan oglas</span>
+  </label>
+</div>
               </div>
               <div class="modal-footer">
+                <button type="button" class="btn btn-warning mr-auto" @click="deletedata">Obriši</button>
                 <button
                   type="button"
                   class="btn btn-secondary"
@@ -311,7 +324,7 @@
                 >
                   Zatvori
                 </button>
-                <button type="button" class="btn btn-primary" @click="updatedatamissingdog">Spremi</button>
+                <button type="button" class="btn btn-primary" @click="updatedatamissingdoguser">Spremi</button>
               </div>
             </div>
           </div>
@@ -471,6 +484,18 @@
                 <template v-if="url_slike != null">
                   <img class="modal-content" :src="url_slike" />
                 </template>
+                <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault3" value=true v-model="aktivan">
+  <label class="form-check-label" for="flexRadioDefault3">
+    <span class="badge badge-pill badge-success">Aktivan oglas</span>
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault4" id="flexRadioDefault4" value=false v-model="aktivan">
+  <label class="form-check-label" for="flexRadioDefault4">
+    <span class="badge badge-pill badge-danger">Neaktivan oglas</span>
+  </label>
+</div>
                 <hr/>
                 <div class="form-group">
                   <h5 class="modal-title">Podaci korisnika</h5>
@@ -517,8 +542,37 @@
                     />
                   </div>
                 </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Naziv ambulante</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="naziv" disabled
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Grad</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="azil_grad" disabled
+                    />
+                  </div>
+                </div>
               </div>
               <div class="modal-footer">
+                <button type="button" class="btn btn-warning mr-auto" @click="deletedata">Obriši</button>
                 <button
                   type="button"
                   class="btn btn-secondary"
@@ -569,7 +623,11 @@ export default {
         telefonskibr:"",
         url_slike:"",
         vet_lokacija:"",
-        id:null
+        id:null,
+        aktivan:null,
+        aktivan_user:null,
+        azil_grad:"",
+        naziv:""
     };
   },
   created() {
@@ -617,6 +675,7 @@ export default {
         this.telefonskibr=event.telefonskibr
         this.url_slike=event.url_slike
         this.vet_lokacija=event.vet_lokacija
+        this.aktivan_user=event.aktivan
         $("#missingdogadmin").modal("show")
     },
     openmodalshelter(event){
@@ -635,7 +694,9 @@ export default {
         this.starost=event.starost
         this.telefonskibr=event.telefonskibr
         this.url_slike=event.url_slike
-        this.vet_lokacija=event.vet_lokacija
+        this.aktivan=event.aktivan
+        this.naziv=event.naziv
+        this.azil_grad=event.azil_grad
         $("#missingdogadminshelter").modal("show")
     },
     async updatedatamissingdog(){
@@ -654,18 +715,58 @@ export default {
             starost:this.starost,
             telefonskibr:this.telefonskibr,
             vet_lokacija:this.vet_lokacija,
-            adresa:this.adresa
+            adresa:this.adresa,
+            aktivan: this.aktivan
         }
         try{
-            await dog_data.updatedatamissingdogs(this.id, data).then(()=>{
-                $("#missingdogadmin").modal("hide")
+            await dog_data.updatemydatamissingddog(this.id, data).then(()=>{
                 $("#missingdogadminshelter").modal("hide")
-                this.getdata();
                 this.getdatashelter();
             })
         }catch(e){
             console.log(e)
         }
+    },
+    async updatedatamissingdoguser(){
+      let data={
+            boja:this.boja,
+            datum_izgubljen:this.datum_izgubljen,
+            dlaka:this.dlaka,
+            grad:this.grad,
+            ime:this.ime,
+            prezime:this.prezime,
+            ime_psa:this.ime_psa,
+            napomena:this.napomena,
+            pasmina:this.pasmina,
+            postanski_broj:this.postanski_broj,
+            spol:this.spol,
+            starost:this.starost,
+            telefonskibr:this.telefonskibr,
+            vet_lokacija:this.vet_lokacija,
+            adresa:this.adresa,
+            aktivan: this.aktivan_user
+        }
+        try{
+            await dog_data.updatemydatamissingddog(this.id, data).then(()=>{
+                $("#missingdogadmin").modal("hide")
+                this.getdata();
+            })
+        }catch(e){
+            console.log(e)
+        }
+    },
+    async deletedata(){
+      try{
+        await dog_data.deletespecificdata(this.id)
+        .then(()=>{
+          $("#missingdogadmin").modal("hide")
+          $("#missingdogadminshelter").modal("hide")
+                this.getdata();
+                this.getdatashelter();
+        })
+      }catch(e){
+        console.log(e)
+      }
     }
   },
 };

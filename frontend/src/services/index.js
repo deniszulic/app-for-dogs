@@ -162,6 +162,9 @@ let dog_data={
   async updatedatamissingdogs(id, data){
     return await Service.patch(`/updatedatamissingdogs/${id}`, data)
   },
+  async deletespecificdata(id){
+    return await Service.delete(`/deletedata/${id}`)
+  }
   // async updatemissingad(id, data){
   //   return await Service.patch(`/updatemissingad/${id}`, data)
   // },
