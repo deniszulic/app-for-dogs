@@ -41,6 +41,10 @@ let dog_data={
     let response = await Service.get('/getshelters');
     return response.data
   },
+  async getmissingdogsadmin(){
+    let response = await Service.get('/getmissingdogsadmin');
+    return response.data
+  },
   async getmissingdogsid(id){
     let response = await Service.get(`/getmissingdogs/${id}`);
     return response.data
@@ -150,6 +154,9 @@ let dog_data={
   async getmissingdogsshelter(){
     let response = await Service.get('/getmissingdogsshelter');
     return response.data
+  },
+  async updatedatamissingdogs(id, data){
+    return await Service.patch(`/updatedatamissingdogs/${id}`, data)
   },
   // async updatemissingad(id, data){
   //   return await Service.patch(`/updatemissingad/${id}`, data)

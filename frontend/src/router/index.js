@@ -143,11 +143,11 @@ const routes = [
     name: 'profil',
     component: () => import('../views/profil.vue')
   },
-  // {
-  //   path: '/preglednestalih',
-  //   name: 'preglednestalih',
-  //   component: () => import('../views/preglednestalih.vue')
-  // }
+  {
+    path: '/nestalipsiadmin',
+    name: 'nestalipsiadmin',
+    component: () => import('../views/nestalipsiadmin.vue')
+  },
 ]
 
 const router = new VueRouter({

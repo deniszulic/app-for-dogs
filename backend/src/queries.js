@@ -545,6 +545,28 @@ const createUser = async (request, response) => {
     );
   };
 
+  const getmissingdogsadmin = (request, response) => {
+    pool.query("SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena, nestanak.url_slike, nestanak.postavljeno, nestanak.pasmina, korisnik.email, korisnik.ime as korisnik_ime, korisnik.prezime as korisnik_prezime FROM nestanak LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE nestanak.oglas_azila IS NOT true ORDER BY postavljeno DESC;", (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
+  const updatedatamissingdogs = (request, response) => {
+    const id = request.params.id;
+    const { boja, datum_izgubljen, dlaka, grad, ime, prezime, ime_psa, napomena, pasmina, postanski_broj, spol, starost, telefonskibr, vet_lokacija, adresa} = request.body;
+    pool.query("UPDATE nestanak SET boja=$1, datum_izgubljen=$2, dlaka=$3, grad=$4, ime=$5, prezime=$6, ime_psa=$7, napomena=$8, pasmina=$9, postanski_broj=$10, spol=$11, starost=$12, telefonskibr=$13, vet_lokacija=$14, adresa=$16 WHERE id=$15", [boja, datum_izgubljen, dlaka, grad, ime, prezime, ime_psa, napomena, pasmina, postanski_broj, spol, starost, telefonskibr, vet_lokacija, id, adresa],  (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
   // const updateadoptad = (request, response) => {
   //   const id = request.params.id;
   //   const { oglas_azila } = request.body;
@@ -611,5 +633,7 @@ const createUser = async (request, response) => {
     getspecificdogshelter,
     changeuserdata,
     updatemydata,
-    updatepass
+    updatepass,
+    getmissingdogsadmin,
+    updatedatamissingdogs
   };

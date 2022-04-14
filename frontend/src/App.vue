@@ -95,10 +95,16 @@
           Moji oglasi
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
-			<!-- <router-link to="preglednestalih" class="dropdown-item">Nestali psi</router-link>
-			<router-link to="udomipsaoglasi" class="dropdown-item">Udomi psa</router-link> -->
 			<router-link to="/mojioglasiazil" class="dropdown-item">Moji oglasi</router-link>
 			<router-link to="/prijavenamojoglasazil" class="dropdown-item">Prijave na moj oglas</router-link>
+        </div>
+      </li>
+	  <li class="nav-item dropdown" v-if="store.tipkorisnika=='admin'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Promjena podataka
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
+			<router-link to="/nestalipsiadmin" class="dropdown-item">Nestali psi</router-link>
         </div>
       </li>
 	  <li class="nav-item" v-if="store.tipkorisnika!='admin'">
