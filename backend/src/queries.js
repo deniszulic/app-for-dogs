@@ -555,6 +555,16 @@ const createUser = async (request, response) => {
     });
   };
 
+  const getmissingdogsadminshelter = (request, response) => {
+    pool.query("SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena, nestanak.url_slike, nestanak.postavljeno, nestanak.pasmina, korisnik.email, korisnik.ime as korisnik_ime, korisnik.prezime as korisnik_prezime FROM nestanak LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE nestanak.oglas_azila IS true ORDER BY postavljeno DESC;", (error, results) => {
+      try {
+        response.status(200).json(results.rows);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
+
   const updatedatamissingdogs = (request, response) => {
     const id = request.params.id;
     const { boja, datum_izgubljen, dlaka, grad, ime, prezime, ime_psa, napomena, pasmina, postanski_broj, spol, starost, telefonskibr, vet_lokacija, adresa} = request.body;
@@ -635,5 +645,6 @@ const createUser = async (request, response) => {
     updatemydata,
     updatepass,
     getmissingdogsadmin,
-    updatedatamissingdogs
+    updatedatamissingdogs,
+    getmissingdogsadminshelter
   };

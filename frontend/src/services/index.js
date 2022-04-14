@@ -155,6 +155,10 @@ let dog_data={
     let response = await Service.get('/getmissingdogsshelter');
     return response.data
   },
+  async getmissingdogsadminshelter(){
+    let response = await Service.get('/getmissingdogsadminshelter');
+    return response.data
+  },
   async updatedatamissingdogs(id, data){
     return await Service.patch(`/updatedatamissingdogs/${id}`, data)
   },
