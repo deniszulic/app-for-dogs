@@ -153,6 +153,11 @@ const routes = [
     name: 'udomljenipsiadmin',
     component: () => import('../views/udomljenipsiadmin.vue')
   },
+  {
+    path: '/adminprofil',
+    name: 'adminprofil',
+    component: () => import('../views/adminprofil.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -110,6 +110,8 @@
       </li>
 	  <li class="nav-item" v-if="store.tipkorisnika!='admin'">
       <router-link to="/profil" class="nav-item nav-link">Profil</router-link></li>
+				  <li class="nav-item" v-if="store.tipkorisnika=='admin'">
+      <router-link to="/adminprofil" class="nav-item nav-link">Profil</router-link></li>
 	  <li class="nav-item">
                     <a class="nav-link" v-if="store.tipkorisnika!=null" @click.prevent="logout" href="#"><i class="fa-solid fa-right-to-bracket"></i> Odjava</a>
                   </li>

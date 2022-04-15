@@ -288,6 +288,18 @@
                 <template v-if="url_slike != null">
                   <img class="modal-content" :src="url_slike" />
                 </template>
+                <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" value=true v-model="aktivan_user">
+  <label class="form-check-label" for="flexRadioDefault1">
+    <span class="badge badge-pill badge-success">Aktivan oglas</span>
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" value=false v-model="aktivan_user">
+  <label class="form-check-label" for="flexRadioDefault2">
+    <span class="badge badge-pill badge-danger">Neaktivan oglas</span>
+  </label>
+</div>
                 <hr/>
                 <div class="form-group">
                   <h5 class="modal-title">Podaci korisnika</h5>
@@ -334,18 +346,6 @@
                     />
                   </div>
                 </div>
-                <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" value=true v-model="aktivan_user">
-  <label class="form-check-label" for="flexRadioDefault1">
-    <span class="badge badge-pill badge-success">Aktivan oglas</span>
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" value=false v-model="aktivan_user">
-  <label class="form-check-label" for="flexRadioDefault2">
-    <span class="badge badge-pill badge-danger">Neaktivan oglas</span>
-  </label>
-</div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-warning mr-auto" @click="deletedata">Obriši</button>
