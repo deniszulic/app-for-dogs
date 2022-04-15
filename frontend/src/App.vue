@@ -16,6 +16,9 @@
 			  <router-link to="/admin" class="navbar-brand" v-if="store.tipkorisnika=='admin'">
 				<i class="fa-solid fa-paw fa-spin-hover"></i
               ></router-link>
+			  <router-link to="/pocetna" class="navbar-brand" v-if="store.tipkorisnika==null">
+				<i class="fa-solid fa-paw fa-spin-hover"></i
+              ></router-link>
 			  <!-- </a> -->
               <button
                 class="navbar-toggler"
@@ -42,7 +45,7 @@
 				  <li class="nav-item">
                     <router-link to="/potvrdioglaszaudomit" class="nav-link" v-if="store.tipkorisnika=='azil'">Zahtjevi korisnika udomljavanje psa</router-link>
                   </li> -->
-	  <li class="nav-item dropdown" >
+	  <li class="nav-item dropdown" v-if="store.tipkorisnika!=null">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Oglasi
         </a>
@@ -108,7 +111,7 @@
 			<router-link to="/udomljenipsiadmin" class="dropdown-item">Udomljeni psi</router-link>
         </div>
       </li>
-	  <li class="nav-item" v-if="store.tipkorisnika!='admin'">
+	  <li class="nav-item" v-if="store.tipkorisnika!='admin' && store.tipkorisnika!=null">
       <router-link to="/profil" class="nav-item nav-link">Profil</router-link></li>
 				  <li class="nav-item" v-if="store.tipkorisnika=='admin'">
       <router-link to="/adminprofil" class="nav-item nav-link">Profil</router-link></li>

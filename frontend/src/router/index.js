@@ -158,6 +158,11 @@ const routes = [
     name: 'adminprofil',
     component: () => import('../views/adminprofil.vue')
   },
+  {
+    path: '/pocetna',
+    name: 'pocetna',
+    component: () => import('../views/pocetna.vue')
+  },
 ]
 
 const router = new VueRouter({
