@@ -78,21 +78,21 @@ const routes = [
     name: 'register',
     component: () => import('../views/register.vue')
   },
-  {
-    path: '/pocetnakorisnik',
-    name: 'pocetnakorisnik',
-    component: () => import('../views/pocetnakorisnik.vue')
-  },
-  {
-    path: '/pocetnaazil',
-    name: 'pocetnaazil',
-    component: () => import('../views/pocetnaazil.vue')
-  },
-  {
-    path: '/admin',
-    name: 'admin',
-    component: () => import('../views/admin.vue')
-  },
+  // {
+  //   path: '/pocetnakorisnik',
+  //   name: 'pocetnakorisnik',
+  //   component: () => import('../views/pocetnakorisnik.vue')
+  // },
+  // {
+  //   path: '/pocetnaazil',
+  //   name: 'pocetnaazil',
+  //   component: () => import('../views/pocetnaazil.vue')
+  // },
+  // {
+  //   path: '/admin',
+  //   name: 'admin',
+  //   component: () => import('../views/admin.vue')
+  // },
   {
     path: '/nestanakpsa',
     name: 'nestanakpsa',
@@ -176,13 +176,13 @@ router.beforeEach((to,from,next)=>{
   const login_needed=publicpages.includes(to.path)
   const typeofusr=Auth.state.typeofuser;
   if(login_needed && typeofusr=="korisnik"){
-    return next('/pocetnakorisnik')
+    return next('/preglednestalih')
   }
   if(login_needed && typeofusr=="azil"){
-    return next('/pocetnaazil')
+    return next('/preglednestalih')
   }
   if(login_needed && typeofusr=="admin"){
-    return next('/admin')
+    return next('/preglednestalih')
   }
   else next()
 })

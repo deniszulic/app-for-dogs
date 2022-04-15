@@ -5,15 +5,15 @@
         <div class="row">
           <div class="col">
             <nav class="navbar navbar-expand-lg navbar-dark">
-				<router-link to="/pocetnakorisnik" class="navbar-brand" v-if="store.tipkorisnika=='korisnik'">
+				<router-link to="/preglednestalih" class="navbar-brand" v-if="store.tipkorisnika=='korisnik'">
               <!-- <a class="navbar-brand" href="#"
                 > -->
 				<i class="fa-solid fa-paw fa-spin-hover"></i
               ></router-link>
-			  <router-link to="/pocetnaazil" class="navbar-brand" v-if="store.tipkorisnika=='azil'">
+			  <router-link to="/preglednestalih" class="navbar-brand" v-if="store.tipkorisnika=='azil'">
 				<i class="fa-solid fa-paw fa-spin-hover"></i
               ></router-link>
-			  <router-link to="/admin" class="navbar-brand" v-if="store.tipkorisnika=='admin'">
+			  <router-link to="/preglednestalih" class="navbar-brand" v-if="store.tipkorisnika=='admin'">
 				<i class="fa-solid fa-paw fa-spin-hover"></i
               ></router-link>
 			  <router-link to="/pocetna" class="navbar-brand" v-if="store.tipkorisnika==null">

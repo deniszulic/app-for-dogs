@@ -57,13 +57,13 @@ export default {
 			try{
 				await login_signup.login(log)
 				if(Auth.state.typeofuser=="korisnik"){
-					this.$router.push({ name: "pocetnakorisnik" });
+					this.$router.push({ name: "preglednestalih" });
 				}
 				else if(Auth.state.typeofuser=="azil"){
-					this.$router.push({ name: "pocetnaazil" });
+					this.$router.push({ name: "preglednestalih" });
 				}
 				else if(Auth.state.typeofuser=="admin"){
-					this.$router.push({ name: "admin" });
+					this.$router.push({ name: "preglednestalih" });
 				}
 			}catch(e){
 				console.log(e);
