@@ -3,10 +3,10 @@
         <div class="d-flex justify-content-center" style="margin-top: 10px">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Nestali psi</a>
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" @click="refreshmissingdog">Nestali psi</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Udomljavanje psa</a>
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" @click="refreshadopteddog">Udomljavanje psa</a>
   </li>
 </ul>
     </div>
@@ -42,7 +42,7 @@
                 <div class="form-group">
                   <h5 class="modal-title">Podaci oglasa</h5>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -56,7 +56,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -70,7 +70,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -81,6 +81,34 @@
                       type="text"
                       class="form-control"
                       v-model="adresa_udomljavanje" disabled
+                    />
+                  </div>
+                </div>
+                <div class="form-group" v-if="oglas_azila==true">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Naziv azila</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="naziv_azila" disabled
+                    />
+                  </div>
+                </div>
+                <div class="form-group" v-if="oglas_azila==true">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Grad azila</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="grad_azila" disabled
                     />
                   </div>
                 </div>
@@ -98,7 +126,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -112,7 +140,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -168,7 +196,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -865,7 +893,10 @@ export default {
           ime_nestanak:"",
           prezime_nestanak:"",
           datum_izgubljen:"",
-          napomena_nestanak:""
+          napomena_nestanak:"",
+          oglas_azila:null,
+          naziv_azila:"",
+          grad_azila:""
       }
   },
   created() {
@@ -921,6 +952,9 @@ export default {
         this.opasnost=event.opasnost
         this.napomena_udomljavanje=event.napomena_udomljavanje
         this.url_slike=event.url_slike
+        this.oglas_azila=event.oglas_azila
+        this.naziv_azila=event.naziv_azila
+        this.grad_azila=event.grad_azila
         $("#reportadopteddog").modal("show")
       },
       async update_adopteddogs(){
@@ -1019,7 +1053,13 @@ export default {
         }catch(e){
           console.log(e)
         }
-      }
+      },
+      refreshmissingdog(){
+      this.getdata();
+    },
+    refreshadopteddog(){
+      this.getmyadopteddog();
+    }
   }
 }
 </script>

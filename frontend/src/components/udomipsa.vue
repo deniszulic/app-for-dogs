@@ -97,7 +97,7 @@
             </li>
           </ul> -->
           <div class="d-flex justify-content-center" v-if="email_prijavljen!=data.email">
-            <button class="btn btn-primary" @click="$emit('alldata', data)">
+            <button class="btn btn-primary" @click="$emit('alldata', data)" v-if="store.tipkorisnika!='admin'">
               Udomi psa
             </button>
           </div>
@@ -111,6 +111,7 @@
 import moment from "moment";
 import { dog_data } from "@/services";
 import { Auth } from "@/services";
+import store from '../store.js'
 export default {
   props: ["data"],
   data() {
@@ -119,7 +120,8 @@ export default {
       url: "",
       komentar: "",
       id:"",
-      email_prijavljen:Auth.state.email
+      email_prijavljen:Auth.state.email,
+      store
     };
   },
   mounted() {

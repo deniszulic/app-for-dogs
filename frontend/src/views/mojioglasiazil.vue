@@ -11,6 +11,7 @@
             role="tab"
             aria-controls="pills-home"
             aria-selected="true"
+            @click="refreshmissingdog"
             >Nestanak psa</a
           >
         </li>
@@ -23,6 +24,7 @@
             role="tab"
             aria-controls="pills-profile"
             aria-selected="false"
+            @click="refreshadopteddog"
             >Udomljeni psi</a
           >
         </li>
@@ -729,6 +731,12 @@ export default {
         console.log(e)
       }
     },
+    refreshmissingdog(){
+      this.getdatamissingdogs();
+    },
+    refreshadopteddog(){
+      this.getdataadopteddogs();
+    }
 //     async getshelters(){
 //     try{
 //       this.shelters = await dog_data.getshelters();

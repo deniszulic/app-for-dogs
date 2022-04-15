@@ -11,6 +11,7 @@
             role="tab"
             aria-controls="pills-home"
             aria-selected="true"
+            @click="refreshmissingdog"
             >Nestanak psa</a
           >
         </li>
@@ -23,6 +24,7 @@
             role="tab"
             aria-controls="pills-profile"
             aria-selected="false"
+            @click="refreshadopteddog"
             >Udomljeni psi</a
           >
         </li>
@@ -666,7 +668,7 @@
               </div>
               <div class="modal-body">
                 <div id="requestforshelter">
-                <select class="form-select form-select-lg mb-3" aria-label="Default select example" v-model="odabranavet">
+                <select class="form-select form-select-lg mb-3" style="width:100%;" aria-label="Default select example" v-model="odabranavet">
   <option v-for="(a, index) in shelters" :key="index">{{a.naziv}}, {{a.grad}}</option>
 </select>
   <div class="d-flex justify-content-center">
@@ -734,7 +736,7 @@
               </div>
               <div class="modal-body">
                 <div id="requestforshelteradopt">
-                <select class="form-select form-select-lg mb-3" aria-label="Default select example" v-model="odabranavet">
+                <select class="form-select form-select-lg mb-3" style="width:100%;" aria-label="Default select example" v-model="odabranavet">
   <option v-for="(a, index) in shelters" :key="index">{{a.naziv}}, {{a.grad}}</option>
 </select>
   <div class="d-flex justify-content-center">
@@ -1078,6 +1080,12 @@ export default {
       }catch(e){
         console.log(e)
       }
+    },
+    refreshmissingdog(){
+      this.getdatamissingdogs();
+    },
+    refreshadopteddog(){
+      this.getdataadopteddogs();
     }
   },
 };

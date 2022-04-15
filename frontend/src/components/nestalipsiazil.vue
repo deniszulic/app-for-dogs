@@ -73,7 +73,7 @@
 				</ul>
 				<div class="d-flex justify-content-center" v-if="Auth.state.email!=data.email">
 			<button class="btn btn-primary" style="margin-right:10px;" @click="opencard(data.id)">Komentiraj</button>
-			<button class="btn btn-success" @click="$emit('form_missing_dog', data.id)">Pronašao sam psa</button>
+			<button class="btn btn-success" @click="$emit('form_missing_dog', data.id)" v-if="store.tipkorisnika!='admin'">Pronašao sam psa</button>
 			</div>
 			<div class="d-flex justify-content-center" v-else>
 			<button class="btn btn-primary" @click="opencard(data.id)">Komentiraj</button>
@@ -262,6 +262,9 @@
 				<a @click="deletecom(a.id)" v-if="(email!=data[0].email) && email==a.email"
                   href="javascript:void(0)"
                 >Obriši</a>
+                <a @click="deletecom(a.id)" v-if="store.tipkorisnika=='admin'"
+                  href="javascript:void(0)"
+                >Obriši</a>
               </div>
               <!-- {{ c.comment }} -->
 			  {{a.komentar}}
@@ -282,6 +285,7 @@
 import moment from 'moment';
 import { dog_data } from "@/services";
 import {Auth} from "@/services";
+import store from '../store.js'
 export default {
     props: ["data", "showcomments","com"],
     data(){
@@ -291,7 +295,8 @@ export default {
 			komentar:"",
 			podaci:this.com,
 			email:Auth.state.email,
-			Auth
+			Auth,
+      store
         }
     },
     mounted(){

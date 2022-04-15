@@ -4,10 +4,10 @@
       <div class="d-flex justify-content-center" style="margin-top: 10px">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Oglasi korisnika</a>
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" @click="refreshuserdata">Oglasi korisnika</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Oglasi azila</a>
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" @click="refreshshelterdata">Oglasi azila</a>
   </li>
 </ul>
 </div>
@@ -314,7 +314,8 @@ export default {
           postbr_obrazac:"",
           kontakt_obrazac:"",
           Auth,
-          ulica: ""
+          ulica: "",
+          naziv_azila:""
       }
   },
   created() {
@@ -366,6 +367,7 @@ export default {
       this.kilaza=event.kilaza
       this.pasmina=event.pasmina
       this.url=event.url_slike
+      this.naziv_azila=event.naziv
       $("#prijavaudomipsashelter").modal("show");
     },
     async form_adoptdog(){
@@ -409,7 +411,9 @@ export default {
         prihvaceno:"Obrada",
         postavljeno:Date.now(),
         udomljavanje_id:this.id,
-        korisnik_id:this.Auth.state.id
+        korisnik_id:this.Auth.state.id,
+        naziv_azila:this.naziv_azila,
+        grad_azila:this.grad
       }
       try{
         await dog_data.adopt_dog_application(data).then(()=>{
@@ -421,10 +425,18 @@ export default {
         this.postbr_obrazac=""
         this.kontakt_obrazac=""
         this.prijava=""
+        this.naziv_azila=""
+        this.grad=""
         })
       }catch(e){
         console.log(e)
       }
+    },
+    refreshuserdata(){
+      this.getdata();
+    },
+    refreshshelterdata(){
+      this.getadopteddogs();
     }
   }
 }

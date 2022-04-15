@@ -249,10 +249,10 @@ const createUser = async (request, response) => {
   };
 
   const adopt_dog_application = async (request, response) => {
-    const { ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id } = request.body;
+    const { ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id, naziv_azila, grad_azila } = request.body;
     pool.query(
-      "INSERT INTO prijava_na_udomljavanje (ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
-      [ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id],
+      "INSERT INTO prijava_na_udomljavanje (ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id, naziv_azila, grad_azila) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id",
+      [ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id, naziv_azila, grad_azila],
       (error, results) => {
         try {
           response.status(201).send(results.rows[0].id.toString());
@@ -276,7 +276,7 @@ const createUser = async (request, response) => {
 
   const getmyreportadoptdog = (request, response) => {
     const email = request.params.email;
-    pool.query("SELECT prijava_na_udomljavanje.ime, prijava_na_udomljavanje.prezime, prijava_na_udomljavanje.adresa, prijava_na_udomljavanje.grad, prijava_na_udomljavanje.postanski_broj, prijava_na_udomljavanje.kontakt, prijava_na_udomljavanje.razlog_prijave, prijava_na_udomljavanje.prihvaceno, prijava_na_udomljavanje.postavljeno, prijava_na_udomljavanje.napomena, prijava_na_udomljavanje.id, udomljavanje.ime as ime_udomljavanje, udomljavanje.prezime as prezime_udomljavanje, udomljavanje.adresa as adresa_udomljavanje, udomljavanje.telefonskibr, udomljavanje.grad as grad_udomljavanje, udomljavanje.postanski_broj as postanski_broj_udomljavanje, udomljavanje.boja, udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.pasmina, udomljavanje.kilaza, udomljavanje.kastrat, udomljavanje.opasnost, udomljavanje.napomena as napomena_udomljavanje, udomljavanje.url_slike FROM prijava_na_udomljavanje LEFT JOIN udomljavanje ON prijava_na_udomljavanje.udomljavanje_id=udomljavanje.id LEFT JOIN korisnik ON prijava_na_udomljavanje.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY prijava_na_udomljavanje.postavljeno DESC", [email],  (error, results) => {
+    pool.query("SELECT prijava_na_udomljavanje.ime, prijava_na_udomljavanje.prezime, prijava_na_udomljavanje.adresa, prijava_na_udomljavanje.grad, prijava_na_udomljavanje.postanski_broj, prijava_na_udomljavanje.kontakt, prijava_na_udomljavanje.razlog_prijave, prijava_na_udomljavanje.prihvaceno, prijava_na_udomljavanje.postavljeno, prijava_na_udomljavanje.napomena, prijava_na_udomljavanje.id, prijava_na_udomljavanje.naziv_azila, prijava_na_udomljavanje.grad_azila, udomljavanje.ime as ime_udomljavanje, udomljavanje.prezime as prezime_udomljavanje, udomljavanje.adresa as adresa_udomljavanje, udomljavanje.telefonskibr, udomljavanje.grad as grad_udomljavanje, udomljavanje.postanski_broj as postanski_broj_udomljavanje, udomljavanje.boja, udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.pasmina, udomljavanje.kilaza, udomljavanje.kastrat, udomljavanje.opasnost, udomljavanje.napomena as napomena_udomljavanje, udomljavanje.url_slike, udomljavanje.oglas_azila FROM prijava_na_udomljavanje LEFT JOIN udomljavanje ON prijava_na_udomljavanje.udomljavanje_id=udomljavanje.id LEFT JOIN korisnik ON prijava_na_udomljavanje.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY prijava_na_udomljavanje.postavljeno DESC", [email],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
