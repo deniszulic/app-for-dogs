@@ -957,10 +957,10 @@ export default {
         }
     },
      refreshmissingdog(){
-      this.getdata();
+      this.getmissingdogs();
     },
     refreshadopteddog(){
-      this.getmissingdogs();
+      this.getdata();
     }
   }
 }

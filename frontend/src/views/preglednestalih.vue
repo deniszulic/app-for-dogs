@@ -242,6 +242,15 @@ export default {
       }
       try{
         await dog_data.report_missing_dog(data).then(()=>{
+          this.ime=""
+          this.prezime=""
+          this.napomena=""
+          this.adresa_pronalaska=""
+          this.adresa_pas=""
+          this.id=""
+          this.kontakt=""
+          this.naziv_azila=""
+          this.grad_azila=""
           $("#form_missingdog").modal("hide");
         })
       }catch(e){
