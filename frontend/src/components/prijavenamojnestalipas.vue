@@ -6,7 +6,7 @@
       <th scope="col">Ime</th>
       <th scope="col">Prezime</th>
       <th scope="col">Adresa pronalaska</th>
-      <th scope="col">Adresa za pokupiti psa</th>
+      <th scope="col">Adresa za preuzimanje psa</th>
       <th scope="col">Kontakt</th>
       <th scope="col">Napomena</th>
       <th scope="col">Postavljeno</th>
@@ -18,7 +18,7 @@
       <th scope="row">{{data.ime}}</th>
       <td>{{data.prezime}}</td>
       <td>{{data.adresa_pronalaska}}</td>
-      <td>{{data.adresa_za_pokupiti_psa}}</td>
+      <td>{{data.adresa_za_preuzimanje_psa}}</td>
         <td>{{data.kontakt}}</td>
         <td>{{data.napomena}}</td>
       <td>{{moment(parseInt(data.postavljeno)).format('lll')}}</td>

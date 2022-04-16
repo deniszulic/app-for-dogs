@@ -234,10 +234,10 @@ const createUser = async (request, response) => {
   };
 
   const report_missing_dog = async (request, response) => {
-    const { ime, prezime, napomena, adresa_pronalaska, adresa_za_pokupiti_psa, postavljeno, korisnik_id, nestanak_id, kontakt } = request.body;
+    const { ime, prezime, napomena, adresa_pronalaska, adresa_za_preuzimanje_psa, postavljeno, korisnik_id, nestanak_id, kontakt, naziv_azila, grad_azila } = request.body;
     pool.query(
-        "INSERT INTO prijava_nestanka (ime, prezime, napomena, adresa_pronalaska, adresa_za_pokupiti_psa, postavljeno, korisnik_id, nestanak_id, kontakt) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id",
-        [ime, prezime, napomena, adresa_pronalaska, adresa_za_pokupiti_psa, postavljeno, korisnik_id, nestanak_id, kontakt],
+        "INSERT INTO prijava_nestanka (ime, prezime, napomena, adresa_pronalaska, adresa_za_preuzimanje_psa, postavljeno, korisnik_id, nestanak_id, kontakt, naziv_azila, grad_azila) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id",
+        [ime, prezime, napomena, adresa_pronalaska, adresa_za_preuzimanje_psa, postavljeno, korisnik_id, nestanak_id, kontakt, naziv_azila, grad_azila],
         (error, results) => {
           try {
             response.status(201).send(`User added with ID: ${results.rows[0].id}`);
@@ -265,7 +265,7 @@ const createUser = async (request, response) => {
 
   const getmyreportdisapp = (request, response) => {
     const email = request.params.email;
-    pool.query("SELECT prijava_nestanka.ime, prijava_nestanka.prezime, prijava_nestanka.adresa_pronalaska, prijava_nestanka.adresa_za_pokupiti_psa, prijava_nestanka.napomena, prijava_nestanka.postavljeno, prijava_nestanka.kontakt, prijava_nestanka.id, nestanak.ime as ime_nestanak, nestanak.prezime as prezime_nestanak, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.pasmina, nestanak.datum_izgubljen, nestanak.napomena as napomena_nestanak, nestanak.url_slike FROM prijava_nestanka LEFT JOIN nestanak ON prijava_nestanka.nestanak_id=nestanak.id LEFT JOIN korisnik ON prijava_nestanka.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY prijava_nestanka.postavljeno DESC", [email],  (error, results) => {
+    pool.query("SELECT prijava_nestanka.ime, prijava_nestanka.prezime, prijava_nestanka.adresa_pronalaska, prijava_nestanka.adresa_za_preuzimanje_psa, prijava_nestanka.napomena, prijava_nestanka.postavljeno, prijava_nestanka.kontakt, prijava_nestanka.id, nestanak.ime as ime_nestanak, nestanak.prezime as prezime_nestanak, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.pasmina, nestanak.datum_izgubljen, nestanak.napomena as napomena_nestanak, nestanak.url_slike, nestanak.oglas_azila, prijava_nestanka.naziv_azila, prijava_nestanka.grad_azila FROM prijava_nestanka LEFT JOIN nestanak ON prijava_nestanka.nestanak_id=nestanak.id LEFT JOIN korisnik ON prijava_nestanka.korisnik_id=korisnik.id WHERE korisnik.email=$1 ORDER BY prijava_nestanka.postavljeno DESC", [email],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -322,8 +322,8 @@ const createUser = async (request, response) => {
 
   const update_my_missingdog_report = (request, response) => {
     const id = request.params.id;
-    const { ime, prezime, adresa_pronalaska, adresa_za_pokupiti_psa, kontakt, napomena } = request.body;
-    pool.query("UPDATE prijava_nestanka SET ime=$1, prezime=$2, adresa_pronalaska=$3, adresa_za_pokupiti_psa=$4, kontakt=$5, napomena=$6 WHERE id=$7", [ime, prezime, adresa_pronalaska, adresa_za_pokupiti_psa, kontakt, napomena, id],  (error, results) => {
+    const { ime, prezime, adresa_pronalaska, adresa_za_preuzimanje_psa, kontakt, napomena } = request.body;
+    pool.query("UPDATE prijava_nestanka SET ime=$1, prezime=$2, adresa_pronalaska=$3, adresa_za_preuzimanje_psa=$4, kontakt=$5, napomena=$6 WHERE id=$7", [ime, prezime, adresa_pronalaska, adresa_za_preuzimanje_psa, kontakt, napomena, id],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {
@@ -334,7 +334,7 @@ const createUser = async (request, response) => {
 
   const reportsonmymissingdogs = (request, response) => {
     const email = request.params.email;
-    pool.query("SELECT prijava_nestanka.ime, prijava_nestanka.prezime, prijava_nestanka.adresa_pronalaska, prijava_nestanka.adresa_za_pokupiti_psa, prijava_nestanka.kontakt, prijava_nestanka.napomena, prijava_nestanka.postavljeno, prijava_nestanka.id, nestanak.ime as nestanak_ime, nestanak.prezime as nestanak_prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.pasmina, nestanak.datum_izgubljen, nestanak.napomena as nestanak_napomena, nestanak.url_slike FROM prijava_nestanka LEFT JOIN nestanak ON prijava_nestanka.nestanak_id=nestanak.id LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE korisnik.email=$1", [email],  (error, results) => {
+    pool.query("SELECT prijava_nestanka.ime, prijava_nestanka.prezime, prijava_nestanka.adresa_pronalaska, prijava_nestanka.adresa_za_preuzimanje_psa, prijava_nestanka.kontakt, prijava_nestanka.napomena, prijava_nestanka.postavljeno, prijava_nestanka.id, nestanak.ime as nestanak_ime, nestanak.prezime as nestanak_prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.pasmina, nestanak.datum_izgubljen, nestanak.napomena as nestanak_napomena, nestanak.url_slike FROM prijava_nestanka LEFT JOIN nestanak ON prijava_nestanka.nestanak_id=nestanak.id LEFT JOIN korisnik ON nestanak.korisnik_id=korisnik.id WHERE korisnik.email=$1", [email],  (error, results) => {
       try {
         response.status(200).json(results.rows);
       } catch (e) {

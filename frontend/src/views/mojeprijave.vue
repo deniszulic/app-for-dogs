@@ -497,7 +497,7 @@
                   <h5 class="modal-title">Podaci oglasa</h5>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -511,7 +511,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -525,7 +525,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -536,6 +536,34 @@
                       type="text"
                       class="form-control"
                       v-model="adresa" disabled
+                    />
+                  </div>
+                </div>
+                <div class="form-group" v-if="oglas_azila==true">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Naziv azila</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="naziv_azila" disabled
+                    />
+                  </div>
+                </div>
+                <div class="form-group" v-if="oglas_azila==true">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id=""
+                        >Grad azila</span
+                      >
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="grad_azila" disabled
                     />
                   </div>
                 </div>
@@ -553,7 +581,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -567,7 +595,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -623,7 +651,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="oglas_azila!=true">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -759,13 +787,13 @@
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
-                        >Adresa za pokupiti psa</span
+                        >Adresa za preuzimanje psa</span
                       >
                     </div>
                     <input
                       type="text"
                       class="form-control"
-                      v-model="adresa_za_pokupiti_psa"
+                      v-model="adresa_za_preuzimanje_psa"
                     />
                   </div>
                 </div>
@@ -888,7 +916,7 @@ export default {
           napomena_udomljavanje:"",
           url_slike:"",
           adresa_pronalaska:"",
-          adresa_za_pokupiti_psa:"",
+          adresa_za_preuzimanje_psa:"",
           napomena:"",
           ime_nestanak:"",
           prezime_nestanak:"",
@@ -1016,13 +1044,16 @@ export default {
         this.datum_izgubljen=this.moment(event.datum_izgubljen).format("YYYY-MM-DD")
 
         this.adresa_pronalaska=event.adresa_pronalaska
-        this.adresa_za_pokupiti_psa=event.adresa_za_pokupiti_psa
+        this.adresa_za_preuzimanje_psa=event.adresa_za_preuzimanje_psa
         this.ime=event.ime
         this.kontakt=event.kontakt
         this.napomena=event.napomena
         this.postavljeno=this.moment(parseInt(event.postavljeno)).format('DD.MM.YYYY.')
         this.prezime=event.prezime
         this.id=event.id
+        this.oglas_azila=event.oglas_azila
+        this.naziv_azila=event.naziv_azila
+        this.grad_azila=event.grad_azila
         $("#updatemissingdogreport").modal("show")
       },
       async updatemissingdog(){
@@ -1030,7 +1061,7 @@ export default {
           ime:this.ime,
           prezime:this.prezime,
           adresa_pronalaska:this.adresa_pronalaska,
-          adresa_za_pokupiti_psa:this.adresa_za_pokupiti_psa,
+          adresa_za_preuzimanje_psa:this.adresa_za_preuzimanje_psa,
           kontakt:this.kontakt,
           napomena:this.napomena
         }
@@ -1041,7 +1072,7 @@ export default {
                 x.ime=update.ime
                 x.prezime=update.prezime
                 x.adresa_pronalaska=update.adresa_pronalaska
-                x.adresa_za_pokupiti_psa=update.adresa_za_pokupiti_psa
+                x.adresa_za_preuzimanje_psa=update.adresa_za_preuzimanje_psa
                 x.kontakt=update.kontakt
                 x.napomena=update.napomena
                 break;

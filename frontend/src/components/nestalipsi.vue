@@ -89,7 +89,7 @@
 				</ul>
 				<div class="d-flex justify-content-center" v-if="Auth.state.email!=data.email">
 			<button class="btn btn-primary" style="margin-right:10px;" @click="opencard(data.id)">Komentiraj</button>
-			<button class="btn btn-success" @click="$emit('form_missing_dog', data.id)" v-if="store.tipkorisnika!='admin'">Pronašao sam psa</button>
+			<button class="btn btn-success" @click="$emit('form_missing_dog', data)" v-if="store.tipkorisnika!='admin'">Pronašao sam psa</button>
 			</div>
 			<div class="d-flex justify-content-center" v-else>
 			<button class="btn btn-primary" @click="opencard(data.id)">Komentiraj</button>

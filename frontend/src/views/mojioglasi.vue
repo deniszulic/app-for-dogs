@@ -668,6 +668,7 @@
               </div>
               <div class="modal-body">
                 <div id="requestforshelter">
+                  <h5>Pošaljite molbu azilu da objavi Vaš oglas</h5>
                 <select class="form-select form-select-lg mb-3" style="width:100%;" aria-label="Default select example" v-model="odabranavet">
   <option v-for="(a, index) in shelters" :key="index">{{a.naziv}}, {{a.grad}}</option>
 </select>

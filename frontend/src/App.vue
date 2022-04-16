@@ -99,6 +99,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
 			<router-link to="/mojioglasiazil" class="dropdown-item">Moji oglasi</router-link>
+			<router-link to="/mojeprijave" class="dropdown-item">Moje prijave</router-link>
 			<router-link to="/prijavenamojoglasazil" class="dropdown-item">Prijave na moj oglas</router-link>
         </div>
       </li>

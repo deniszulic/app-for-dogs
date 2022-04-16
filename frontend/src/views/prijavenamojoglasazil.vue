@@ -753,13 +753,13 @@
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
-                        >Adresa za pokupiti psa</span
+                        >Adresa za preuzimanje psa</span
                       >
                     </div>
                     <input
                       type="text"
                       class="form-control"
-                      v-model="adresa_za_pokupiti_psa" disabled
+                      v-model="adresa_za_preuzimanje_psa" disabled
                     />
                   </div>
                 </div>
@@ -845,7 +845,7 @@ export default {
           napomena_udomljavanje:"",
           url_slike:"",
           adresa_pronalaska:"",
-          adresa_za_pokupiti_psa:"",
+          adresa_za_preuzimanje_psa:"",
           // nestanak_ime:"",
           // nestanak_prezime:"",
           nestanak_napomena:"",
@@ -910,7 +910,7 @@ export default {
     missingdogs(event){
       this.ime=event.ime
       this.adresa_pronalaska=event.adresa_pronalaska
-      this.adresa_za_pokupiti_psa=event.adresa_za_pokupiti_psa
+      this.adresa_za_preuzimanje_psa=event.adresa_za_preuzimanje_psa
       this.id=event.id
       this.kontakt=event.kontakt
       this.napomena=event.napomena

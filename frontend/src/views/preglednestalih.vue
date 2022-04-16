@@ -114,7 +114,7 @@
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
-                        >Adresa za pokupiti psa</span
+                        >Adresa za preuzimanje psa</span
                       >
                     </div>
                     <input
@@ -188,7 +188,9 @@ export default {
           prezime:"",
           adresa_pas:"",
           napomena:"",
-          kontakt:""
+          kontakt:"",
+          naziv_azila:"",
+          grad_azila:""
       }
   },
   created() {
@@ -219,7 +221,9 @@ export default {
       $("#pictureModal").modal("show");
     },
     form_missing_dog(event){
-       this.id=event
+       this.id=event.id
+       this.naziv_azila=event.naziv
+       this.grad_azila=event.grad
       $("#form_missingdog").modal("show");
     },
     async findmissingdog(){
@@ -228,11 +232,13 @@ export default {
         prezime:this.prezime,
         napomena:this.napomena,
         adresa_pronalaska:this.adresa_pronalaska,
-        adresa_za_pokupiti_psa:this.adresa_pas,
+        adresa_za_preuzimanje_psa:this.adresa_pas,
         postavljeno:Date.now(),
         korisnik_id:Auth.state.id,
         nestanak_id:this.id,
-        kontakt:this.kontakt
+        kontakt:this.kontakt,
+        naziv_azila:this.naziv_azila,
+        grad_azila:this.grad_azila
       }
       try{
         await dog_data.report_missing_dog(data).then(()=>{
