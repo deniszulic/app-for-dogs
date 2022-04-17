@@ -1,5 +1,6 @@
 package com.example.dog_app;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -132,13 +134,48 @@ public class register extends Fragment {
                 }
             }
         });
-//        login_transition.setOnClickListener((v) -> {
-//            Intent i = new Intent(getActivity(), transition_login.class);
-//            startActivity(i);
-//            getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        login_transition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), transition_login.class);
+                startActivity(i);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+//        register_btn.setOnClickListener((v) -> {
+//            if (autoCompleteTextView.getText().toString().equals("Korisnik")) {
+//                isAllFieldsChecked = checkfields();
+//                if(isAllFieldsChecked){
+//                    Date date = new Date();
+//                    long timestamp = date.getTime();
+//                    registerdata data=new registerdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "korisnik", timestamp);
+//                    Call<Void> call=retrofitInterface.postJson(data);
+//                    call.enqueue(new Callback<Void>() {
+//                        @Override
+//                        public void onResponse(Call<Void> call, Response<Void> response) {
+//    //                            if (response.code() == 201) {
+//    ////                                LoginResult[] result = response.body();
+//    //                                System.out.println("Getid:"+response);
+//    //                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<Void> call, Throwable t) {
+//                            //System.out.println(t);
+//                            Toast.makeText(getActivity(), t.toString(),
+//                                    Toast.LENGTH_LONG).show();
+//                        }
+//                    });
+//                }
+//            }
+//            if (autoCompleteTextView.getText().toString().equals("Azil")) {
+//                isAllFieldsChecked = checkfields_poduzece();
+//            }
 //        });
-        register_btn.setOnClickListener((v) -> {
-            if (autoCompleteTextView.getText().toString().equals("Korisnik")) {
+        register_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (autoCompleteTextView.getText().toString().equals("Korisnik")) {
                 isAllFieldsChecked = checkfields();
                 if(isAllFieldsChecked){
                     Date date = new Date();
@@ -148,12 +185,7 @@ public class register extends Fragment {
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-//                            if (response.code() == 201) {
-////                                LoginResult[] result = response.body();
-//                                System.out.println("Getid:"+response);
-//                            }
                         }
-
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
                             //System.out.println(t);
@@ -164,7 +196,76 @@ public class register extends Fragment {
                 }
             }
             if (autoCompleteTextView.getText().toString().equals("Azil")) {
-                isAllFieldsChecked = checkfields_poduzece();
+                isAllFieldsChecked = checkfields_azil();
+                if(isAllFieldsChecked){
+                    Date date = new Date();
+                    long timestamp = date.getTime();
+                    //getregisterdata data=new getregisterdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "azil", timestamp);
+
+//                    HashMap<String, String> map = new HashMap<>();
+//                    map.put("email", email.getEditText().getText().toString());
+//                    map.put("lozinka", password.getEditText().getText().toString());
+//                    map.put("ime", ime_reg.getEditText().getText().toString());
+//                    map.put("prezime", prezime_reg.getEditText().getText().toString());
+//                    map.put("datumreg", String.valueOf(timestamp));
+//                    map.put("tipkorisnika", "azil");
+
+//                    map.put("data", data);
+                    registerdata data=new registerdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "azil", timestamp);
+
+                    Call<Integer> call = retrofitInterface.register(data);
+
+//                logindata data=new logindata(email.getEditText().getText().toString(), password.getEditText().getText().toString());
+//                Call<Void> call=retrofitInterface.login(data);
+                    call.enqueue(new Callback<Integer>() {
+                        @Override
+                        public void onResponse(Call<Integer> call, Response<Integer> response) {
+                            if (response.code() == 201) {
+                                //Integer result= response.body();
+                                System.out.println("ispis:"+response.body());
+                                int userid=response.body();
+                                if(response.body()>=0){
+                                    //registershelter shelter= new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), response.body());
+                                    registershelter shelter = new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), userid);
+                                    Call<Integer> regshelter =retrofitInterface.shelterregister(shelter);
+                                    regshelter.enqueue(new Callback<Integer>() {
+                                        @Override
+                                        public void onResponse(Call<Integer> call, Response<Integer> response) {
+                                            //System.out.println("response shelter:"+response.body());
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Integer> call, Throwable t) {
+//                                            Call<Void> delete=retrofitInterface.deleteuser(userid);
+//                                            Toast.makeText(getActivity(), t.toString(),
+//                                                    Toast.LENGTH_LONG).show();
+//                                            delete.enqueue(new Callback<Void>() {
+//                                                @Override
+//                                                public void onResponse(Call<Void> call, Response<Void> response) {
+//
+//                                                }
+//
+//                                                @Override
+//                                                public void onFailure(Call<Void> call, Throwable t) {
+//
+//                                                }
+//                                            });
+                                        }
+                                    });
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Integer> call, Throwable t) {
+                            //System.out.println(t);
+                            Toast.makeText(getActivity(), t.toString(),
+                                    Toast.LENGTH_LONG).show();
+                            System.out.println(t);
+                        }
+                    });
+                }
+            }
             }
         });
         return view;
@@ -189,7 +290,7 @@ public class register extends Fragment {
         return true;
     }
 
-    private boolean checkfields_poduzece() {
+    private boolean checkfields_azil() {
         if (TextUtils.isEmpty(ime_reg.getEditText().getText().toString())) {
             ime_reg.setError("Potrebno je ime!");
             return false;
