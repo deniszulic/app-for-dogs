@@ -69,7 +69,7 @@ const createUser = async (request, response) => {
         [parseInt(oib), ulica, kucnibr, grad, parseInt(postanskibr), naziv, parseInt(id)],
         (error, results) => {
           try {
-            response.status(201).send(`User added with ID: ${results.rows[0].id}`);
+            response.status(201).send(results.rows[0].id.toString());
           } catch (e) {
             console.log(e);
           }
