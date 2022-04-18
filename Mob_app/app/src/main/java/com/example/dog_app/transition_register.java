@@ -122,12 +122,7 @@ public class transition_register extends AppCompatActivity {
                         call.enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
-                                //                            if (response.code() == 201) {
-                                ////                                LoginResult[] result = response.body();
-                                //                                System.out.println("Getid:"+response);
-                                //                            }
                             }
-
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
                                 //System.out.println(t);
@@ -138,11 +133,61 @@ public class transition_register extends AppCompatActivity {
                     }
                 }
                 if (autoCompleteTextView.getText().toString().equals("Azil")) {
-                    isAllFieldsChecked = checkfields_poduzece();
+                    isAllFieldsChecked = checkfields_azil();
+                    if(isAllFieldsChecked){
+                        Date date = new Date();
+                        long timestamp = date.getTime();
+                        registerdata data=new registerdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "azil", timestamp);
+
+                        Call<Integer> call = retrofitInterface.register(data);
+                        call.enqueue(new Callback<Integer>() {
+                            @Override
+                            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                                if (response.code() == 201) {
+                                    int userid=response.body();
+                                    if(response.body()>=0){
+                                        registershelter shelter= new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), response.body());
+                                        Call<Integer> regshelter =retrofitInterface.shelterregister(shelter);
+                                        regshelter.enqueue(new Callback<Integer>() {
+                                            @Override
+                                            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<Integer> call, Throwable t) {
+                                                Call<Void> delete=retrofitInterface.deleteuser(userid);
+                                                Toast.makeText(transition_register.this, t.toString(),
+                                                        Toast.LENGTH_LONG).show();
+                                                delete.enqueue(new Callback<Void>() {
+                                                    @Override
+                                                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<Void> call, Throwable t) {
+                                                        Toast.makeText(transition_register.this, t.toString(),
+                                                                Toast.LENGTH_LONG).show();
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Integer> call, Throwable t) {
+                                //System.out.println(t);
+                                Toast.makeText(transition_register.this, t.toString(),
+                                        Toast.LENGTH_LONG).show();
+                                System.out.println(t);
+                            }
+                        });
+                    }
                 }
             }
         });
-        //return view;
     }
 
     private boolean checkfields() {
@@ -164,7 +209,7 @@ public class transition_register extends AppCompatActivity {
         return true;
     }
 
-    private boolean checkfields_poduzece() {
+    private boolean checkfields_azil() {
         if (TextUtils.isEmpty(ime_reg.getEditText().getText().toString())) {
             ime_reg.setError("Potrebno je ime!");
             return false;

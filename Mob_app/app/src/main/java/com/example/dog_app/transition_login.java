@@ -13,8 +13,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class transition_login extends AppCompatActivity {
 
@@ -23,7 +32,9 @@ public class transition_login extends AppCompatActivity {
     private ImageView imageView;
     private TextView headline_login_transition;
     private LinearLayout container;
-    //private FirebaseAuth mAuth;
+    private Retrofit retrofit;
+    private RetrofitInterface retrofitInterface;
+    private String BASE_URL = "http://10.0.2.2:3000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +49,12 @@ public class transition_login extends AppCompatActivity {
         login_transition=(AppCompatButton) findViewById(R.id.gotoregistration_transition);
         imageView=(ImageView) findViewById(R.id.header_image_tr_log);
         headline_login_transition=(TextView) findViewById(R.id.headline_login_transition);
-        //mAuth = FirebaseAuth.getInstance();
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        retrofitInterface = retrofit.create(RetrofitInterface.class);
 
         login_transition.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -48,65 +64,39 @@ public class transition_login extends AppCompatActivity {
         });
         login_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                mAuth.signInWithEmailAndPassword(email.getEditText().getText().toString(), password.getEditText().getText().toString())
-//                        .addOnCompleteListener(transition_login.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    /*Toast.makeText(getContext(), "Uspjesna prijava",
-//                                            Toast.LENGTH_SHORT).show();*/
-//                                    //FirebaseUser user = mAuth.getCurrentUser();
-//                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-//                                    System.out.println("email:"+user.getEmail());
-//                                    if (user != null) {
-//                                        DocumentReference docRef = db.collection("korisnici").document(user.getEmail());
-//                                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                                if (task.isSuccessful()) {
-//                                                    DocumentSnapshot document = task.getResult();
-//                                                    if (document.exists()) {
-//                                                        String korisnik= (String) document.getData().get("tipKorisnika");
-//                                                        if(korisnik.equals("Korisnik")){
-//                                                            System.out.println("korisnik");
-//                                                            SharedPreferences sp=transition_login.this.getSharedPreferences("Login", Context.MODE_PRIVATE);
-//                                                            SharedPreferences.Editor data=sp.edit();
-//                                                            data.putString("email", user.getEmail());
-//                                                            data.putString("tipKorisnika", korisnik);
-//                                                            data.commit();
-//                                                            Intent i = new Intent(transition_login.this, Pocetni_zaslon.class);
-//                                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                                            startActivity(i);
-//                                                            transition_login.this.finish();
-//                                                        }
-//                                                        if(korisnik.equals("Poduzeće")){
-//                                                            System.out.println("Poduzeće");
-//                                                            SharedPreferences sp=transition_login.this.getSharedPreferences("Login", Context.MODE_PRIVATE);
-//                                                            SharedPreferences.Editor data=sp.edit();
-//                                                            data.putString("email", user.getEmail());
-//                                                            data.putString("tipKorisnika", korisnik);
-//                                                            data.commit();
-//                                                            Intent i= new Intent(transition_login.this, pocetni_zaslon_poduzece.class);
-//                                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                                            startActivity(i);
-//                                                            transition_login.this.finish();
-//                                                        }
-//                                                    } else {
-//                                                        Log.d("No document", "No such document");
-//                                                    }
-//                                                } else {
-//                                                    Log.d("Fail", "get failed with ", task.getException());
-//                                                }
-//                                            }
-//                                        });
-//                                    }
-//                                } else {
-//                                    /*Toast.makeText(getContext(), "Neuspjesna prijava",
-//                                            Toast.LENGTH_SHORT).show();*/
-//                                }
-//                            }
-//                        });
+                HashMap<String, String> map = new HashMap<>();
+
+                map.put("email", email.getEditText().getText().toString());
+                map.put("lozinka", password.getEditText().getText().toString());
+
+                Call<getlogindata[]> call = retrofitInterface.login(map);
+
+//                logindata data=new logindata(email.getEditText().getText().toString(), password.getEditText().getText().toString());
+//                Call<Void> call=retrofitInterface.login(data);
+                call.enqueue(new Callback<getlogindata[]>() {
+                    @Override
+                    public void onResponse(Call<getlogindata[]> call, Response<getlogindata[]> response) {
+                        if (response.code() == 200) {
+                            getlogindata[] result= response.body();
+                            System.out.println("ispis:"+result[0].getId()+" tipkorisnika:"+result[0].getTipkorisnika()+" email:"+result[0].getEmail()+" ime:"+result[0].getIme()+" prezime:"+result[0].getPrezime());
+                            SharedPreferences sp=transition_login.this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor data=sp.edit();
+                            data.putString("email", result[0].getEmail());
+                            data.putString("tipkorisnika", result[0].getTipkorisnika());
+                            data.putInt("id", result[0].getId());
+                            data.putString("ime", result[0].getIme());
+                            data.putString("prezime", result[0].getPrezime());
+                            data.commit();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<getlogindata[]> call, Throwable t) {
+                        //System.out.println(t);
+                        Toast.makeText(transition_login.this, t.toString(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }

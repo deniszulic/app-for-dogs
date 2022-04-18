@@ -100,7 +100,15 @@ public class login extends Fragment {
                     public void onResponse(Call<getlogindata[]> call, Response<getlogindata[]> response) {
                             if (response.code() == 200) {
                                 getlogindata[] result= response.body();
-                                System.out.println("ispis:"+result[0].getId());
+                                System.out.println("ispis:"+result[0].getId()+" tipkorisnika:"+result[0].getTipkorisnika()+" email:"+result[0].getEmail()+" ime:"+result[0].getIme()+" prezime:"+result[0].getPrezime());
+                                SharedPreferences sp=getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor data=sp.edit();
+                                data.putString("email", result[0].getEmail());
+                                data.putString("tipkorisnika", result[0].getTipkorisnika());
+                                data.putInt("id", result[0].getId());
+                                data.putString("ime", result[0].getIme());
+                                data.putString("prezime", result[0].getPrezime());
+                                data.commit();
                             }
                     }
 

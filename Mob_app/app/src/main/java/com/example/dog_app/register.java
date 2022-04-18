@@ -225,31 +225,30 @@ public class register extends Fragment {
                                 System.out.println("ispis:"+response.body());
                                 int userid=response.body();
                                 if(response.body()>=0){
-                                    //registershelter shelter= new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), response.body());
-                                    registershelter shelter = new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), userid);
+                                    registershelter shelter= new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), response.body());
                                     Call<Integer> regshelter =retrofitInterface.shelterregister(shelter);
                                     regshelter.enqueue(new Callback<Integer>() {
                                         @Override
                                         public void onResponse(Call<Integer> call, Response<Integer> response) {
-                                            //System.out.println("response shelter:"+response.body());
                                         }
 
                                         @Override
                                         public void onFailure(Call<Integer> call, Throwable t) {
-//                                            Call<Void> delete=retrofitInterface.deleteuser(userid);
-//                                            Toast.makeText(getActivity(), t.toString(),
-//                                                    Toast.LENGTH_LONG).show();
-//                                            delete.enqueue(new Callback<Void>() {
-//                                                @Override
-//                                                public void onResponse(Call<Void> call, Response<Void> response) {
-//
-//                                                }
-//
-//                                                @Override
-//                                                public void onFailure(Call<Void> call, Throwable t) {
-//
-//                                                }
-//                                            });
+                                            Call<Void> delete=retrofitInterface.deleteuser(userid);
+                                            Toast.makeText(getActivity(), t.toString(),
+                                                    Toast.LENGTH_LONG).show();
+                                            delete.enqueue(new Callback<Void>() {
+                                                @Override
+                                                public void onResponse(Call<Void> call, Response<Void> response) {
+
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<Void> call, Throwable t) {
+                                                    Toast.makeText(getActivity(), t.toString(),
+                                                            Toast.LENGTH_LONG).show();
+                                                }
+                                            });
                                         }
                                     });
                                 }
