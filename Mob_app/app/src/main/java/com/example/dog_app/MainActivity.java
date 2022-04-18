@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +13,28 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        SharedPreferences sp1=this.getSharedPreferences("userdata", MODE_PRIVATE);
+
+        String getemail=sp1.getString("email", null);
+        String getusertype = sp1.getString("tipkorisnika", null);
+        System.out.println("Email:"+getemail+" tipkorisnika:"+getusertype);
+        if(getusertype!=null && getemail!=null) {
+//            if (getusertype.equals("Poduzeće")) {
+//                Intent i = new Intent(MainActivity.this, pocetni_zaslon_poduzece.class);
+//                startActivity(i);
+//                MainActivity.this.finish();
+//            }
+            if (getusertype.equals("korisnik")) {
+                Intent i = new Intent(MainActivity.this, pocetni_zaslon_korisnik.class);
+                startActivity(i);
+                MainActivity.this.finish();
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

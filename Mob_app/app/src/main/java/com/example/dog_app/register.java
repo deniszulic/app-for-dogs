@@ -29,7 +29,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
+//implements ExampleBottomSheetDialog.BottomSheetListener
 public class register extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -185,6 +185,8 @@ public class register extends Fragment {
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
+                            ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                            dialog.show(getParentFragmentManager(), "exampleBottomSheet");
                         }
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
@@ -230,6 +232,8 @@ public class register extends Fragment {
                                     regshelter.enqueue(new Callback<Integer>() {
                                         @Override
                                         public void onResponse(Call<Integer> call, Response<Integer> response) {
+                                            ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                                            dialog.show(getParentFragmentManager(), "exampleBottomSheet");
                                         }
 
                                         @Override
@@ -333,4 +337,8 @@ public class register extends Fragment {
         return true;
     }
 
+//    @Override
+//    public void onButtonClicked(String text) {
+//        textView2.setText(text);
+//    }
 }

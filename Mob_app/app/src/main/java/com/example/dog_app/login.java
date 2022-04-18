@@ -109,6 +109,11 @@ public class login extends Fragment {
                                 data.putString("ime", result[0].getIme());
                                 data.putString("prezime", result[0].getPrezime());
                                 data.commit();
+                                if(result[0].getTipkorisnika().equalsIgnoreCase("korisnik")) {
+                                    Intent i = new Intent(getActivity(), pocetni_zaslon_korisnik.class);
+                                    startActivity(i);
+                                    getActivity().finish();
+                                }
                             }
                     }
 

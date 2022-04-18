@@ -17,6 +17,8 @@ public interface RetrofitInterface {
     Call<Integer> register(@Body registerdata body);
     @POST("/registerasylum")
     Call<Integer> shelterregister(@Body registershelter body);
+    @POST("/dogmissing")
+    Call<Void> missingdog(@Body missingdogsdata body);
     @DELETE("delete/{id}")
     Call<Void> deleteuser(@Path("id") int id);
 }
