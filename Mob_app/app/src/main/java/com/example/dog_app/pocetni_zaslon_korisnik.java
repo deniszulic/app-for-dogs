@@ -34,7 +34,7 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
 
         SharedPreferences a=this.getSharedPreferences("userdata", MODE_PRIVATE);
         String email=a.getString("email", null);
-        String usertype=a.getString("tipKorisnika", null);
+        String usertype=a.getString("tipkorisnika", null);
         //email_header.setText(email);
         View headerView = navigationView.getHeaderView(0);
         email_header=(TextView) headerView.findViewById(R.id.email_header);
@@ -59,7 +59,7 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new obrazac_nestalipsi_korisnik()).commit();
                 break;
             case R.id.nav_chat:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new nestalipsi_oglasi_korisnik()).commit();
                 break;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
