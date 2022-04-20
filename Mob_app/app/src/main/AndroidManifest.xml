@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Dog_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".komentari_korisnik"
+            android:exported="false" />
+        <activity
             android:name=".pocetni_zaslon_korisnik"
             android:exported="false" />
         <activity

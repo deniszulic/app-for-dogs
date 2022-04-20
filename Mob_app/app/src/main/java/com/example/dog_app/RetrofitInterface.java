@@ -12,6 +12,8 @@ import retrofit2.http.Path;
 public interface RetrofitInterface {
     @GET("/getmissingdogs")
     Call<ListItem[]> missingdogs();
+    @GET("/getmissingdogs/{id}")
+    Call<ListItem[]> getcommentsuser(@Path("id") int id);
     @POST("/register")
     Call<Void> postJson(@Body registerdata body);
     @POST("/login")
