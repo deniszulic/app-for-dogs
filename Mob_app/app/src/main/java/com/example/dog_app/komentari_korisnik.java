@@ -72,7 +72,7 @@ public class komentari_korisnik extends AppCompatActivity {
             public void onResponse(Call<ListItem[]> call, Response<ListItem[]> response) {
                 ListItem[] data=response.body();
                 ime.setText(data[0].getIme());
-                imepsa.setText(data[0].getSpol());
+                imepsa.setText(data[0].getIme_psa());
                 Date date = new Date(data[0].getPostavljeno());
                 DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
                 postavljeno.setText(format.format(date));
