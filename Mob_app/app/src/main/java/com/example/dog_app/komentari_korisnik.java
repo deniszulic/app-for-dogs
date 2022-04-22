@@ -122,7 +122,7 @@ public class komentari_korisnik extends AppCompatActivity {
             @Override
             public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
                 Comments[] data=response.body();
-                System.out.println("sheesh:"+data[0].getKomentar());
+//                System.out.println("sheesh:"+data[0].getKomentar());
                 commentsList.addAll(Arrays.asList(data));
                 adapter = new CommentsAdapter(commentsList);
                 recyclerView.setAdapter(adapter);

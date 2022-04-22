@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,12 +19,23 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder> {
 
     private List<Comments> commentsList;
+    private Retrofit retrofit;
+    private RetrofitInterface retrofitInterface;
+    private String BASE_URL = "http://10.0.2.2:3000";
+    CommentsAdapter adapter;
 
     public CommentsAdapter(List<Comments> commentsList) {
         this.commentsList = commentsList;
@@ -47,7 +59,48 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         holder.deletebtn_comments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                commentsList.remove(holder.getAdapterPosition());
+
+//                commentsList.remove(holder.getAdapterPosition());
+                retrofit = new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                retrofitInterface = retrofit.create(RetrofitInterface.class);
+                Call<Void> delete=retrofitInterface.deletecomment(commentsLists.getId());
+                delete.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        commentsList.remove(holder.getAdapterPosition());
+                       // adapter.notifyDataSetChanged();
+                        notifyItemRemoved(holder.getAdapterPosition());
+
+//                        ListItem a=new ListItem();
+//                        System.out.println("hmmmmm:"+a.getId()+" "+holder.getAdapterPosition());
+//                        Call<Comments[]> datacomments= retrofitInterface.getcomments(a.getId());
+//                        datacomments.enqueue(new Callback<Comments[]>() {
+//                            @Override
+//                            public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
+//                                Comments[] data=response.body();
+////                System.out.println("sheesh:"+data[0].getKomentar());
+//                                commentsList.addAll(Arrays.asList(data));
+////                                adapter = new CommentsAdapter(commentsList);
+////                                recyclerView.setAdapter(adapter);
+//
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<Comments[]> call, Throwable t) {
+//
+//                            }
+//                        });
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                    }
+                });
+
             }
         });
     }
