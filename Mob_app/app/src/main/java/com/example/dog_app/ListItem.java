@@ -106,4 +106,5 @@ public class ListItem {
         this.pasmina=pasmina;
         this.email=email;
     }
+    public ListItem(){};
 }

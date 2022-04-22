@@ -4,14 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
+import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -41,6 +44,8 @@ public class komentari_korisnik extends AppCompatActivity {
     private List<Comments> commentsList;
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerView;
+    private TextInputLayout insertcomment;
+    private Button send_comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,8 @@ public class komentari_korisnik extends AppCompatActivity {
         starost=(TextView) findViewById(R.id.starost_nestalipsi_korisnik_item_komentari);
         grad=(TextView) findViewById(R.id.grad_nestalipsi_korisnik_item_komentari);
         napomena=(TextView) findViewById(R.id.napomena_nestalipsi_korisnik_item_komentari);
+        insertcomment=(TextInputLayout) findViewById(R.id.insertcomment);
+        send_comment=(Button) findViewById(R.id.send_comment);
         recyclerView = (RecyclerView) findViewById(R.id.comments);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -124,7 +131,7 @@ public class komentari_korisnik extends AppCompatActivity {
                 Comments[] data=response.body();
 //                System.out.println("sheesh:"+data[0].getKomentar());
                 commentsList.addAll(Arrays.asList(data));
-                adapter = new CommentsAdapter(commentsList);
+                adapter = new CommentsAdapter(commentsList, id);
                 recyclerView.setAdapter(adapter);
 
             }
@@ -132,6 +139,45 @@ public class komentari_korisnik extends AppCompatActivity {
             @Override
             public void onFailure(Call<Comments[]> call, Throwable t) {
 
+            }
+        });
+        send_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Date date = new Date();
+                long timestamp = date.getTime();
+                SharedPreferences sp1=getSharedPreferences("userdata", MODE_PRIVATE);
+                int userid=sp1.getInt("id", 0);
+                Sendcomment commentdata=new Sendcomment(insertcomment.getEditText().getText().toString(), timestamp, id, userid);
+                Call<Void> senddata= retrofitInterface.sendcomment(commentdata);
+                senddata.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                        Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
+                        commentsList=new ArrayList<>();
+                        datacomments.enqueue(new Callback<Comments[]>() {
+                            @Override
+                            public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
+                                Comments[] data=response.body();
+//                System.out.println("sheesh:"+data[0].getKomentar());
+                                commentsList.addAll(Arrays.asList(data));
+                                adapter = new CommentsAdapter(commentsList, id);
+                                recyclerView.setAdapter(adapter);
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Comments[]> call, Throwable t) {
+
+                            }
+                        });
+                    }
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+
+                    }
+                });
             }
         });
     }

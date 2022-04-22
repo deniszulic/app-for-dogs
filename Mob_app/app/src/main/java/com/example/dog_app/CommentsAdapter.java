@@ -36,9 +36,11 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     private RetrofitInterface retrofitInterface;
     private String BASE_URL = "http://10.0.2.2:3000";
     CommentsAdapter adapter;
+    private int id;
 
-    public CommentsAdapter(List<Comments> commentsList) {
+    public CommentsAdapter(List<Comments> commentsList, int id) {
         this.commentsList = commentsList;
+        this.id=id;
     }
 
     @Override
@@ -73,11 +75,12 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         commentsList.remove(holder.getAdapterPosition());
                        // adapter.notifyDataSetChanged();
+
                         notifyItemRemoved(holder.getAdapterPosition());
 
-//                        ListItem a=new ListItem();
-//                        System.out.println("hmmmmm:"+a.getId()+" "+holder.getAdapterPosition());
-//                        Call<Comments[]> datacomments= retrofitInterface.getcomments(a.getId());
+                        //ListItem a=new ListItem();
+//                        System.out.println("hmmmmm:"+id+" "+holder.getAdapterPosition());
+//                        Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
 //                        datacomments.enqueue(new Callback<Comments[]>() {
 //                            @Override
 //                            public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
