@@ -1,6 +1,8 @@
 package com.example.dog_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +16,10 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +38,9 @@ public class komentari_korisnik extends AppCompatActivity {
     public LinearLayout podaci;
     public ImageView slika;
     private Chip chip;
+    private List<Comments> commentsList;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,9 @@ public class komentari_korisnik extends AppCompatActivity {
         starost=(TextView) findViewById(R.id.starost_nestalipsi_korisnik_item_komentari);
         grad=(TextView) findViewById(R.id.grad_nestalipsi_korisnik_item_komentari);
         napomena=(TextView) findViewById(R.id.napomena_nestalipsi_korisnik_item_komentari);
+        recyclerView = (RecyclerView) findViewById(R.id.comments);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -66,6 +77,7 @@ public class komentari_korisnik extends AppCompatActivity {
         retrofitInterface = retrofit.create(RetrofitInterface.class);
         int id=getIntent().getIntExtra("id",0);
         Call<ListItem[]> data= retrofitInterface.getcommentsuser(id);
+        Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
 
         data.enqueue(new Callback<ListItem[]>() {
             @Override
@@ -74,7 +86,7 @@ public class komentari_korisnik extends AppCompatActivity {
                 ime.setText(data[0].getIme());
                 imepsa.setText(data[0].getIme_psa());
                 Date date = new Date(data[0].getPostavljeno());
-                DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
                 postavljeno.setText(format.format(date));
                 adresa.setText(data[0].getAdresa());
                 telbr.setText(data[0].getTelefonskibr());
@@ -89,6 +101,7 @@ public class komentari_korisnik extends AppCompatActivity {
                 starost.setText(String.valueOf(data[0].getStarost()));
                 grad.setText(data[0].getGrad());
                 napomena.setText(data[0].getNapomena());
+
                 if(data[0].getUrl_slike()!=null) {
                     slika.setVisibility(View.VISIBLE);
                     Picasso.get().load(data[0].getUrl_slike()).into(slika);
@@ -100,6 +113,24 @@ public class komentari_korisnik extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ListItem[]> call, Throwable t) {
+
+            }
+        });
+
+        commentsList=new ArrayList<>();
+        datacomments.enqueue(new Callback<Comments[]>() {
+            @Override
+            public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
+                Comments[] data=response.body();
+                System.out.println("sheesh:"+data[0].getKomentar());
+                commentsList.addAll(Arrays.asList(data));
+                adapter = new CommentsAdapter(commentsList);
+                recyclerView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<Comments[]> call, Throwable t) {
 
             }
         });

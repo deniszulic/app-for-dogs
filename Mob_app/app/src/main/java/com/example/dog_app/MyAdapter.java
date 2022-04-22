@@ -1,5 +1,7 @@
 package com.example.dog_app;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
@@ -22,13 +25,27 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     private List<ListItem> listItems;
     private Context context;
+//    private List<Comments> commentsList;
+//    private RecyclerView.Adapter adapter1;
+//    private RecyclerView recyclerView1;
+//    private Retrofit retrofit;
+//    private RetrofitInterface retrofitInterface;
+//    private String BASE_URL = "http://10.0.2.2:3000";
 
     public MyAdapter(List<ListItem> listItems, Context context) {
         this.listItems = listItems;
@@ -98,6 +115,41 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
                 i.putExtra("id", listItem.getId());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
+//                retrofit = new Retrofit.Builder()
+//                        .baseUrl(BASE_URL)
+//                        .addConverterFactory(GsonConverterFactory.create())
+//                        .build();
+//
+//                retrofitInterface = retrofit.create(RetrofitInterface.class);
+//
+//                recyclerView1 = (RecyclerView) view.findViewById(R.id.comments);
+//                recyclerView1.setHasFixedSize(true);
+//                recyclerView1.setLayoutManager(new LinearLayoutManager(view.getContext()));
+//
+////                Intent i=new Intent(context, komentari_korisnik.class);
+////                i.putExtra("id", listItem.getId());
+////                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                context.startActivity(i);
+//                commentsList=new ArrayList<>();
+//                Call<Comments[]> datacomments= retrofitInterface.getcomments(listItem.getId());
+//                datacomments.enqueue(new Callback<Comments[]>() {
+//                    @Override
+//                    public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
+//                        Comments[] data=response.body();
+//                        commentsList.addAll(Arrays.asList(data));
+//                        adapter1 = new CommentsAdapter(commentsList);
+//                        recyclerView1.setAdapter(adapter1);
+//                        Intent i=new Intent(context, komentari_korisnik.class);
+//                        i.putExtra("id", listItem.getId());
+//                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        context.startActivity(i);
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Comments[]> call, Throwable t) {
+//
+//                    }
+//                });
             }
         });
     }
