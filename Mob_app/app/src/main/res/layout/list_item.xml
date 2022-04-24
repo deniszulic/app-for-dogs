@@ -405,10 +405,10 @@
                         android:text="Komentiraj" />
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/pronadenpas_nestalipsi_korisnik"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button" />
+                        android:text="Pronašao sam psa" />
 
 
                 </LinearLayout>

@@ -28,6 +28,8 @@ public interface RetrofitInterface {
     Call<Void> sendcomment(@Body Sendcomment body);
     @POST("/dogmissing")
     Call<Void> missingdog(@Body missingdogsdata body);
+    @POST("/reportmissingdog")
+    Call<Void> reportmissingdog(@Body Reportmissingdog body);
     @DELETE("delete/{id}")
     Call<Void> deleteuser(@Path("id") int id);
     @DELETE("deletecomment/{id}")

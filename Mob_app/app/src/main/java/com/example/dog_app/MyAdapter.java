@@ -2,7 +2,9 @@ package com.example.dog_app;
 
 import static java.security.AccessController.getContext;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -15,10 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
+import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -37,15 +42,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<ListItem> listItems;
     private Context context;
-//    private List<Comments> commentsList;
-//    private RecyclerView.Adapter adapter1;
-//    private RecyclerView recyclerView1;
-//    private Retrofit retrofit;
-//    private RetrofitInterface retrofitInterface;
-//    private String BASE_URL = "http://10.0.2.2:3000";
+    private static int lid;
 
     public MyAdapter(List<ListItem> listItems, Context context) {
         this.listItems = listItems;
@@ -80,24 +80,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         holder.pasmina.setText(listItem.getPasmina());
 //        SimpleDateFormat dt = new SimpleDateFormat("dd.MM.yyyyy");
         SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-//        try {
-//            Date date1 = formatter1.parse(listItem.getDatum_izgubljen());
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-
-//        holder.chip.setText(format.format(listItem.getDatum_izgubljen()));
         holder.grad.setText(listItem.getGrad());
         holder.postnum.setText(String.valueOf(listItem.getPostanski_broj()));
         holder.vet_lok.setText(listItem.getVet_lokacija());
         holder.spol.setText(listItem.getSpol());
         holder.starost.setText(String.valueOf(listItem.getStarost()));
-//        holder.chip.setText(format.format(listItem.getDatum_izgubljen()));
-
-//        SimpleDateFormat DateFor = new SimpleDateFormat("dd/MM/yyyy");
-//        String stringDate= DateFor.format(listItem.getDatum_izgubljen());
-
-        //holder.chip.setText(stringDate);
         holder.chip.setText(listItem.getDatum_izgubljen());
         if(listItem.getUrl_slike()!=null) {
             holder.slika.setVisibility(View.VISIBLE);
@@ -115,41 +102,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
                 i.putExtra("id", listItem.getId());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
-//                retrofit = new Retrofit.Builder()
-//                        .baseUrl(BASE_URL)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                retrofitInterface = retrofit.create(RetrofitInterface.class);
-//
-//                recyclerView1 = (RecyclerView) view.findViewById(R.id.comments);
-//                recyclerView1.setHasFixedSize(true);
-//                recyclerView1.setLayoutManager(new LinearLayoutManager(view.getContext()));
-//
-////                Intent i=new Intent(context, komentari_korisnik.class);
-////                i.putExtra("id", listItem.getId());
-////                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////                context.startActivity(i);
-//                commentsList=new ArrayList<>();
-//                Call<Comments[]> datacomments= retrofitInterface.getcomments(listItem.getId());
-//                datacomments.enqueue(new Callback<Comments[]>() {
-//                    @Override
-//                    public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
-//                        Comments[] data=response.body();
-//                        commentsList.addAll(Arrays.asList(data));
-//                        adapter1 = new CommentsAdapter(commentsList);
-//                        recyclerView1.setAdapter(adapter1);
-//                        Intent i=new Intent(context, komentari_korisnik.class);
-//                        i.putExtra("id", listItem.getId());
-//                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        context.startActivity(i);
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<Comments[]> call, Throwable t) {
-//
-//                    }
-//                });
+            }
+        });
+        SharedPreferences sp1=MyAdapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+        String getemail=sp1.getString("email", null);
+        if(!getemail.equals(listItem.getEmail())){
+            holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.VISIBLE);
+        }
+        else{holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.GONE);}
+        holder.pronadenpas_nestalipsi_korisnik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lid=listItem.getId();
+                FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
+                Dogfind_dialog dialog= new Dogfind_dialog();
+                dialog.show(manager, "dogfind_dialog");
             }
         });
     }
@@ -157,7 +124,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     @Override
     public int getItemCount() {
         return listItems.size();
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -166,7 +132,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         public LinearLayout podaci;
         public ImageView slika;
         private Chip chip;
-        public Button komentiraj_nestalipsi_korisnik_item;
+        public Button komentiraj_nestalipsi_korisnik_item, pronadenpas_nestalipsi_korisnik;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -188,6 +154,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
             starost=(TextView) itemView.findViewById(R.id.starost_nestalipsi_korisnik_item);
             grad=(TextView) itemView.findViewById(R.id.grad_nestalipsi_korisnik_item);
             komentiraj_nestalipsi_korisnik_item=(Button) itemView.findViewById(R.id.komentiraj_nestalipsi_korisnik_item);
+            pronadenpas_nestalipsi_korisnik=(Button) itemView.findViewById(R.id.pronadenpas_nestalipsi_korisnik);
         }
     }
+    public static int getid(){return lid;}
 }

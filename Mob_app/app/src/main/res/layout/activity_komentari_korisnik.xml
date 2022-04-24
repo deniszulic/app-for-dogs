@@ -509,12 +509,18 @@
                         android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="0.1"/>
 
                 <Button
                     android:id="@+id/send_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pošalji" />
+                    android:background="@color/purple_500"
+                    android:text="Pošalji"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
         </LinearLayout>
