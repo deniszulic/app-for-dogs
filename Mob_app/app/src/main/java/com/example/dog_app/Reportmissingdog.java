@@ -62,17 +62,17 @@ public class Reportmissingdog {
         this.korisnik_id = korisnik_id;
         this.nestanak_id = nestanak_id;
     }
-//    public Reportmissingdog(String ime, String prezime, String napomena, String adresa_pronalaska, String adresa_za_preuzimanje_psa, long postavljeno, int Korisnik_id, int Nestanak_id, String kontakt, String naziv_azila, String grad_azila){
-//        this.ime = ime;
-//        this.prezime = prezime;
-//        this.napomena = napomena;
-//        this.adresa_pronalaska = adresa_pronalaska;
-//        this.adresa_za_preuzimanje_psa = adresa_za_preuzimanje_psa;
-//        this.kontakt = kontakt;
-//        this.naziv_azila = naziv_azila;
-//        this.grad_azila = grad_azila;
-//        this.postavljeno = postavljeno;
-//        this.Korisnik_id = Korisnik_id;
-//        this.Nestanak_id = Nestanak_id;
-//    }
+    public Reportmissingdog(String ime, String prezime, String napomena, String adresa_pronalaska, String adresa_za_preuzimanje_psa, long postavljeno, int korisnik_id, int nestanak_id, String kontakt, String naziv_azila, String grad_azila){
+        this.ime = ime;
+        this.prezime = prezime;
+        this.napomena = napomena;
+        this.adresa_pronalaska = adresa_pronalaska;
+        this.adresa_za_preuzimanje_psa = adresa_za_preuzimanje_psa;
+        this.kontakt = kontakt;
+        this.naziv_azila = naziv_azila;
+        this.grad_azila = grad_azila;
+        this.postavljeno = postavljeno;
+        this.korisnik_id = korisnik_id;
+        this.nestanak_id = nestanak_id;
+    }
 }

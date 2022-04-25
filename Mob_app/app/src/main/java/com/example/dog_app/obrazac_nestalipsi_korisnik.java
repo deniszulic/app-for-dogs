@@ -42,9 +42,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -154,9 +157,22 @@ public class obrazac_nestalipsi_korisnik extends Fragment {
         getemail=sp1.getString("email", null);
         getid=sp1.getInt("id", 0);
 
+//        MaterialDatePicker<Long> materialDatePicker = builder.build();
+//
+//        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+//            @Override
+//            public void onPositiveButtonClick(Long selection) {
+//                //....
+//                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+//                calendar.setTimeInMillis(selection);
+//                SimpleDateFormat format = new SimpleDateFormat("yyyy MM dd");
+//                String formattedDate  = format.format(calendar.getTime());
+//            }
+//        });
+
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("Datum kada je pas izgubljen");
-        final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+        final MaterialDatePicker<Long> materialDatePicker = materialDateBuilder.build();
         datumizgubljen_nestalipsi_korisnik.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -164,15 +180,26 @@ public class obrazac_nestalipsi_korisnik extends Fragment {
                         materialDatePicker.show(getParentFragmentManager(), "MATERIAL_DATE_PICKER");
                     }
                 });
-        materialDatePicker.addOnPositiveButtonClickListener(
-                new MaterialPickerOnPositiveButtonClickListener() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onPositiveButtonClick(Object selection) {
-                        datum = materialDatePicker.getHeaderText();
-                        System.out.println("datum:" + datum);
-                    }
-                });
+//        materialDatePicker.addOnPositiveButtonClickListener(
+//                new MaterialPickerOnPositiveButtonClickListener() {
+//                    @SuppressLint("SetTextI18n")
+//                    @Override
+//                    public void onPositiveButtonClick(Object selection) {
+//                        datum = materialDatePicker.getHeaderText();
+//                        System.out.println("datum:" + datum);
+//                    }
+//                });
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+            @Override
+            public void onPositiveButtonClick(Long selection) {
+                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                calendar.setTimeInMillis(selection);
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String formattedDate  = format.format(calendar.getTime());
+                datum=formattedDate;
+            }
+        });
+
         posalji_obrazac_nestalipsi_korisnik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

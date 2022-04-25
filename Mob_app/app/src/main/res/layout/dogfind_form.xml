@@ -101,6 +101,7 @@
         android:id="@+id/send_dogfind_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pošalji" />
+        android:text="Pošalji"
+        android:theme="@style/Theme.Dog_app" />
 
 </LinearLayout>

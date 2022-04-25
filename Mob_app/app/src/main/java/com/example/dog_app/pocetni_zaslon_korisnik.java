@@ -21,6 +21,7 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
 
     private TextView email_header, tipkoisnika;
     private DrawerLayout drawer;
+    private static String sendemail, usertype;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,9 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
 
         SharedPreferences a=this.getSharedPreferences("userdata", MODE_PRIVATE);
         String email=a.getString("email", null);
+        String tipkorisnika=a.getString("tipkorisnika", null);
+        sendemail=email;
+        usertype=tipkorisnika;
         String usertype=a.getString("tipkorisnika", null);
         //email_header.setText(email);
         View headerView = navigationView.getHeaderView(0);
@@ -88,5 +92,13 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
         else {
             super.onBackPressed();
         }
+    }
+
+    public static String getSendemail() {
+        return sendemail;
+    }
+
+    public static String getUsertype() {
+        return usertype;
     }
 }

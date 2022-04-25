@@ -27,6 +27,7 @@ public class Missingdogs_user_shelter_adapter extends RecyclerView.Adapter<Missi
     private List<Missingdogs_user_shelter_data> listItems;
     private Context context;
     private static int lid;
+    private static String naziv_azila, grad_azila, email_azila;
 
     public Missingdogs_user_shelter_adapter(List<Missingdogs_user_shelter_data> listItems, Context context) {
         this.listItems = listItems;
@@ -50,7 +51,7 @@ public class Missingdogs_user_shelter_adapter extends RecyclerView.Adapter<Missi
         holder.ulica_user_shelter.setText(listItem.getUlica());
         holder.postnum_user_shelter.setText(listItem.getPostanski_broj());
         Date date = new Date(listItem.getPostavljeno());
-        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
         holder.postavljeno_nestalipsi_korisnik_azil.setText(format.format(date));
         holder.imepsa_nestalipsi_korisnik_azil.setText(listItem.getIme_psa());
         holder.telbr_nestalipsi_korisnik_azil.setText(listItem.getTelefonskibr());
@@ -69,32 +70,37 @@ public class Missingdogs_user_shelter_adapter extends RecyclerView.Adapter<Missi
         }
 
 
-//        holder.komentiraj_nestalipsi_korisnik_azil.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                SharedPreferences sp1=MyAdapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-////                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-//                Intent i=new Intent(context, komentari_korisnik.class);
-//                i.putExtra("id", listItem.getId());
-//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                context.startActivity(i);
-//            }
-//        });
-//        SharedPreferences sp1=Missingdogs_user_shelter_adapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-//        String getemail=sp1.getString("email", null);
-//        if(!getemail.equals(listItem.getEmail())){
-//            holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.VISIBLE);
-//        }
-//        else{holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.GONE);}
-//        holder.pronadenpas_nestalipsi_korisnik.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                lid=listItem.getId();
-//                FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
-//                Dogfind_dialog dialog= new Dogfind_dialog();
-//                dialog.show(manager, "dogfind_dialog");
-//            }
-//        });
+        holder.komentiraj_nestalipsi_korisnik_azil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                SharedPreferences sp1=MyAdapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+//                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+                email_azila="";
+                MyAdapter.setUseremail("");
+                email_azila=listItem.getEmail();
+                Intent i=new Intent(context, komentari_korisnik_azil.class);
+                i.putExtra("id", listItem.getId());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
+        SharedPreferences sp1=Missingdogs_user_shelter_adapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+        String getemail=sp1.getString("email", null);
+        if(!getemail.equals(listItem.getEmail())){
+            holder.pronadenpas_nestalipsi_korisnik_azil.setVisibility(View.VISIBLE);
+        }
+        else{holder.pronadenpas_nestalipsi_korisnik_azil.setVisibility(View.GONE);}
+        holder.pronadenpas_nestalipsi_korisnik_azil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lid=listItem.getId();
+                naziv_azila=listItem.getNaziv();
+                grad_azila=listItem.getGrad();
+                FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
+                Dogfind_dialog_shelter dialog= new Dogfind_dialog_shelter();
+                dialog.show(manager, "dogfind_dialog");
+            }
+        });
     }
 
     @Override
@@ -134,4 +140,13 @@ public class Missingdogs_user_shelter_adapter extends RecyclerView.Adapter<Missi
         }
     }
     public static int getid(){return lid;}
+    public static String getNaziv_azila(){return naziv_azila;}
+    public static String getGrad_azila(){return grad_azila;}
+    public static String getEmail_azila() {
+        return email_azila;
+    }
+
+    public static void setEmail_azila(String email_azila) {
+        Missingdogs_user_shelter_adapter.email_azila = email_azila;
+    }
 }

@@ -46,6 +46,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<ListItem> listItems;
     private Context context;
     private static int lid;
+    private static String useremail;
 
     public MyAdapter(List<ListItem> listItems, Context context) {
         this.listItems = listItems;
@@ -98,6 +99,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             public void onClick(View view) {
 //                SharedPreferences sp1=MyAdapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
 //                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+                useremail="";
+                Missingdogs_user_shelter_adapter.setEmail_azila("");
+                useremail=listItem.getEmail();
                 Intent i=new Intent(context, komentari_korisnik.class);
                 i.putExtra("id", listItem.getId());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -158,4 +162,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
     public static int getid(){return lid;}
+
+    public static String getUseremail() {
+        return useremail;
+    }
+
+    public static void setUseremail(String useremail) {
+        MyAdapter.useremail = useremail;
+    }
 }

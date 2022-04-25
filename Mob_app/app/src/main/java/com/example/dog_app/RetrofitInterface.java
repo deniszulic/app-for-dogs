@@ -16,6 +16,8 @@ public interface RetrofitInterface {
     Call<Missingdogs_user_shelter_data[]> missingdogs_usershelter();
     @GET("/getmissingdogs/{id}")
     Call<ListItem[]> getcommentsuser(@Path("id") int id);
+    @GET("/getspecificdogshelter/{id}")
+    Call<Missingdogs_user_shelter_data[]> getdatashelter(@Path("id") int id);
     @GET("/getcomments/{id}")
     Call<Comments[]> getcomments(@Path("id") int id);
     @POST("/register")

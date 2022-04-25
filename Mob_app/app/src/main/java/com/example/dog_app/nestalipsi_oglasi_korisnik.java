@@ -83,7 +83,7 @@ public class nestalipsi_oglasi_korisnik extends Fragment {
                 ListItem[] data = response.body();
                 listItems.addAll(Arrays.asList(data));
 
-                System.out.println("listitem:"+listItems.get(0).getEmail());
+//                System.out.println("listitem:"+listItems.get(0).getEmail());
                 adapter = new MyAdapter(listItems, getContext());
                 recyclerView.setAdapter(adapter);
             }

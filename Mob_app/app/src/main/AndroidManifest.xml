@@ -13,9 +13,16 @@
         android:theme="@style/Theme.Dog_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Dogfind_dialog_shelter"
+            android:exported="false" />
+        <activity
+            android:name=".komentari_korisnik_azil"
+            android:exported="false"
+            android:theme="@style/Theme.Dog_app_comments" />
+        <activity
             android:name=".komentari_korisnik"
             android:exported="false"
-            android:theme="@style/Theme.Dog_app_comments"/>
+            android:theme="@style/Theme.Dog_app_comments" />
         <activity
             android:name=".pocetni_zaslon_korisnik"
             android:exported="false" />
