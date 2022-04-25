@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <group android:checkableBehavior="single">
+    <item android:title="Nestali psi">
+        <menu>
+            <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_message"
+            android:id="@+id/report_missing_dog_user"
             android:icon="@drawable/ic_baseline_note_add_24"
             android:title="Prijava nestalog psa" />
-        <item android:id="@+id/nav_chat"
+        <item android:id="@+id/user_reports_missingdog"
             android:icon="@drawable/ic_chat"
-            android:title="Chat"/>
-        <item android:id="@+id/nav_profile"
-            android:icon="@drawable/user"
-            android:title="Profile"/>
-    </group>
-    <item android:title="Communicate">
+            android:title="Oglasi korisnika"/>
+                <item
+                    android:id="@+id/shelter_reports_missingdog"
+                    android:icon="@drawable/ic_chat"
+                    android:title="Oglasi azila" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Udomi psa">
         <menu>
             <item android:id="@+id/nav_share"
                 android:icon="@drawable/ic_share"

@@ -20,28 +20,26 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
-public class nestalipsi_oglasi_korisnik extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private List<ListItem> listItems;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView recyclerView;
-
+public class nestalipsi_oglasi_korisnik_azil extends Fragment {
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
     private String BASE_URL = "http://10.0.2.2:3000";
+    private RecyclerView.Adapter adapter;
+    private RecyclerView recyclerView;
+    private List<Missingdogs_user_shelter_data> listItems;
 
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public nestalipsi_oglasi_korisnik() {
+    public nestalipsi_oglasi_korisnik_azil() {
         // Required empty public constructor
     }
-
-    public static nestalipsi_oglasi_korisnik newInstance(String param1, String param2) {
-        nestalipsi_oglasi_korisnik fragment = new nestalipsi_oglasi_korisnik();
+    public static nestalipsi_oglasi_korisnik_azil newInstance(String param1, String param2) {
+        nestalipsi_oglasi_korisnik_azil fragment = new nestalipsi_oglasi_korisnik_azil();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,8 +60,8 @@ public class nestalipsi_oglasi_korisnik extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_nestalipsi_oglasi_korisnik, container, false);
-        View v=inflater.inflate(R.layout.fragment_nestalipsi_oglasi_korisnik, container, false);
+//        return inflater.inflate(R.layout.fragment_nestalipsi_oglasi_korisnik_azil, container, false);
+        View v = inflater.inflate(R.layout.fragment_nestalipsi_oglasi_korisnik_azil, container, false);
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -71,25 +69,24 @@ public class nestalipsi_oglasi_korisnik extends Fragment {
 
         retrofitInterface = retrofit.create(RetrofitInterface.class);
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.nestalipsi_oglasi_korisnik);
+        recyclerView = (RecyclerView) v.findViewById(R.id.nestalipsi_oglasi_korisnik_azil);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        Call<ListItem[]> data = retrofitInterface.missingdogs();
+        Call<Missingdogs_user_shelter_data[]> data = retrofitInterface.missingdogs_usershelter();
 
         listItems=new ArrayList<>();
-        data.enqueue(new Callback<ListItem[]>() {
+        data.enqueue(new Callback<Missingdogs_user_shelter_data[]>() {
             @Override
-            public void onResponse(Call<ListItem[]> call, Response<ListItem[]> response) {
-                ListItem[] data = response.body();
+            public void onResponse(Call<Missingdogs_user_shelter_data[]> call, Response<Missingdogs_user_shelter_data[]> response) {
+                Missingdogs_user_shelter_data[] data = response.body();
                 listItems.addAll(Arrays.asList(data));
 
-                System.out.println("listitem:"+listItems.get(0).getEmail());
-                adapter = new MyAdapter(listItems, getContext());
+                adapter = new Missingdogs_user_shelter_adapter(listItems, getContext());
                 recyclerView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<ListItem[]> call, Throwable t) {
+            public void onFailure(Call<Missingdogs_user_shelter_data[]> call, Throwable t) {
 
             }
         });

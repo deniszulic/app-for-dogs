@@ -12,6 +12,8 @@ import retrofit2.http.Path;
 public interface RetrofitInterface {
     @GET("/getmissingdogs")
     Call<ListItem[]> missingdogs();
+    @GET("/getmissingdogsshelter")
+    Call<Missingdogs_user_shelter_data[]> missingdogs_usershelter();
     @GET("/getmissingdogs/{id}")
     Call<ListItem[]> getcommentsuser(@Path("id") int id);
     @GET("/getcomments/{id}")

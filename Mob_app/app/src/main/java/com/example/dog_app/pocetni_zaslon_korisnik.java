@@ -48,21 +48,21 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
 
         if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new obrazac_nestalipsi_korisnik()).commit();
-            navigationView.setCheckedItem(R.id.nav_message);
+            navigationView.setCheckedItem(R.id.report_missing_dog_user);
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.nav_message:
+            case R.id.report_missing_dog_user:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new obrazac_nestalipsi_korisnik()).commit();
                 break;
-            case R.id.nav_chat:
+            case R.id.user_reports_missingdog:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new nestalipsi_oglasi_korisnik()).commit();
                 break;
-            case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+            case R.id.shelter_reports_missingdog:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new nestalipsi_oglasi_korisnik_azil()).commit();
                 break;
             case R.id.nav_share:
                 Toast.makeText(this,"Share",Toast.LENGTH_SHORT).show();
