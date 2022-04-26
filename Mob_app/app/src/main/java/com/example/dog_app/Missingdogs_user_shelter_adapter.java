@@ -19,9 +19,11 @@ import com.google.android.material.chip.Chip;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Missingdogs_user_shelter_adapter extends RecyclerView.Adapter<Missingdogs_user_shelter_adapter.ViewHolder>{
     private List<Missingdogs_user_shelter_data> listItems;
@@ -60,7 +62,7 @@ public class Missingdogs_user_shelter_adapter extends RecyclerView.Adapter<Missi
         holder.pasmina_nestalipsi_korisnik_azil.setText(listItem.getPasmina());
         holder.spol_nestalipsi_korisnik_azil.setText(listItem.getSpol());
         holder.starost_nestalipsi_korisnik_azil.setText(listItem.getStarost());
-        holder.chip_nestalipsi_korisnik_azil.setText(listItem.getDatum_izgubljen());
+        holder.chip_nestalipsi_korisnik_azil.setText(getDate(listItem.getDatum_izgubljen()));
         if(listItem.getUrl_slike()!=null) {
             holder.slika_nestalipsi_korisnik_azil.setVisibility(View.VISIBLE);
             Picasso.get().load(listItem.getUrl_slike()).into(holder.slika_nestalipsi_korisnik_azil);
@@ -148,5 +150,16 @@ public class Missingdogs_user_shelter_adapter extends RecyclerView.Adapter<Missi
 
     public static void setEmail_azila(String email_azila) {
         Missingdogs_user_shelter_adapter.email_azila = email_azila;
+    }
+    public String getDate(String vlaue) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.US);
+            Date date = dateFormat.parse(vlaue);
+            dateFormat = new SimpleDateFormat("dd.MM.yyyy.", Locale.US);
+            return dateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

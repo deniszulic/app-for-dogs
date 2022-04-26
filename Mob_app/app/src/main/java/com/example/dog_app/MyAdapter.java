@@ -27,6 +27,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -71,7 +72,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.ime.setText(listItem.getIme());
         holder.imepsa.setText(listItem.getIme_psa());
         Date date = new Date(listItem.getPostavljeno());
-        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
         holder.postavljeno.setText(format.format(date));
         holder.prezime.setText(listItem.getPrezime());
         holder.telbr.setText(listItem.getTelefonskibr());
@@ -79,14 +80,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.boja.setText(listItem.getBoja());
         holder.dlaka.setText(listItem.getDlaka());
         holder.pasmina.setText(listItem.getPasmina());
-//        SimpleDateFormat dt = new SimpleDateFormat("dd.MM.yyyyy");
-        SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
         holder.grad.setText(listItem.getGrad());
         holder.postnum.setText(String.valueOf(listItem.getPostanski_broj()));
         holder.vet_lok.setText(listItem.getVet_lokacija());
         holder.spol.setText(listItem.getSpol());
         holder.starost.setText(String.valueOf(listItem.getStarost()));
-        holder.chip.setText(listItem.getDatum_izgubljen());
+        holder.chip.setText(getDate(listItem.getDatum_izgubljen()));
         if(listItem.getUrl_slike()!=null) {
             holder.slika.setVisibility(View.VISIBLE);
             Picasso.get().load(listItem.getUrl_slike()).into(holder.slika);
@@ -169,5 +168,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public static void setUseremail(String useremail) {
         MyAdapter.useremail = useremail;
+    }
+    public String getDate(String vlaue) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.US);
+            Date date = dateFormat.parse(vlaue);
+            dateFormat = new SimpleDateFormat("dd.MM.yyyy.", Locale.US);
+            return dateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
