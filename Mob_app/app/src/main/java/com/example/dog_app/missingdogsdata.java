@@ -3,8 +3,6 @@ package com.example.dog_app;
 import java.util.Date;
 
 public class missingdogsdata {
-    //ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol,
-    // datum_izgubljen, napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, aktivan, oglas_azila, url_slike;
     private String ime, prezime, adresa, grad, boja, dlaka, vet_lokacija, ime_psa, spol,
             napomena, telefonskibr, pasmina, url_slike, datum_izgubljen;
     private boolean aktivan, oglas_azila;

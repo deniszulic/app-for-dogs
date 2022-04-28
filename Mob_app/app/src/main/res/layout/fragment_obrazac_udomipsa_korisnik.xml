@@ -24,7 +24,7 @@
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/bungee"
                 android:gravity="clip_vertical"
-                android:text="Nestanak psa"
+                android:text="Udomi psa"
                 android:textSize="25sp" />
 
             <ImageView
@@ -32,10 +32,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-30dp"
-                android:src="@drawable/dog" />
+                android:src="@drawable/adopt_dog" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ime_nestalipsi_korisnik"
+                android:id="@+id/ime_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/prezime_nestalipsi_korisnik"
+                android:id="@+id/prezime_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/adresa_nestalipsi_korisnik"
+                android:id="@+id/adresa_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/telefonskibr_nestalipsi_korisnik"
+                android:id="@+id/telefonskibr_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/grad_nestalipsi_korisnik"
+                android:id="@+id/grad_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/postnum_nestalipsi_korisnik"
+                android:id="@+id/postnum_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/boja_nestalipsi_korisnik"
+                android:id="@+id/boja_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/starost_nestalipsi_korisnik"
+                android:id="@+id/starost_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/textView35"
+                android:id="@+id/textView40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -153,28 +153,15 @@
                 android:layout_height="match_parent">
 
                 <AutoCompleteTextView
-                    android:id="@+id/dlaka_nestalipsi_korisnik"
+                    android:id="@+id/dlaka_udomipsa_korisnik"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
                     android:text="AutoCompleteTextView" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <AutoCompleteTextView-->
-<!--                    android:id="@+id/tipugovora_obrazac"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:inputType="none"-->
-<!--                    android:text="AutoCompleteTextView" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vet_lokacija_nestalipsi_korisnik"
+                android:id="@+id/vet_lokacija_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -187,7 +174,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/imepsa_nestalipsi_korisnik"
+                android:id="@+id/imepsa_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -200,7 +187,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/textView39"
+                android:id="@+id/textView41"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -214,39 +201,28 @@
                 android:layout_height="match_parent">
 
                 <AutoCompleteTextView
-                    android:id="@+id/spol_nestalipsi_korisnik"
+                    android:id="@+id/spol_udomipsa_korisnik"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
                     android:text="AutoCompleteTextView" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/satnicazapraksu_obrazac"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:hint="Satnica (nije nužno navesti)">-->
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:inputType="numberDecimal" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/datumizgubljen_nestalipsi_korisnik"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/kilaza_udomipsa_korisnik"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="#FF6200EE"
-                android:drawableLeft="@drawable/ic_calendar"
-                android:padding="16dp"
-                android:text="Datum kada je pas izgubljen"
-                android:textColor="#fff" />
+                android:hint="Kilaža">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pasmina_nestalipsi_korisnik"
+                android:id="@+id/pasmina_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -258,8 +234,52 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bungee"
+                android:text="Kastrat"
+                android:textSize="20sp" />
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/napomena_nestalipsi_korisnik"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/kastrat_udomipsa_korisnik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="AutoCompleteTextView" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bungee"
+                android:text="Opasna životinja"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/opasnazivotinja_udomipsa_korisnik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="AutoCompleteTextView" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/napomena_udomipsa_korisnik"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -281,20 +301,20 @@
                 android:textColor="#fff" />
 
             <ImageView
-                android:id="@+id/slikapsa_nestalipsi_korisnik"
+                android:id="@+id/slikapsa_udomipsa_korisnik"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp" />
 
             <ProgressBar
-                android:id="@+id/progres_nestalipsi_korisnik"
+                android:id="@+id/progres_udomipsa_korisnik"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/posalji_obrazac_nestalipsi_korisnik"
+                android:id="@+id/posalji_obrazac_udomipsa_korisnik"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

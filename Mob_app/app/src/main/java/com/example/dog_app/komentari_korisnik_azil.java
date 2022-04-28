@@ -16,11 +16,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -100,7 +102,7 @@ public class komentari_korisnik_azil extends AppCompatActivity {
                 pasmina_nestalipsi_korisnik_azil.setText(data[0].getPasmina());
                 spol_nestalipsi_korisnik_azil.setText(data[0].getSpol());
                 starost_nestalipsi_korisnik_azil.setText(data[0].getStarost());
-                chip_nestalipsi_korisnik_azil.setText(data[0].getDatum_izgubljen());
+                chip_nestalipsi_korisnik_azil.setText(getDate(data[0].getDatum_izgubljen()));
                 napomena_nestalipsi_korisnik_azil_komentar.setText(data[0].getNapomena());
                 if(data[0].getUrl_slike()!=null) {
                     slika_nestalipsi_korisnik_azil.setVisibility(View.VISIBLE);
@@ -172,5 +174,16 @@ public class komentari_korisnik_azil extends AppCompatActivity {
                 });
             }
         });
+    }
+    public String getDate(String vlaue) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.US);
+            Date date = dateFormat.parse(vlaue);
+            dateFormat = new SimpleDateFormat("dd.MM.yyyy.", Locale.US);
+            return dateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

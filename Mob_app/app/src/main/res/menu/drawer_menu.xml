@@ -21,6 +21,24 @@
         </menu>
     </item>
     <item android:title="Udomi psa">
+    <menu>
+        <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/report_adopt_dog_user"
+            android:icon="@drawable/ic_baseline_note_add_24"
+            android:title="Obrazac za udomljavanje psa" />
+        <item
+            android:id="@+id/user_reports_adoptdog"
+            android:icon="@drawable/ic_chat"
+            android:title="Oglasi korisnika" />
+        <item
+            android:id="@+id/shelter_reports_adoptdog"
+            android:icon="@drawable/ic_chat"
+            android:title="Oglasi azila" />
+        </group>
+    </menu>
+</item>
+    <item android:title="Udomi psa">
         <menu>
             <item android:id="@+id/nav_share"
                 android:icon="@drawable/ic_share"

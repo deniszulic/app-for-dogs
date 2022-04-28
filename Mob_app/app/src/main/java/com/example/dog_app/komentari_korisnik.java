@@ -22,11 +22,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -105,7 +107,7 @@ public class komentari_korisnik extends AppCompatActivity {
                 dlaka.setText(data[0].getDlaka());
                 pasmina.setText(data[0].getPasmina());
                 prezime.setText(data[0].getPrezime());
-                chip.setText(data[0].getDatum_izgubljen());
+                chip.setText(getDate(data[0].getDatum_izgubljen()));
                 postnum.setText(String.valueOf(data[0].getPostanski_broj()));
                 vet_lok.setText(data[0].getVet_lokacija());
                 spol.setText(data[0].getSpol());
@@ -186,5 +188,16 @@ public class komentari_korisnik extends AppCompatActivity {
                 });
             }
         });
+    }
+    public String getDate(String vlaue) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.US);
+            Date date = dateFormat.parse(vlaue);
+            dateFormat = new SimpleDateFormat("dd.MM.yyyy.", Locale.US);
+            return dateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
