@@ -88,6 +88,9 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
                 startActivity(i);
                 finish();
                 break;
+            case R.id.profile:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new profil()).commit();
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -24,6 +25,8 @@ public interface RetrofitInterface {
     Call<useradopteddogdata[]> getuseradopteddog();
     @GET("/getadopteddogsshelter")
     Call<shelteradopteddogdata[]> getshelteradopteddogs();
+    @GET("/changeuserdata/{email}")
+    Call<profildata[]> getdataprofile(@Path("email") String email);
     @POST("/register")
     Call<Void> postJson(@Body registerdata body);
     @POST("/login")
@@ -46,4 +49,8 @@ public interface RetrofitInterface {
     Call<Void> deleteuser(@Path("id") int id);
     @DELETE("deletecomment/{id}")
     Call<Void> deletecomment(@Path("id") int id);
+    @PATCH("/updatemydata/{id}")
+    Call<profildata[]> updatedata(@Path("id") int id, @Body profildata change);
+    @PATCH("/updatepass/{id}")
+    Call<passworddata[]> updatepassword(@Path("id") int id, @Body passworddata change);
 }
