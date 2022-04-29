@@ -34,44 +34,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView45"
+                    android:id="@+id/textView51"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.1"
-                    android:text="Ime vlasnika:"
+                    android:text="Grad:"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/ime_adoptdog_form_data"
+                    android:id="@+id/grad_adoptdog_form_data_shelter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Ime"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView47"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
-                    android:text="Prezime:"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/prezime_adoptdog_form_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Prezime"
+                    android:text="Grad"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -85,40 +64,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.1"
-                    android:text="Adresa:"
+                    android:text="Ulica:"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/adresa_adoptdog_form_data"
+                    android:id="@+id/adresa_adoptdog_form_data_shelter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Adresa"
+                    android:text="Ulica"
                     android:textSize="16sp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView51"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
-                    android:text="Grad:"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/grad_adoptdog_form_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Grad"
-                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -135,7 +91,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/postnum_adoptdog_form_data"
+                    android:id="@+id/postnum_adoptdog_form_data_shelter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -157,7 +113,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/imepsa_adoptdog_form_data"
+                    android:id="@+id/imepsa_adoptdog_form_data_shelter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -179,7 +135,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/kilaza_adoptdog_form_data"
+                    android:id="@+id/kilaza_adoptdog_form_data_shelter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -201,7 +157,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/pasmina_adoptdog_form_data"
+                    android:id="@+id/pasmina_adoptdog_form_data_shelter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -220,7 +176,7 @@
                 android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ime_adoptdog_form"
+                android:id="@+id/ime_adoptdog_form_shelter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -234,7 +190,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/prezime_adoptdog_form"
+                android:id="@+id/prezime_adoptdog_form_shelter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -248,7 +204,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/adresa_adoptdog_form"
+                android:id="@+id/adresa_adoptdog_form_shelter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -262,7 +218,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/grad_adoptdog_form"
+                android:id="@+id/grad_adoptdog_form_shelter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -275,7 +231,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/postnum_adoptdog_form"
+                android:id="@+id/postnum_adoptdog_form_shelter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -288,7 +244,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/kontakt_adoptdog_form"
+                android:id="@+id/kontakt_adoptdog_form_shelter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -301,7 +257,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/razlogprijave_adoptdog_form"
+                android:id="@+id/razlogprijave_adoptdog_form_shelter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -314,7 +270,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/send_adoptdog_form"
+                android:id="@+id/send_adoptdog_form_shelter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pošalji"

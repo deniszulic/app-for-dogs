@@ -75,6 +75,7 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new udomipsa_oglasi_korisnik()).commit();
                 break;
             case R.id.shelter_reports_adoptdog:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new udomipsa_oglasi_azil()).commit();
                 break;
             case R.id.nav_share:
                 Toast.makeText(this,"Share",Toast.LENGTH_SHORT).show();

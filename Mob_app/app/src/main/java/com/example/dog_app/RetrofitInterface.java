@@ -22,6 +22,8 @@ public interface RetrofitInterface {
     Call<Comments[]> getcomments(@Path("id") int id);
     @GET("/getadopteddogs")
     Call<useradopteddogdata[]> getuseradopteddog();
+    @GET("/getadopteddogsshelter")
+    Call<shelteradopteddogdata[]> getshelteradopteddogs();
     @POST("/register")
     Call<Void> postJson(@Body registerdata body);
     @POST("/login")
