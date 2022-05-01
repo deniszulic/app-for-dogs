@@ -27,6 +27,8 @@ public interface RetrofitInterface {
     Call<shelteradopteddogdata[]> getshelteradopteddogs();
     @GET("/changeuserdata/{email}")
     Call<profildata[]> getdataprofile(@Path("email") String email);
+    @GET("/getmymissingdogs/{email}")
+    Call<mymissingdogsdata[]> getmymissingdogs(@Path("email") String email);
     @POST("/register")
     Call<Void> postJson(@Body registerdata body);
     @POST("/login")
@@ -53,4 +55,6 @@ public interface RetrofitInterface {
     Call<profildata[]> updatedata(@Path("id") int id, @Body profildata change);
     @PATCH("/updatepass/{id}")
     Call<passworddata[]> updatepassword(@Path("id") int id, @Body passworddata change);
+    @PATCH("/updatemissingdog/{id}")
+    Call<updatemymissingdog[]> updatemymissingdog(@Path("id") int id, @Body updatemymissingdog change);
 }

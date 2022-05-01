@@ -128,12 +128,13 @@ public class profil extends Fragment {
                     public void onResponse(Call<passworddata[]> call, Response<passworddata[]> response) {
                         if(response.code()==200){
                             Toast.makeText(getActivity(),"Lozinka je uspješno ažurirana!",Toast.LENGTH_SHORT).show();
+                            lozinka_profil.getEditText().getText().clear();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<passworddata[]> call, Throwable t) {
-
+                        Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                     }
                 });
             }

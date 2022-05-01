@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.TimeZone;
+
 public class pocetni_zaslon_korisnik extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView email_header, tipkoisnika;
@@ -76,6 +78,9 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
                 break;
             case R.id.shelter_reports_adoptdog:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new udomipsa_oglasi_azil()).commit();
+                break;
+            case R.id.my_reports:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new mojioglasi_nestalipsi()).commit();
                 break;
             case R.id.nav_share:
                 Toast.makeText(this,"Share",Toast.LENGTH_SHORT).show();

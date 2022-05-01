@@ -38,6 +38,16 @@
         </group>
     </menu>
 </item>
+    <item android:title="Moji oglasi">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/my_reports"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Moji oglasi" />
+            </group>
+        </menu>
+    </item>
     <item android:title="Udomi psa">
         <menu>
             <item android:id="@+id/nav_share"
