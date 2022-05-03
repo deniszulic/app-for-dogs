@@ -25,12 +25,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+
 public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadapter.ViewHolder> {
     private static List<mymissingdogsdata> listItems;
     private Context context;
     private static int lid;
     private static String useremail, ime, prezime, adresa, grad, postnum, kontakt, imepsa, pasmina,
-            starost, vetlokacija, boja, dlaka, spol, napomena, url, prihvaceno;
+            starost, vetlokacija, boja, dlaka, spol, napomena, url, prihvaceno, napomena_azil;
     private static Date datumizgubljen;
     private static boolean aktivan;
     private static int change;
@@ -162,6 +164,17 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
                 FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
                 mydata_missingdog_dialog mymissingdogs=new mydata_missingdog_dialog();
                 mymissingdogs.show(manager, "mymissingdogs");
+            }
+        });
+        holder.azil_mymissingdogs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lid=listItem.getId();
+                prihvaceno=listItem.getPrihvaceno();
+                napomena_azil=listItem.getNapomena();
+                FragmentManager manager1 = ((AppCompatActivity)context).getSupportFragmentManager();
+                reporttoshelter_dialog dialog=new reporttoshelter_dialog();
+                dialog.show(manager1, "shelters");
             }
         });
     }
@@ -305,6 +318,14 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
     public static String getPrihvaceno() {
         return prihvaceno;
     }
+
+    public static String getNapomena_azil() {
+        return napomena_azil;
+    }
+
+//    public static void setAktivan(boolean aktivan) {
+//        mymissingdogsadapter.aktivan = aktivan;
+//    }
     //
 //    public static List<mymissingdogsdata> getListItems() {
 //        return listItems;

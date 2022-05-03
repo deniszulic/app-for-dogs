@@ -97,25 +97,6 @@ public class mojioglasi_nestalipsi extends Fragment {
         return v;
     }
 
-//    public static RecyclerView.Adapter getAdapter() {
-//        return adapter;
-//    }
-//
-//    public static void setAdapter(RecyclerView.Adapter adapter) {
-//        mojioglasi_nestalipsi.adapter = adapter;
-//    }
-//
-//    public static RecyclerView getRecyclerView() {
-//        return recyclerView;
-//    }
-
-//    public static List<mymissingdogsdata> getListItems() {
-//        return listItems;
-//    }
-
-//    public static void setListItems(List<mymissingdogsdata> listItems) {
-//        mojioglasi_nestalipsi.listItems = listItems;
-//    }
     public static void setListItems(int change, mymissingdogsdata a) {
         listItems.set(change, a);
         adapter.notifyItemChanged(change);

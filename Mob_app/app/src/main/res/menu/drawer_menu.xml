@@ -44,7 +44,11 @@
                 <item
                     android:id="@+id/my_reports"
                     android:icon="@drawable/ic_baseline_article_24"
-                    android:title="Moji oglasi" />
+                    android:title="Nestali psi" />
+                <item
+                    android:id="@+id/my_reports_adoptdog"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Udomljeni psi" />
             </group>
         </menu>
     </item>

@@ -162,8 +162,8 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
 
                 retrofitInterface = retrofit.create(RetrofitInterface.class);
                 int radioid1 = radioGroup.getCheckedRadioButtonId();
-                radioButton = view.findViewById(radioid1);
-//                if(radioButton.getText().toString().equals("Aktivan oglas")){
+                radioButton = radioGroup.findViewById(radioid1);
+                if(radioButton.getText().toString().equals("Aktivan oglas")){
                     updatemymissingdog updatedata= new updatemymissingdog(
                             ime_mydata_missingdog.getEditText().getText().toString(),
                             prezime_mydata_missingdog.getEditText().getText().toString(),
@@ -186,7 +186,6 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updatemymissingdog[]> call, Response<updatemymissingdog[]> response) {
                             if(response.code()==200){
-                                System.out.println("update");
 //                                Call<mymissingdogsdata[]> data = retrofitInterface.getmymissingdogs(getemail);
 //
 //                                listItems=new ArrayList<>();
@@ -227,6 +226,7 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
                                         mymissingdogsadapter.getPrihvaceno(),
                                         napomena_mydata_missingdog.getEditText().getText().toString());
                                 mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
+//                                mymissingdogsadapter.setAktivan(true);
                             }
                         }
 
@@ -236,7 +236,60 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
                         }
                     });
                 }
-//            }
+                else {
+                    updatemymissingdog updatedata= new updatemymissingdog(
+                            ime_mydata_missingdog.getEditText().getText().toString(),
+                            prezime_mydata_missingdog.getEditText().getText().toString(),
+                            adresa_mydata_missingdog.getEditText().getText().toString(),
+                            Integer.parseInt(kontakt_mydata_missingdog.getEditText().getText().toString()),
+                            grad_mydata_missingdog.getEditText().getText().toString(),
+                            Integer.parseInt(postnum_mydata_missingdog.getEditText().getText().toString()),
+                            boja_mydata_missingdog.getEditText().getText().toString(),
+                            Integer.parseInt(starost_mydata_missingdog.getEditText().getText().toString()),
+                            dlaka_mydata_missingdog.getText().toString(),
+                            vetlokacija_mydata_missingdog.getEditText().getText().toString(),
+                            imepsa_mydata_missingdog.getEditText().getText().toString(),
+                            spol_mydata_missingdog.getText().toString(),
+                            pasmina_mydata_missingdog.getEditText().getText().toString(),
+                            napomena_mydata_missingdog.getEditText().getText().toString(),
+                            datum, false);
+                    Call<updatemymissingdog[]> call= retrofitInterface.updatemymissingdog(mymissingdogsadapter.getid(), updatedata);
+
+                    call.enqueue(new Callback<updatemymissingdog[]>() {
+                        @Override
+                        public void onResponse(Call<updatemymissingdog[]> call, Response<updatemymissingdog[]> response) {
+                            if(response.code()==200){
+                                mymissingdogsdata a= new mymissingdogsdata(mymissingdogsadapter.getid(),
+                                        ime_mydata_missingdog.getEditText().getText().toString(),
+                                        prezime_mydata_missingdog.getEditText().getText().toString(),
+                                        adresa_mydata_missingdog.getEditText().getText().toString(),
+                                        kontakt_mydata_missingdog.getEditText().getText().toString(),
+                                        grad_mydata_missingdog.getEditText().getText().toString(),
+                                        postnum_mydata_missingdog.getEditText().getText().toString(),
+                                        boja_mydata_missingdog.getEditText().getText().toString(),
+                                        starost_mydata_missingdog.getEditText().getText().toString(),
+                                        dlaka_mydata_missingdog.getText().toString(),
+                                        vetlokacija_mydata_missingdog.getEditText().getText().toString(),
+                                        imepsa_mydata_missingdog.getEditText().getText().toString(),
+                                        spol_mydata_missingdog.getText().toString(), datum,
+                                        napomena_mydata_missingdog.getEditText().getText().toString(),
+                                        mymissingdogsadapter.getUrl(),
+                                        mymissingdogsadapter.getPostavljeno(),
+                                        pasmina_mydata_missingdog.getEditText().getText().toString(), true,
+                                        mymissingdogsadapter.getPrihvaceno(),
+                                        napomena_mydata_missingdog.getEditText().getText().toString());
+                                mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
+//                                mymissingdogsadapter.setAktivan(false);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<updatemymissingdog[]> call, Throwable t) {
+
+                        }
+                    });
+                }
+            }
         });
         return view;
     }
