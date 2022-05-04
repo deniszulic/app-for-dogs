@@ -85,7 +85,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.vet_lok.setText(listItem.getVet_lokacija());
         holder.spol.setText(listItem.getSpol());
         holder.starost.setText(String.valueOf(listItem.getStarost()));
-        holder.chip.setText(getDate(listItem.getDatum_izgubljen()));
+//        holder.chip.setText(getDate(listItem.getDatum_izgubljen()));
+        Date date1 = new Date(String.valueOf(listItem.getDatum_izgubljen()));
+        holder.chip.setText(format.format(date1));
         if(listItem.getUrl_slike()!=null) {
             holder.slika.setVisibility(View.VISIBLE);
             Picasso.get().load(listItem.getUrl_slike()).into(holder.slika);

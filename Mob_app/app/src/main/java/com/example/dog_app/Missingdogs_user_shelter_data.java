@@ -1,12 +1,15 @@
 package com.example.dog_app;
 
+import java.util.Date;
+
 public class Missingdogs_user_shelter_data {
     private int id;
-    private String telefonskibr, boja, starost, dlaka, ime_psa, spol, datum_izgubljen, napomena,
+    private String telefonskibr, boja, starost, dlaka, ime_psa, spol, napomena,
             url_slike, pasmina, email, naziv, grad, postanski_broj, ulica, kucnibr;
     private long postavljeno;
+    private Date datum_izgubljen;
 
-    public Missingdogs_user_shelter_data(int id, String telefonskibr, String boja, String starost, String dlaka, String ime_psa, String spol, String datum_izgubljen, String napomena, String url_slike, long postavljeno, String pasmina, String email, String naziv, String grad, String postanski_broj, String ulica, String kucnibr){
+    public Missingdogs_user_shelter_data(int id, String telefonskibr, String boja, String starost, String dlaka, String ime_psa, String spol, Date datum_izgubljen, String napomena, String url_slike, long postavljeno, String pasmina, String email, String naziv, String grad, String postanski_broj, String ulica, String kucnibr){
         this.id = id;
         this.telefonskibr = telefonskibr;
         this.boja = boja;
@@ -55,7 +58,7 @@ public class Missingdogs_user_shelter_data {
         return spol;
     }
 
-    public String getDatum_izgubljen() {
+    public Date getDatum_izgubljen() {
         return datum_izgubljen;
     }
 

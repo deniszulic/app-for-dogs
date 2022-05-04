@@ -1,10 +1,13 @@
 package com.example.dog_app;
 
+import java.util.Date;
+
 public class ListItem {
     private String ime, prezime, adresa, telefonskibr, grad, boja, dlaka, vet_lokacija, ime_psa,
-    spol, datum_izgubljen, napomena, url_slike, pasmina, email;
+    spol, napomena, url_slike, pasmina, email;
     private long postavljeno;
     private int id, postanski_broj, starost;
+    private Date datum_izgubljen;
 
     public String getIme() {
         return ime;
@@ -46,7 +49,7 @@ public class ListItem {
         return spol;
     }
 
-    public String getDatum_izgubljen() {
+    public Date getDatum_izgubljen() {
         return datum_izgubljen;
     }
 
@@ -84,7 +87,7 @@ public class ListItem {
 
     public ListItem(int id, String ime, String prezime, String adresa, String telefonskibr,
                     String grad, int postanski_broj, String boja, int starost, String dlaka,
-                    String vet_lokacija, String ime_psa, String spol, String datum_izgubljen,
+                    String vet_lokacija, String ime_psa, String spol, Date datum_izgubljen,
                     String napomena, String url_slike, long postavljeno, String pasmina, String email){
         this.id=id;
         this.ime=ime;
