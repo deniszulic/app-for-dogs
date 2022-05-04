@@ -82,6 +82,9 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
             case R.id.my_reports:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new mojioglasi_nestalipsi()).commit();
                 break;
+            case R.id.my_reports_adoptdog:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new mojioglasi_udomipsa()).commit();
+                break;
             case R.id.nav_share:
                 Toast.makeText(this,"Share",Toast.LENGTH_SHORT).show();
                 break;

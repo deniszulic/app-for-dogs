@@ -25,36 +25,34 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import retrofit2.Call;
-
-public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadapter.ViewHolder> {
-    private static List<mymissingdogsdata> listItems;
+public class myadoptdog_user_adapter extends RecyclerView.Adapter<myadoptdog_user_adapter.ViewHolder>{
+    private static List<myadopteddogsdata> listItems;
     private Context context;
     private static int lid;
     private static String useremail, ime, prezime, adresa, grad, postnum, kontakt, imepsa, pasmina,
-            starost, vetlokacija, boja, dlaka, spol, napomena, url, prihvaceno, napomena_azil;
-    private static Date datumizgubljen;
+            starost, vetlokacija, boja, dlaka, spol, napomena, url, prihvaceno, napomena_azil, kilaza, kastrat, opasnost;
+//    private static Date datumizgubljen;
     private static boolean aktivan;
     private static int change;
     private static long postavljeno;
-//    private static mymissingdogsadapter.ViewHolder hold;
+//    private static myadoptdog_user_adapter.ViewHolder hold;
 
-    public mymissingdogsadapter(List<mymissingdogsdata> listItems, Context context) {
+    public myadoptdog_user_adapter(List<myadopteddogsdata> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
 
     @Override
-    public mymissingdogsadapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public myadoptdog_user_adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.mymissingdogs, parent, false);
-        return new mymissingdogsadapter.ViewHolder(v);
+                .inflate(R.layout.myadopteddogs, parent, false);
+        return new myadoptdog_user_adapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(mymissingdogsadapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(myadoptdog_user_adapter.ViewHolder holder, int position) {
 
-        final mymissingdogsdata listItem = listItems.get(position);
+        final myadopteddogsdata listItem = listItems.get(position);
 //        change= holder.getAdapterPosition();
 
 //        holder.email_admin.setText(listItem.getEmail());
@@ -76,8 +74,11 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
         holder.vet_lok.setText(listItem.getVet_lokacija());
         holder.spol.setText(listItem.getSpol());
         holder.starost.setText(listItem.getStarost());
-        Date date1 = new Date(String.valueOf(listItem.getDatum_izgubljen()));
-        holder.chip.setText(format.format(date1));
+        holder.kilaza.setText(listItem.getKilaza());
+        holder.kastrat.setText(listItem.getKastrat());
+        holder.opasnost.setText(listItem.getOpasnost());
+                        //        Date date1 = new Date(String.valueOf(listItem.getDatum_izgubljen()));
+                        //        holder.chip.setText(format.format(date1));
         if(listItem.getUrl_slike()!=null) {
             holder.slika.setVisibility(View.VISIBLE);
             Picasso.get().load(listItem.getUrl_slike()).into(holder.slika);
@@ -85,21 +86,21 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
         else{
             holder.slika.setVisibility(View.GONE);
         }
-        holder.komentiraj_mymissingdogs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                SharedPreferences sp1=mymissingdogsadapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-//                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-                //useremail="";
-                //Missingdogs_user_shelter_adapter.setEmail_azila("");
-                //useremail=listItem.getEmail();
-                Intent i=new Intent(context, komentari_korisnik.class);
-                i.putExtra("id", listItem.getId());
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(i);
-            }
-        });
-        SharedPreferences sp1=mymissingdogsadapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+//        holder.komentiraj_mymissingdogs.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                SharedPreferences sp1=myadoptdog_user_adapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+////                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+//                //useremail="";
+//                //Missingdogs_user_shelter_adapter.setEmail_azila("");
+//                //useremail=listItem.getEmail();
+//                Intent i=new Intent(context, komentari_korisnik.class);
+//                i.putExtra("id", listItem.getId());
+//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                context.startActivity(i);
+//            }
+//        });
+        SharedPreferences sp1=myadoptdog_user_adapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
 //        if(!getemail.equals(listItem.getEmail())){
 //            holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.VISIBLE);
@@ -114,7 +115,7 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
 //                dialog.show(manager, "dogfind_dialog");
 //            }
 //        });
-        holder.promjenapodataka_mymissingdogs.setOnClickListener(new View.OnClickListener() {
+        holder.promjenapodataka_myadopteddogs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 change=holder.getAdapterPosition();
@@ -123,93 +124,93 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
                 prihvaceno=null;
                 prihvaceno=listItem.getPrihvaceno();
                 lid=listItem.getId();
-                ime="";
                 ime=listItem.getIme();
-                prezime="";
                 prezime=listItem.getPrezime();
-                adresa="";
                 adresa=listItem.getAdresa();
-                grad="";
                 grad=listItem.getGrad();
-                postnum="";
                 postnum=listItem.getPostanski_broj();
-                kontakt="";
                 kontakt=listItem.getTelefonskibr();
-                imepsa="";
                 imepsa=listItem.getIme_psa();
-                pasmina="";
                 pasmina=listItem.getPasmina();
-                starost="";
                 starost=listItem.getStarost();
-                vetlokacija="";
                 vetlokacija=listItem.getVet_lokacija();
-                boja="";
                 boja=listItem.getBoja();
-                datumizgubljen=null;
-                //Date date2= new Date(String.valueOf(listItem.getDatum_izgubljen()));
-                //datumizgubljen=listItem.getDatum_izgubljen();
-                datumizgubljen=listItem.getDatum_izgubljen();
-//                System.out.println("aaaa:"+datumizgubljen);
-                dlaka="";
                 dlaka=listItem.getDlaka();
-                spol="";
                 spol=listItem.getSpol();
-                napomena="";
-                napomena=listItem.getNestanak_napomena();
                 postavljeno=listItem.getPostavljeno();
-//                Date date = new Date(listItem.getPostavljeno());
-//                DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
-//                postavljeno=format.format(date);
                 aktivan=listItem.isAktivan();
+                napomena_azil=listItem.getAzil_udomljavanje_napomena();
+                kilaza=listItem.getKilaza();
+                kastrat=listItem.getKastrat();
+                opasnost=listItem.getOpasnost();
+                kilaza=listItem.getKilaza();
+                kastrat=listItem.getKastrat();
+                opasnost=listItem.getOpasnost();
+                napomena=listItem.getNapomena();
                 FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
-                mydata_missingdog_dialog mymissingdogs=new mydata_missingdog_dialog();
-                mymissingdogs.show(manager, "mymissingdogs");
+                mydata_adopteddog_dialog myadopteddogs=new mydata_adopteddog_dialog();
+                myadopteddogs.show(manager, "myadopteddogs");
             }
         });
-        holder.azil_mymissingdogs.setOnClickListener(new View.OnClickListener() {
+        holder.azil_myadopteddogs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lid=listItem.getId();
-                prihvaceno=listItem.getPrihvaceno();
-                napomena_azil=listItem.getNapomena();
+//                lid=listItem.getId();
+//                prihvaceno=listItem.getPrihvaceno();
+//                napomena_azil=listItem.getNapomena();
+//                change=holder.getAdapterPosition();
+//                url=null;
+//                url=listItem.getUrl_slike();
+//                ime=listItem.getIme();
+//                prezime=listItem.getPrezime();
+//                adresa=listItem.getAdresa();
+//                grad=listItem.getGrad();
+//                postnum=listItem.getPostanski_broj();
+//                kontakt=listItem.getTelefonskibr();
+//                imepsa=listItem.getIme_psa();
+//                pasmina=listItem.getPasmina();
+//                starost=listItem.getStarost();
+//                vetlokacija=listItem.getVet_lokacija();
+//                boja=listItem.getBoja();
+//                dlaka=listItem.getDlaka();
+//                spol=listItem.getSpol();
+//                postavljeno=listItem.getPostavljeno();
+//                aktivan=listItem.isAktivan();
+//                kilaza=listItem.getKilaza();
+//                kastrat=listItem.getKastrat();
+//                opasnost=listItem.getOpasnost();
 
                 change=holder.getAdapterPosition();
                 url=null;
                 url=listItem.getUrl_slike();
-                ime="";
+                prihvaceno=null;
+                prihvaceno=listItem.getPrihvaceno();
+                lid=listItem.getId();
                 ime=listItem.getIme();
-                prezime="";
                 prezime=listItem.getPrezime();
-                adresa="";
                 adresa=listItem.getAdresa();
-                grad="";
                 grad=listItem.getGrad();
-                postnum="";
                 postnum=listItem.getPostanski_broj();
-                kontakt="";
                 kontakt=listItem.getTelefonskibr();
-                imepsa="";
                 imepsa=listItem.getIme_psa();
-                pasmina="";
                 pasmina=listItem.getPasmina();
-                starost="";
                 starost=listItem.getStarost();
-                vetlokacija="";
                 vetlokacija=listItem.getVet_lokacija();
-                boja="";
                 boja=listItem.getBoja();
-                datumizgubljen=null;
-                datumizgubljen=listItem.getDatum_izgubljen();
-                dlaka="";
                 dlaka=listItem.getDlaka();
-                spol="";
                 spol=listItem.getSpol();
-                napomena="";
-                napomena=listItem.getNestanak_napomena();
                 postavljeno=listItem.getPostavljeno();
                 aktivan=listItem.isAktivan();
+                napomena_azil=listItem.getAzil_udomljavanje_napomena();
+                kilaza=listItem.getKilaza();
+                kastrat=listItem.getKastrat();
+                opasnost=listItem.getOpasnost();
+                kilaza=listItem.getKilaza();
+                kastrat=listItem.getKastrat();
+                opasnost=listItem.getOpasnost();
+                napomena=listItem.getNapomena();
                 FragmentManager manager1 = ((AppCompatActivity)context).getSupportFragmentManager();
-                reporttoshelter_dialog dialog=new reporttoshelter_dialog();
+                reporttoshelter_dialog_adoptdog dialog=new reporttoshelter_dialog_adoptdog();
                 dialog.show(manager1, "shelters");
             }
         });
@@ -222,36 +223,35 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView id;
-        public TextView ime, imepsa, postavljeno, prezime, adresa, telbr, boja, dlaka, pasmina, grad, postnum, vet_lok, spol, starost;
+        public TextView ime, imepsa, postavljeno, prezime, adresa, telbr, boja, dlaka, pasmina, grad,
+                postnum, vet_lok, spol, starost, kilaza, kastrat, opasnost;
         public LinearLayout podaci;
         public ImageView slika;
-        private Chip chip;
-        public Button komentiraj_mymissingdogs, promjenapodataka_mymissingdogs, azil_mymissingdogs;
+        public Button promjenapodataka_myadopteddogs, azil_myadopteddogs;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ime=(TextView) itemView.findViewById(R.id.ime_mymissingdogs);
-            imepsa=(TextView) itemView.findViewById(R.id.imepsa_mymissingdogs);
-
-            postavljeno=(TextView) itemView.findViewById(R.id.postavljeno_mymissingdogs);
-            podaci = (LinearLayout) itemView.findViewById(R.id.podaci_mymissingdogs);
-            slika=(ImageView) itemView.findViewById(R.id.slika_mymissingdogs);
-
-            adresa=(TextView) itemView.findViewById(R.id.adresa_mymissingdogs);
-            telbr=(TextView) itemView.findViewById(R.id.telbr_mymissingdogs);
-            boja=(TextView) itemView.findViewById(R.id.boja_mymissingdogs);
-            dlaka=(TextView) itemView.findViewById(R.id.dlaka_mymissingdogs);
-            pasmina=(TextView) itemView.findViewById(R.id.pasmina_mymissingdogs);
-            prezime=(TextView) itemView.findViewById(R.id.prezime_mymissingdogs);
-            chip=(Chip) itemView.findViewById(R.id.chip_mymissingdogs);
-            postnum=(TextView) itemView.findViewById(R.id.postnum_mymissingdogs);
-            vet_lok=(TextView) itemView.findViewById(R.id.vet_lokacija_mymissingdogs);
-            spol=(TextView) itemView.findViewById(R.id.spol_mymissingdogs);
-            starost=(TextView) itemView.findViewById(R.id.starost_mymissingdogs);
-            grad=(TextView) itemView.findViewById(R.id.grad_mymissingdogs);
-            komentiraj_mymissingdogs=(Button) itemView.findViewById(R.id.komentiraj_mymissingdogs);
-            azil_mymissingdogs=(Button) itemView.findViewById(R.id.azil_mymissingdogs);
-            promjenapodataka_mymissingdogs=(Button) itemView.findViewById(R.id.promjenapodataka_mymissingdogs);
+            ime=(TextView) itemView.findViewById(R.id.ime_myadopteddogs);
+            imepsa=(TextView) itemView.findViewById(R.id.imepsa_myadopteddogs);
+            postavljeno=(TextView) itemView.findViewById(R.id.postavljeno_myadopteddogs);
+            podaci = (LinearLayout) itemView.findViewById(R.id.podaci_myadopteddogs);
+            slika=(ImageView) itemView.findViewById(R.id.slika_myadopteddogs);
+            adresa=(TextView) itemView.findViewById(R.id.adresa_myadopteddogs);
+            telbr=(TextView) itemView.findViewById(R.id.telbr_myadopteddogs);
+            boja=(TextView) itemView.findViewById(R.id.boja_myadopteddogs);
+            dlaka=(TextView) itemView.findViewById(R.id.dlaka_myadopteddogs);
+            pasmina=(TextView) itemView.findViewById(R.id.pasmina_myadopteddogs);
+            prezime=(TextView) itemView.findViewById(R.id.prezime_myadopteddogs);
+            postnum=(TextView) itemView.findViewById(R.id.postnum_myadopteddogs);
+            vet_lok=(TextView) itemView.findViewById(R.id.vet_lokacija_myadopteddogs);
+            spol=(TextView) itemView.findViewById(R.id.spol_myadopteddogs);
+            starost=(TextView) itemView.findViewById(R.id.starost_myadopteddogs);
+            grad=(TextView) itemView.findViewById(R.id.grad_myadopteddogs);
+            azil_myadopteddogs=(Button) itemView.findViewById(R.id.azil_myadopteddogs);
+            promjenapodataka_myadopteddogs=(Button) itemView.findViewById(R.id.promjenapodataka_myadopteddogs);
+            kilaza=(TextView) itemView.findViewById(R.id.kilaza_myadopteddogs);
+            kastrat=(TextView) itemView.findViewById(R.id.kastrat_myadopteddogs);
+            opasnost=(TextView) itemView.findViewById(R.id.opasnost_myadopteddogs);
         }
     }
     public static int getid(){return lid;}
@@ -261,7 +261,7 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
     }
 
     public static void setUseremail(String useremail) {
-        mymissingdogsadapter.useremail = useremail;
+        myadoptdog_user_adapter.useremail = useremail;
     }
     public String getDate(String vlaue) {
         try {
@@ -319,9 +319,9 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
         return boja;
     }
 
-    public static Date getDatumizgubljen() {
-        return datumizgubljen;
-    }
+//    public static Date getDatumizgubljen() {
+//        return datumizgubljen;
+//    }
 
     public static String getDlaka() {
         return dlaka;
@@ -359,11 +359,16 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
         return napomena_azil;
     }
 
-//    public static void setAktivan(boolean aktivan) {
-//        mymissingdogsadapter.aktivan = aktivan;
-//    }
-    //
-//    public static List<mymissingdogsdata> getListItems() {
-//        return listItems;
-//    }
+    public static String getKilaza() {
+        return kilaza;
+    }
+
+
+    public static String getKastrat() {
+        return kastrat;
+    }
+
+    public static String getOpasnost() {
+        return opasnost;
+    }
 }

@@ -224,7 +224,7 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
                                         mymissingdogsadapter.getPostavljeno(),
                                         pasmina_mydata_missingdog.getEditText().getText().toString(), true,
                                         mymissingdogsadapter.getPrihvaceno(),
-                                        napomena_mydata_missingdog.getEditText().getText().toString());
+                                        mymissingdogsadapter.getNapomena_azil());
                                 mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
 //                                mymissingdogsadapter.setAktivan(true);
                             }
@@ -275,9 +275,9 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
                                         napomena_mydata_missingdog.getEditText().getText().toString(),
                                         mymissingdogsadapter.getUrl(),
                                         mymissingdogsadapter.getPostavljeno(),
-                                        pasmina_mydata_missingdog.getEditText().getText().toString(), true,
+                                        pasmina_mydata_missingdog.getEditText().getText().toString(), false,
                                         mymissingdogsadapter.getPrihvaceno(),
-                                        napomena_mydata_missingdog.getEditText().getText().toString());
+                                        mymissingdogsadapter.getNapomena_azil());
                                 mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
 //                                mymissingdogsadapter.setAktivan(false);
                             }

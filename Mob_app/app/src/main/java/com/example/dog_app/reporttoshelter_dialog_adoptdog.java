@@ -2,7 +2,6 @@ package com.example.dog_app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,25 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +30,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class reporttoshelter_dialog extends BottomSheetDialogFragment {
+public class reporttoshelter_dialog_adoptdog extends BottomSheetDialogFragment {
     private AutoCompleteTextView azili_reporttoshelter;
     private Button sendreqtoshelter;
     private RadioButton radio_button_reporttoshelter1, radio_button_reporttoshelter2;
@@ -55,15 +46,15 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.reporttoshelter, container, false);
-        azili_reporttoshelter=(AutoCompleteTextView) view.findViewById(R.id.azili_reporttoshelter);
-        sendreqtoshelter=(Button) view.findViewById(R.id.sendreqtoshelter);
-        radio_button_reporttoshelter1=(RadioButton) view.findViewById(R.id.radio_button_reporttoshelter1);
-        radio_button_reporttoshelter2=(RadioButton) view.findViewById(R.id.radio_button_reporttoshelter2);
-        razlog_reporttoshelter=(TextInputLayout) view.findViewById(R.id.razlog_reporttoshelter);
-        textView48=(TextView) view.findViewById(R.id.textView48);
-        line_reporttoshelter=(View) view.findViewById(R.id.line_reporttoshelter);
-        dropdown_reporttoshelter=(TextInputLayout) view.findViewById(R.id.dropdown_reporttoshelter);
+        View view = inflater.inflate(R.layout.reporttoshelter_dialog, container, false);
+        azili_reporttoshelter=(AutoCompleteTextView) view.findViewById(R.id.azili_reporttoshelter_adoptdog);
+        sendreqtoshelter=(Button) view.findViewById(R.id.sendreqtoshelter_adoptdog);
+        radio_button_reporttoshelter1=(RadioButton) view.findViewById(R.id.radio_button_reporttoshelter_adoptdog1);
+        radio_button_reporttoshelter2=(RadioButton) view.findViewById(R.id.radio_button_reporttoshelter_adoptdog2);
+        razlog_reporttoshelter=(TextInputLayout) view.findViewById(R.id.razlog_reporttoshelter_adoptdog);
+        textView48=(TextView) view.findViewById(R.id.textView_48);
+        line_reporttoshelter=(View) view.findViewById(R.id.line_reporttoshelter_adoptdog);
+        dropdown_reporttoshelter=(TextInputLayout) view.findViewById(R.id.dropdown_reporttoshelter_adoptdog);
 
         SharedPreferences sp1=getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
 
@@ -73,19 +64,19 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
                 .build();
 
         retrofitInterface = retrofit.create(RetrofitInterface.class);
-        if(mymissingdogsadapter.getNapomena_azil()!=null) {
-            razlog_reporttoshelter.getEditText().setText(mymissingdogsadapter.getNapomena_azil());
+        if(myadoptdog_user_adapter.getNapomena_azil()!=null) {
+            razlog_reporttoshelter.getEditText().setText(myadoptdog_user_adapter.getNapomena_azil());
         }
-        if(mymissingdogsadapter.getPrihvaceno()!=null) {
-            if (mymissingdogsadapter.getPrihvaceno().equals("true")) {
+        if(myadoptdog_user_adapter.getPrihvaceno()!=null) {
+            if (myadoptdog_user_adapter.getPrihvaceno().equals("true")) {
                 radio_button_reporttoshelter1.setChecked(true);
             }
-            if (mymissingdogsadapter.getPrihvaceno().equals("false")) {
+            if (myadoptdog_user_adapter.getPrihvaceno().equals("false")) {
                 radio_button_reporttoshelter2.setChecked(true);
             }
         }
 
-        if(mymissingdogsadapter.getPrihvaceno()!=null){
+        if(myadoptdog_user_adapter.getPrihvaceno()!=null){
             textView48.setVisibility(View.GONE);
             dropdown_reporttoshelter.setVisibility(View.GONE);
             sendreqtoshelter.setVisibility(View.GONE);
@@ -100,10 +91,6 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
                 if(response.code()==200) {
                     shelters[] data = response.body();
                     listItems.addAll(Arrays.asList(data));
-////                String[] dlaka = {"Kratka", "Duga"};
-////                ArrayAdapter arrayAdapterdlaka = new ArrayAdapter(getActivity(), R.layout.dropdown_item, shelter);
-//                azili_reporttoshelter.setText(shelter.getNaziv()+","+shelter.getGrad(),false);
-////                azili_reporttoshelter.setAdapter(arrayAdapterdlaka);
                     String[] sh = new String[listItems.size()];
                     for (int i = 0; i < listItems.size(); i++) {
                         sh[i] = listItems.get(i).getNaziv() + "," + listItems.get(i).getGrad();
@@ -127,8 +114,8 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
 //                        System.out.println("id:"+listItems.get(i).getId());
                         Date date = new Date();
                         long timestamp = date.getTime();
-                        sendreqtoshelter data= new sendreqtoshelter("obrada", mymissingdogsadapter.getid(), listItems.get(i).getId(), timestamp);
-                        Call<Void> sendreq=retrofitInterface.sendreqshelter(data);
+                        sendreqtoshelter_adoptdog data= new sendreqtoshelter_adoptdog(myadoptdog_user_adapter.getid(), listItems.get(i).getId(), timestamp, "obrada");
+                        Call<Void> sendreq=retrofitInterface.sendreqadopt(data);
                         sendreq.enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -138,29 +125,31 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
                                     dropdown_reporttoshelter.setVisibility(View.GONE);
                                     sendreqtoshelter.setVisibility(View.GONE);
                                     line_reporttoshelter.setVisibility(View.GONE);
-
-                                    mymissingdogsdata a = new mymissingdogsdata(mymissingdogsadapter.getid(),
-                                            mymissingdogsadapter.getIme(),
-                                            mymissingdogsadapter.getPrezime(),
-                                            mymissingdogsadapter.getAdresa(),
-                                            mymissingdogsadapter.getKontakt(),
-                                            mymissingdogsadapter.getGrad(),
-                                            mymissingdogsadapter.getPostnum(),
-                                            mymissingdogsadapter.getBoja(),
-                                            mymissingdogsadapter.getStarost(),
-                                            mymissingdogsadapter.getDlaka(),
-                                            mymissingdogsadapter.getVetlokacija(),
-                                            mymissingdogsadapter.getImepsa(),
-                                            mymissingdogsadapter.getSpol(),
-                                            mymissingdogsadapter.getDatumizgubljen(),
-                                            mymissingdogsadapter.getNapomena(),
-                                            mymissingdogsadapter.getUrl(),
-                                            mymissingdogsadapter.getPostavljeno(),
-                                            mymissingdogsadapter.getPasmina(),
-                                            mymissingdogsadapter.isAktivan(),
-                                            "obrada",
-                                            mymissingdogsadapter.getNapomena_azil());
-                                    mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
+                                    myadopteddogsdata a = new myadopteddogsdata(myadoptdog_user_adapter.getid(),
+                                            myadoptdog_user_adapter.getIme(),
+                                            myadoptdog_user_adapter.getPrezime(),
+                                            myadoptdog_user_adapter.getAdresa(),
+                                            myadoptdog_user_adapter.getKontakt(),
+                                            myadoptdog_user_adapter.getGrad(),
+                                            myadoptdog_user_adapter.getPostnum(),
+                                            myadoptdog_user_adapter.getBoja(),
+                                            myadoptdog_user_adapter.getStarost(),
+                                            myadoptdog_user_adapter.getDlaka(),
+                                            myadoptdog_user_adapter.getVetlokacija(),
+                                            myadoptdog_user_adapter.getImepsa(),
+                                            myadoptdog_user_adapter.getSpol(),
+                                            myadoptdog_user_adapter.getNapomena(),
+                                            myadoptdog_user_adapter.getUrl(),
+                                            myadoptdog_user_adapter.getPostavljeno(),
+                                            myadoptdog_user_adapter.getPasmina(),
+                                            myadoptdog_user_adapter.getKilaza(),
+                                            myadoptdog_user_adapter.getKastrat(),
+                                            myadoptdog_user_adapter.getOpasnost(),
+                                            myadoptdog_user_adapter.isAktivan(),
+                                            myadoptdog_user_adapter.getNapomena_azil(),
+                                            "obrada"
+                                            );
+                                    mojioglasi_udomipsa.setListItems(myadoptdog_user_adapter.getChange(), a);
                                 }
                             }
 
