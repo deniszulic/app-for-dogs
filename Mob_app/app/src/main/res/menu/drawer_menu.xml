@@ -52,6 +52,20 @@
             </group>
         </menu>
     </item>
+    <item android:title="Moje prijave">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/my_missingdogs_reports"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Nestali psi" />
+                <item
+                    android:id="@+id/my_missingdogs_adoptdog"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Udomljeni psi" />
+            </group>
+        </menu>
+    </item>
     <item android:title="Udomi psa">
         <menu>
             <item android:id="@+id/nav_share"

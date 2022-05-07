@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content">-->
+
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/horizontalView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:scrollbars="horizontal|vertical">-->
+
+<!--        <TableLayout-->
+<!--            android:id="@+id/tablelayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <TableRow-->
+<!--                android:layout_width="0dp"-->
+<!--                android:background="#292b2c">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/ime_missingdog_adapter"-->
+
+<!--                    android:layout_column="0"-->
+<!--                    android:layout_margin="1dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="10sp"-->
+<!--                    android:text="Ime"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/prezime_missingdog_adapter"-->
+
+<!--                    android:layout_column="1"-->
+<!--                    android:layout_margin="1dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="10sp"-->
+<!--                    android:text="Prezime"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/adresapronalaska_missingdog_adapter"-->
+
+<!--                    android:layout_column="2"-->
+<!--                    android:layout_margin="1dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="10sp"-->
+<!--                    android:text="Adresa pronalaksa"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/adresapreuzimanja_missingdog_adapter"-->
+
+<!--                    android:layout_column="3"-->
+<!--                    android:layout_margin="1dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="10sp"-->
+<!--                    android:text="Adresa za preuzimanje psa"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/napomena_missingdog_adapter"-->
+
+<!--                    android:layout_column="4"-->
+<!--                    android:layout_margin="1dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="10sp"-->
+<!--                    android:text="Napomena"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/kontakt_missingdog_adapter"-->
+
+<!--                    android:layout_column="5"-->
+<!--                    android:layout_margin="1dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="10sp"-->
+<!--                    android:text="Kontakt"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/postavljeno_missingdog_adapter"-->
+
+<!--                    android:layout_column="6"-->
+<!--                    android:layout_margin="1dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="10sp"-->
+<!--                    android:text="Postavljeno"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/more_missingdog_adapter"-->
+<!--                    android:layout_column="7"-->
+<!--                    android:layout_margin="1dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="10sp"-->
+<!--                    android:textAlignment="center"-->
+<!--                    app:icon="@drawable/ic_baseline_info_24" />-->
+
+<!--            </TableRow>-->
+<!--        </TableLayout>-->
+<!--    </HorizontalScrollView>-->
+<!--&lt;!&ndash;    </ScrollView>&ndash;&gt;-->
+<!--    &lt;!&ndash;        </HorizontalScrollView>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </ScrollView>&ndash;&gt;-->
+
+<!--</LinearLayout>-->
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#292b2c"
+                android:orientation="vertical">
+
+                <!-- Media -->
+
+                <LinearLayout
+                    android:id="@+id/podaci_myadopteddogs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Title, secondary and supporting text -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_View3_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="0.1"
+                            android:fontFamily="@font/bungee"
+                            android:text="Ime:"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/ime_missingdog_adapter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bungee"
+                            android:text="title"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_View69_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="0.1"
+                            android:fontFamily="@font/bungee"
+                            android:text="Prezime:"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/prezime_missingdog_adapter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bungee"
+                            android:text="title"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_View669_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:fontFamily="@font/bungee"
+                            android:text="Adresa pronalaska:"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/adresapronalaska_missingdog_adapter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bungee"
+                            android:text="title"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_View79_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:fontFamily="@font/bungee"
+                            android:text="Adresa preuzimanja:"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/adresapreuzimanja_missingdog_adapter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bungee"
+                            android:text="title"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_View19_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:fontFamily="@font/bungee"
+                            android:text="Napomena:"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/napomena_missingdog_adapter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/bungee"
+                        android:text="title"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_View29_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="0.1"
+                            android:fontFamily="@font/bungee"
+                            android:text="Kontakt:"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/kontakt_missingdog_adapter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bungee"
+                            android:text="title"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_View39_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="0.1"
+                            android:fontFamily="@font/bungee"
+                            android:text="Postavljeno:"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/postavljeno_missingdog_adapter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bungee"
+                            android:text="title"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/more_missingdog_adapter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Više o prijavi" />
+
+<!--                    <Button-->
+<!--                        android:id="@+id/azil_myadopteddogs"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Azil" />-->
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
