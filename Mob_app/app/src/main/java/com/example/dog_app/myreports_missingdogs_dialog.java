@@ -36,15 +36,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class myreports_missingdogs_dialog extends BottomSheetDialogFragment {
-//    private TextInputLayout ime_myreports_missingdogs, prezime_myreports_missingdogs, adresa_myreports_missingdogs,
-//            kontakt_myreports_missingdogs, grad_myreports_missingdogs, postnum_myreports_missingdogs, imepsa_myreports_missingdogs,
-//            pasmina_myreports_missingdogs, starost_myreports_missingdogs, vetlokacija_myreports_missingdogs, boja_myreports_missingdogs,
-//            napomena_myreports_missingdogs, postavljeno_myreports_missingdogs;
-//    private AutoCompleteTextView dlaka_myreports_missingdogs, spol_myreports_missingdogs;
-//    private AppCompatButton datumizgubljen_myreports_missingdogs;
-//    private RadioGroup radioGroup;
-//    private RadioButton radiobtn1, radiobtn2, radioButton;
-//    private Button send_myreports_missingdogs;
     private TextInputLayout ime_nestanak_myreports_missingdogs, prezime_nestanak_myreports_missingdogs,
         adresa_myreports_missingdogs, telefonskibr_myreports_missingdogs, grad_azila_myreports_missingdogs,
         postanski_broj_myreports_missingdogs, boja_myreports_missingdogs, starost_myreports_missingdogs,

@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".myreports_missingdogs">
+    tools:context=".myreports_adopteddogs">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/nestalipsi_mojeprijave"
+        android:id="@+id/udomljenipsi_mojeprijave"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
