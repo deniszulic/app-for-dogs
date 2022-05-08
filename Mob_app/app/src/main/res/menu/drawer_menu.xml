@@ -66,6 +66,16 @@
             </group>
         </menu>
     </item>
+    <item android:title="Prijave na moj oglas">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/reportsonmymy_missingdogs"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Nestali psi" />
+            </group>
+        </menu>
+    </item>
     <item android:title="Udomi psa">
         <menu>
             <item android:id="@+id/nav_share"

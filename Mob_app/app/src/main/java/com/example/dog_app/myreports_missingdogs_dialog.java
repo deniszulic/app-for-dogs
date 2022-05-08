@@ -85,6 +85,8 @@ public class myreports_missingdogs_dialog extends BottomSheetDialogFragment {
         slika_myreports_missingdogs=(ImageView) view.findViewById(R.id.slika_myreports_missingdogs);
         send_myreports_missingdogs=(Button) view.findViewById(R.id.send_myreports_missingdogs);
 
+//        send_myreports_missingdogs.setVisibility(View.VISIBLE);
+
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
 //        send_myreports_missingdogs = view.findViewById(R.id.send_myreports_missingdogs);

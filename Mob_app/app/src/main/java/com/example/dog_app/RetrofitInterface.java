@@ -37,6 +37,8 @@ public interface RetrofitInterface {
     Call<myreportsdisapp_data[]> myreportsdisapp(@Path("email") String email);
     @GET("/getmyreportadoptdog/{email}")
     Call<myreportsadopteddogs_data[]> myreportsadopteddogs(@Path("email") String email);
+    @GET("/reportsonmymissingdogs/{email}")
+    Call<reportsonmymissingdogsdata[]> reportsonmydog(@Path("email") String email);
     @POST("/register")
     Call<Void> postJson(@Body registerdata body);
     @POST("/login")
