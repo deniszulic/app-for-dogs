@@ -94,6 +94,9 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
             case R.id.reportsonmymy_missingdogs:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new reportsonmyad()).commit();
                 break;
+            case R.id.reportsonmymy_adopteddogs:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new reportsonmy_adopteddogs()).commit();
+                break;
             case R.id.nav_share:
                 Toast.makeText(this,"Share",Toast.LENGTH_SHORT).show();
                 break;

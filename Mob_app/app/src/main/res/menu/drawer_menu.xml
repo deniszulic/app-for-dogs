@@ -73,6 +73,10 @@
                     android:id="@+id/reportsonmymy_missingdogs"
                     android:icon="@drawable/ic_baseline_article_24"
                     android:title="Nestali psi" />
+                <item
+                    android:id="@+id/reportsonmymy_adopteddogs"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Udomljeni psi" />
             </group>
         </menu>
     </item>
