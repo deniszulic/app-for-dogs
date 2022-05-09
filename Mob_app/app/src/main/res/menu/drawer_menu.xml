@@ -80,18 +80,16 @@
             </group>
         </menu>
     </item>
-    <item android:title="Udomi psa">
+    <item android:title="Ostalo">
         <menu>
-            <item android:id="@+id/nav_share"
-                android:icon="@drawable/ic_share"
-                android:title="Share"/>
-            <item android:id="@+id/nav_send"
-                android:icon="@drawable/ic_send"
-                android:title="Send"/>
             <item
                 android:id="@+id/profile"
                 android:icon="@drawable/ic_baseline_person_24"
                 android:title="Profil" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_baseline_logout_24"
+                android:title="Odjava" />
         </menu>
     </item>
 </menu>
