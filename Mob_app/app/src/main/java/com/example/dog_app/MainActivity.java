@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 MainActivity.this.finish();
             }
+            if (getusertype.equals("azil")) {
+                Intent i = new Intent(MainActivity.this, pocetni_zaslon_azil.class);
+                startActivity(i);
+                MainActivity.this.finish();
+            }
         }
     }
 

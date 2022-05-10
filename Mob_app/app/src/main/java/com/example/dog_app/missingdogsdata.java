@@ -6,11 +6,12 @@ public class missingdogsdata {
     private String ime, prezime, adresa, grad, boja, dlaka, vet_lokacija, ime_psa, spol,
             napomena, telefonskibr, pasmina, url_slike, datum_izgubljen;
     private boolean aktivan, oglas_azila;
-    private int postanski_broj, starost, Korisnik_id;
+    private int starost, Korisnik_id;
+    private static Integer postanski_broj;
     private long postavljeno;
     //private Date datum_izgubljen;
     public missingdogsdata(String ime, String prezime, String adresa, String grad,
-                           int postanski_broj, String boja, int starost, String dlaka,
+                           Integer postanski_broj, String boja, int starost, String dlaka,
                            String vet_lokacija, String ime_psa, String spol, String datum_izgubljen,
                            String napomena, long postavljeno, int Korisnik_id, String telefonskibr,
                            String pasmina, boolean aktivan, boolean oglas_azila, String url_slike){

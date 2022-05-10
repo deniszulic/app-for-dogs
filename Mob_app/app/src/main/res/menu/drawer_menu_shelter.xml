@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item android:title="Nestali psi">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/report_missing_dog_shelter"
+                    android:icon="@drawable/ic_baseline_note_add_24"
+                    android:title="Prijava nestalog psa" />
+                <item android:id="@+id/user_reports_missingdog"
+                    android:icon="@drawable/ic_chat"
+                    android:title="Oglasi korisnika"/>
+                <item
+                    android:id="@+id/shelter_reports_missingdog"
+                    android:icon="@drawable/ic_chat"
+                    android:title="Oglasi azila" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Udomi psa">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/report_adopt_dog_shelter"
+                    android:icon="@drawable/ic_baseline_note_add_24"
+                    android:title="Obrazac za udomljavanje psa" />
+                <item
+                    android:id="@+id/user_reports_adoptdog"
+                    android:icon="@drawable/ic_chat"
+                    android:title="Oglasi korisnika" />
+                <item
+                    android:id="@+id/shelter_reports_adoptdog"
+                    android:icon="@drawable/ic_chat"
+                    android:title="Oglasi azila" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Moji oglasi">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/my_reports_shelter"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Nestali psi" />
+                <item
+                    android:id="@+id/my_reports_adoptdog_shelter"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Udomljeni psi" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Moje prijave">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/my_missingdogs_reports"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Nestali psi" />
+                <item
+                    android:id="@+id/my_missingdogs_adoptdog"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Udomljeni psi" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Prijave na moj oglas">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/reportsonmymy_missingdogs_shelter"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Nestali psi" />
+                <item
+                    android:id="@+id/reportsonmymy_adopteddogs_shelter"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Udomljeni psi" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Ostalo">
+        <menu>
+            <item
+                android:id="@+id/profile"
+                android:icon="@drawable/ic_baseline_person_24"
+                android:title="Profil" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_baseline_logout_24"
+                android:title="Odjava" />
+        </menu>
+    </item>
+</menu>

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Dog_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".pocetni_zaslon_azil"
+            android:exported="false" />
+        <activity
             android:name=".Dogfind_dialog_shelter"
             android:exported="false" />
         <activity

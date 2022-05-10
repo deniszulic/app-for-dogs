@@ -114,6 +114,11 @@ public class login extends Fragment {
                                     startActivity(i);
                                     getActivity().finish();
                                 }
+                                else if(result[0].getTipkorisnika().equalsIgnoreCase("azil")) {
+                                    Intent i = new Intent(getActivity(), pocetni_zaslon_azil.class);
+                                    startActivity(i);
+                                    getActivity().finish();
+                                }
                             }
                     }
 
