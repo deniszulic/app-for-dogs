@@ -46,7 +46,7 @@
               </div>
               <div class="row">
                 <div class="col-sm">
-                  <p>Vet. lokacija:{{ data.vet_lokacija }}</p>
+                  <p>Kilaža: {{ data.kilaza }}</p>
                 </div>
                 <div class="col-sm">
                   <p>Spol:{{ data.spol }}</p>
