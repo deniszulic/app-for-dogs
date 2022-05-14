@@ -13,6 +13,14 @@
         android:theme="@style/Theme.Dog_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".mojikomentari_azil"
+            android:exported="false"
+            android:theme="@style/Theme.Dog_app_comments"  />
+        <activity
+            android:name=".komentari_azil"
+            android:exported="false"
+            android:theme="@style/Theme.Dog_app_comments" />
+        <activity
             android:name=".pocetni_zaslon_azil"
             android:exported="false" />
         <activity

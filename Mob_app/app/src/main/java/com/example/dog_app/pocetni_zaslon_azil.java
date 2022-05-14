@@ -63,7 +63,7 @@ public class pocetni_zaslon_azil extends AppCompatActivity implements Navigation
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new obrazac_nestalipsi_azil()).commit();
                 break;
             case R.id.user_reports_missingdog:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new nestalipsi_oglasi_korisnik()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new nestalipsi_oglasi_azil()).commit();
                 break;
             case R.id.shelter_reports_missingdog:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new nestalipsi_oglasi_korisnik_azil()).commit();
@@ -78,10 +78,10 @@ public class pocetni_zaslon_azil extends AppCompatActivity implements Navigation
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new udomipsa_oglasi_azil()).commit();
                 break;
             case R.id.my_reports_shelter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new mojioglasi_nestalipsi()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new mojioglasi_nestalipsi_azil()).commit();
                 break;
             case R.id.my_reports_adoptdog_shelter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new mojioglasi_udomipsa()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new mojioglasi_udomipsa_azil()).commit();
                 break;
             case R.id.my_missingdogs_reports:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new myreports_missingdogs()).commit();

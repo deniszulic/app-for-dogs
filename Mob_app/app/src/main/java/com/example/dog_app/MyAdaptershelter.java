@@ -1,13 +1,8 @@
 package com.example.dog_app;
 
-import static java.security.AccessController.getContext;
-
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,54 +10,41 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
-import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdaptershelter extends RecyclerView.Adapter<MyAdaptershelter.ViewHolder>{
     private List<ListItem> listItems;
     private Context context;
     private static int lid;
     private static String useremail;
 
-    public MyAdapter(List<ListItem> listItems, Context context) {
+    public MyAdaptershelter(List<ListItem> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyAdaptershelter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item, parent, false);
-        return new ViewHolder(v);
+        return new MyAdaptershelter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(MyAdaptershelter.ViewHolder holder, int position) {
 
         final ListItem listItem = listItems.get(position);
 
@@ -98,19 +80,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.komentiraj_nestalipsi_korisnik_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                SharedPreferences sp1=MyAdapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+//                SharedPreferences sp1=MyAdaptershelter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
 //                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
                 useremail="";
                 Missingdogs_user_shelter_adapter.setEmail_azila("");
                 useremail=listItem.getEmail();
                 //komentari_azil
-                Intent i=new Intent(context, komentari_korisnik.class);
+                Intent i=new Intent(context, komentari_azil.class);
                 i.putExtra("id", listItem.getId());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
         });
-        SharedPreferences sp1=MyAdapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+        SharedPreferences sp1=MyAdaptershelter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
         if(!getemail.equals(listItem.getEmail())){
             holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.VISIBLE);
@@ -170,7 +152,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public static void setUseremail(String useremail) {
-        MyAdapter.useremail = useremail;
+        MyAdaptershelter.useremail = useremail;
     }
     public String getDate(String vlaue) {
         try {

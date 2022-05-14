@@ -101,7 +101,7 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
         kilaza_mydata_adoptdog.getEditText().setText(myadoptdog_user_adapter.getKilaza());
 
         napomena_mydata_adoptdog.getEditText().setText(myadoptdog_user_adapter.getNapomena());
-        Date date = new Date(mymissingdogsadapter.getPostavljeno());
+        Date date = new Date(myadoptdog_user_adapter.getPostavljeno());
         DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
         postavljeno_mydata_adoptdog.getEditText().setText(format.format(date));
 
@@ -161,11 +161,11 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
                     //ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija,
                     // ime_psa, spol, pasmina, kilaza, kastrat, opasnost, napomena, aktivan
                     updatemyadopteddog updatedata= new updatemyadopteddog(
-                         adresa_mydata_adoptdog.getEditText().getText().toString(),
+                         ime_mydata_adoptdog.getEditText().getText().toString(),
                             prezime_mydata_adoptdog.getEditText().getText().toString(),
                             adresa_mydata_adoptdog.getEditText().getText().toString(),
-                            Integer.parseInt(postnum_mydata_adoptdog.getEditText().getText().toString()),
-                         postnum_mydata_adoptdog.getEditText().getText().toString(),
+                            Integer.parseInt(kontakt_mydata_adoptdog.getEditText().getText().toString()),
+                         grad_mydata_adoptdog.getEditText().getText().toString(),
                             Integer.parseInt(postnum_mydata_adoptdog.getEditText().getText().toString()),
                             boja_mydata_adoptdog.getEditText().getText().toString(),
                             Integer.parseInt(starost_mydata_adoptdog.getEditText().getText().toString()),
@@ -250,11 +250,11 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
                 }
                 else {
                     updatemyadopteddog updatedata= new updatemyadopteddog(
-                            adresa_mydata_adoptdog.getEditText().getText().toString(),
+                            ime_mydata_adoptdog.getEditText().getText().toString(),
                             prezime_mydata_adoptdog.getEditText().getText().toString(),
                             adresa_mydata_adoptdog.getEditText().getText().toString(),
-                            Integer.parseInt(postnum_mydata_adoptdog.getEditText().getText().toString()),
-                            postnum_mydata_adoptdog.getEditText().getText().toString(),
+                            Integer.parseInt(kontakt_mydata_adoptdog.getEditText().getText().toString()),
+                            grad_mydata_adoptdog.getEditText().getText().toString(),
                             Integer.parseInt(postnum_mydata_adoptdog.getEditText().getText().toString()),
                             boja_mydata_adoptdog.getEditText().getText().toString(),
                             Integer.parseInt(starost_mydata_adoptdog.getEditText().getText().toString()),
