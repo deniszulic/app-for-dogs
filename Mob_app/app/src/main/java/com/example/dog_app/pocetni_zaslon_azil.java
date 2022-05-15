@@ -90,10 +90,10 @@ public class pocetni_zaslon_azil extends AppCompatActivity implements Navigation
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new myreports_adopteddogs()).commit();
                 break;
             case R.id.reportsonmymy_missingdogs_shelter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new reportsonmyad()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new reportsonmyad_shelter()).commit();
                 break;
             case R.id.reportsonmymy_adopteddogs_shelter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new reportsonmy_adopteddogs()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new reportsonmy_adopteddogs_shelter()).commit();
                 break;
             case R.id.logout:
                 Toast.makeText(this,"Odjava",Toast.LENGTH_SHORT).show();
