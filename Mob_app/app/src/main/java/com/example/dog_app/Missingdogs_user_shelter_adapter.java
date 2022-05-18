@@ -64,7 +64,7 @@ public class Missingdogs_user_shelter_adapter extends RecyclerView.Adapter<Missi
         holder.starost_nestalipsi_korisnik_azil.setText(listItem.getStarost());
 //        holder.chip_nestalipsi_korisnik_azil.setText(getDate(listItem.getDatum_izgubljen()));
         Date date1 = new Date(String.valueOf(listItem.getDatum_izgubljen()));
-        holder.chip_nestalipsi_korisnik_azil.setText(format.format(date1));
+        holder.chip_nestalipsi_korisnik_azil.setText("Izgubljen: "+format.format(date1));
         if(listItem.getUrl_slike()!=null) {
             holder.slika_nestalipsi_korisnik_azil.setVisibility(View.VISIBLE);
             Picasso.get().load(listItem.getUrl_slike()).into(holder.slika_nestalipsi_korisnik_azil);

@@ -80,6 +80,42 @@
             </group>
         </menu>
     </item>
+    <item android:title="Zahtjevi korisnika (nestali psi)">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/userreq_missingdog_req"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="U obradi" />
+                <item
+                    android:id="@+id/userreq_missingdog_approved"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Prihvaćeni oglasi" />
+                <item
+                    android:id="@+id/userreq_missingdog_refused"
+                    android:icon="@drawable/ic_baseline_article_24"
+                    android:title="Odbijeni oglasi" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Zahtjevi korisnika (udomljeni psi)">
+    <menu>
+        <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/userreq_adoptdog_req"
+                android:icon="@drawable/ic_baseline_article_24"
+                android:title="U obradi" />
+            <item
+                android:id="@+id/userreq_adoptdog_approved"
+                android:icon="@drawable/ic_baseline_article_24"
+                android:title="Prihvaćeni oglasi" />
+            <item
+                android:id="@+id/userreq_adoptdog_refused"
+                android:icon="@drawable/ic_baseline_article_24"
+                android:title="Odbijeni oglasi" />
+        </group>
+    </menu>
+    </item>
     <item android:title="Ostalo">
         <menu>
             <item

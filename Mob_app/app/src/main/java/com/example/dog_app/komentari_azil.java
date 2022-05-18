@@ -109,7 +109,7 @@ public class komentari_azil extends AppCompatActivity {
                 prezime.setText(data[0].getPrezime());
 //                chip.setText(getDate(data[0].getDatum_izgubljen()));
                 Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
-                chip.setText(format.format(date1));
+                chip.setText("Izgubljen: "+format.format(date1));
                 postnum.setText(String.valueOf(data[0].getPostanski_broj()));
                 vet_lok.setText(data[0].getVet_lokacija());
                 spol.setText(data[0].getSpol());

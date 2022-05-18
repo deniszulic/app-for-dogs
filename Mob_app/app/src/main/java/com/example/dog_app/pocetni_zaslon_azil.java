@@ -95,6 +95,15 @@ public class pocetni_zaslon_azil extends AppCompatActivity implements Navigation
             case R.id.reportsonmymy_adopteddogs_shelter:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new reportsonmy_adopteddogs_shelter()).commit();
                 break;
+            case R.id.userreq_missingdog_req:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new userreq_mis_req()).commit();
+                break;
+            case R.id.userreq_missingdog_approved:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new userreq_mis_adopt()).commit();
+                break;
+            case R.id.userreq_missingdog_refused:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new userreq_mis_reject()).commit();
+                break;
             case R.id.logout:
                 Toast.makeText(this,"Odjava",Toast.LENGTH_SHORT).show();
                 SharedPreferences settings = getSharedPreferences("userdata", MODE_PRIVATE);

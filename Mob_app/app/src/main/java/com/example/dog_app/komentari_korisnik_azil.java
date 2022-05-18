@@ -104,7 +104,7 @@ public class komentari_korisnik_azil extends AppCompatActivity {
                 starost_nestalipsi_korisnik_azil.setText(data[0].getStarost());
 //                chip_nestalipsi_korisnik_azil.setText(getDate(data[0].getDatum_izgubljen()));
                 Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
-                chip_nestalipsi_korisnik_azil.setText(format.format(date1));
+                chip_nestalipsi_korisnik_azil.setText("Izgubljen: "+format.format(date1));
                 napomena_nestalipsi_korisnik_azil_komentar.setText(data[0].getNapomena());
                 if(data[0].getUrl_slike()!=null) {
                     slika_nestalipsi_korisnik_azil.setVisibility(View.VISIBLE);
