@@ -67,7 +67,7 @@
         <p>Kastrat:{{data.kastrat}}</p>
       </div>
       <div class="col-sm">
-        <p>Pasmina:{{data.opasnost}}</p>
+        <p>Opasnost:{{data.opasnost}}</p>
       </div>
     </div>
   <div class="row">

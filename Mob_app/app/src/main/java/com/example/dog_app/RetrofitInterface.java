@@ -47,6 +47,12 @@ public interface RetrofitInterface {
     Call<userreq_missingdog_data[]> userreqmissingdogaccepted(@Path("email") String email);
     @GET("/getrejectedmissingdogsshelterreports/{email}")
     Call<userreq_missingdog_data[]> userreqmissingdogrejected(@Path("email") String email);
+    @GET("/getadopteddogsshelterreports/{email}")
+    Call<userreq_adoptdog_data[]> userreqadoptdogreq(@Path("email") String email);
+    @GET("/getacceptedadopteddogsshelterreports/{email}")
+    Call<userreq_adoptdog_data[]> updatereportadopteddogapproved(@Path("email") String email);
+    @GET("/getrejectedadopteddogsshelterreports/{email}")
+    Call<userreq_adoptdog_data[]> updatereportadopteddogreject(@Path("email") String email);
     @POST("/register")
     Call<Void> postJson(@Body registerdata body);
     @POST("/login")
@@ -89,4 +95,6 @@ public interface RetrofitInterface {
     Call<updatereportsonmyadopteddog[]> reportsupdateonadopt(@Path("id") int id, @Body updatereportsonmyadopteddog change);
     @PATCH("/updatereportmissingdog/{id}")
     Call<updateuserreq_missingdog[]> updatereportmissingdog(@Path("id") int id, @Body updateuserreq_missingdog change);
+    @PATCH("/updatereportadopteddog/{id}")
+    Call<updateuserreq_missingdog[]> updatereportadopteddog(@Path("id") int id, @Body updateuserreq_missingdog change);
 }

@@ -247,7 +247,7 @@
                     />
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id=""
@@ -260,7 +260,7 @@
                       v-model="datum_izgubljen" disabled
                     />
                   </div>
-                </div>
+                </div> -->
                 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <label class="input-group-text" for="inputGroupSelect01">Dlaka</label>
@@ -388,7 +388,7 @@ export default {
       starost:"",
       vet_lokacija:"",
       boja:"",
-      datum_izgubljen:"",
+      // datum_izgubljen:"",
       dlaka:"",
       spol:"",
       napomena:"",
@@ -456,7 +456,7 @@ export default {
         this.starost=data.starost
         this.vet_lokacija=data.vet_lokacija
         this.boja=data.boja
-        this.datum_izgubljen=this.moment(data.datum_izgubljen).format('YYYY-MM-DD')
+        // this.datum_izgubljen=this.moment(data.datum_izgubljen).format('YYYY-MM-DD')
         this.dlaka=data.dlaka
         this.spol=data.spol
         this.napomena=data.napomena
