@@ -31,6 +31,10 @@
             android:exported="false"
             android:theme="@style/Theme.Dog_app_comments" />
         <activity
+            android:name=".komentari_shelter"
+            android:exported="false"
+            android:theme="@style/Theme.Dog_app_comments" />
+        <activity
             android:name=".komentari_korisnik"
             android:exported="false"
             android:theme="@style/Theme.Dog_app_comments" />

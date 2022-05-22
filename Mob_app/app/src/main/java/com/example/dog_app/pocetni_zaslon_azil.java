@@ -66,7 +66,7 @@ public class pocetni_zaslon_azil extends AppCompatActivity implements Navigation
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new nestalipsi_oglasi_azil()).commit();
                 break;
             case R.id.shelter_reports_missingdog:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new nestalipsi_oglasi_korisnik_azil()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new nestalipsi_oglasi_azil_azil()).commit();
                 break;
             case R.id.report_adopt_dog_shelter:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new obrazac_udomipsa_azil()).commit();

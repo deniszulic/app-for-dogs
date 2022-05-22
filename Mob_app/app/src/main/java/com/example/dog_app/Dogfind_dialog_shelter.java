@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,8 +48,6 @@ public class Dogfind_dialog_shelter extends BottomSheetDialogFragment {
         send_dogfind_form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                commentid id=new commentid();
-//                System.out.println("aaaaa "+id.getId());
                 retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -73,6 +72,7 @@ public class Dogfind_dialog_shelter extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.code() == 201) {
+                                Toast.makeText(getActivity(),"Poslano!",Toast.LENGTH_SHORT).show();
                                 ime_dogfind_form.getEditText().getText().clear();
                                 prezime_dogfind_form.getEditText().getText().clear();
                                 adresapreuzimanje_dogfind_form.getEditText().getText().clear();
@@ -84,7 +84,7 @@ public class Dogfind_dialog_shelter extends BottomSheetDialogFragment {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            System.out.println(t);
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

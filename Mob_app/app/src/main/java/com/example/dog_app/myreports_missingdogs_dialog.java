@@ -94,7 +94,7 @@ public class myreports_missingdogs_dialog extends BottomSheetDialogFragment {
         ime_nestanak_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getIme_nestanak());
         prezime_nestanak_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getPrezime_nestanak());
         telefonskibr_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getTelefonskibr());
-        grad_azila_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getGrad_azila());
+        grad_azila_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getGrad());
         postanski_broj_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getPostnum());
         napomena_nestanak_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getNapomena_nestanak());
         adresa_za_preuzimanje_psa_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getAdresa_za_preuzimanje_psa());

@@ -66,7 +66,7 @@
               </div>
               <div class="modal-body">
                 <div class="form-group">
-                  <h5 class="modal-title">Prijava pronalska</h5>
+                  <h5 class="modal-title">Prijava pronalaska</h5>
                 </div>
                 <div class="form-group">
                   <div class="input-group">

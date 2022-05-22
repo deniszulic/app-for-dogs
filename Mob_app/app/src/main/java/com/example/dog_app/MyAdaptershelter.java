@@ -29,7 +29,7 @@ public class MyAdaptershelter extends RecyclerView.Adapter<MyAdaptershelter.View
     private List<ListItem> listItems;
     private Context context;
     private static int lid;
-    private static String useremail;
+    private static String useremail, naziv_azila, grad_azila;
 
     public MyAdaptershelter(List<ListItem> listItems, Context context) {
         this.listItems = listItems;
@@ -102,8 +102,9 @@ public class MyAdaptershelter extends RecyclerView.Adapter<MyAdaptershelter.View
             @Override
             public void onClick(View view) {
                 lid=listItem.getId();
+//                naziv_azila=listItem.getn
                 FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
-                Dogfind_dialog dialog= new Dogfind_dialog();
+                Dogfind_dialog_azil dialog= new Dogfind_dialog_azil();
                 dialog.show(manager, "dogfind_dialog");
             }
         });

@@ -1,9 +1,6 @@
 package com.example.dog_app;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputLayout;
@@ -28,11 +24,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-//AppCompatDialogFragment
-public class Dogfind_dialog extends BottomSheetDialogFragment {
+public class Dogfind_dialog_azil extends BottomSheetDialogFragment {
     private TextInputLayout ime_dogfind_form, prezime_dogfind_form, adresapronalaska_dogfind_form, adresapreuzimanje_dogfind_form, kontakt_dogfind_form, napomena_dogfind_form;
     private Button send_dogfind_form;
     private int commentid;
+    private String naziv_azila, grad_azila;
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
     private String BASE_URL = "http://10.0.2.2:3000";
@@ -52,28 +48,26 @@ public class Dogfind_dialog extends BottomSheetDialogFragment {
         send_dogfind_form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                commentid id=new commentid();
-//                System.out.println("aaaaa "+id.getId());
-                commentid=MyAdapter.getid();
-                Date date = new Date();
-                long timestamp = date.getTime();
-                int id=sp1.getInt("id",0);
-                Reportmissingdog data= new Reportmissingdog(ime_dogfind_form.getEditText().getText().toString(), prezime_dogfind_form.getEditText().getText().toString(), napomena_dogfind_form.getEditText().getText().toString(), adresapronalaska_dogfind_form.getEditText().getText().toString(), adresapreuzimanje_dogfind_form.getEditText().getText().toString(), timestamp, id, commentid, kontakt_dogfind_form.getEditText().getText().toString());
                 retrofit = new Retrofit.Builder()
-                            .baseUrl(BASE_URL)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
-                    retrofitInterface = retrofit.create(RetrofitInterface.class);
-                Call<Void> call = retrofitInterface.reportmissingdog(data);
+                retrofitInterface = retrofit.create(RetrofitInterface.class);
                 ime_dogfind_form.setError(null);
                 prezime_dogfind_form.setError(null);
-//                adresapronalaska_dogfind_form.setError(null);
                 adresapreuzimanje_dogfind_form.setError(null);
                 kontakt_dogfind_form.setError(null);
-//                napomena_dogfind_form.setError(null);
                 isAllFieldsChecked = checkfields();
                 if(isAllFieldsChecked) {
+                    commentid=MyAdaptershelter.getid();
+//                    naziv_azila=Missingdogs_shelter_adapter.getNaziv_azila();
+//                    grad_azila=Missingdogs_shelter_adapter.getGrad_azila();
+                    Date date = new Date();
+                    long timestamp = date.getTime();
+                    int id=sp1.getInt("id",0);
+                    Reportmissingdog data= new Reportmissingdog(ime_dogfind_form.getEditText().getText().toString(), prezime_dogfind_form.getEditText().getText().toString(), napomena_dogfind_form.getEditText().getText().toString(), adresapronalaska_dogfind_form.getEditText().getText().toString(), adresapreuzimanje_dogfind_form.getEditText().getText().toString(), timestamp, id, commentid, kontakt_dogfind_form.getEditText().getText().toString());
+                    Call<Void> call = retrofitInterface.reportmissingdog(data);
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
@@ -107,10 +101,6 @@ public class Dogfind_dialog extends BottomSheetDialogFragment {
             prezime_dogfind_form.setError("Potrebno je prezime!");
             return false;
         }
-//        if (TextUtils.isEmpty(adresapronalaska_dogfind_form.getEditText().getText().toString())) {
-//            adresapronalaska_dogfind_form.setError("Potrebna je adresa!");
-//            return false;
-//        }
         if (TextUtils.isEmpty(adresapreuzimanje_dogfind_form.getEditText().getText().toString())) {
             adresapreuzimanje_dogfind_form.setError("Potrebna je adresa!");
             return false;
@@ -119,10 +109,6 @@ public class Dogfind_dialog extends BottomSheetDialogFragment {
             kontakt_dogfind_form.setError("Potreban je kontakt!");
             return false;
         }
-//        if (TextUtils.isEmpty(napomena_dogfind_form.getEditText().getText().toString())) {
-//            napomena_dogfind_form.setError("Potrebna je napomena!");
-//            return false;
-//        }
         return true;
     }
 }

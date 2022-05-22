@@ -43,7 +43,8 @@ public class myreports_adopteddogs_dialog extends BottomSheetDialogFragment {
             napomena_myreports_adopteddogs, postavljeno_myreports_adopteddogs, adresa_udomljavanje_myreports_adopteddogs,
     kilaza_myreports_adopteddogs, kastrat_myreports_adopteddogs, opasnost_myreports_adopteddogs,
     grad_myreports_adopteddogs, postnum_myreports_adopteddogs, razlogprijave_myreports_adopteddogs,
-            razlog_myreports_adopteddogs;
+            razlog_myreports_adopteddogs, nazivazila_udomljavanje_myreports_adopteddogs,
+            gradazila_udomljavanje_myreports_adopteddogs;
     private ImageView slika_myreports_adopteddogs;
     private AppCompatButton datumizgubljen_myreports_adopteddogs;
     private Button send_myreports_adopteddogs;
@@ -93,11 +94,53 @@ public class myreports_adopteddogs_dialog extends BottomSheetDialogFragment {
         radio_button_2_myrep_adopteddogs=(RadioButton) view.findViewById(R.id.radio_button_2_myrep_adopteddogs);
         radio_button_3_myrep_adopteddogs=(RadioButton) view.findViewById(R.id.radio_button_3_myrep_adopteddogs);
         razlog_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.razlog_myreports_adopteddogs);
+        gradazila_udomljavanje_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.gradazila_udomljavanje_myreports_adopteddogs);
+        nazivazila_udomljavanje_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.nazivazila_udomljavanje_myreports_adopteddogs);
 
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
 //        send_myreports_adopteddogs = view.findViewById(R.id.send_myreports_adopteddogs);
+        if(!myreports_adopteddogs_adapter.isOglas_azila()){
+            imevl_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            prezimevl_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            adresa_udomljavanje_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            telefonskibr_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            grad_azila_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            postanski_broj_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            dlaka_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            spol_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            kilaza_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            ime_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            prezime_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            adresa_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            kontakt_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            grad_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            postnum_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            imepsa_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            pasmina_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            starost_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            vetlokacija_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            boja_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            kastrat_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            opasnost_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            razlogprijave_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            razlog_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            nazivazila_udomljavanje_myreports_adopteddogs.setVisibility(View.GONE);
+            gradazila_udomljavanje_myreports_adopteddogs.setVisibility(View.GONE);
+        }
+        else {
+            imevl_myreports_adopteddogs.setVisibility(View.GONE);
+            prezimevl_myreports_adopteddogs.setVisibility(View.GONE);
+            adresa_udomljavanje_myreports_adopteddogs.setVisibility(View.GONE);
+            grad_myreports_adopteddogs.setVisibility(View.GONE);
+            postanski_broj_myreports_adopteddogs.setVisibility(View.GONE);
+            vetlokacija_myreports_adopteddogs.setVisibility(View.GONE);
+            nazivazila_udomljavanje_myreports_adopteddogs.setVisibility(View.VISIBLE);
+            gradazila_udomljavanje_myreports_adopteddogs.setVisibility(View.VISIBLE);
+        }
 
+        nazivazila_udomljavanje_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getNaziv_azila());
+        gradazila_udomljavanje_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getGrad_azila());
         imevl_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getIme_udomljavanje());
         prezimevl_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getPrezime_udomljavanje());
         adresa_udomljavanje_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getAdresa_udomljavanje());
