@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="data in data" :key="data.postavljeno">
+    <tr v-for="data in filtrirano" :key="data.postavljeno">
       <th scope="row">{{data.ime_psa}}</th>
       <td>{{data.pasmina}}</td>
       <td>{{data.starost}}</td>
@@ -27,11 +27,19 @@
 <script>
 import moment from 'moment';
 export default {
-  props:["data"],
+  props:["data", "search"],
   data(){
     return{
       moment
     }
+  },
+  computed: {
+    filtrirano() {
+      return this.data.filter((post) => {
+        return post.email.toLowerCase()
+          .includes(this.search.toLowerCase());
+      });
+    },
   },
   mounted(){
     moment.locale('hr')

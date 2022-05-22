@@ -1,5 +1,5 @@
 <template>
-<div class="background rounded" style="overflow: hidden;">
+<div class="background rounded" style="overflow: hidden;" v-if="store.tipkorisnika=='korisnik'">
     <div class="row">
         <div class="col-sm-6 dogimg" >
             <!-- <img src="../assets/dog.jpg" class="img-fluid"/> -->
@@ -181,6 +181,7 @@
 <script>
 import { Auth } from "@/services";
 import { dog_data } from "@/services";
+import store from '../store.js'
 export default {
   name: "udomljavanjepsa",
   data() {
@@ -203,7 +204,8 @@ export default {
       kastrat:"",
       opasnost:"",
       slika:null,
-      postotak:null
+      postotak:null,
+      store
     }
   },
   methods:{

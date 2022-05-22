@@ -1,6 +1,6 @@
 <template>
 <!-- <div class="center"> -->
-<div class="container">
+<div class="container" v-if="store.tipkorisnika=='admin'">
     <div class="row justify-content-sm-center" style="margin-top:20px;margin-bottom:20px;">
     <div class="col-sm-auto">
     <!-- <img src="../assets/updatedata.jpg" style="max-height: 400px;max-width: 100%;"/> -->
@@ -124,6 +124,7 @@ import { Auth } from "@/services";
 import { profile } from "@/services";
 import moment from 'moment';
 import {login_signup} from "@/services";
+import store from '../store.js'
 export default {
   name: "adminprofil",
   data() {
@@ -137,7 +138,8 @@ export default {
         ime_register:"",
         prezime_register:"",
         email_register:"",
-        lozinka_register:""
+        lozinka_register:"",
+        store
     };
   },
   created() {

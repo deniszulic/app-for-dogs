@@ -1,5 +1,11 @@
 <template>
-<div>
+<div v-if="store.tipkorisnika=='admin'">
+  <div class="d-flex justify-content-center">
+<form class="col-sm-6" style="margin-top: 10px">
+  <div class="form-group">
+    <input type="text" class="form-control" id="search" placeholder="Pretraži po email adresi" v-model="search">
+  </div>
+</form></div>
   <div class="d-flex justify-content-center" style="margin-top: 10px">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
@@ -12,9 +18,9 @@
 </div>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <udomljenipsiadmintablica :data="missingdogs" @myreportmissingdog="openmodal"/></div>
+    <udomljenipsiadmintablica :data="missingdogs" @myreportmissingdog="openmodal" :search="search"/></div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-      <udomljenipsiadmintablicaazil :data="missingdogsshelter" @myreportmissingdog="openmodalshelter"/>
+      <udomljenipsiadmintablicaazil :data="missingdogsshelter" @myreportmissingdog="openmodalshelter" :search="search"/>
   </div>
 </div>
 
@@ -655,6 +661,7 @@
 import { dog_data } from "@/services";
 import udomljenipsiadmintablica from "@/components/udomljenipsiadmintablica.vue";
 import udomljenipsiadmintablicaazil from "@/components/udomljenipsiadmintablicaazil.vue";
+import store from '../store.js'
 import moment from 'moment';
 export default {
   name: "nestalipsiadmin",
@@ -694,7 +701,9 @@ export default {
         naziv:"",
         kastrat:"",
         kilaza:"",
-        opasnost:""
+        opasnost:"",
+        store,
+        search:""
     };
   },
   created() {

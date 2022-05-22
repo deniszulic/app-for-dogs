@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="store.tipkorisnika=='korisnik'">
         <div class="d-flex justify-content-center" style="margin-top: 10px">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
@@ -801,6 +801,7 @@ import { dog_data } from "@/services";
 import {Auth} from "@/services";
 import prijavenamojudomljenpas from "@/components/prijavenamojudomljenpas.vue";
 import prijavenamojnestalipas from "@/components/prijavenamojnestalipas.vue";
+import store from '../store.js'
 import moment from 'moment';
 export default {
     name:"prijavenamojoglas",
@@ -849,7 +850,8 @@ export default {
           nestanak_ime:"",
           nestanak_prezime:"",
           nestanak_napomena:"",
-          datum_izgubljen:""
+          datum_izgubljen:"",
+          store
         }
     },
     created() {

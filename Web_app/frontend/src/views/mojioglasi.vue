@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="store.tipkorisnika=='korisnik'">
     <div class="d-flex justify-content-center" style="margin-top: 10px">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
@@ -791,6 +791,7 @@ import { Auth } from "@/services";
 import { dog_data } from "@/services";
 import mojinestalipsi from "@/components/mojinestalipsi.vue";
 import mojiudomipsa from "@/components/mojiudomipsa.vue";
+import store from '../store.js'
 export default {
   name: "mojioglasi",
   components: {
@@ -834,7 +835,8 @@ export default {
           prihvaceno_azil:"",
           azil_nestanak_napomena:"",
           prihvaceno_azil_missing:"",
-          nestanak_napomena:""
+          nestanak_napomena:"",
+          store
     };
   },
   created() {
