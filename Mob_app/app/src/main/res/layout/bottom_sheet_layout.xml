@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bungee"
+        android:gravity="center"
         android:text="Uspješno ste se registrirali!"
         android:textSize="25sp" />
 
@@ -19,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bungee"
+        android:gravity="center"
         android:text="Sada se možete prijaviti!"
         android:textSize="25sp" />
 

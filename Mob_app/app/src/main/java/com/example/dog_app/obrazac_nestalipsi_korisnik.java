@@ -157,19 +157,6 @@ public class obrazac_nestalipsi_korisnik extends Fragment {
         getemail=sp1.getString("email", null);
         getid=sp1.getInt("id", 0);
 
-//        MaterialDatePicker<Long> materialDatePicker = builder.build();
-//
-//        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
-//            @Override
-//            public void onPositiveButtonClick(Long selection) {
-//                //....
-//                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-//                calendar.setTimeInMillis(selection);
-//                SimpleDateFormat format = new SimpleDateFormat("yyyy MM dd");
-//                String formattedDate  = format.format(calendar.getTime());
-//            }
-//        });
-
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("Datum kada je pas izgubljen");
         final MaterialDatePicker<Long> materialDatePicker = materialDateBuilder.build();
@@ -180,15 +167,7 @@ public class obrazac_nestalipsi_korisnik extends Fragment {
                         materialDatePicker.show(getParentFragmentManager(), "MATERIAL_DATE_PICKER");
                     }
                 });
-//        materialDatePicker.addOnPositiveButtonClickListener(
-//                new MaterialPickerOnPositiveButtonClickListener() {
-//                    @SuppressLint("SetTextI18n")
-//                    @Override
-//                    public void onPositiveButtonClick(Object selection) {
-//                        datum = materialDatePicker.getHeaderText();
-//                        System.out.println("datum:" + datum);
-//                    }
-//                });
+
         materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
             public void onPositiveButtonClick(Long selection) {

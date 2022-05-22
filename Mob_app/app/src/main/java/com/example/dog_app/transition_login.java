@@ -78,7 +78,6 @@ public class transition_login extends AppCompatActivity {
                     public void onResponse(Call<getlogindata[]> call, Response<getlogindata[]> response) {
                         if (response.code() == 200) {
                             getlogindata[] result= response.body();
-                            System.out.println("ispis:"+result[0].getId()+" tipkorisnika:"+result[0].getTipkorisnika()+" email:"+result[0].getEmail()+" ime:"+result[0].getIme()+" prezime:"+result[0].getPrezime());
                             SharedPreferences sp=transition_login.this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
                             SharedPreferences.Editor data=sp.edit();
                             data.putString("email", result[0].getEmail());
@@ -87,6 +86,18 @@ public class transition_login extends AppCompatActivity {
                             data.putString("ime", result[0].getIme());
                             data.putString("prezime", result[0].getPrezime());
                             data.commit();
+                            if(result[0].getTipkorisnika().equalsIgnoreCase("korisnik")) {
+                                Intent i = new Intent(transition_login.this, pocetni_zaslon_korisnik.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                                transition_login.this.finish();
+                            }
+                            else if(result[0].getTipkorisnika().equalsIgnoreCase("azil")) {
+                                Intent i = new Intent(transition_login.this, pocetni_zaslon_azil.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                                transition_login.this.finish();
+                            }
                         }
                     }
 

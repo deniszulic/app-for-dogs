@@ -114,7 +114,7 @@ public class transition_register extends AppCompatActivity {
             public void onClick(View view) {
                 if (autoCompleteTextView.getText().toString().equals("Korisnik")) {
                     isAllFieldsChecked = checkfields();
-                    if(isAllFieldsChecked){
+                    if(isAllFieldsChecked && password.getEditText().getText().length()>=8){
                         Date date = new Date();
                         long timestamp = date.getTime();
                         registerdata data=new registerdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "korisnik", timestamp);
@@ -122,8 +122,14 @@ public class transition_register extends AppCompatActivity {
                         call.enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
-                                ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
-                                dialog.show(getSupportFragmentManager(), "exampleBottomSheet");
+                                if(response.code()==201) {
+                                    ime_reg.getEditText().getText().clear();
+                                    prezime_reg.getEditText().getText().clear();
+                                    email.getEditText().getText().clear();
+                                    password.getEditText().getText().clear();
+                                    ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                                    dialog.show(getSupportFragmentManager(), "exampleBottomSheet");
+                                }
                             }
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
@@ -136,7 +142,7 @@ public class transition_register extends AppCompatActivity {
                 }
                 if (autoCompleteTextView.getText().toString().equals("Azil")) {
                     isAllFieldsChecked = checkfields_azil();
-                    if(isAllFieldsChecked){
+                    if(isAllFieldsChecked && password.getEditText().getText().length()>=8){
                         Date date = new Date();
                         long timestamp = date.getTime();
                         registerdata data=new registerdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "azil", timestamp);
@@ -153,8 +159,20 @@ public class transition_register extends AppCompatActivity {
                                         regshelter.enqueue(new Callback<Integer>() {
                                             @Override
                                             public void onResponse(Call<Integer> call, Response<Integer> response) {
-                                                ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
-                                                dialog.show(getSupportFragmentManager(), "exampleBottomSheet");
+                                                if(response.code()==201){
+                                                    ime_reg.getEditText().getText().clear();
+                                                    prezime_reg.getEditText().getText().clear();
+                                                    email.getEditText().getText().clear();
+                                                    password.getEditText().getText().clear();
+                                                    oib.getEditText().getText().clear();
+                                                    naziv.getEditText().getText().clear();
+                                                    ulica_reg.getEditText().getText().clear();
+                                                    kucnibr_reg.getEditText().getText().clear();
+                                                    grad_reg.getEditText().getText().clear();
+                                                    postnum_reg.getEditText().getText().clear();
+                                                    ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                                                    dialog.show(getSupportFragmentManager(), "exampleBottomSheet");
+                                                }
                                             }
 
                                             @Override

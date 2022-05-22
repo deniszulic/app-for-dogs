@@ -142,42 +142,12 @@ public class register extends Fragment {
                 getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
-//        register_btn.setOnClickListener((v) -> {
-//            if (autoCompleteTextView.getText().toString().equals("Korisnik")) {
-//                isAllFieldsChecked = checkfields();
-//                if(isAllFieldsChecked){
-//                    Date date = new Date();
-//                    long timestamp = date.getTime();
-//                    registerdata data=new registerdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "korisnik", timestamp);
-//                    Call<Void> call=retrofitInterface.postJson(data);
-//                    call.enqueue(new Callback<Void>() {
-//                        @Override
-//                        public void onResponse(Call<Void> call, Response<Void> response) {
-//    //                            if (response.code() == 201) {
-//    ////                                LoginResult[] result = response.body();
-//    //                                System.out.println("Getid:"+response);
-//    //                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<Void> call, Throwable t) {
-//                            //System.out.println(t);
-//                            Toast.makeText(getActivity(), t.toString(),
-//                                    Toast.LENGTH_LONG).show();
-//                        }
-//                    });
-//                }
-//            }
-//            if (autoCompleteTextView.getText().toString().equals("Azil")) {
-//                isAllFieldsChecked = checkfields_poduzece();
-//            }
-//        });
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (autoCompleteTextView.getText().toString().equals("Korisnik")) {
                 isAllFieldsChecked = checkfields();
-                if(isAllFieldsChecked){
+                if(isAllFieldsChecked && password.getEditText().getText().length()>=8){
                     Date date = new Date();
                     long timestamp = date.getTime();
                     registerdata data=new registerdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "korisnik", timestamp);
@@ -185,8 +155,14 @@ public class register extends Fragment {
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-                            ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
-                            dialog.show(getParentFragmentManager(), "exampleBottomSheet");
+                            if(response.code()==201){
+                                ime_reg.getEditText().getText().clear();
+                                prezime_reg.getEditText().getText().clear();
+                                email.getEditText().getText().clear();
+                                password.getEditText().getText().clear();
+                                ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                                dialog.show(getParentFragmentManager(), "exampleBottomSheet");
+                            }
                         }
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
@@ -199,32 +175,18 @@ public class register extends Fragment {
             }
             if (autoCompleteTextView.getText().toString().equals("Azil")) {
                 isAllFieldsChecked = checkfields_azil();
-                if(isAllFieldsChecked){
+                if(isAllFieldsChecked && password.getEditText().getText().length()>=8){
                     Date date = new Date();
                     long timestamp = date.getTime();
-                    //getregisterdata data=new getregisterdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "azil", timestamp);
-
-//                    HashMap<String, String> map = new HashMap<>();
-//                    map.put("email", email.getEditText().getText().toString());
-//                    map.put("lozinka", password.getEditText().getText().toString());
-//                    map.put("ime", ime_reg.getEditText().getText().toString());
-//                    map.put("prezime", prezime_reg.getEditText().getText().toString());
-//                    map.put("datumreg", String.valueOf(timestamp));
-//                    map.put("tipkorisnika", "azil");
-
-//                    map.put("data", data);
                     registerdata data=new registerdata(ime_reg.getEditText().getText().toString(), email.getEditText().getText().toString(), password.getEditText().getText().toString(), prezime_reg.getEditText().getText().toString(), "azil", timestamp);
 
                     Call<Integer> call = retrofitInterface.register(data);
 
-//                logindata data=new logindata(email.getEditText().getText().toString(), password.getEditText().getText().toString());
-//                Call<Void> call=retrofitInterface.login(data);
                     call.enqueue(new Callback<Integer>() {
                         @Override
                         public void onResponse(Call<Integer> call, Response<Integer> response) {
                             if (response.code() == 201) {
                                 //Integer result= response.body();
-                                System.out.println("ispis:"+response.body());
                                 int userid=response.body();
                                 if(response.body()>=0){
                                     registershelter shelter= new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), response.body());
@@ -232,8 +194,20 @@ public class register extends Fragment {
                                     regshelter.enqueue(new Callback<Integer>() {
                                         @Override
                                         public void onResponse(Call<Integer> call, Response<Integer> response) {
-                                            ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
-                                            dialog.show(getParentFragmentManager(), "exampleBottomSheet");
+                                            if(response.code()==201){
+                                                ime_reg.getEditText().getText().clear();
+                                                prezime_reg.getEditText().getText().clear();
+                                                email.getEditText().getText().clear();
+                                                password.getEditText().getText().clear();
+                                                oib.getEditText().getText().clear();
+                                                naziv.getEditText().getText().clear();
+                                                ulica_reg.getEditText().getText().clear();
+                                                kucnibr_reg.getEditText().getText().clear();
+                                                grad_reg.getEditText().getText().clear();
+                                                postnum_reg.getEditText().getText().clear();
+                                                ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                                                dialog.show(getParentFragmentManager(), "exampleBottomSheet");
+                                            }
                                         }
 
                                         @Override

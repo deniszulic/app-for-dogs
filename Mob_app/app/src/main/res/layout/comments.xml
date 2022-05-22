@@ -88,16 +88,9 @@
                             android:id="@+id/email_comments"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="title"
-                            android:textAppearance="?attr/textAppearanceHeadline6" />
-
-                        <TextView
-                            android:id="@+id/time_comments"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="TextView"
+                            android:gravity="start"
+                            android:text="title"
                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                         <com.google.android.material.button.MaterialButton
@@ -105,11 +98,21 @@
                             style="?attr/borderlessButtonStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
+                            android:gravity="end"
                             android:text="Obriši" />
+
                     </LinearLayout>
 
-                    <TextView
+            <TextView
+                android:id="@+id/time_comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="TextView"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
+
+            <TextView
                         android:id="@+id/text_comments"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

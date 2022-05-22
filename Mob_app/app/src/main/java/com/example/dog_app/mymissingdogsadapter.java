@@ -77,7 +77,7 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
         holder.spol.setText(listItem.getSpol());
         holder.starost.setText(listItem.getStarost());
         Date date1 = new Date(String.valueOf(listItem.getDatum_izgubljen()));
-        holder.chip.setText(format.format(date1));
+        holder.chip.setText("Izgubljen: "+format.format(date1));
         if(listItem.getUrl_slike()!=null) {
             holder.slika.setVisibility(View.VISIBLE);
             Picasso.get().load(listItem.getUrl_slike()).into(holder.slika);
@@ -88,11 +88,6 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
         holder.komentiraj_mymissingdogs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                SharedPreferences sp1=mymissingdogsadapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-//                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-                //useremail="";
-                //Missingdogs_user_shelter_adapter.setEmail_azila("");
-                //useremail=listItem.getEmail();
                 Intent i=new Intent(context, komentari_korisnik.class);
                 i.putExtra("id", listItem.getId());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -101,19 +96,6 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
         });
         SharedPreferences sp1=mymissingdogsadapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
-//        if(!getemail.equals(listItem.getEmail())){
-//            holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.VISIBLE);
-//        }
-//        else{holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.GONE);}
-//        holder.pronadenpas_nestalipsi_korisnik.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                lid=listItem.getId();
-//                FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
-//                Dogfind_dialog dialog= new Dogfind_dialog();
-//                dialog.show(manager, "dogfind_dialog");
-//            }
-//        });
         holder.promjenapodataka_mymissingdogs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

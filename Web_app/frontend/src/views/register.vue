@@ -115,7 +115,7 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Lozinka" v-model="password" required
+                placeholder="Lozinka" minlength="8" v-model="password" required
               />
             </div>
             <div class="d-flex justify-content-center mt-3 login_container">
@@ -223,7 +223,6 @@ $("#postnum_input").attr("required",true);
         
       try{
         id=await login_signup.register_user(data_user)
-        console.log("id frontend:"+id.data)
       if(id.data!=null){
         let data_asylum={
         oib:this.oib,
