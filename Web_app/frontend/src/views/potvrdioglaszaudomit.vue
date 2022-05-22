@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="store.tipkorisnika=='azil'">
       <div class="d-flex justify-content-center" style="margin-top: 10px">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
@@ -356,6 +356,7 @@ import { dog_data } from "@/services";
 import udomljenipsipotvrdaazil from '../components/udomljenipsipotvrdaazil.vue';
 import udomljenipsiprihvacenepotvrde from '../components/udomljenipsiprihvacenepotvrde.vue';
 import udomljenipsiodbijenepotvrde from '../components/udomljenipsiodbijenepotvrde.vue';
+import store from '../store.js'
 // import nestalipsipotvrdaazil from "@/components/nestalipsipotvrdaazil.vue";
 // import nestalipsiprihvacenepotvrde from "@/components/nestalipsiprihvacenepotvrde.vue";
 // import nestalipsiodbijenepotvrde from "@/components/nestalipsiodbijenepotvrde.vue";
@@ -397,7 +398,8 @@ export default {
       azil_udomljavanje_napomena:"",
       prihvaceno: null,
       moment,
-      udomljavanjeid:null
+      udomljavanjeid:null,
+      store
     };
   },
   created() {

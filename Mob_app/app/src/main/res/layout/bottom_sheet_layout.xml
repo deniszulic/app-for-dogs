@@ -11,7 +11,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bungee"
-        android:text="Uspješno ste se registrirali sada se možete prijaviti!"
+        android:text="Uspješno ste se registrirali!"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee"
+        android:text="Sada se možete prijaviti!"
         android:textSize="25sp" />
 
 </LinearLayout>

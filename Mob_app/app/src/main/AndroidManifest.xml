@@ -15,42 +15,54 @@
         <activity
             android:name=".mojikomentari_azil"
             android:exported="false"
-            android:theme="@style/Theme.Dog_app_comments"  />
+            android:theme="@style/Theme.Dog_app_comments"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".komentari_azil"
             android:exported="false"
-            android:theme="@style/Theme.Dog_app_comments" />
+            android:theme="@style/Theme.Dog_app_comments"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".pocetni_zaslon_azil"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".Dogfind_dialog_shelter"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".komentari_korisnik_azil"
             android:exported="false"
-            android:theme="@style/Theme.Dog_app_comments" />
+            android:theme="@style/Theme.Dog_app_comments"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".komentari_shelter"
             android:exported="false"
-            android:theme="@style/Theme.Dog_app_comments" />
+            android:theme="@style/Theme.Dog_app_comments"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".komentari_korisnik"
             android:exported="false"
-            android:theme="@style/Theme.Dog_app_comments" />
+            android:theme="@style/Theme.Dog_app_comments"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".pocetni_zaslon_korisnik"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".transition_login"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".transition_register"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing">
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

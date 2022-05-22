@@ -1,6 +1,5 @@
 <template>
     <div>
-
       <div class="d-flex justify-content-center" style="margin-top: 10px">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
