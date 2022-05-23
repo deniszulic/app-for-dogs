@@ -43,7 +43,8 @@ public class myreports_missingdogs_dialog extends BottomSheetDialogFragment {
         spol_myreports_missingdogs, pasmina_myreports_missingdogs, napomena_nestanak_myreports_missingdogs,
         ime_myreports_missingdogs, prezime_myreports_missingdogs, kontakt_myreports_missingdogs,
         adresa_za_preuzimanje_psa_myreports_missingdogs, adresa_pronalaska_myreports_missingdogs,
-        napomena_myreports_missingdogs, postavljeno_myreports_missingdogs;
+        napomena_myreports_missingdogs, postavljeno_myreports_missingdogs, grad_azil_myreports_missingdogs,
+            naziv_azil_myreports_missingdogs;
     private ImageView slika_myreports_missingdogs;
     private AppCompatButton datumizgubljen_myreports_missingdogs;
     private Button send_myreports_missingdogs;
@@ -84,23 +85,48 @@ public class myreports_missingdogs_dialog extends BottomSheetDialogFragment {
         postavljeno_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.postavljeno_myreports_missingdogs);
         slika_myreports_missingdogs=(ImageView) view.findViewById(R.id.slika_myreports_missingdogs);
         send_myreports_missingdogs=(Button) view.findViewById(R.id.send_myreports_missingdogs);
+        grad_azil_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.grad_azil_myreports_missingdogs);
+        naziv_azil_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.naziv_azil_myreports_missingdogs);
 
 //        send_myreports_missingdogs.setVisibility(View.VISIBLE);
 
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
 //        send_myreports_missingdogs = view.findViewById(R.id.send_myreports_missingdogs);
+        if(!myreports_missingdogs_adapter.isOglas_azila()){
+            ime_nestanak_myreports_missingdogs.setVisibility(View.VISIBLE);
+            prezime_nestanak_myreports_missingdogs.setVisibility(View.VISIBLE);
+            adresa_myreports_missingdogs.setVisibility(View.VISIBLE);
+            grad_azila_myreports_missingdogs.setVisibility(View.VISIBLE);
+            postanski_broj_myreports_missingdogs.setVisibility(View.VISIBLE);
+            vetlokacija_myreports_missingdogs.setVisibility(View.VISIBLE);
+            grad_azil_myreports_missingdogs.setVisibility(View.GONE);
+            naziv_azil_myreports_missingdogs.setVisibility(View.GONE);
+        }
+        else{
+            ime_nestanak_myreports_missingdogs.setVisibility(View.GONE);
+            prezime_nestanak_myreports_missingdogs.setVisibility(View.GONE);
+            adresa_myreports_missingdogs.setVisibility(View.GONE);
+            grad_azila_myreports_missingdogs.setVisibility(View.GONE);
+            postanski_broj_myreports_missingdogs.setVisibility(View.GONE);
+            vetlokacija_myreports_missingdogs.setVisibility(View.GONE);
+            grad_azil_myreports_missingdogs.setVisibility(View.VISIBLE);
+            naziv_azil_myreports_missingdogs.setVisibility(View.VISIBLE);
+        }
 
         ime_nestanak_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getIme_nestanak());
         prezime_nestanak_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getPrezime_nestanak());
         telefonskibr_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getTelefonskibr());
         grad_azila_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getGrad());
+        grad_azil_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getGrad_azila());
         postanski_broj_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getPostnum());
         napomena_nestanak_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getNapomena_nestanak());
         adresa_za_preuzimanje_psa_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getAdresa_za_preuzimanje_psa());
         adresa_pronalaska_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getAdresa_pronalaska());
         dlaka_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getDlaka());
         spol_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getSpol());
+
+        naziv_azil_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getNaziv_azila());
 
 
         ime_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getIme());

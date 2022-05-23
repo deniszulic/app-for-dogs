@@ -87,7 +87,7 @@ public class myreports_missingdogs extends Fragment {
                 if(response.code()==200) {
                     myreportsdisapp_data[] data = response.body();
                     listItems.addAll(Arrays.asList(data));
-                    System.out.println("length:"+listItems.size());
+//                    System.out.println("length:"+listItems.size());
 //                    adapter = new myadoptdog_user_adapter(listItems, getContext());
                     adapter= new myreports_missingdogs_adapter(listItems, getContext());
                     recyclerView.setAdapter(adapter);
