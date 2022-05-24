@@ -35,13 +35,13 @@
     <div class="row"><div class="col-sm"><p><b>Ime psa: {{data.ime_psa}}</b></p></div></div>
   <div class="row">
     <div class="col-sm">
-      <p>Telefonski broj:{{data.telefonskibr}}</p>
+      <p>Telefonski broj: {{data.telefonskibr}}</p>
     </div>
     <div class="col-sm">
-      <p>Boja psa:{{data.boja}}</p>
+      <p>Boja psa: {{data.boja}}</p>
     </div>
     <div class="col-sm">
-      <p>Starost:{{data.starost}}</p>
+      <p>Starost: {{data.starost}}</p>
     </div>
   </div>
   <div class="row">
@@ -49,14 +49,14 @@
       <p>Vet. lokacija:{{data.vet_lokacija}}</p>
     </div> -->
     <div class="col-sm">
-      <p>Dlaka:{{data.dlaka}}</p>
+      <p>Dlaka: {{data.dlaka}}</p>
     </div>
     <div class="col-sm">
       <!-- <p>Ime psa:{{data.ime_psa}}</p> -->
-      <p>Spol:{{data.spol}}</p>
+      <p>Spol: {{data.spol}}</p>
     </div>
 	<div class="col-sm">
-      <p>Pasmina:{{data.pasmina}}</p>
+      <p>Pasmina: {{data.pasmina}}</p>
     </div>
     <!-- <div class="col-sm">
       <p>Spol:{{data.spol}}</p>
@@ -188,29 +188,29 @@
     <div class="row"><div class="col-sm"><p><b>Ime psa: {{data[0].ime_psa}}</b></p></div></div>
   <div class="row">
     <div class="col-sm">
-      <p>Telefonski broj:{{data[0].telefonskibr}}</p>
+      <p>Telefonski broj: {{data[0].telefonskibr}}</p>
     </div>
     <div class="col-sm">
-      <p>Boja psa:{{data[0].boja}}</p>
+      <p>Boja psa: {{data[0].boja}}</p>
     </div>
     <div class="col-sm">
-      <p>Starost:{{data[0].starost}}</p>
+      <p>Starost: {{data[0].starost}}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-sm">
-      <p>Dlaka:{{data[0].dlaka}}</p>
+      <p>Dlaka: {{data[0].dlaka}}</p>
     </div>
     <div class="col-sm">
-      <p>Spol:{{data[0].spol}}</p>
+      <p>Spol: {{data[0].spol}}</p>
     </div>
 	<div class="col-sm">
-      <p>Pasmina:{{data[0].pasmina}}</p>
+      <p>Pasmina: {{data[0].pasmina}}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-sm">
-      <p>Napomena:{{data[0].napomena}}</p>
+      <p>Napomena: {{data[0].napomena}}</p>
     </div>
   </div>
 </div>             

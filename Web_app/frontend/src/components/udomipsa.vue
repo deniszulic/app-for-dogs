@@ -30,46 +30,46 @@
             <div class="container">
               <div class="row">
                 <div class="col-sm">
-                  <p>Ime vlasnika:{{ data.ime }}</p>
+                  <p>Ime vlasnika: {{ data.ime }}</p>
                 </div>
                 <div class="col-sm">
-                  <p>Prezime vlasnika:{{ data.prezime }}</p>
+                  <p>Prezime vlasnika: {{ data.prezime }}</p>
                 </div>
                 <div class="col-sm">
-                  <p>Adresa vlasnika:{{ data.adresa }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm">
-                  <p>Telefonski broj:{{ data.telefonskibr }}</p>
-                </div>
-                <div class="col-sm">
-                  <p>Grad:{{ data.grad }}</p>
-                </div>
-                <div class="col-sm">
-                  <p>Poštanski broj:{{ data.postanski_broj }}</p>
+                  <p>Adresa vlasnika: {{ data.adresa }}</p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm">
-                  <p>Boja psa:{{ data.boja }}</p>
+                  <p>Telefonski broj: {{ data.telefonskibr }}</p>
                 </div>
                 <div class="col-sm">
-                  <p>Starost:{{ data.starost }}</p>
+                  <p>Grad: {{ data.grad }}</p>
                 </div>
                 <div class="col-sm">
-                  <p>Dlaka:{{ data.dlaka }}</p>
+                  <p>Poštanski broj: {{ data.postanski_broj }}</p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm">
-                  <p>Vet. lokacija:{{ data.vet_lokacija }}</p>
+                  <p>Boja psa: {{ data.boja }}</p>
                 </div>
                 <div class="col-sm">
-                  <p>Spol:{{ data.spol }}</p>
+                  <p>Starost: {{ data.starost }}</p>
                 </div>
                 <div class="col-sm">
-                  <p>Pasmina:{{ data.pasmina }}</p>
+                  <p>Dlaka: {{ data.dlaka }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <p>Vet. lokacija: {{ data.vet_lokacija }}</p>
+                </div>
+                <div class="col-sm">
+                  <p>Spol: {{ data.spol }}</p>
+                </div>
+                <div class="col-sm">
+                  <p>Pasmina: {{ data.pasmina }}</p>
                 </div>
               </div>
               <div class="row">
@@ -85,7 +85,7 @@
               </div>
               <div class="row">
                 <div class="col-sm">
-                  <p>Napomena:{{ data.napomena }}</p>
+                  <p>Napomena: {{ data.napomena }}</p>
                 </div>
               </div>
             </div>

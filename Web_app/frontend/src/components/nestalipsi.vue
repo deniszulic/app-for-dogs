@@ -32,50 +32,50 @@
                     <div class="container">
   <div class="row">
     <div class="col-sm">
-      <p>Ime vlasnika:{{data.ime}}</p>
+      <p>Ime vlasnika: {{data.ime}}</p>
     </div>
     <div class="col-sm">
-      <p>Prezime vlasnika:{{data.prezime}}</p>
+      <p>Prezime vlasnika: {{data.prezime}}</p>
     </div>
     <div class="col-sm">
-      <p>Adresa vlasnika:{{data.adresa}}</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm">
-      <p>Telefonski broj:{{data.telefonskibr}}</p>
-    </div>
-    <div class="col-sm">
-      <p>Grad:{{data.grad}}</p>
-    </div>
-    <div class="col-sm">
-      <p>Poštanski broj:{{data.postanski_broj}}</p>
+      <p>Adresa vlasnika: {{data.adresa}}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-sm">
-      <p>Boja psa:{{data.boja}}</p>
+      <p>Telefonski broj: {{data.telefonskibr}}</p>
     </div>
     <div class="col-sm">
-      <p>Starost:{{data.starost}}</p>
+      <p>Grad: {{data.grad}}</p>
     </div>
     <div class="col-sm">
-      <p>Dlaka:{{data.dlaka}}</p>
+      <p>Poštanski broj: {{data.postanski_broj}}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-sm">
-      <p>Vet. lokacija:{{data.vet_lokacija}}</p>
+      <p>Boja psa: {{data.boja}}</p>
     </div>
     <div class="col-sm">
-      <!-- <p>Ime psa:{{data.ime_psa}}</p> -->
-      <p>Spol:{{data.spol}}</p>
+      <p>Starost: {{data.starost}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Dlaka: {{data.dlaka}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <p>Vet. lokacija: {{data.vet_lokacija}}</p>
+    </div>
+    <div class="col-sm">
+      <!-- <p>Ime psa: {{data.ime_psa}}</p> -->
+      <p>Spol: {{data.spol}}</p>
     </div>
 	<div class="col-sm">
-      <p>Pasmina:{{data.pasmina}}</p>
+      <p>Pasmina: {{data.pasmina}}</p>
     </div>
     <!-- <div class="col-sm">
-      <p>Spol:{{data.spol}}</p>
+      <p>Spol: {{data.spol}}</p>
     </div> -->
   </div>
 </div>             
@@ -112,51 +112,51 @@
                     <div class="container">
   <div class="row">
     <div class="col-sm">
-      <p>Ime vlasnika:{{data[0].ime}}</p>
+      <p>Ime vlasnika: {{data[0].ime}}</p>
     </div>
     <div class="col-sm">
-      <p>Prezime vlasnika:{{data[0].prezime}}</p>
+      <p>Prezime vlasnika: {{data[0].prezime}}</p>
     </div>
     <div class="col-sm">
-      <p>Adresa vlasnika:{{data[0].adresa}}</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm">
-      <p>Telefonski broj:{{data[0].telefonskibr}}</p>
-    </div>
-    <div class="col-sm">
-      <p>Grad:{{data[0].grad}}</p>
-    </div>
-    <div class="col-sm">
-      <p>Poštanski broj:{{data[0].postanski_broj}}</p>
+      <p>Adresa vlasnika: {{data[0].adresa}}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-sm">
-      <p>Boja psa:{{data[0].boja}}</p>
+      <p>Telefonski broj: {{data[0].telefonskibr}}</p>
     </div>
     <div class="col-sm">
-      <p>Starost:{{data[0].starost}}</p>
+      <p>Grad: {{data[0].grad}}</p>
     </div>
     <div class="col-sm">
-      <p>Dlaka:{{data[0].dlaka}}</p>
+      <p>Poštanski broj: {{data[0].postanski_broj}}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-sm">
-      <p>Vet. lokacija:{{data[0].vet_lokacija}}</p>
+      <p>Boja psa: {{data[0].boja}}</p>
     </div>
     <div class="col-sm">
-      <p>Spol:{{data[0].spol}}</p>
+      <p>Starost: {{data[0].starost}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Dlaka: {{data[0].dlaka}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <p>Vet. lokacija: {{data[0].vet_lokacija}}</p>
+    </div>
+    <div class="col-sm">
+      <p>Spol: {{data[0].spol}}</p>
     </div>
 	<div class="col-sm">
-      <p>Pasmina:{{data[0].pasmina}}</p>
+      <p>Pasmina: {{data[0].pasmina}}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-sm">
-      <p>Napomena:{{data[0].napomena}}</p>
+      <p>Napomena: {{data[0].napomena}}</p>
     </div>
   </div>
 </div>             
