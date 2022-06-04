@@ -71,8 +71,6 @@ public class transition_login extends AppCompatActivity {
 
                 Call<getlogindata[]> call = retrofitInterface.login(map);
 
-//                logindata data=new logindata(email.getEditText().getText().toString(), password.getEditText().getText().toString());
-//                Call<Void> call=retrofitInterface.login(data);
                 call.enqueue(new Callback<getlogindata[]>() {
                     @Override
                     public void onResponse(Call<getlogindata[]> call, Response<getlogindata[]> response) {
@@ -103,7 +101,6 @@ public class transition_login extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<getlogindata[]> call, Throwable t) {
-                        //System.out.println(t);
                         Toast.makeText(transition_login.this, t.toString(),
                                 Toast.LENGTH_LONG).show();
                     }

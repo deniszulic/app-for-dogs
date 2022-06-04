@@ -9,7 +9,6 @@ public class missingdogsdata {
     private int starost, Korisnik_id;
     private Integer postanski_broj;
     private long postavljeno;
-    //private Date datum_izgubljen;
     public missingdogsdata(String ime, String prezime, String adresa, String grad,
                            Integer postanski_broj, String boja, int starost, String dlaka,
                            String vet_lokacija, String ime_psa, String spol, String datum_izgubljen,

@@ -53,9 +53,6 @@ public class myreports_missingdogs_adapter extends RecyclerView.Adapter<myreport
     public void onBindViewHolder(myreports_missingdogs_adapter.ViewHolder holder, int position) {
 
         final myreportsdisapp_data listItem = listItems.get(position);
-//        change= holder.getAdapterPosition();
-
-//        holder.ime.setText(listItem.getIme());
         holder.ime_missingdog_adapter.setText(listItem.getIme());
         holder.prezime_missingdog_adapter.setText(listItem.getPrezime());
         holder.adresapronalaska_missingdog_adapter.setText(listItem.getAdresa_pronalaska());
@@ -115,7 +112,6 @@ public class myreports_missingdogs_adapter extends RecyclerView.Adapter<myreport
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView id;
-//        public TextView ime, imepsa, postavljeno, prezime, adresa, telbr, boja, dlaka, pasmina, grad, postnum, vet_lok, spol, starost;
         public TextView ime_missingdog_adapter, prezime_missingdog_adapter, adresapronalaska_missingdog_adapter,
                 adresapreuzimanja_missingdog_adapter, napomena_missingdog_adapter, kontakt_missingdog_adapter,
                 postavljeno_missingdog_adapter;
@@ -138,11 +134,6 @@ public class myreports_missingdogs_adapter extends RecyclerView.Adapter<myreport
     public static String getUseremail() {
         return useremail;
     }
-
-//    public static void setUseremail(String useremail) {
-//        myreports_missingdogs_adapter.useremail = useremail;
-//    }
-//
 
     public static String getIme() {
         return ime;
@@ -219,10 +210,6 @@ public class myreports_missingdogs_adapter extends RecyclerView.Adapter<myreport
     public static String getUrl() {
         return url;
     }
-
-//    public static int getLid() {
-//        return lid;
-//    }
 
     public static String getTelefonskibr() {
         return telefonskibr;

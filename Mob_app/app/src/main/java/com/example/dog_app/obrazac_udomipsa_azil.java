@@ -192,7 +192,7 @@ public class obrazac_udomipsa_azil extends Fragment {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -258,7 +258,6 @@ public class obrazac_udomipsa_azil extends Fragment {
                         throw task.getException();
                     }
 
-                    // Continue with the task to get the download URL
                     return filereference.getDownloadUrl();
                 }
             }).addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -304,7 +303,7 @@ public class obrazac_udomipsa_azil extends Fragment {
 
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-
+                                Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -318,8 +317,5 @@ public class obrazac_udomipsa_azil extends Fragment {
                 }
             });
         }
-//        else {
-//
-//        }
     }
 }

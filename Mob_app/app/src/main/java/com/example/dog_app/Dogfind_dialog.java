@@ -52,8 +52,6 @@ public class Dogfind_dialog extends BottomSheetDialogFragment {
         send_dogfind_form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                commentid id=new commentid();
-//                System.out.println("aaaaa "+id.getId());
                 commentid=MyAdapter.getid();
                 Date date = new Date();
                 long timestamp = date.getTime();
@@ -68,10 +66,8 @@ public class Dogfind_dialog extends BottomSheetDialogFragment {
                 Call<Void> call = retrofitInterface.reportmissingdog(data);
                 ime_dogfind_form.setError(null);
                 prezime_dogfind_form.setError(null);
-//                adresapronalaska_dogfind_form.setError(null);
                 adresapreuzimanje_dogfind_form.setError(null);
                 kontakt_dogfind_form.setError(null);
-//                napomena_dogfind_form.setError(null);
                 isAllFieldsChecked = checkfields();
                 if(isAllFieldsChecked) {
                     call.enqueue(new Callback<Void>() {
@@ -107,10 +103,6 @@ public class Dogfind_dialog extends BottomSheetDialogFragment {
             prezime_dogfind_form.setError("Potrebno je prezime!");
             return false;
         }
-//        if (TextUtils.isEmpty(adresapronalaska_dogfind_form.getEditText().getText().toString())) {
-//            adresapronalaska_dogfind_form.setError("Potrebna je adresa!");
-//            return false;
-//        }
         if (TextUtils.isEmpty(adresapreuzimanje_dogfind_form.getEditText().getText().toString())) {
             adresapreuzimanje_dogfind_form.setError("Potrebna je adresa!");
             return false;
@@ -119,10 +111,6 @@ public class Dogfind_dialog extends BottomSheetDialogFragment {
             kontakt_dogfind_form.setError("Potreban je kontakt!");
             return false;
         }
-//        if (TextUtils.isEmpty(napomena_dogfind_form.getEditText().getText().toString())) {
-//            napomena_dogfind_form.setError("Potrebna je napomena!");
-//            return false;
-//        }
         return true;
     }
 }

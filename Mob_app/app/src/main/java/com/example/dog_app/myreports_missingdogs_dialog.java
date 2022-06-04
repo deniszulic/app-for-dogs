@@ -88,11 +88,9 @@ public class myreports_missingdogs_dialog extends BottomSheetDialogFragment {
         grad_azil_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.grad_azil_myreports_missingdogs);
         naziv_azil_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.naziv_azil_myreports_missingdogs);
 
-//        send_myreports_missingdogs.setVisibility(View.VISIBLE);
 
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
-//        send_myreports_missingdogs = view.findViewById(R.id.send_myreports_missingdogs);
         if(!myreports_missingdogs_adapter.isOglas_azila()){
             ime_nestanak_myreports_missingdogs.setVisibility(View.VISIBLE);
             prezime_nestanak_myreports_missingdogs.setVisibility(View.VISIBLE);
@@ -133,8 +131,6 @@ public class myreports_missingdogs_dialog extends BottomSheetDialogFragment {
         prezime_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getPrezime());
         adresa_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getAdresa());
         kontakt_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getKontakt());
-//        grad_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getGrad());
-//        postnum_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getPostnum());
         imepsa_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getImepsa());
         pasmina_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getPasmina());
         starost_myreports_missingdogs.getEditText().setText(myreports_missingdogs_adapter.getStarost());
@@ -234,62 +230,6 @@ public class myreports_missingdogs_dialog extends BottomSheetDialogFragment {
                         Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                     }
                 });
-//                int radioid1 = radioGroup.getCheckedRadioButtonId();
-//                radioButton = radioGroup.findViewById(radioid1);
-//                if(radioButton.getText().toString().equals("Aktivan oglas")){
-//                    updatemymissingdog updatedata= new updatemymissingdog(
-//                            ime_myreports_missingdogs.getEditText().getText().toString(),
-//                            prezime_myreports_missingdogs.getEditText().getText().toString(),
-//                            adresa_myreports_missingdogs.getEditText().getText().toString(),
-//                            Integer.parseInt(kontakt_myreports_missingdogs.getEditText().getText().toString()),
-//                            grad_myreports_missingdogs.getEditText().getText().toString(),
-//                            Integer.parseInt(postnum_myreports_missingdogs.getEditText().getText().toString()),
-//                            boja_myreports_missingdogs.getEditText().getText().toString(),
-//                            Integer.parseInt(starost_myreports_missingdogs.getEditText().getText().toString()),
-//                            dlaka_myreports_missingdogs.getText().toString(),
-//                            vetlokacija_myreports_missingdogs.getEditText().getText().toString(),
-//                            imepsa_myreports_missingdogs.getEditText().getText().toString(),
-//                            spol_myreports_missingdogs.getText().toString(),
-//                            pasmina_myreports_missingdogs.getEditText().getText().toString(),
-//                            napomena_myreports_missingdogs.getEditText().getText().toString(),
-//                            datum, true);
-//                    Call<updatemymissingdog[]> call= retrofitInterface.updatemymissingdog(myreports_missingdogs_adapter.getid(), updatedata);
-//
-//                    call.enqueue(new Callback<updatemymissingdog[]>() {
-//                        @Override
-//                        public void onResponse(Call<updatemymissingdog[]> call, Response<updatemymissingdog[]> response) {
-//                            if(response.code()==200){
-//                                mymissingdogsdata a= new mymissingdogsdata(myreports_missingdogs_adapter.getid(),
-//                                        ime_myreports_missingdogs.getEditText().getText().toString(),
-//                                        prezime_myreports_missingdogs.getEditText().getText().toString(),
-//                                        adresa_myreports_missingdogs.getEditText().getText().toString(),
-//                                        kontakt_myreports_missingdogs.getEditText().getText().toString(),
-//                                        grad_myreports_missingdogs.getEditText().getText().toString(),
-//                                        postnum_myreports_missingdogs.getEditText().getText().toString(),
-//                                        boja_myreports_missingdogs.getEditText().getText().toString(),
-//                                        starost_myreports_missingdogs.getEditText().getText().toString(),
-//                                        dlaka_myreports_missingdogs.getText().toString(),
-//                                        vetlokacija_myreports_missingdogs.getEditText().getText().toString(),
-//                                        imepsa_myreports_missingdogs.getEditText().getText().toString(),
-//                                        spol_myreports_missingdogs.getText().toString(), datum,
-//                                        napomena_myreports_missingdogs.getEditText().getText().toString(),
-//                                        myreports_missingdogs_adapter.getUrl(),
-//                                        myreports_missingdogs_adapter.getPostavljeno(),
-//                                        pasmina_myreports_missingdogs.getEditText().getText().toString(), true,
-//                                        myreports_missingdogs_adapter.getPrihvaceno(),
-//                                        myreports_missingdogs_adapter.getNapomena_azil());
-//                                mojioglasi_nestalipsi.setListItems(myreports_missingdogs_adapter.getChange(), a);
-////                                myreports_missingdogs_adapter.setAktivan(true);
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<updatemymissingdog[]> call, Throwable t) {
-//
-//                        }
-//                    });
-//                }
-
             }
         });
         return view;

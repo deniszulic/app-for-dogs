@@ -36,7 +36,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class komentari_korisnik extends AppCompatActivity {
+public class moji_komentari_korisnik extends AppCompatActivity {
 
 
     private Retrofit retrofit;
@@ -127,7 +127,7 @@ public class komentari_korisnik extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ListItem[]> call, Throwable t) {
-                Toast.makeText(komentari_korisnik.this,t.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(moji_komentari_korisnik.this,t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -137,14 +137,14 @@ public class komentari_korisnik extends AppCompatActivity {
             public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
                 Comments[] data=response.body();
                 commentsList.addAll(Arrays.asList(data));
-                adapter = new CommentsAdapter(commentsList, id);
+                adapter = new myCommentsAdapter(commentsList, id);
                 recyclerView.setAdapter(adapter);
 
             }
 
             @Override
             public void onFailure(Call<Comments[]> call, Throwable t) {
-                Toast.makeText(komentari_korisnik.this,t.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(moji_komentari_korisnik.this,t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
         send_comment.setOnClickListener(new View.OnClickListener() {
@@ -169,20 +169,20 @@ public class komentari_korisnik extends AppCompatActivity {
                             public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
                                 Comments[] data=response.body();
                                 commentsList.addAll(Arrays.asList(data));
-                                adapter = new CommentsAdapter(commentsList, id);
+                                adapter = new myCommentsAdapter(commentsList, id);
                                 recyclerView.setAdapter(adapter);
 
                             }
 
                             @Override
                             public void onFailure(Call<Comments[]> call, Throwable t) {
-                                Toast.makeText(komentari_korisnik.this,t.toString(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(moji_komentari_korisnik.this,t.toString(),Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(komentari_korisnik.this,t.toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(moji_komentari_korisnik.this,t.toString(),Toast.LENGTH_SHORT).show();
                     }
                 });
             }

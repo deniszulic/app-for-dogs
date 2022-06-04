@@ -8,7 +8,6 @@ public class updatemymissingdog {
             napomena;
     private int telefonskibr, postanski_broj, starost;
     private Date datum_izgubljen;
-    //ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, napomena, datum_izgubljen, aktivan
     public updatemymissingdog(String ime, String prezime, String adresa, int telefonskibr,
                               String grad, int postanski_broj, String boja, int starost, String dlaka,
                               String vet_lokacija, String ime_psa, String spol, String pasmina,

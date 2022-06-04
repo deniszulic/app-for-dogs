@@ -51,11 +51,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link obrazac_udomipsa_korisnik#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class obrazac_udomipsa_korisnik extends Fragment {
     private TextInputLayout ime_udomipsa_korisnik, prezime_udomipsa_korisnik,
             adresa_udomipsa_korisnik, telefonskibr_udomipsa_korisnik, grad_udomipsa_korisnik,
@@ -107,8 +103,6 @@ public class obrazac_udomipsa_korisnik extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_obrazac_udomipsa_korisnik, container, false);
         View v=inflater.inflate(R.layout.fragment_obrazac_udomipsa_korisnik, container, false);
         ime_udomipsa_korisnik=v.findViewById(R.id.ime_udomipsa_korisnik);
         prezime_udomipsa_korisnik=v.findViewById(R.id.prezime_udomipsa_korisnik);
@@ -195,9 +189,6 @@ public class obrazac_udomipsa_korisnik extends Fragment {
                 else if(isAllFieldsChecked){
                     Date date = new Date();
                     long timestamp = date.getTime();
-                    //ime, prezime, adresa, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol,
-                    // napomena, postavljeno, Korisnik_id, telefonskibr, pasmina, kg, kastrat, opasnost, aktivan, url_slike, oglas_azila
-//                    missingdogsdata data = new missingdogsdata(ime_udomipsa_korisnik.getEditText().getText().toString(), prezime_udomipsa_korisnik.getEditText().getText().toString(), adresa_udomipsa_korisnik.getEditText().getText().toString(), grad_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(postnum_udomipsa_korisnik.getEditText().getText().toString()), boja_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(starost_udomipsa_korisnik.getEditText().getText().toString()), dlaka_udomipsa_korisnik.getText().toString(), vet_lokacija_udomipsa_korisnik.getEditText().getText().toString(), imepsa_udomipsa_korisnik.getEditText().getText().toString(), spol_udomipsa_korisnik.getText().toString(), datum, napomena_udomipsa_korisnik.getEditText().getText().toString(), timestamp, sp1.getInt("id", 0), telefonskibr_udomipsa_korisnik.getEditText().getText().toString(), pasmina_udomipsa_korisnik.getEditText().getText().toString(), true, false, null);
                     adopteddogdata data=new adopteddogdata(ime_udomipsa_korisnik.getEditText().getText().toString(), prezime_udomipsa_korisnik.getEditText().getText().toString(), adresa_udomipsa_korisnik.getEditText().getText().toString(), grad_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(postnum_udomipsa_korisnik.getEditText().getText().toString()), boja_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(starost_udomipsa_korisnik.getEditText().getText().toString()), dlaka_udomipsa_korisnik.getText().toString(), vet_lokacija_udomipsa_korisnik.getEditText().getText().toString(), imepsa_udomipsa_korisnik.getEditText().getText().toString(), spol_udomipsa_korisnik.getText().toString(), napomena_udomipsa_korisnik.getEditText().getText().toString(), timestamp, sp1.getInt("id", 0), telefonskibr_udomipsa_korisnik.getEditText().getText().toString(), pasmina_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(kilaza_udomipsa_korisnik.getEditText().getText().toString()), kastrat_udomipsa_korisnik.getText().toString(), opasnazivotinja_udomipsa_korisnik.getText().toString(), true, null, false);
                     Call<Void> call = retrofitInterface.adoptdog(data);
                     call.enqueue(new Callback<Void>() {
@@ -222,7 +213,7 @@ public class obrazac_udomipsa_korisnik extends Fragment {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -312,7 +303,6 @@ public class obrazac_udomipsa_korisnik extends Fragment {
                         throw task.getException();
                     }
 
-                    // Continue with the task to get the download URL
                     return filereference.getDownloadUrl();
                 }
             }).addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -340,7 +330,6 @@ public class obrazac_udomipsa_korisnik extends Fragment {
                         Upload upload=new Upload(downloadUri.toString());
                         Date date = new Date();
                         long timestamp = date.getTime();
-//                        missingdogsdata data= new missingdogsdata(ime_udomipsa_korisnik.getEditText().getText().toString(), prezime_udomipsa_korisnik.getEditText().getText().toString(), adresa_udomipsa_korisnik.getEditText().getText().toString(), grad_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(postnum_udomipsa_korisnik.getEditText().getText().toString()), boja_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(starost_udomipsa_korisnik.getEditText().getText().toString()), dlaka_udomipsa_korisnik.getText().toString(), vet_lokacija_udomipsa_korisnik.getEditText().getText().toString(), imepsa_udomipsa_korisnik.getEditText().getText().toString(), spol_udomipsa_korisnik.getText().toString(), datum, napomena_udomipsa_korisnik.getEditText().getText().toString(), timestamp, getid, telefonskibr_udomipsa_korisnik.getEditText().getText().toString(), pasmina_udomipsa_korisnik.getEditText().getText().toString(), true, false, upload.getImageurl());
                         adopteddogdata data=new adopteddogdata(ime_udomipsa_korisnik.getEditText().getText().toString(), prezime_udomipsa_korisnik.getEditText().getText().toString(), adresa_udomipsa_korisnik.getEditText().getText().toString(), grad_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(postnum_udomipsa_korisnik.getEditText().getText().toString()), boja_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(starost_udomipsa_korisnik.getEditText().getText().toString()), dlaka_udomipsa_korisnik.getText().toString(), vet_lokacija_udomipsa_korisnik.getEditText().getText().toString(), imepsa_udomipsa_korisnik.getEditText().getText().toString(), spol_udomipsa_korisnik.getText().toString(), napomena_udomipsa_korisnik.getEditText().getText().toString(), timestamp, getid, telefonskibr_udomipsa_korisnik.getEditText().getText().toString(), pasmina_udomipsa_korisnik.getEditText().getText().toString(), Integer.parseInt(kilaza_udomipsa_korisnik.getEditText().getText().toString()), kastrat_udomipsa_korisnik.getText().toString(), opasnazivotinja_udomipsa_korisnik.getText().toString(), true, upload.getImageurl(), false);
                         Call<Void> call=retrofitInterface.adoptdog(data);
                         call.enqueue(new Callback<Void>() {
@@ -365,12 +354,10 @@ public class obrazac_udomipsa_korisnik extends Fragment {
 
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-
+                                Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
-//                    else {
-//                    }
                 }
             });
             uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -381,8 +368,5 @@ public class obrazac_udomipsa_korisnik extends Fragment {
                 }
             });
         }
-//        else {
-//
-//        }
     }
 }

@@ -68,7 +68,6 @@ public class myreports_adopteddogs_dialog extends BottomSheetDialogFragment {
         telefonskibr_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.telefonskibr_myreports_adopteddogs);
         grad_azila_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.grad_azila_myreports_adopteddogs);
         postanski_broj_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.postanski_broj_myreports_adopteddogs);
-//        napomena_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.napomena_myreports_adopteddogs);
         prezime_myreports_adopteddogs = (TextInputLayout) view.findViewById(R.id.prezime_myreports_adopteddogs);
         adresa_myreports_adopteddogs = (TextInputLayout) view.findViewById(R.id.adresa_myreports_adopteddogs);
         kontakt_myreports_adopteddogs = (TextInputLayout) view.findViewById(R.id.kontakt_myreports_adopteddogs);
@@ -99,7 +98,6 @@ public class myreports_adopteddogs_dialog extends BottomSheetDialogFragment {
 
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
-//        send_myreports_adopteddogs = view.findViewById(R.id.send_myreports_adopteddogs);
         if(!myreports_adopteddogs_adapter.isOglas_azila()){
             imevl_myreports_adopteddogs.setVisibility(View.VISIBLE);
             prezimevl_myreports_adopteddogs.setVisibility(View.VISIBLE);
@@ -147,7 +145,6 @@ public class myreports_adopteddogs_dialog extends BottomSheetDialogFragment {
         telefonskibr_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getTelefonskibr());
         grad_azila_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getGrad());
         postanski_broj_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getPostanski_broj_udomljavanje());
-//        napomena_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getNapomena());
         dlaka_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getDlaka());
         spol_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getSpol());
         kilaza_myreports_adopteddogs.getEditText().setText(myreports_adopteddogs_adapter.getKilaza());

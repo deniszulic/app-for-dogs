@@ -82,6 +82,7 @@
     </item>
     <item android:title="Ostalo">
         <menu>
+            <group android:checkableBehavior="single">
             <item
                 android:id="@+id/profile"
                 android:icon="@drawable/ic_baseline_person_24"
@@ -90,6 +91,7 @@
                 android:id="@+id/logout"
                 android:icon="@drawable/ic_baseline_logout_24"
                 android:title="Odjava" />
+            </group>
         </menu>
     </item>
 </menu>

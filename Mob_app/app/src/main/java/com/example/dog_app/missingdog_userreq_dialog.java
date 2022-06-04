@@ -45,7 +45,6 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
     private RadioGroup radioGroup_userreq_missingdog;
     private RadioButton radio_button_1_userreq_missingdog, radio_button_2_userreq_missingdog, radioButton;
     private Button spremi_userreq_missingdog;
-//    private Button send_myreports_missingdogs;
 
     private Date datum;
     private Retrofit retrofit;
@@ -59,7 +58,6 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.missingdog_userreq_dialog, container, false);
-//        System.out.println("parent:"+getActivity().getClass().getSimpleName() );
         radioGroup_userreq_missingdog=(RadioGroup) view.findViewById(R.id.radioGroup_userreq_missingdog);
         radio_button_1_userreq_missingdog=(RadioButton) view.findViewById(R.id.radio_button_1_userreq_missingdog);
         radio_button_2_userreq_missingdog=(RadioButton) view.findViewById(R.id.radio_button_2_userreq_missingdog);
@@ -82,13 +80,9 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
         spol_myreports_missingdogs= (TextInputLayout) view.findViewById(R.id.spol_myreports_missingdogs_);
         slika_myreports_missingdogs=(ImageView) view.findViewById(R.id.slika_myreports_missingdogs_);
         dostavljeno_nestanak_myreports_missingdogs_=(TextInputLayout) view.findViewById(R.id.dostavljeno_nestanak_myreports_missingdogs_);
-//        send_myreports_missingdogs=(Button) view.findViewById(R.id.send_myreports_missingdogs);
-
-//        send_myreports_missingdogs.setVisibility(View.GONE);
 
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
-//        send_myreports_missingdogs = view.findViewById(R.id.send_myreports_missingdogs);
 
         if(user_req_missingdog_waiting_adapter.getPrihvaceno().equals("true")){
             radio_button_1_userreq_missingdog.setChecked(true);
@@ -96,10 +90,6 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
         if(user_req_missingdog_waiting_adapter.getPrihvaceno().equals("false")){
             radio_button_2_userreq_missingdog.setChecked(true);
         }
-//        else{
-//            radio_button_1_userreq_missingdog.setChecked(false);
-//            radio_button_2_userreq_missingdog.setChecked(false);
-//        }
 
         ime_nestanak_myreports_missingdogs.getEditText().setText(user_req_missingdog_waiting_adapter.getIme());
         prezime_nestanak_myreports_missingdogs.getEditText().setText(user_req_missingdog_waiting_adapter.getPrezime());
@@ -112,8 +102,6 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
 
 
         adresa_myreports_missingdogs.getEditText().setText(user_req_missingdog_waiting_adapter.getAdresa());
-//        grad_myreports_missingdogs.getEditText().setText(user_req_missingdog_waiting_adapter.getGrad());
-//        postnum_myreports_missingdogs.getEditText().setText(user_req_missingdog_waiting_adapter.getPostnum());
         imepsa_myreports_missingdogs.getEditText().setText(user_req_missingdog_waiting_adapter.getIme_psa());
         pasmina_myreports_missingdogs.getEditText().setText(user_req_missingdog_waiting_adapter.getPasmina());
         starost_myreports_missingdogs.getEditText().setText(user_req_missingdog_waiting_adapter.getStarost());
@@ -161,26 +149,18 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                //Obrada, True, False
                 retrofitInterface = retrofit.create(RetrofitInterface.class);
                 int radioid1 = radioGroup_userreq_missingdog.getCheckedRadioButtonId();
                 radioButton = radioGroup_userreq_missingdog.findViewById(radioid1);
-//                System.out.println("aaa:"+radioButton.getText().toString());
                 try {
                 if(radioGroup_userreq_missingdog.getCheckedRadioButtonId()==-1){
-//                    System.out.println("tekst0:" + napomena_userreq_missingdog.getEditText().getText().toString());
                     updateuserreq_missingdog data= new updateuserreq_missingdog("obrada", napomena_userreq_missingdog.getEditText().getText().toString());
                     Call<updateuserreq_missingdog[]> call=retrofitInterface.updatereportmissingdog(user_req_missingdog_waiting_adapter.getid(), data);
                     call.enqueue(new Callback<updateuserreq_missingdog[]>() {
                         @Override
                         public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                             if(response.code()==200){
-//                                userreq_mis_req.setListItems(user_req_missingdog_waiting_adapter.getChange());
                                 Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
-                                //String ime, String prezime, String adresa, String telefonskibr, String grad, String postanski_broj, String boja,
-                                // String starost, String dlaka, String vet_lokacija, String ime_psa, String spol, String pasmina, Date datum_izgubljen,
-                                // String nestanak_napomena, String url_slike, String azil_nestanak_napomena, String prihvaceno, int id,
-                                // int azil_nestanak_nestanak_id, long postavljeno, int nestanak_id
                                 userreq_missingdog_data data = new userreq_missingdog_data(user_req_missingdog_waiting_adapter.getIme(),
                                         user_req_missingdog_waiting_adapter.getPrezime(),
                                         user_req_missingdog_waiting_adapter.getAdresa(),
@@ -213,7 +193,6 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
                     });
                 }
                 else if (radioButton.getText().toString().equals("Prihvati")) {
-//                        System.out.println("tekst1:" + napomena_userreq_missingdog.getEditText().getText().toString());
                     updateuserreq_missingdog data= new updateuserreq_missingdog("true", napomena_userreq_missingdog.getEditText().getText().toString());
                     Call<updateuserreq_missingdog[]> call=retrofitInterface.updatereportmissingdog(user_req_missingdog_waiting_adapter.getid(), data);
                     call.enqueue(new Callback<updateuserreq_missingdog[]>() {
@@ -231,7 +210,6 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
                         }
                     });
                     } else if (radioButton.getText().toString().equals("Odbij")) {
-//                        System.out.println("tekst2:" + napomena_userreq_missingdog.getEditText().getText().toString());
                     updateuserreq_missingdog data= new updateuserreq_missingdog("false", napomena_userreq_missingdog.getEditText().getText().toString());
                     Call<updateuserreq_missingdog[]> call=retrofitInterface.updatereportmissingdog(user_req_missingdog_waiting_adapter.getid(), data);
                     call.enqueue(new Callback<updateuserreq_missingdog[]>() {
@@ -249,51 +227,6 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
                         }
                     });
                     }
-//                    else {
-//                        System.out.println("tekst3:" + napomena_userreq_missingdog.getEditText().getText().toString());
-//                    updateuserreq_missingdog data= new updateuserreq_missingdog(null, napomena_userreq_missingdog.getEditText().getText().toString());
-//                    Call<updateuserreq_missingdog[]> call=retrofitInterface.updatereportmissingdog(user_req_missingdog_waiting_adapter.getid(), data);
-//                    call.enqueue(new Callback<updateuserreq_missingdog[]>() {
-//                        @Override
-//                        public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
-//                            if(response.code()==200){
-//                                userreq_mis_req.setListItems(user_req_missingdog_waiting_adapter.getChange());
-//                                Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
-//                                //String ime, String prezime, String adresa, String telefonskibr, String grad, String postanski_broj, String boja,
-//                                // String starost, String dlaka, String vet_lokacija, String ime_psa, String spol, String pasmina, Date datum_izgubljen,
-//                                // String nestanak_napomena, String url_slike, String azil_nestanak_napomena, String prihvaceno, int id,
-//                                // int azil_nestanak_nestanak_id, long postavljeno, int nestanak_id
-//                                userreq_missingdog_data data = new userreq_missingdog_data(user_req_missingdog_waiting_adapter.getIme(),
-//                                        user_req_missingdog_waiting_adapter.getPrezime(),
-//                                        user_req_missingdog_waiting_adapter.getAdresa(),
-//                                        user_req_missingdog_waiting_adapter.getTelefonskibr(),
-//                                        user_req_missingdog_waiting_adapter.getGrad(),
-//                                        user_req_missingdog_waiting_adapter.getPostanski_broj(),
-//                                        user_req_missingdog_waiting_adapter.getBoja(),
-//                                        user_req_missingdog_waiting_adapter.getStarost(),
-//                                        user_req_missingdog_waiting_adapter.getDlaka(),
-//                                        user_req_missingdog_waiting_adapter.getVet_lokacija(),
-//                                        user_req_missingdog_waiting_adapter.getIme_psa(),
-//                                        user_req_missingdog_waiting_adapter.getSpol(),
-//                                        user_req_missingdog_waiting_adapter.getPasmina(),
-//                                        user_req_missingdog_waiting_adapter.getDatum_izgubljen(),
-//                                        user_req_missingdog_waiting_adapter.getNestanak_napomena(),
-//                                        user_req_missingdog_waiting_adapter.getUrl_slike(),
-//                                        napomena_userreq_missingdog.getEditText().getText().toString(),
-//                                        null, user_req_missingdog_waiting_adapter.getid(),
-//                                        user_req_missingdog_waiting_adapter.getAzil_nestanak_nestanak_id(),
-//                                        user_req_missingdog_waiting_adapter.getPostavljeno(),
-//                                        user_req_missingdog_waiting_adapter.getNestanak_id());
-//                                userreq_mis_req.setListItemschange(user_req_missingdog_waiting_adapter.getChange(), data);
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<updateuserreq_missingdog[]> call, Throwable t) {
-//                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                    }
                 }catch(Exception e){System.out.println(e);}
             }
         });

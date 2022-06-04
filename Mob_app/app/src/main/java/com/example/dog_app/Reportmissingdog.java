@@ -48,7 +48,6 @@ public class Reportmissingdog {
     public int getNestanak_id() {
         return nestanak_id;
     }
-    //ime, prezime, napomena, adresa_pronalaska, adresa_za_preuzimanje_psa, postavljeno, korisnik_id, nestanak_id, kontakt, naziv_azila, grad_azila
     public Reportmissingdog(String ime, String prezime, String napomena, String adresa_pronalaska, String adresa_za_preuzimanje_psa, long postavljeno, int korisnik_id, int nestanak_id, String kontakt){
         this.ime = ime;
         this.prezime = prezime;

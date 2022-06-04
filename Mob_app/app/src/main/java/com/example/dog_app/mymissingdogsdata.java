@@ -3,10 +3,6 @@ package com.example.dog_app;
 import java.util.Date;
 
 public class mymissingdogsdata {
-    //SELECT nestanak.id, nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad,
-    // nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa,
-    // nestanak.spol, nestanak.datum_izgubljen, nestanak.napomena as nestanak_napomena, nestanak.url_slike, nestanak.postavljeno,
-    // nestanak.pasmina, nestanak.aktivan, azil_nestanak.prihvaceno, azil_nestanak.napomena
     private String ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka,
             vet_lokacija, ime_psa, spol, nestanak_napomena, url_slike, pasmina,
     prihvaceno, napomena;
@@ -14,7 +10,6 @@ public class mymissingdogsdata {
     private int id;
     private long postavljeno;
     private Date datum_izgubljen;
-    //ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, napomena, datum_izgubljen, aktivan
     public mymissingdogsdata(int id, String ime, String prezime, String adresa, String telefonskibr,
                     String grad, String postanski_broj, String boja, String starost, String dlaka,
                     String vet_lokacija, String ime_psa, String spol, Date datum_izgubljen,

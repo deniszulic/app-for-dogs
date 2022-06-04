@@ -47,10 +47,6 @@ public class MyAdaptershelter extends RecyclerView.Adapter<MyAdaptershelter.View
     public void onBindViewHolder(MyAdaptershelter.ViewHolder holder, int position) {
 
         final ListItem listItem = listItems.get(position);
-
-//        holder.email_admin.setText(listItem.getEmail());
-//        holder.status_admin.setText(listItem.getStatus());
-//        holder.datum_admin.setText(listItem.getDatum());
         holder.ime.setText(listItem.getIme());
         holder.imepsa.setText(listItem.getIme_psa());
         Date date = new Date(listItem.getPostavljeno());
@@ -67,7 +63,6 @@ public class MyAdaptershelter extends RecyclerView.Adapter<MyAdaptershelter.View
         holder.vet_lok.setText(listItem.getVet_lokacija());
         holder.spol.setText(listItem.getSpol());
         holder.starost.setText(String.valueOf(listItem.getStarost()));
-//        holder.chip.setText(getDate(listItem.getDatum_izgubljen()));
         Date date1 = new Date(String.valueOf(listItem.getDatum_izgubljen()));
         holder.chip.setText("Izgubljen: "+format.format(date1));
         if(listItem.getUrl_slike()!=null) {
@@ -80,12 +75,9 @@ public class MyAdaptershelter extends RecyclerView.Adapter<MyAdaptershelter.View
         holder.komentiraj_nestalipsi_korisnik_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                SharedPreferences sp1=MyAdaptershelter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-//                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
                 useremail="";
                 Missingdogs_user_shelter_adapter.setEmail_azila("");
                 useremail=listItem.getEmail();
-                //komentari_azil
                 Intent i=new Intent(context, komentari_azil.class);
                 i.putExtra("id", listItem.getId());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -102,9 +94,8 @@ public class MyAdaptershelter extends RecyclerView.Adapter<MyAdaptershelter.View
             @Override
             public void onClick(View view) {
                 lid=listItem.getId();
-//                naziv_azila=listItem.getn
                 FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
-                Dogfind_dialog_azil dialog= new Dogfind_dialog_azil();
+                Dogfind_dialog_azil2 dialog= new Dogfind_dialog_azil2();
                 dialog.show(manager, "dogfind_dialog");
             }
         });

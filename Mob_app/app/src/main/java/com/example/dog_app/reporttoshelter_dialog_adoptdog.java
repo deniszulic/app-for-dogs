@@ -41,7 +41,6 @@ public class reporttoshelter_dialog_adoptdog extends BottomSheetDialogFragment {
     private RetrofitInterface retrofitInterface;
     private String BASE_URL = "http://10.0.2.2:3000";
     private static List<shelters> listItems;
-//    private List<mymissingdogsdata> listItems;
 
     @Nullable
     @Override
@@ -111,7 +110,6 @@ public class reporttoshelter_dialog_adoptdog extends BottomSheetDialogFragment {
             public void onClick(View view) {
                 for(int i=0;i<listItems.size();i++){
                     if(azili_reporttoshelter.getText().toString().substring(0, azili_reporttoshelter.getText().toString().indexOf(",")).equals(listItems.get(i).getNaziv())){
-//                        System.out.println("id:"+listItems.get(i).getId());
                         Date date = new Date();
                         long timestamp = date.getTime();
                         sendreqtoshelter_adoptdog data= new sendreqtoshelter_adoptdog(myadoptdog_user_adapter.getid(), listItems.get(i).getId(), timestamp, "obrada");

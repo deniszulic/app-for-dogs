@@ -30,7 +30,6 @@ public class user_req_missingdog_rejectadapter extends RecyclerView.Adapter<user
     private static int id, azil_nestanak_nestanak_id, nestanak_id, change;
     private static long postavljeno;
     private static Date datum_izgubljen;
-//    private static String useremail;
 
     public user_req_missingdog_rejectadapter(List<userreq_missingdog_data> listItems, Context context) {
         this.listItems = listItems;

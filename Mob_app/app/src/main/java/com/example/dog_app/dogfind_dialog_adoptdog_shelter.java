@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -89,8 +90,6 @@ public class dogfind_dialog_adoptdog_shelter extends BottomSheetDialogFragment {
                     Date date = new Date();
                     long timestamp = date.getTime();
                     int id = sp1.getInt("id", 0);
-//                    Reportmissingdog data= new Reportmissingdog(ime_adoptdog_form_shelter.getEditText().getText().toString(), prezime_adoptdog_form_shelter.getEditText().getText().toString(), napomena_adoptdog_form_shelter.getEditText().getText().toString(), adresa_adoptdog_form_shelter.getEditText().getText().toString(), adresapreuzimanje_adoptdog_form_shelter.getEditText().getText().toString(), timestamp, id, commentid, kontakt_adoptdog_form_shelter.getEditText().getText().toString(), naziv_azila, grad_azila);
-                    //ime, prezime, adresa, grad, postanski_broj, kontakt, razlog_prijave, prihvaceno, postavljeno, udomljavanje_id, korisnik_id, naziv_azila, grad_azila
                     adopt_dog_application data = new adopt_dog_application(ime_adoptdog_form_shelter.getEditText().getText().toString(), prezime_adoptdog_form_shelter.getEditText().getText().toString(), adresa_adoptdog_form_shelter.getEditText().getText().toString(), grad_adoptdog_form_shelter.getEditText().getText().toString(), postnum_adoptdog_form_shelter.getEditText().getText().toString(), kontakt_adoptdog_form_shelter.getEditText().getText().toString(), razlogprijave_adoptdog_form_shelter.getEditText().getText().toString(), "Obrada", timestamp, adopt_shelter_adapter.getid(), id, adopt_shelter_adapter.getNaziv_azila(), adopt_shelter_adapter.getGrad_azila());
                     Call<Void> call = retrofitInterface.reportadopdog(data);
                     call.enqueue(new Callback<Void>() {
@@ -104,12 +103,13 @@ public class dogfind_dialog_adoptdog_shelter extends BottomSheetDialogFragment {
                                 grad_adoptdog_form_shelter.getEditText().getText().clear();
                                 postnum_adoptdog_form_shelter.getEditText().getText().clear();
                                 razlogprijave_adoptdog_form_shelter.getEditText().getText().clear();
+                                Toast.makeText(getActivity(),"Poslano!",Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            System.out.println(t);
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

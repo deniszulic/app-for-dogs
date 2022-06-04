@@ -18,28 +18,6 @@ public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheet_layout, container, false);
-//        Button button= v.findViewById(R.id.bottomsheetbutton);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mListener.onButtonClicked("button clicked");
-//                dismiss();
-//            }
-//        });
-
         return v;
     }
-//    public interface BottomSheetListener{
-//        void onButtonClicked(String text);
-//    }
-//
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        try {
-//            mListener = (BottomSheetListener) context;
-//        }catch(ClassCastException e){
-//            throw new ClassCastException(context.toString()+ " bottomsheetlistener");
-//        }
-//    }
 }

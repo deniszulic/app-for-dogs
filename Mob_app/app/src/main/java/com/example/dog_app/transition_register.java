@@ -133,7 +133,6 @@ public class transition_register extends AppCompatActivity {
                             }
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-                                //System.out.println(t);
                                 Toast.makeText(transition_register.this, t.toString(),
                                         Toast.LENGTH_LONG).show();
                             }
@@ -200,10 +199,8 @@ public class transition_register extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<Integer> call, Throwable t) {
-                                //System.out.println(t);
                                 Toast.makeText(transition_register.this, t.toString(),
                                         Toast.LENGTH_LONG).show();
-                                System.out.println(t);
                             }
                         });
                     }

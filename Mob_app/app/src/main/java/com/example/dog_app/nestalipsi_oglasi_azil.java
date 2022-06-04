@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,8 +63,6 @@ public class nestalipsi_oglasi_azil extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_nestalipsi_oglasi_azil, container, false);
         View v = inflater.inflate(R.layout.fragment_nestalipsi_oglasi_azil, container, false);
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -83,15 +82,13 @@ public class nestalipsi_oglasi_azil extends Fragment {
             public void onResponse(Call<ListItem[]> call, Response<ListItem[]> response) {
                 ListItem[] data = response.body();
                 listItems.addAll(Arrays.asList(data));
-
-//                System.out.println("listitem:"+listItems.get(0).getEmail());
                 adapter = new MyAdaptershelter(listItems, getContext());
                 recyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<ListItem[]> call, Throwable t) {
-
+                Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
         return v;

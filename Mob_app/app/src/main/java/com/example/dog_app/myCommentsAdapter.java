@@ -30,16 +30,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CommentsAdaptershelter extends RecyclerView.Adapter<CommentsAdaptershelter.ViewHolder> {
+public class myCommentsAdapter extends RecyclerView.Adapter<myCommentsAdapter.ViewHolder> {
 
     private List<Comments> commentsList;
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
     private String BASE_URL = "http://10.0.2.2:3000";
-    CommentsAdaptershelter adapter;
+    myCommentsAdapter adapter;
     private int id;
 
-    public CommentsAdaptershelter(List<Comments> commentsList, int id) {
+    public myCommentsAdapter(List<Comments> commentsList, int id) {
         this.commentsList = commentsList;
         this.id=id;
     }
@@ -51,7 +51,7 @@ public class CommentsAdaptershelter extends RecyclerView.Adapter<CommentsAdapter
         return new ViewHolder(v);
     }
     @Override
-    public void onBindViewHolder(CommentsAdaptershelter.ViewHolder holder, int position) {
+    public void onBindViewHolder(myCommentsAdapter.ViewHolder holder, int position) {
 
         final Comments commentsLists = commentsList.get(position);
         holder.email_comments.setText(commentsLists.getEmail());
@@ -59,17 +59,6 @@ public class CommentsAdaptershelter extends RecyclerView.Adapter<CommentsAdapter
         DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
         holder.time_comments.setText(format.format(date));
         holder.text_comments.setText(commentsLists.getKomentar());
-        if(pocetni_zaslon_azil.getUsertype().equals("admin")){holder.deletebtn_comments.setVisibility(View.VISIBLE);}
-        else if(pocetni_zaslon_azil.getSendemail().equals(commentsLists.getEmail()) ){
-            holder.deletebtn_comments.setVisibility(View.VISIBLE);
-        }
-        else if( pocetni_zaslon_azil.getSendemail().equals(MyAdaptershelter.getUseremail()) ){
-            holder.deletebtn_comments.setVisibility(View.VISIBLE);
-        }
-        else if( pocetni_zaslon_azil.getSendemail().equals(Missingdogs_shelter_adapter.getEmail_azila()) ){
-            holder.deletebtn_comments.setVisibility(View.VISIBLE);
-        }
-        else{holder.deletebtn_comments.setVisibility(View.GONE);}
         holder.deletebtn_comments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

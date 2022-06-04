@@ -50,7 +50,6 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
     private RetrofitInterface retrofitInterface;
     private String BASE_URL = "http://10.0.2.2:3000";
     private static List<shelters> listItems;
-//    private List<mymissingdogsdata> listItems;
 
     @Nullable
     @Override
@@ -100,10 +99,6 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
                 if(response.code()==200) {
                     shelters[] data = response.body();
                     listItems.addAll(Arrays.asList(data));
-////                String[] dlaka = {"Kratka", "Duga"};
-////                ArrayAdapter arrayAdapterdlaka = new ArrayAdapter(getActivity(), R.layout.dropdown_item, shelter);
-//                azili_reporttoshelter.setText(shelter.getNaziv()+","+shelter.getGrad(),false);
-////                azili_reporttoshelter.setAdapter(arrayAdapterdlaka);
                     String[] sh = new String[listItems.size()];
                     for (int i = 0; i < listItems.size(); i++) {
                         sh[i] = listItems.get(i).getNaziv() + "," + listItems.get(i).getGrad();
@@ -124,7 +119,6 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
             public void onClick(View view) {
                 for(int i=0;i<listItems.size();i++){
                     if(azili_reporttoshelter.getText().toString().substring(0, azili_reporttoshelter.getText().toString().indexOf(",")).equals(listItems.get(i).getNaziv())){
-//                        System.out.println("id:"+listItems.get(i).getId());
                         Date date = new Date();
                         long timestamp = date.getTime();
                         sendreqtoshelter data= new sendreqtoshelter("obrada", mymissingdogsadapter.getid(), listItems.get(i).getId(), timestamp);

@@ -12,6 +12,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -138,7 +139,7 @@ public class mydata_missingdog_dialog_shelter extends BottomSheetDialogFragment 
                             null,
                             Integer.parseInt(kontakt_mydata_missingdog.getEditText().getText().toString()),
                             null,
-                            Integer.parseInt(mymissingdogsadapter_shelter.getPostnum()),
+                            0,
                             boja_mydata_missingdog.getEditText().getText().toString(),
                             Integer.parseInt(starost_mydata_missingdog.getEditText().getText().toString()),
                             dlaka_mydata_missingdog.getText().toString(),
@@ -177,7 +178,7 @@ public class mydata_missingdog_dialog_shelter extends BottomSheetDialogFragment 
 
                         @Override
                         public void onFailure(Call<updatemymissingdog[]> call, Throwable t) {
-
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -225,7 +226,7 @@ public class mydata_missingdog_dialog_shelter extends BottomSheetDialogFragment 
 
                         @Override
                         public void onFailure(Call<updatemymissingdog[]> call, Throwable t) {
-
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

@@ -35,7 +35,6 @@ public class reportsonmymissingdog_dialog_shelter extends BottomSheetDialogFragm
             napomena_myreports_missingdogs, postavljeno_myreports_missingdogs;
     private ImageView slika_myreports_missingdogs;
     private AppCompatButton datumizgubljen_myreports_missingdogs;
-//    private Button send_myreports_missingdogs;
 
     private Date datum;
     private Retrofit retrofit;

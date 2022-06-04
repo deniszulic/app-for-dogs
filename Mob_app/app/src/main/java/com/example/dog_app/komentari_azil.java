@@ -107,7 +107,6 @@ public class komentari_azil extends AppCompatActivity {
                 dlaka.setText(data[0].getDlaka());
                 pasmina.setText(data[0].getPasmina());
                 prezime.setText(data[0].getPrezime());
-//                chip.setText(getDate(data[0].getDatum_izgubljen()));
                 Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
                 chip.setText("Izgubljen: "+format.format(date1));
                 postnum.setText(String.valueOf(data[0].getPostanski_broj()));
@@ -128,7 +127,7 @@ public class komentari_azil extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ListItem[]> call, Throwable t) {
-
+                Toast.makeText(komentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -145,7 +144,7 @@ public class komentari_azil extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Comments[]> call, Throwable t) {
-
+                Toast.makeText(komentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
         send_comment.setOnClickListener(new View.OnClickListener() {
@@ -177,13 +176,13 @@ public class komentari_azil extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<Comments[]> call, Throwable t) {
-
+                                Toast.makeText(komentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-
+                        Toast.makeText(komentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
                     }
                 });
             }

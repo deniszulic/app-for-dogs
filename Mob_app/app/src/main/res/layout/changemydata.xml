@@ -201,6 +201,15 @@
                 android:text="Datum kada je pas izgubljen"
                 android:textColor="#fff" />
 
+            <TextView
+                android:id="@+id/dogadopttxt123"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bungee"
+                android:text="Dlaka"
+                android:textSize="18sp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
@@ -213,6 +222,15 @@
                     android:inputType="none"
                     android:text="AutoCompleteTextView" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/dogadopttxt321"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bungee"
+                android:text="Spol"
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"

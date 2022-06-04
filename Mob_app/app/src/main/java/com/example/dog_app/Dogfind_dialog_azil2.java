@@ -24,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Dogfind_dialog_azil extends BottomSheetDialogFragment {
+public class Dogfind_dialog_azil2 extends BottomSheetDialogFragment {
     private TextInputLayout ime_dogfind_form, prezime_dogfind_form, adresapronalaska_dogfind_form, adresapreuzimanje_dogfind_form, kontakt_dogfind_form, napomena_dogfind_form;
     private Button send_dogfind_form;
     private int commentid;
@@ -60,7 +60,7 @@ public class Dogfind_dialog_azil extends BottomSheetDialogFragment {
                 kontakt_dogfind_form.setError(null);
                 isAllFieldsChecked = checkfields();
                 if(isAllFieldsChecked) {
-                    commentid=Missingdogs_shelter_adapter.getid();
+                    commentid=MyAdaptershelter.getid();
                     Date date = new Date();
                     long timestamp = date.getTime();
                     int id=sp1.getInt("id",0);

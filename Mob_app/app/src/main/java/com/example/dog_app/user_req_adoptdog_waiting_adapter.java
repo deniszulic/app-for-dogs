@@ -29,7 +29,6 @@ public class user_req_adoptdog_waiting_adapter extends RecyclerView.Adapter<user
     private static String ime, prezime, adresa, telefonskibr, grad, napomena, postanski_broj, boja, starost, opasnost, dlaka, vet_lokacija, ime_psa, spol, pasmina, nestanak_napomena, url_slike, azil_nestanak_napomena, prihvaceno, kilaza, kastrat, azil_udomljavanje_napomena;
     private static int id, udomljavanje_id, change;
     private static long postavljeno;
-//    private static String useremail;
 
     public user_req_adoptdog_waiting_adapter(List<userreq_adoptdog_data> listItems, Context context) {
         this.listItems = listItems;
@@ -93,11 +92,8 @@ public class user_req_adoptdog_waiting_adapter extends RecyclerView.Adapter<user
                 pasmina=listItem.getPasmina();
                 opasnost=listItem.getOpasnost();
                 napomena=listItem.getNapomena();
-//                nestanak_napomena=listItem.getNestanak_napomena();
                 url_slike=listItem.getUrl_slike();
-//                azil_nestanak_napomena=listItem.getAzil_nestanak_napomena();
                 prihvaceno=listItem.getPrihvaceno();
-//                azil_nestanak_nestanak_id=listItem.getAzil_nestanak_nestanak_id();
                 azil_udomljavanje_napomena = listItem.getAzil_udomljavanje_napomena();
                 udomljavanje_id=listItem.getUdomljavanje_id();
                 kilaza=listItem.getKilaza();
@@ -199,17 +195,9 @@ public class user_req_adoptdog_waiting_adapter extends RecyclerView.Adapter<user
         return pasmina;
     }
 
-//    public static String getNestanak_napomena() {
-//        return nestanak_napomena;
-//    }
-
     public static String getUrl_slike() {
         return url_slike;
     }
-
-//    public static String getAzil_nestanak_napomena() {
-//        return azil_nestanak_napomena;
-//    }
 
     public static String getPrihvaceno() {
         return prihvaceno;

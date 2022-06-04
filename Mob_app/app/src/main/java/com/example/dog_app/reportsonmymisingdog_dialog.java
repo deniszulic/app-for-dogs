@@ -38,7 +38,6 @@ public class reportsonmymisingdog_dialog extends BottomSheetDialogFragment {
             napomena_myreports_missingdogs, postavljeno_myreports_missingdogs;
     private ImageView slika_myreports_missingdogs;
     private AppCompatButton datumizgubljen_myreports_missingdogs;
-//    private Button send_myreports_missingdogs;
 
     private Date datum;
     private Retrofit retrofit;
@@ -75,13 +74,9 @@ public class reportsonmymisingdog_dialog extends BottomSheetDialogFragment {
         napomena_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.napomena_myreports_missingdogs_);
         postavljeno_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.postavljeno_myreports_missingdogs_);
         slika_myreports_missingdogs=(ImageView) view.findViewById(R.id.slika_myreports_missingdogs_);
-//        send_myreports_missingdogs=(Button) view.findViewById(R.id.send_myreports_missingdogs);
-
-//        send_myreports_missingdogs.setVisibility(View.GONE);
 
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
-//        send_myreports_missingdogs = view.findViewById(R.id.send_myreports_missingdogs);
 
         ime_nestanak_myreports_missingdogs.getEditText().setText(reportsonmymissingdogs_adapter.getIme_nestanak());
         prezime_nestanak_myreports_missingdogs.getEditText().setText(reportsonmymissingdogs_adapter.getPrezime_nestanak());

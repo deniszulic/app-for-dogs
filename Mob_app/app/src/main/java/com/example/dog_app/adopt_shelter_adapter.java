@@ -141,14 +141,6 @@ public class adopt_shelter_adapter extends RecyclerView.Adapter<adopt_shelter_ad
     }
     public static int getid(){return lid;}
 
-//    public static String getUseremail() {
-//        return useremail;
-//    }
-//
-//    public static void setUseremail(String useremail) {
-//        adopt_shelter_adapter.useremail = useremail;
-//    }
-
     public static String getUlica() {
         return ulica;
     }

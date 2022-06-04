@@ -45,9 +45,6 @@ public class myreports_adopteddogs_adapter extends RecyclerView.Adapter<myreport
     public void onBindViewHolder(myreports_adopteddogs_adapter.ViewHolder holder, int position) {
 
         final myreportsadopteddogs_data listItem = listItems.get(position);
-//        change= holder.getAdapterPosition();
-
-//        holder.ime.setText(listItem.getIme());
         holder.imeadopteddog_adapter.setText(listItem.getIme());
         holder.prezimeadopteddog_adapter.setText(listItem.getPrezime());
         holder.adresa_adopteddog_adapter.setText(listItem.getAdresa());
@@ -94,7 +91,6 @@ public class myreports_adopteddogs_adapter extends RecyclerView.Adapter<myreport
                 vetlokacija=listItem.getVet_lokacija();
                 boja=listItem.getBoja();
                 datumizgubljen=null;
-//                datumizgubljen=listItem.getDatum_izgubljen();
                 dlaka=listItem.getDlaka();
                 spol=listItem.getSpol();
                 postavljeno=listItem.getPostavljeno();
@@ -123,7 +119,6 @@ public class myreports_adopteddogs_adapter extends RecyclerView.Adapter<myreport
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView id;
-        //        public TextView ime, imepsa, postavljeno, prezime, adresa, telbr, boja, dlaka, pasmina, grad, postnum, vet_lok, spol, starost;
         public TextView imeadopteddog_adapter, prezimeadopteddog_adapter, adresa_adopteddog_adapter,
                 kontaktadopteddog_adapter, postavljenoadopteddog_adapter, gradadopteddog_adapter,
                 postnumadopteddog_adapter, razlogprijaveadopteddog_adapter, prihvaceno_adopteddog_adapter;

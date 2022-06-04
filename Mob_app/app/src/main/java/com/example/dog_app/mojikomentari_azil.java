@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.textfield.TextInputLayout;
@@ -89,9 +90,8 @@ public class mojikomentari_azil extends AppCompatActivity {
                 boja.setText(data[0].getBoja());
                 dlaka.setText(data[0].getDlaka());
                 pasmina.setText(data[0].getPasmina());
-//                chip.setText(getDate(data[0].getDatum_izgubljen()));
                 Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
-                chip.setText(format.format(date1));
+                chip.setText("Datum nestanka: "+format.format(date1));
                 spol.setText(data[0].getSpol());
                 starost.setText(String.valueOf(data[0].getStarost()));
                 napomena.setText(data[0].getNapomena());
@@ -107,7 +107,7 @@ public class mojikomentari_azil extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ListItem[]> call, Throwable t) {
-
+                Toast.makeText(mojikomentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -116,16 +116,15 @@ public class mojikomentari_azil extends AppCompatActivity {
             @Override
             public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
                 Comments[] data=response.body();
-//                System.out.println("sheesh:"+data[0].getKomentar());
                 commentsList.addAll(Arrays.asList(data));
-                adapter = new CommentsAdaptershelter(commentsList, id);
+                adapter = new myCommentsAdapterShelter(commentsList, id);
                 recyclerView.setAdapter(adapter);
 
             }
 
             @Override
             public void onFailure(Call<Comments[]> call, Throwable t) {
-
+                Toast.makeText(mojikomentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
         send_comment.setOnClickListener(new View.OnClickListener() {
@@ -150,20 +149,20 @@ public class mojikomentari_azil extends AppCompatActivity {
                             public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
                                 Comments[] data=response.body();
                                 commentsList.addAll(Arrays.asList(data));
-                                adapter = new CommentsAdaptershelter(commentsList, id);
+                                adapter = new myCommentsAdapterShelter(commentsList, id);
                                 recyclerView.setAdapter(adapter);
 
                             }
 
                             @Override
                             public void onFailure(Call<Comments[]> call, Throwable t) {
-
+                                Toast.makeText(mojikomentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-
+                        Toast.makeText(mojikomentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
                     }
                 });
             }

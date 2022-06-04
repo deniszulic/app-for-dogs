@@ -31,11 +31,9 @@ public class myadoptdog_user_adapter extends RecyclerView.Adapter<myadoptdog_use
     private static int lid;
     private static String useremail, ime, prezime, adresa, grad, postnum, kontakt, imepsa, pasmina,
             starost, vetlokacija, boja, dlaka, spol, napomena, url, prihvaceno, napomena_azil, kilaza, kastrat, opasnost;
-//    private static Date datumizgubljen;
     private static boolean aktivan;
     private static int change;
     private static long postavljeno;
-//    private static myadoptdog_user_adapter.ViewHolder hold;
 
     public myadoptdog_user_adapter(List<myadopteddogsdata> listItems, Context context) {
         this.listItems = listItems;
@@ -53,11 +51,6 @@ public class myadoptdog_user_adapter extends RecyclerView.Adapter<myadoptdog_use
     public void onBindViewHolder(myadoptdog_user_adapter.ViewHolder holder, int position) {
 
         final myadopteddogsdata listItem = listItems.get(position);
-//        change= holder.getAdapterPosition();
-
-//        holder.email_admin.setText(listItem.getEmail());
-//        holder.status_admin.setText(listItem.getStatus());
-//        holder.datum_admin.setText(listItem.getDatum());
         holder.ime.setText(listItem.getIme());
         holder.imepsa.setText(listItem.getIme_psa());
         Date date = new Date(listItem.getPostavljeno());
@@ -77,8 +70,6 @@ public class myadoptdog_user_adapter extends RecyclerView.Adapter<myadoptdog_use
         holder.kilaza.setText(listItem.getKilaza());
         holder.kastrat.setText(listItem.getKastrat());
         holder.opasnost.setText(listItem.getOpasnost());
-                        //        Date date1 = new Date(String.valueOf(listItem.getDatum_izgubljen()));
-                        //        holder.chip.setText(format.format(date1));
         if(listItem.getUrl_slike()!=null) {
             holder.slika.setVisibility(View.VISIBLE);
             Picasso.get().load(listItem.getUrl_slike()).into(holder.slika);
@@ -86,35 +77,8 @@ public class myadoptdog_user_adapter extends RecyclerView.Adapter<myadoptdog_use
         else{
             holder.slika.setVisibility(View.GONE);
         }
-//        holder.komentiraj_mymissingdogs.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                SharedPreferences sp1=myadoptdog_user_adapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-////                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-//                //useremail="";
-//                //Missingdogs_user_shelter_adapter.setEmail_azila("");
-//                //useremail=listItem.getEmail();
-//                Intent i=new Intent(context, komentari_korisnik.class);
-//                i.putExtra("id", listItem.getId());
-//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                context.startActivity(i);
-//            }
-//        });
         SharedPreferences sp1=myadoptdog_user_adapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
-//        if(!getemail.equals(listItem.getEmail())){
-//            holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.VISIBLE);
-//        }
-//        else{holder.pronadenpas_nestalipsi_korisnik.setVisibility(View.GONE);}
-//        holder.pronadenpas_nestalipsi_korisnik.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                lid=listItem.getId();
-//                FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
-//                Dogfind_dialog dialog= new Dogfind_dialog();
-//                dialog.show(manager, "dogfind_dialog");
-//            }
-//        });
         holder.promjenapodataka_myadopteddogs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,31 +119,6 @@ public class myadoptdog_user_adapter extends RecyclerView.Adapter<myadoptdog_use
         holder.azil_myadopteddogs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                lid=listItem.getId();
-//                prihvaceno=listItem.getPrihvaceno();
-//                napomena_azil=listItem.getNapomena();
-//                change=holder.getAdapterPosition();
-//                url=null;
-//                url=listItem.getUrl_slike();
-//                ime=listItem.getIme();
-//                prezime=listItem.getPrezime();
-//                adresa=listItem.getAdresa();
-//                grad=listItem.getGrad();
-//                postnum=listItem.getPostanski_broj();
-//                kontakt=listItem.getTelefonskibr();
-//                imepsa=listItem.getIme_psa();
-//                pasmina=listItem.getPasmina();
-//                starost=listItem.getStarost();
-//                vetlokacija=listItem.getVet_lokacija();
-//                boja=listItem.getBoja();
-//                dlaka=listItem.getDlaka();
-//                spol=listItem.getSpol();
-//                postavljeno=listItem.getPostavljeno();
-//                aktivan=listItem.isAktivan();
-//                kilaza=listItem.getKilaza();
-//                kastrat=listItem.getKastrat();
-//                opasnost=listItem.getOpasnost();
-
                 change=holder.getAdapterPosition();
                 url=null;
                 url=listItem.getUrl_slike();

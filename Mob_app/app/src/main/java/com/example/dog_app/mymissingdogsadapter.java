@@ -37,7 +37,6 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
     private static boolean aktivan;
     private static int change;
     private static long postavljeno;
-//    private static mymissingdogsadapter.ViewHolder hold;
 
     public mymissingdogsadapter(List<mymissingdogsdata> listItems, Context context) {
         this.listItems = listItems;
@@ -55,11 +54,6 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
     public void onBindViewHolder(mymissingdogsadapter.ViewHolder holder, int position) {
 
         final mymissingdogsdata listItem = listItems.get(position);
-//        change= holder.getAdapterPosition();
-
-//        holder.email_admin.setText(listItem.getEmail());
-//        holder.status_admin.setText(listItem.getStatus());
-//        holder.datum_admin.setText(listItem.getDatum());
         holder.ime.setText(listItem.getIme());
         holder.imepsa.setText(listItem.getIme_psa());
         Date date = new Date(listItem.getPostavljeno());
@@ -88,8 +82,9 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
         holder.komentiraj_mymissingdogs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(context, komentari_korisnik.class);
+                Intent i=new Intent(context, moji_komentari_korisnik.class);
                 i.putExtra("id", listItem.getId());
+                useremail = "";
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
@@ -128,10 +123,7 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
                 boja="";
                 boja=listItem.getBoja();
                 datumizgubljen=null;
-                //Date date2= new Date(String.valueOf(listItem.getDatum_izgubljen()));
-                //datumizgubljen=listItem.getDatum_izgubljen();
                 datumizgubljen=listItem.getDatum_izgubljen();
-//                System.out.println("aaaa:"+datumizgubljen);
                 dlaka="";
                 dlaka=listItem.getDlaka();
                 spol="";
@@ -139,9 +131,6 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
                 napomena="";
                 napomena=listItem.getNestanak_napomena();
                 postavljeno=listItem.getPostavljeno();
-//                Date date = new Date(listItem.getPostavljeno());
-//                DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
-//                postavljeno=format.format(date);
                 aktivan=listItem.isAktivan();
                 FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
                 mydata_missingdog_dialog mymissingdogs=new mydata_missingdog_dialog();
@@ -154,7 +143,6 @@ public class mymissingdogsadapter extends RecyclerView.Adapter<mymissingdogsadap
                 lid=listItem.getId();
                 prihvaceno=listItem.getPrihvaceno();
                 napomena_azil=listItem.getNapomena();
-
                 change=holder.getAdapterPosition();
                 url=null;
                 url=listItem.getUrl_slike();

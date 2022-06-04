@@ -59,7 +59,6 @@ public class missingdog_userreject_dialog extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.missingdog_userreq_dialog, container, false);
-//        System.out.println("parent:"+getActivity().getClass().getSimpleName() );
         radioGroup_userreq_missingdog=(RadioGroup) view.findViewById(R.id.radioGroup_userreq_missingdog);
         radio_button_1_userreq_missingdog=(RadioButton) view.findViewById(R.id.radio_button_1_userreq_missingdog);
         radio_button_2_userreq_missingdog=(RadioButton) view.findViewById(R.id.radio_button_2_userreq_missingdog);
@@ -82,13 +81,9 @@ public class missingdog_userreject_dialog extends BottomSheetDialogFragment {
         spol_myreports_missingdogs= (TextInputLayout) view.findViewById(R.id.spol_myreports_missingdogs_);
         slika_myreports_missingdogs=(ImageView) view.findViewById(R.id.slika_myreports_missingdogs_);
         dostavljeno_nestanak_myreports_missingdogs_=(TextInputLayout) view.findViewById(R.id.dostavljeno_nestanak_myreports_missingdogs_);
-//        send_myreports_missingdogs=(Button) view.findViewById(R.id.send_myreports_missingdogs);
-
-//        send_myreports_missingdogs.setVisibility(View.GONE);
 
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
-//        send_myreports_missingdogs = view.findViewById(R.id.send_myreports_missingdogs);
 
         if(user_req_missingdog_rejectadapter.getPrihvaceno().equals("true")){
             radio_button_1_userreq_missingdog.setChecked(true);
@@ -108,8 +103,6 @@ public class missingdog_userreject_dialog extends BottomSheetDialogFragment {
 
 
         adresa_myreports_missingdogs.getEditText().setText(user_req_missingdog_rejectadapter.getAdresa());
-//        grad_myreports_missingdogs.getEditText().setText(user_req_missingdog_rejectadapter.getGrad());
-//        postnum_myreports_missingdogs.getEditText().setText(user_req_missingdog_rejectadapter.getPostnum());
         imepsa_myreports_missingdogs.getEditText().setText(user_req_missingdog_rejectadapter.getIme_psa());
         pasmina_myreports_missingdogs.getEditText().setText(user_req_missingdog_rejectadapter.getPasmina());
         starost_myreports_missingdogs.getEditText().setText(user_req_missingdog_rejectadapter.getStarost());
@@ -156,7 +149,6 @@ public class missingdog_userreject_dialog extends BottomSheetDialogFragment {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                //Obrada, True, False
                 retrofitInterface = retrofit.create(RetrofitInterface.class);
                 int radioid1 = radioGroup_userreq_missingdog.getCheckedRadioButtonId();
                 radioButton = radioGroup_userreq_missingdog.findViewById(radioid1);
@@ -185,7 +177,6 @@ public class missingdog_userreject_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                             if(response.code()==200){
-//                                userreq_mis_reject.setListItems(user_req_missingdog_rejectadapter.getChange());
                                 Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
                                 userreq_missingdog_data data = new userreq_missingdog_data(user_req_missingdog_rejectadapter.getIme(),
                                         user_req_missingdog_rejectadapter.getPrezime(),

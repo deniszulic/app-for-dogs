@@ -66,7 +66,6 @@ public class reportsonmyadopteddog_dialog extends BottomSheetDialogFragment {
         telefonskibr_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.telefonskibr_myreports_adopteddogs_);
         grad_azila_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.grad_azila_myreports_adopteddogs_);
         postanski_broj_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.postanski_broj_myreports_adopteddogs_);
-//        napomena_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.napomena_myreports_adopteddogs);
         prezime_myreports_adopteddogs = (TextInputLayout) view.findViewById(R.id.prezime_myreports_adopteddogs_);
         adresa_myreports_adopteddogs = (TextInputLayout) view.findViewById(R.id.adresa_myreports_adopteddogs_);
         kontakt_myreports_adopteddogs = (TextInputLayout) view.findViewById(R.id.kontakt_myreports_adopteddogs_);
@@ -96,7 +95,6 @@ public class reportsonmyadopteddog_dialog extends BottomSheetDialogFragment {
 
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
-//        send_myreports_adopteddogs = view.findViewById(R.id.send_myreports_adopteddogs);
 
         imevl_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter.getIme_udomljavanje());
         prezimevl_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter.getPrezime_udomljavanje());
@@ -104,7 +102,6 @@ public class reportsonmyadopteddog_dialog extends BottomSheetDialogFragment {
         telefonskibr_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter.getTelefonskibr());
         grad_azila_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter.getGrad());
         postanski_broj_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter.getPostanski_broj_udomljavanje());
-//        napomena_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter.getNapomena());
         dlaka_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter.getDlaka());
         spol_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter.getSpol());
         kilaza_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter.getKilaza());
@@ -156,7 +153,6 @@ public class reportsonmyadopteddog_dialog extends BottomSheetDialogFragment {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                //Obrada, True, False
                 retrofitInterface = retrofit.create(RetrofitInterface.class);
                 int radioid1 = radioGroup_myrep_adopteddogs_.getCheckedRadioButtonId();
                 radioButton = radioGroup_myrep_adopteddogs_.findViewById(radioid1);

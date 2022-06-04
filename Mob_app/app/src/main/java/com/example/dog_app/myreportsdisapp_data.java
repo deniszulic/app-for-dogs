@@ -3,13 +3,6 @@ package com.example.dog_app;
 import java.util.Date;
 
 public class myreportsdisapp_data {
-    //prijava_nestanka.ime, prijava_nestanka.prezime, prijava_nestanka.adresa_pronalaska,
-    // prijava_nestanka.adresa_za_preuzimanje_psa, prijava_nestanka.napomena, prijava_nestanka.postavljeno,
-    // prijava_nestanka.kontakt, prijava_nestanka.id, nestanak.ime as ime_nestanak, nestanak.prezime as prezime_nestanak,
-    // nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost,
-    // nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.pasmina, nestanak.datum_izgubljen,
-    // nestanak.napomena as napomena_nestanak, nestanak.url_slike, nestanak.oglas_azila, prijava_nestanka.naziv_azila,
-    // prijava_nestanka.grad_azila
     private String ime, prezime, adresa_pronalaska, adresa_za_preuzimanje_psa, napomena, kontakt,
             ime_nestanak, prezime_nestanak, adresa, telefonskibr, grad, postanski_broj, boja, starost,
     dlaka, vet_lokacija, ime_psa, spol, pasmina, napomena_nestanak, url_slike, naziv_azila, grad_azila;

@@ -3,7 +3,6 @@ package com.example.dog_app;
 import java.util.Date;
 
 public class userreq_missingdog_data {
-    //nestanak.ime, nestanak.prezime, nestanak.adresa, nestanak.telefonskibr, nestanak.grad, nestanak.postanski_broj, nestanak.boja, nestanak.starost, nestanak.dlaka, nestanak.vet_lokacija, nestanak.ime_psa, nestanak.spol, nestanak.pasmina, nestanak.datum_izgubljen, nestanak.napomena as nestanak_napomena, nestanak.url_slike, azil_nestanak.napomena as azil_nestanak_napomena, azil_nestanak.prihvaceno, azil_nestanak.id, azil_nestanak.nestanak_id as azil_nestanak_nestanak_id, azil_nestanak.postavljeno, nestanak.id as nestanak_id
     private String ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, nestanak_napomena, url_slike, azil_nestanak_napomena, prihvaceno;
     private int id, azil_nestanak_nestanak_id, nestanak_id;
     private long postavljeno;

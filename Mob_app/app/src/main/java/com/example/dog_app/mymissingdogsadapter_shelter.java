@@ -63,7 +63,7 @@ public class mymissingdogsadapter_shelter extends RecyclerView.Adapter<mymissing
         holder.spol.setText(listItem.getSpol());
         holder.starost.setText(listItem.getStarost());
         Date date1 = new Date(String.valueOf(listItem.getDatum_izgubljen()));
-        holder.chip.setText(format.format(date1));
+        holder.chip.setText("Datum nestanka: "+format.format(date1));
         if(listItem.getUrl_slike()!=null) {
             holder.slika.setVisibility(View.VISIBLE);
             Picasso.get().load(listItem.getUrl_slike()).into(holder.slika);

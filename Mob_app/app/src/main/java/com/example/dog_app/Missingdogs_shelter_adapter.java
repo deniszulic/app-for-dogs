@@ -61,7 +61,6 @@ public class Missingdogs_shelter_adapter extends RecyclerView.Adapter<Missingdog
         holder.pasmina_nestalipsi_korisnik_azil.setText(listItem.getPasmina());
         holder.spol_nestalipsi_korisnik_azil.setText(listItem.getSpol());
         holder.starost_nestalipsi_korisnik_azil.setText(listItem.getStarost());
-//        holder.chip_nestalipsi_korisnik_azil.setText(getDate(listItem.getDatum_izgubljen()));
         Date date1 = new Date(String.valueOf(listItem.getDatum_izgubljen()));
         holder.chip_nestalipsi_korisnik_azil.setText("Izgubljen: "+format.format(date1));
         if(listItem.getUrl_slike()!=null) {
@@ -76,8 +75,6 @@ public class Missingdogs_shelter_adapter extends RecyclerView.Adapter<Missingdog
         holder.komentiraj_nestalipsi_korisnik_azil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                SharedPreferences sp1=MyAdapter.this.context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-//                SharedPreferences sp1=context.getSharedPreferences("userdata", Context.MODE_PRIVATE);
                 email_azila="";
                 MyAdapter.setUseremail("");
                 email_azila=listItem.getEmail();

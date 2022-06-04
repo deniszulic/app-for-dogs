@@ -1,10 +1,7 @@
 package com.example.dog_app;
 
 public class userreq_adoptdog_data {
-    //udomljavanje.ime, udomljavanje.prezime, udomljavanje.adresa, udomljavanje.telefonskibr, udomljavanje.grad, udomljavanje.postanski_broj, udomljavanje.boja,
-    // udomljavanje.starost, udomljavanje.dlaka, udomljavanje.vet_lokacija, udomljavanje.ime_psa, udomljavanje.spol, udomljavanje.pasmina, udomljavanje.kilaza,
-    // udomljavanje.kastrat, udomljavanje.opasnost, udomljavanje.napomena, udomljavanje.url_slike, azil_udomljavanje.napomena as azil_udomljavanje_napomena,
-    // azil_udomljavanje.prihvaceno, azil_udomljavanje.postavljeno as azil_udomljavanje_postavljeno, azil_udomljavanje.id, udomljavanje.id as udomljavanje_id
+
     private String ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija, ime_psa, spol, pasmina, kilaza, kastrat, opasnost, napomena, url_slike, azil_udomljavanje_napomena, prihvaceno;
     private Integer id, udomljavanje_id;
     private long azil_udomljavanje_postavljeno;

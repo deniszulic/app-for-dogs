@@ -33,7 +33,6 @@ public class user_req_missingdog_waiting_adapter extends RecyclerView.Adapter<us
     private static int id, azil_nestanak_nestanak_id, nestanak_id, change;
     private static long postavljeno;
     private static Date datum_izgubljen;
-//    private static String useremail;
 
     public user_req_missingdog_waiting_adapter(List<userreq_missingdog_data> listItems, Context context) {
         this.listItems = listItems;
@@ -112,12 +111,6 @@ public class user_req_missingdog_waiting_adapter extends RecyclerView.Adapter<us
                 azil_nestanak_nestanak_id=listItem.getAzil_nestanak_nestanak_id();
                 postavljeno=listItem.getPostavljeno();
                 datum_izgubljen=listItem.getDatum_izgubljen();
-
-//                 vet_lokacija, ime_psa, spol, pasmina, nestanak_napomena, url_slike, azil_nestanak_napomena, prihvaceno;
-//                private static int id, azil_nestanak_nestanak_id, nestanak_id, change;
-//                private static long postavljeno;
-//                private static Date datum_izgubljen;
-
 
                 FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
                 missingdog_userreq_dialog dialog=new missingdog_userreq_dialog();

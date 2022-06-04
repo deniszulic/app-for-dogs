@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -139,10 +140,6 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
         materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
             public void onPositiveButtonClick(Long selection) {
-//                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-//                calendar.setTimeInMillis(selection);
-//                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//                String formattedDate  = format.format(calendar.getTime());
                 Date date= new Date(selection);
                 datum=date;
             }
@@ -186,26 +183,6 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updatemymissingdog[]> call, Response<updatemymissingdog[]> response) {
                             if(response.code()==200){
-//                                Call<mymissingdogsdata[]> data = retrofitInterface.getmymissingdogs(getemail);
-//
-//                                listItems=new ArrayList<>();
-//                                data.enqueue(new Callback<mymissingdogsdata[]>() {
-//                                    @Override
-//                                    public void onResponse(Call<mymissingdogsdata[]> call, Response<mymissingdogsdata[]> response) {
-//                                        mymissingdogsdata[] data = response.body();
-//                                        listItems.addAll(Arrays.asList(data));
-//                                        mojioglasi_nestalipsi.setAdapter(new mymissingdogsadapter(listItems, getContext()));
-//                                        mojioglasi_nestalipsi.getRecyclerView().setAdapter(mojioglasi_nestalipsi.getAdapter());
-//                                    }
-//
-//                                    @Override
-//                                    public void onFailure(Call<mymissingdogsdata[]> call, Throwable t) {
-//
-//                                    }
-//                                });
-
-//                                mojioglasi_nestalipsi.getAdapter().notifyItemChanged(mymissingdogsadapter.getChange());
-
                                 mymissingdogsdata a= new mymissingdogsdata(mymissingdogsadapter.getid(),
                                         ime_mydata_missingdog.getEditText().getText().toString(),
                                         prezime_mydata_missingdog.getEditText().getText().toString(),
@@ -226,13 +203,13 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
                                         mymissingdogsadapter.getPrihvaceno(),
                                         mymissingdogsadapter.getNapomena_azil());
                                 mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
-//                                mymissingdogsadapter.setAktivan(true);
+                                Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<updatemymissingdog[]> call, Throwable t) {
-
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -279,13 +256,13 @@ public class mydata_missingdog_dialog extends BottomSheetDialogFragment {
                                         mymissingdogsadapter.getPrihvaceno(),
                                         mymissingdogsadapter.getNapomena_azil());
                                 mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
-//                                mymissingdogsadapter.setAktivan(false);
+                                Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<updatemymissingdog[]> call, Throwable t) {
-
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

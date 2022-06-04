@@ -64,7 +64,6 @@ public class adopteddog_userrejected_dialog extends BottomSheetDialogFragment {
         telefonskibr_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.telefonskibr_myreports_adopteddogs_);
         grad_azila_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.grad_azila_myreports_adopteddogs_);
         postanski_broj_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.postanski_broj_myreports_adopteddogs_);
-//        napomena_nestanak_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.azilnapomena_userreq_adopteddog);
         adresa_myreports_missingdogs = (TextInputLayout) view.findViewById(R.id.adresa_myreports_adopteddogs_);
         imepsa_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.imepsa_myreports_adopteddogs_);
         pasmina_myreports_missingdogs=(TextInputLayout) view.findViewById(R.id.pasmina_myreports_adopteddogs_);
@@ -86,10 +85,6 @@ public class adopteddog_userrejected_dialog extends BottomSheetDialogFragment {
         if(user_req_adoptdog_rejected_adapter.getPrihvaceno().equals("false")){
             radio_button_2_userreq_missingdog.setChecked(true);
         }
-//        else{
-//            radio_button_1_userreq_missingdog.setChecked(false);
-//            radio_button_2_userreq_missingdog.setChecked(false);
-//        }
 
         ime_nestanak_myreports_missingdogs.getEditText().setText(user_req_adoptdog_rejected_adapter.getIme());
         prezime_nestanak_myreports_missingdogs.getEditText().setText(user_req_adoptdog_rejected_adapter.getPrezime());
@@ -130,11 +125,9 @@ public class adopteddog_userrejected_dialog extends BottomSheetDialogFragment {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                //Obrada, True, False
                 retrofitInterface = retrofit.create(RetrofitInterface.class);
                 int radioid1 = radioGroup_userreq_missingdog.getCheckedRadioButtonId();
                 radioButton = radioGroup_userreq_missingdog.findViewById(radioid1);
-//                System.out.println("aaa:"+radioButton.getText().toString());
                 try {
                     if (radioButton.getText().toString().equals("Prihvati")) {
                         updateuserreq_missingdog data= new updateuserreq_missingdog("true", azilnapomena_userreq_adopteddog.getEditText().getText().toString());
@@ -160,7 +153,6 @@ public class adopteddog_userrejected_dialog extends BottomSheetDialogFragment {
                             @Override
                             public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                                 if(response.code()==200){
-//                                    userreq_adoptdog_reject.setListItems(user_req_adoptdog_rejected_adapter.getChange());
                                     Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
                                     userreq_adoptdog_data data = new userreq_adoptdog_data(
                                             user_req_adoptdog_rejected_adapter.getIme(),

@@ -65,7 +65,6 @@ public class reportsonmyadopteddog_dialog_shelter extends BottomSheetDialogFragm
         imepsa_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.imepsa_myreports_adopteddogs_);
         pasmina_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.pasmina_myreports_adopteddogs_);
         starost_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.starost_myreports_adopteddogs_);
-//        vetlokacija_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.vetlokacija_myreports_adopteddogs_);
         boja_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.boja_myreports_adopteddogs_);
         dlaka_myreports_adopteddogs= (TextInputLayout) view.findViewById(R.id.dlaka_myreports_adopteddogs_);
         spol_myreports_adopteddogs= (TextInputLayout) view.findViewById(R.id.spol_myreports_adopteddogs_);
@@ -75,11 +74,9 @@ public class reportsonmyadopteddog_dialog_shelter extends BottomSheetDialogFragm
         send_myreports_adopteddogs=(Button) view.findViewById(R.id.send_myreports_adopteddogs_shelter);
         adresa_myreports_adopteddogs_=(TextInputLayout) view.findViewById(R.id.adresa_myreports_adopteddogs_);
         grad_azila_myreports_adopteddogs_ = (TextInputLayout) view.findViewById(R.id.grad_azila_myreports_adopteddogs_);
-//        adresa_udomljavanje_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.adresa_udomljavanje_myreports_adopteddogs_);
         kilaza_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.kilaza_myreports_adopteddogs_);
         kastrat_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.kastrat_myreports_adopteddogs_);
         opasnost_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.opasnost_myreports_adopteddogs_);
-//        grad_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.grad_myreports_adopteddogs_);
         postnum_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.postnum_myreports_adopteddogs_);
         razlogprijave_myreports_adopteddogs=(TextInputLayout) view.findViewById(R.id.razlogprijave_myreports_adopteddogs_);
         radio_button_1_myrep_adopteddogs=(RadioButton) view.findViewById(R.id.radio_button_1_myrep_adopteddogs_shelter);
@@ -90,9 +87,6 @@ public class reportsonmyadopteddog_dialog_shelter extends BottomSheetDialogFragm
 
         SharedPreferences sp1 = getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
         String getemail=sp1.getString("email", null);
-//        send_myreports_adopteddogs = view.findViewById(R.id.send_myreports_adopteddogs);
-
-        //adresa_udomljavanje_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getAdresa_udomljavanje());
         telefonskibr_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getTelefonskibr());
         dlaka_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getDlaka());
         spol_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getSpol());
@@ -106,12 +100,10 @@ public class reportsonmyadopteddog_dialog_shelter extends BottomSheetDialogFragm
         ime_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getIme());
         prezime_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getPrezime());
         kontakt_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getKontakt());
-//        grad_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getGrad_udomljavanje());
         postnum_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getPostnum());
         imepsa_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getImepsa());
         pasmina_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getPasmina());
         starost_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getStarost());
-       // vetlokacija_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getVetlokacija());
         boja_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getBoja());
         kastrat_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getKastrat());
         opasnost_myreports_adopteddogs.getEditText().setText(reportsonmy_adopteddogs_adapter_shelter.getOpasnost());
@@ -148,7 +140,6 @@ public class reportsonmyadopteddog_dialog_shelter extends BottomSheetDialogFragm
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                //Obrada, True, False
                 retrofitInterface = retrofit.create(RetrofitInterface.class);
                 int radioid1 = radioGroup_myrep_adopteddogs_.getCheckedRadioButtonId();
                 radioButton = radioGroup_myrep_adopteddogs_.findViewById(radioid1);

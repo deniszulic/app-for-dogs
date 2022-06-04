@@ -170,6 +170,7 @@ public class mydata_adopteddog_dialog_shelter extends BottomSheetDialogFragment 
                                         myadoptdog_shelter_adapter.getPrihvaceno()
                                 );
                                 mojioglasi_udomipsa_azil.setListItems(myadoptdog_shelter_adapter.getChange(), a);
+                                Toast.makeText(getActivity(),"Ažurirano!",Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -225,6 +226,7 @@ public class mydata_adopteddog_dialog_shelter extends BottomSheetDialogFragment 
                                         myadoptdog_shelter_adapter.getPrihvaceno()
                                 );
                                 mojioglasi_udomipsa_azil.setListItems(myadoptdog_shelter_adapter.getChange(), a);
+                                Toast.makeText(getActivity(),"Ažurirano!",Toast.LENGTH_SHORT).show();
                             }
                         }
 

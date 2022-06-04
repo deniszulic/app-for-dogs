@@ -21,13 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         String getemail=sp1.getString("email", null);
         String getusertype = sp1.getString("tipkorisnika", null);
-        System.out.println("Email:"+getemail+" tipkorisnika:"+getusertype);
         if(getusertype!=null && getemail!=null) {
-//            if (getusertype.equals("Poduzeće")) {
-//                Intent i = new Intent(MainActivity.this, pocetni_zaslon_poduzece.class);
-//                startActivity(i);
-//                MainActivity.this.finish();
-//            }
             if (getusertype.equals("korisnik")) {
                 Intent i = new Intent(MainActivity.this, pocetni_zaslon_korisnik.class);
                 startActivity(i);

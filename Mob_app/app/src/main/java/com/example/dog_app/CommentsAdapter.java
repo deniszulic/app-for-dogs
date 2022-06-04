@@ -63,29 +63,16 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         else if(pocetni_zaslon_korisnik.getSendemail().equals(commentsLists.getEmail()) ){
             holder.deletebtn_comments.setVisibility(View.VISIBLE);
         }
-//        else if((pocetni_zaslon_korisnik.getSendemail().equals(commentsLists.getEmail())) &&  pocetni_zaslon_korisnik.getSendemail().equals(Missingdogs_user_shelter_adapter.getEmail_azila())){
-//            holder.deletebtn_comments.setVisibility(View.VISIBLE);
-//        }
         else if( pocetni_zaslon_korisnik.getSendemail().equals(MyAdapter.getUseremail()) ){
             holder.deletebtn_comments.setVisibility(View.VISIBLE);
         }
         else if( pocetni_zaslon_korisnik.getSendemail().equals(Missingdogs_user_shelter_adapter.getEmail_azila()) ){
             holder.deletebtn_comments.setVisibility(View.VISIBLE);
         }
-//        if(pocetni_zaslon_korisnik.getSendemail().equals(Missingdogs_user_shelter_adapter.getEmail_azila())){
-//            holder.deletebtn_comments.setVisibility(View.VISIBLE);
-////            Missingdogs_user_shelter_adapter.setEmail_azila("");
-//        }
-//        if(pocetni_zaslon_korisnik.getSendemail().equals(MyAdapter.getUseremail())){
-//            holder.deletebtn_comments.setVisibility(View.VISIBLE);
-////            MyAdapter.setUseremail("");
-//        }
         else{holder.deletebtn_comments.setVisibility(View.GONE);}
         holder.deletebtn_comments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                commentsList.remove(holder.getAdapterPosition());
                 retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -97,33 +84,12 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         commentsList.remove(holder.getAdapterPosition());
-                       // adapter.notifyDataSetChanged();
-
                         notifyItemRemoved(holder.getAdapterPosition());
-
-                        //ListItem a=new ListItem();
-//                        System.out.println("hmmmmm:"+id+" "+holder.getAdapterPosition());
-//                        Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
-//                        datacomments.enqueue(new Callback<Comments[]>() {
-//                            @Override
-//                            public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
-//                                Comments[] data=response.body();
-////                System.out.println("sheesh:"+data[0].getKomentar());
-//                                commentsList.addAll(Arrays.asList(data));
-////                                adapter = new CommentsAdapter(commentsList);
-////                                recyclerView.setAdapter(adapter);
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<Comments[]> call, Throwable t) {
-//
-//                            }
-//                        });
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
+                        System.out.println(t.toString());
                     }
                 });
 

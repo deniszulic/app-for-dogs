@@ -39,7 +39,6 @@ public class pocetni_zaslon_korisnik extends AppCompatActivity implements Naviga
         sendemail=email;
         usertype=tipkorisnika;
         String usertype=a.getString("tipkorisnika", null);
-        //email_header.setText(email);
         View headerView = navigationView.getHeaderView(0);
         email_header=(TextView) headerView.findViewById(R.id.email_header);
         tipkoisnika =(TextView) headerView.findViewById(R.id.typeofuser_header);

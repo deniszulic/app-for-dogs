@@ -29,18 +29,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-//implements ExampleBottomSheetDialog.BottomSheetListener
 public class register extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    //private FirebaseAuth mAuth;
-    //private EditText email, password;
-    // private Button register_btn;
     private TextInputLayout email, password, ime_reg, prezime_reg, oib, naziv, ulica_reg, kucnibr_reg, grad_reg, postnum_reg;
     private AppCompatButton register_btn, login_transition;
-    //private ImageView imageView;
     private TextView textView2;
-    //private ProgressBar progres_registracija;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri imageurl;
     private AutoCompleteTextView autoCompleteTextView;
@@ -65,10 +59,6 @@ public class register extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
     }
 
     @Override
@@ -87,7 +77,6 @@ public class register extends Fragment {
         password = (TextInputLayout) view.findViewById(R.id.pass_reg);
         register_btn = (AppCompatButton) view.findViewById(R.id.register_btn);
         login_transition = (AppCompatButton) view.findViewById(R.id.login_transition);
-        //imageView = (ImageView) view.findViewById(R.id.imageView_reg);
         textView2 = (TextView) view.findViewById(R.id.textView2_reg);
         ime_reg = (TextInputLayout) view.findViewById(R.id.ime_reg);
         prezime_reg = (TextInputLayout) view.findViewById(R.id.prezime_reg);
@@ -103,7 +92,6 @@ public class register extends Fragment {
         ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), R.layout.dropdown_item, usertype);
         autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
         autoCompleteTextView.setAdapter(arrayAdapter);
-        //db=FirebaseFirestore.getInstance();
         if (autoCompleteTextView.getText().toString().equals("Korisnik")) {
             oib.setVisibility(View.GONE);
             naziv.setVisibility(View.GONE);
@@ -166,7 +154,6 @@ public class register extends Fragment {
                         }
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            //System.out.println(t);
                             Toast.makeText(getActivity(), t.toString(),
                                     Toast.LENGTH_LONG).show();
                         }
@@ -186,7 +173,6 @@ public class register extends Fragment {
                         @Override
                         public void onResponse(Call<Integer> call, Response<Integer> response) {
                             if (response.code() == 201) {
-                                //Integer result= response.body();
                                 int userid=response.body();
                                 if(response.body()>=0){
                                     registershelter shelter= new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), response.body());
@@ -235,10 +221,8 @@ public class register extends Fragment {
 
                         @Override
                         public void onFailure(Call<Integer> call, Throwable t) {
-                            //System.out.println(t);
                             Toast.makeText(getActivity(), t.toString(),
                                     Toast.LENGTH_LONG).show();
-                            System.out.println(t);
                         }
                     });
                 }
@@ -310,9 +294,4 @@ public class register extends Fragment {
         }
         return true;
     }
-
-//    @Override
-//    public void onButtonClicked(String text) {
-//        textView2.setText(text);
-//    }
 }

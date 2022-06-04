@@ -42,7 +42,6 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
             pasmina_mydata_adoptdog, starost_mydata_adoptdog, vetlokacija_mydata_adoptdog, boja_mydata_adoptdog, kilaza_mydata_adoptdog,
             napomena_mydata_adoptdog, postavljeno_mydata_adoptdog;
     private AutoCompleteTextView kastrat_mydata_adoptdog, opasnost_mydata_adoptdog, dlaka_mydata_adoptdog, spol_mydata_adoptdog;
-//    private AppCompatButton datumizgubljen_mydata_missingdog;
     private RadioGroup radioGroup;
     private RadioButton radiobtn1, radiobtn2, radioButton;
     private Button send_mydata_adoptdog;
@@ -71,7 +70,6 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
         starost_mydata_adoptdog=(TextInputLayout) view.findViewById(R.id.starost_mydata_adoptdog);
         vetlokacija_mydata_adoptdog=(TextInputLayout) view.findViewById(R.id.vetlokacija_mydata_adoptdog);
         boja_mydata_adoptdog=(TextInputLayout) view.findViewById(R.id.boja_mydata_adoptdog);
-//        datumizgubljen_mydata_adoptdog=(AppCompatButton) view.findViewById(R.id.datumizgubljen_mydata_adoptdog);
         dlaka_mydata_adoptdog=(AutoCompleteTextView) view.findViewById(R.id.dlaka_mydata_adoptdog);
         spol_mydata_adoptdog=(AutoCompleteTextView) view.findViewById(R.id.spol_mydata_adoptdog);
         kastrat_mydata_adoptdog=(AutoCompleteTextView) view.findViewById(R.id.kastrat_mydata_adoptdog);
@@ -142,24 +140,6 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
                 int radioid1 = radioGroup.getCheckedRadioButtonId();
                 radioButton = radioGroup.findViewById(radioid1);
                 if(radioButton.getText().toString().equals("Aktivan oglas")){
-//                    updatemymissingdog updatedata= new updatemymissingdog(
-//                            ime_mydata_missingdog.getEditText().getText().toString(),
-//                            prezime_mydata_missingdog.getEditText().getText().toString(),
-//                            adresa_mydata_missingdog.getEditText().getText().toString(),
-//                            Integer.parseInt(kontakt_mydata_missingdog.getEditText().getText().toString()),
-//                            grad_mydata_missingdog.getEditText().getText().toString(),
-//                            Integer.parseInt(postnum_mydata_missingdog.getEditText().getText().toString()),
-//                            boja_mydata_missingdog.getEditText().getText().toString(),
-//                            Integer.parseInt(starost_mydata_missingdog.getEditText().getText().toString()),
-//                            dlaka_mydata_missingdog.getText().toString(),
-//                            vetlokacija_mydata_missingdog.getEditText().getText().toString(),
-//                            imepsa_mydata_missingdog.getEditText().getText().toString(),
-//                            spol_mydata_missingdog.getText().toString(),
-//                            pasmina_mydata_missingdog.getEditText().getText().toString(),
-//                            napomena_mydata_missingdog.getEditText().getText().toString(),
-//                            datum, true);
-                    //ime, prezime, adresa, telefonskibr, grad, postanski_broj, boja, starost, dlaka, vet_lokacija,
-                    // ime_psa, spol, pasmina, kilaza, kastrat, opasnost, napomena, aktivan
                     updatemyadopteddog updatedata= new updatemyadopteddog(
                          ime_mydata_adoptdog.getEditText().getText().toString(),
                             prezime_mydata_adoptdog.getEditText().getText().toString(),
@@ -185,35 +165,6 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updatemyadopteddog[]> call, Response<updatemyadopteddog[]> response) {
                             if(response.code()==200){
-
-//                                mymissingdogsdata a= new mymissingdogsdata(mymissingdogsadapter.getid(),
-//                                        ime_mydata_missingdog.getEditText().getText().toString(),
-//                                        prezime_mydata_missingdog.getEditText().getText().toString(),
-//                                        adresa_mydata_missingdog.getEditText().getText().toString(),
-//                                        kontakt_mydata_missingdog.getEditText().getText().toString(),
-//                                        grad_mydata_missingdog.getEditText().getText().toString(),
-//                                        postnum_mydata_missingdog.getEditText().getText().toString(),
-//                                        boja_mydata_missingdog.getEditText().getText().toString(),
-//                                        starost_mydata_missingdog.getEditText().getText().toString(),
-//                                        dlaka_mydata_missingdog.getText().toString(),
-//                                        vetlokacija_mydata_missingdog.getEditText().getText().toString(),
-//                                        imepsa_mydata_missingdog.getEditText().getText().toString(),
-//                                        spol_mydata_missingdog.getText().toString(), datum,
-//                                        napomena_mydata_missingdog.getEditText().getText().toString(),
-//                                        mymissingdogsadapter.getUrl(),
-//                                        mymissingdogsadapter.getPostavljeno(),
-//                                        pasmina_mydata_missingdog.getEditText().getText().toString(), true,
-//                                        mymissingdogsadapter.getPrihvaceno(),
-//                                        mymissingdogsadapter.getNapomena_azil());
-//                                mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
-
-//                                int id, String ime, String prezime, String adresa, String telefonskibr,
-//                                        String grad, String postanski_broj, String boja, String starost,
-//                                        String dlaka, String vet_lokacija, String ime_psa, String spol,
-//                                        String napomena, String url_slike, long postavljeno, String pasmina,
-//                                        String kilaza, String kastrat, String opasnost, boolean aktivan,
-//                                String azil_udomljavanje_napomena, String prihvaceno
-
                                 myadopteddogsdata a = new myadopteddogsdata(
                                     myadoptdog_user_adapter.getid(),
                                         ime_mydata_adoptdog.getEditText().getText().toString(),
@@ -239,6 +190,7 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
                                         myadoptdog_user_adapter.getPrihvaceno()
                                 );
                                 mojioglasi_udomipsa.setListItems(myadoptdog_user_adapter.getChange(), a);
+                                Toast.makeText(getActivity(),"Ažurirano!",Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -300,6 +252,7 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
                                         myadoptdog_user_adapter.getPrihvaceno()
                                 );
                                 mojioglasi_udomipsa.setListItems(myadoptdog_user_adapter.getChange(), a);
+                                Toast.makeText(getActivity(),"Ažurirano!",Toast.LENGTH_SHORT).show();
                             }
                         }
 

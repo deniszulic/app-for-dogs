@@ -28,7 +28,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class login extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    //private FirebaseAuth mAuth;
     private TextInputLayout email, password;
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
@@ -62,8 +61,6 @@ public class login extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.login, container, false);
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -76,7 +73,6 @@ public class login extends Fragment {
         password=(TextInputLayout) view.findViewById(R.id.pass_log);
         login=(AppCompatButton) view.findViewById(R.id.login_btn);
         gotoregistertransition=(AppCompatButton) view.findViewById(R.id.gotoregistertransition);
-        //mAuth = FirebaseAuth.getInstance();
         gotoregistertransition.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i=new Intent(getActivity(), transition_register.class);
@@ -92,9 +88,6 @@ public class login extends Fragment {
                 map.put("lozinka", password.getEditText().getText().toString());
 
                 Call<getlogindata[]> call = retrofitInterface.login(map);
-
-//                logindata data=new logindata(email.getEditText().getText().toString(), password.getEditText().getText().toString());
-//                Call<Void> call=retrofitInterface.login(data);
                 call.enqueue(new Callback<getlogindata[]>() {
                     @Override
                     public void onResponse(Call<getlogindata[]> call, Response<getlogindata[]> response) {
@@ -123,7 +116,6 @@ public class login extends Fragment {
 
                     @Override
                     public void onFailure(Call<getlogindata[]> call, Throwable t) {
-                        //System.out.println(t);
                         Toast.makeText(getActivity(), t.toString(),
                                 Toast.LENGTH_LONG).show();
                     }

@@ -85,7 +85,6 @@ public class adoptdog_user_adapter extends RecyclerView.Adapter<adoptdog_user_ad
             public void onClick(View view) {
                 lid=listItem.getId();
                 FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
-//                Dogfind_dialog dialog= new Dogfind_dialog();
                 ime_vlasnika="";
                 ime_vlasnika=listItem.getIme();
                 prezime_vlasnika="";

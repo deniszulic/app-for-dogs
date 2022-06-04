@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.textfield.TextInputLayout;
@@ -102,7 +103,6 @@ public class komentari_korisnik_azil extends AppCompatActivity {
                 pasmina_nestalipsi_korisnik_azil.setText(data[0].getPasmina());
                 spol_nestalipsi_korisnik_azil.setText(data[0].getSpol());
                 starost_nestalipsi_korisnik_azil.setText(data[0].getStarost());
-//                chip_nestalipsi_korisnik_azil.setText(getDate(data[0].getDatum_izgubljen()));
                 Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
                 chip_nestalipsi_korisnik_azil.setText("Izgubljen: "+format.format(date1));
                 napomena_nestalipsi_korisnik_azil_komentar.setText(data[0].getNapomena());
@@ -117,7 +117,7 @@ public class komentari_korisnik_azil extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Missingdogs_user_shelter_data[]> call, Throwable t) {
-
+                Toast.makeText(komentari_korisnik_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
         commentsList=new ArrayList<>();
@@ -125,7 +125,6 @@ public class komentari_korisnik_azil extends AppCompatActivity {
             @Override
             public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
                 Comments[] data=response.body();
-//                System.out.println("sheesh:"+data[0].getKomentar());
                 commentsList.addAll(Arrays.asList(data));
                 adapter = new CommentsAdapter(commentsList, id);
                 recyclerView.setAdapter(adapter);
@@ -133,7 +132,7 @@ public class komentari_korisnik_azil extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Comments[]> call, Throwable t) {
-
+                Toast.makeText(komentari_korisnik_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -165,13 +164,13 @@ public class komentari_korisnik_azil extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<Comments[]> call, Throwable t) {
-
+                                Toast.makeText(komentari_korisnik_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-
+                        Toast.makeText(komentari_korisnik_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
                     }
                 });
             }

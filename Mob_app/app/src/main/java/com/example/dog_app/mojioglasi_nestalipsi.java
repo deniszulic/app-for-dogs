@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -91,7 +92,7 @@ public class mojioglasi_nestalipsi extends Fragment {
 
             @Override
             public void onFailure(Call<mymissingdogsdata[]> call, Throwable t) {
-
+                Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
         return v;

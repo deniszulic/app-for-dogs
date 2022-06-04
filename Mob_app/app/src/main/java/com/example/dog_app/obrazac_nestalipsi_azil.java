@@ -103,8 +103,6 @@ public class obrazac_nestalipsi_azil extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_obrazac_nestalipsi_azil, container, false);
         View v=inflater.inflate(R.layout.fragment_obrazac_nestalipsi_azil, container, false);
         telefonskibr_nestalipsi_korisnik=v.findViewById(R.id.telefonskibr_nestalipsi_azil);
         boja_nestalipsi_korisnik=v.findViewById(R.id.boja_nestalipsi_azil);
@@ -172,8 +170,6 @@ public class obrazac_nestalipsi_azil extends Fragment {
             @Override
             public void onClick(View view) {
                 telefonskibr_nestalipsi_korisnik.setError(null);
-//                grad_nestalipsi_korisnik.setError(null);
-//                postnum_nestalipsi_korisnik.setError(null);
                 boja_nestalipsi_korisnik.setError(null);
                 starost_nestalipsi_korisnik.setError(null);
                 vet_lokacija_nestalipsi_korisnik.setError(null);
@@ -193,8 +189,6 @@ public class obrazac_nestalipsi_azil extends Fragment {
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-//                            grad_nestalipsi_korisnik.getEditText().getText().clear();
-//                            postnum_nestalipsi_korisnik.getEditText().getText().clear();
                             boja_nestalipsi_korisnik.getEditText().getText().clear();
                             starost_nestalipsi_korisnik.getEditText().getText().clear();
                             vet_lokacija_nestalipsi_korisnik.getEditText().getText().clear();
@@ -207,7 +201,7 @@ public class obrazac_nestalipsi_azil extends Fragment {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -247,7 +241,6 @@ public class obrazac_nestalipsi_azil extends Fragment {
                         throw task.getException();
                     }
 
-                    // Continue with the task to get the download URL
                     return filereference.getDownloadUrl();
                 }
             }).addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -280,8 +273,6 @@ public class obrazac_nestalipsi_azil extends Fragment {
                         call.enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
-//                                grad_nestalipsi_korisnik.getEditText().getText().clear();
-//                                postnum_nestalipsi_korisnik.getEditText().getText().clear();
                                 boja_nestalipsi_korisnik.getEditText().getText().clear();
                                 starost_nestalipsi_korisnik.getEditText().getText().clear();
                                 vet_lokacija_nestalipsi_korisnik.getEditText().getText().clear();
@@ -296,12 +287,10 @@ public class obrazac_nestalipsi_azil extends Fragment {
 
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-
+                                Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
-//                    else {
-//                    }
                 }
             });
             uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -312,9 +301,6 @@ public class obrazac_nestalipsi_azil extends Fragment {
                 }
             });
         }
-//        else {
-//
-//        }
     }
     private boolean checkfields() {
 

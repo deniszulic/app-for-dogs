@@ -109,8 +109,6 @@ public class obrazac_nestalipsi_korisnik extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_obrazac_nestalipsi_korisnik, container, false);
         View v=inflater.inflate(R.layout.fragment_obrazac_nestalipsi_korisnik, container, false);
         ime_nestalipsi_korisnik=v.findViewById(R.id.ime_nestalipsi_korisnik);
         prezime_nestalipsi_korisnik=v.findViewById(R.id.prezime_nestalipsi_korisnik);
@@ -224,7 +222,7 @@ public class obrazac_nestalipsi_korisnik extends Fragment {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -264,7 +262,6 @@ public class obrazac_nestalipsi_korisnik extends Fragment {
                         throw task.getException();
                     }
 
-                    // Continue with the task to get the download URL
                     return filereference.getDownloadUrl();
                 }
             }).addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -316,12 +313,10 @@ public class obrazac_nestalipsi_korisnik extends Fragment {
 
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-
+                                Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
-//                    else {
-//                    }
                 }
             });
             uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -332,9 +327,6 @@ public class obrazac_nestalipsi_korisnik extends Fragment {
                 }
             });
         }
-//        else {
-//
-//        }
     }
     private boolean checkfields() {
         if (TextUtils.isEmpty(ime_nestalipsi_korisnik.getEditText().getText().toString())) {
