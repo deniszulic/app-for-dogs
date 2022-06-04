@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div 
+    <div
       class="d-flex justify-content-center"
       style="margin-top: 10px; margin-bottom: -32px"
     >
@@ -79,17 +79,20 @@
               </div>
             </div>
           </div>
-          <!-- <ul class="postcard__tagbox">
-            <li class="tag__item">
-              <i class="fas fa-clock mr-2"></i>Izgubljen:
-              {{ moment(data.datum_izgubljen).format("DD.MM.YYYY") }}
-            </li>
-          </ul> -->
-          <div class="d-flex justify-content-center" >
-            <button class="btn btn-warning" @click="$emit('changedata_adoptdog', data)" style="margin-right:10px;">
+          <div class="d-flex justify-content-center">
+            <button
+              class="btn btn-warning"
+              @click="$emit('changedata_adoptdog', data)"
+              style="margin-right: 10px"
+            >
               Promjena podataka
             </button>
-            <button class="btn btn-warning" @click="$emit('getadoptedid', data)">Azil</button>
+            <button
+              class="btn btn-warning"
+              @click="$emit('getadoptedid', data)"
+            >
+              Azil
+            </button>
           </div>
         </div>
       </article>
@@ -97,7 +100,6 @@
   </div>
 </template>
 <script>
-//import store from "@/store.js";
 import moment from "moment";
 import { dog_data } from "@/services";
 import { Auth } from "@/services";
@@ -108,26 +110,16 @@ export default {
       moment,
       url: "",
       komentar: "",
-      id:"",
-      email_prijavljen:Auth.state.email
+      id: "",
+      email_prijavljen: Auth.state.email,
     };
   },
   mounted() {
     moment.locale("hr");
   },
-  created() {
-  },
-  watch: {
-    // $route: "getcomm",
-  },
-  methods: {
-      // udomi(a){
-        
-      //     $("#prijavaudomipsa").modal("show");
-      //   this.id=a
-      //   console.log(this.id)
-      // }
-  },
+  created() {},
+  watch: {},
+  methods: {},
 };
 </script>
 <style scoped>

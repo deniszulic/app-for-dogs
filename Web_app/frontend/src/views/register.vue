@@ -10,15 +10,14 @@
         <div class="d-flex justify-content-center form_container">
           <form @submit.prevent="register">
             <div class="input-group mb-3">
-              <!-- <div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div> -->
               <input
                 type="text"
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Ime" v-model="ime" required
+                placeholder="Ime"
+                v-model="ime"
+                required
               />
             </div>
             <div class="input-group mb-3">
@@ -27,7 +26,9 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Prezime" v-model="prezime" required
+                placeholder="Prezime"
+                v-model="prezime"
+                required
               />
             </div>
             <div class="input-group mb-3">
@@ -48,7 +49,9 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="OIB" v-model="oib" id="oib_input"
+                placeholder="OIB"
+                v-model="oib"
+                id="oib_input"
               />
             </div>
             <div class="input-group mb-3" id="naziv">
@@ -57,7 +60,9 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Naziv" v-model="naziv" id="naziv_input"
+                placeholder="Naziv"
+                v-model="naziv"
+                id="naziv_input"
               />
             </div>
             <div class="row">
@@ -67,7 +72,9 @@
                   name=""
                   class="form-control input_user"
                   value=""
-                  placeholder="Ulica" v-model="ulica" id="street_input"
+                  placeholder="Ulica"
+                  v-model="ulica"
+                  id="street_input"
                 />
               </div>
               <div class="input-group mb-3 col-5" id="homenum">
@@ -76,7 +83,9 @@
                   name=""
                   class="form-control input_user"
                   value=""
-                  placeholder="Kućni broj" v-model="kucnibr" id="homenum_input"
+                  placeholder="Kućni broj"
+                  v-model="kucnibr"
+                  id="homenum_input"
                 />
               </div>
             </div>
@@ -87,7 +96,9 @@
                   name=""
                   class="form-control input_user"
                   value=""
-                  placeholder="Grad" v-model="grad" id="city_input"
+                  placeholder="Grad"
+                  v-model="grad"
+                  id="city_input"
                 />
               </div>
               <div class="input-group mb-3 col-6" id="postnum">
@@ -96,7 +107,9 @@
                   name=""
                   class="form-control input_user"
                   value=""
-                  placeholder="Poštanski broj" v-model="postnum" id="postnum_input"
+                  placeholder="Poštanski broj"
+                  v-model="postnum"
+                  id="postnum_input"
                 />
               </div>
             </div>
@@ -106,7 +119,9 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Email" v-model="email" required
+                placeholder="Email"
+                v-model="email"
+                required
               />
             </div>
             <div class="input-group mb-3" id="passwordreg">
@@ -115,7 +130,10 @@
                 name=""
                 class="form-control input_user"
                 value=""
-                placeholder="Lozinka" minlength="8" v-model="password" required
+                placeholder="Lozinka"
+                minlength="8"
+                v-model="password"
+                required
               />
             </div>
             <div class="d-flex justify-content-center mt-3 login_container">
@@ -128,34 +146,30 @@
 
         <div class="mt-4">
           <div class="d-flex justify-content-center links">
-            <!-- <a href="/register" class="ml-2">Registracija</a> -->
             <router-link to="login">Prijava</router-link>
           </div>
-          <!-- <div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
-					</div> -->
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import {login_signup} from "@/services";
+import { login_signup } from "@/services";
 export default {
   name: "register",
   data() {
     return {
       tipkorisnika: "",
-      postnum:"",
-      email:"",
-      password:"",
-      ime:"",
-      prezime:"",
-      oib:"",
-      ulica:"",
-      kucnibr:"",
-      grad:"",
-      naziv:""
+      postnum: "",
+      email: "",
+      password: "",
+      ime: "",
+      prezime: "",
+      oib: "",
+      ulica: "",
+      kucnibr: "",
+      grad: "",
+      naziv: "",
     };
   },
   methods: {
@@ -163,19 +177,19 @@ export default {
       console.log(event.target.value);
       if (event.target.value == "korisnik") {
         $("#naziv").hide();
-        $("#naziv_input").attr("required",false);
+        $("#naziv_input").attr("required", false);
         $("#oib").hide();
-    $("#oib_input").attr("required",false);
-    $("#street").hide();
-    $("#street_input").attr("required",false);
-    $("#homenum").hide();
-    $("#homenum_input").attr("required",false);
-    $("#city").hide();
-    $("#city_input").attr("required",false);
-    $("#postnum").hide();
-    $("#postnum_input").attr("required",false);
-    $("#emailreg").show();
-    $("#passwordreg").show();
+        $("#oib_input").attr("required", false);
+        $("#street").hide();
+        $("#street_input").attr("required", false);
+        $("#homenum").hide();
+        $("#homenum_input").attr("required", false);
+        $("#city").hide();
+        $("#city_input").attr("required", false);
+        $("#postnum").hide();
+        $("#postnum_input").attr("required", false);
+        $("#emailreg").show();
+        $("#passwordreg").show();
       } else {
         $("#naziv").show();
         $("#oib").show();
@@ -185,96 +199,88 @@ export default {
         $("#postnum").show();
         $("#emailreg").show();
         $("#passwordreg").show();
-        $("#oib_input").attr("required",true);
-        $("#naziv_input").attr("required",true);
-$("#street_input").attr("required",true);
-$("#homenum_input").attr("required",true);
-$("#city_input").attr("required",true);
-$("#postnum_input").attr("required",true);
+        $("#oib_input").attr("required", true);
+        $("#naziv_input").attr("required", true);
+        $("#street_input").attr("required", true);
+        $("#homenum_input").attr("required", true);
+        $("#city_input").attr("required", true);
+        $("#postnum_input").attr("required", true);
       }
     },
-    async register(){
-      if(this.tipkorisnika=="korisnik"){
-      let data_user={
-        ime:this.ime,
-        prezime:this.prezime,
-        email:this.email,
-        lozinka:this.password,
-        tipkorisnika:this.tipkorisnika,
-        datumreg:Date.now()
-      }
-      try{
-        await login_signup.register_user(data_user)
-        this.$router.push({ name: "login" });
-      }catch(error){
-        console.log(error)
-      }
-      }
-      else{
+    async register() {
+      if (this.tipkorisnika == "korisnik") {
+        let data_user = {
+          ime: this.ime,
+          prezime: this.prezime,
+          email: this.email,
+          lozinka: this.password,
+          tipkorisnika: this.tipkorisnika,
+          datumreg: Date.now(),
+        };
+        try {
+          await login_signup.register_user(data_user);
+          this.$router.push({ name: "login" });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
         let id;
-        let data_user={
-        ime:this.ime,
-        prezime:this.prezime,
-        email:this.email,
-        lozinka:this.password,
-        tipkorisnika:this.tipkorisnika,
-        datumreg:Date.now()
+        let data_user = {
+          ime: this.ime,
+          prezime: this.prezime,
+          email: this.email,
+          lozinka: this.password,
+          tipkorisnika: this.tipkorisnika,
+          datumreg: Date.now(),
+        };
+
+        try {
+          id = await login_signup.register_user(data_user);
+          if (id.data != null) {
+            let data_asylum = {
+              oib: this.oib,
+              ulica: this.ulica,
+              kucnibr: this.kucnibr,
+              grad: this.grad,
+              postanskibr: this.postnum,
+              id: id.data,
+              naziv: this.naziv,
+            };
+            try {
+              await login_signup.register_asylum(data_asylum);
+              this.$router.push({ name: "login" });
+            } catch (error) {
+              console.log(error);
+              await login_signup.deleteuser(id.data);
+            }
+          }
+        } catch (error) {
+          console.log(error);
+        }
       }
-        
-      try{
-        id=await login_signup.register_user(data_user)
-      if(id.data!=null){
-        let data_asylum={
-        oib:this.oib,
-        ulica:this.ulica,
-        kucnibr:this.kucnibr,
-        grad:this.grad,
-        postanskibr:this.postnum,
-        id:id.data,
-        naziv: this.naziv
-      }
-        try{
-        await login_signup.register_asylum(data_asylum)
-        this.$router.push({ name: "login" });
-      }catch(error){
-        console.log(error)
-        await login_signup.deleteuser(id.data)
-      }
-      }
-      }catch(error){
-        console.log(error)
-      }
-      }
-    }
+    },
   },
   mounted() {
     $("#naziv").hide();
-    $("#naziv_input").attr("required",false);
+    $("#naziv_input").attr("required", false);
     $("#oib").hide();
-    $("#oib").prop('required',false);
+    $("#oib").prop("required", false);
     $("#street").hide();
-    $("#street").prop('required',false);
+    $("#street").prop("required", false);
     $("#homenum").hide();
-    $("#homenum").prop('required',false);
+    $("#homenum").prop("required", false);
     $("#city").hide();
-    $("#city").prop('required',false);
+    $("#city").prop("required", false);
     $("#postnum").hide();
-    $("#postnum").prop('required',false);
+    $("#postnum").prop("required", false);
     $("#emailreg").hide();
-    $("#emailreg").prop('required',false);
+    $("#emailreg").prop("required", false);
     $("#passwordreg").hide();
-    $("#passwordreg").prop('required',false);
+    $("#passwordreg").prop("required", false);
   },
 };
 </script>
 <style scoped>
-/* body {
-  background: url("../assets/background.png") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-} */
 .above {
   margin-top: 100px;
 }
@@ -302,7 +308,6 @@ $("#postnum_input").attr("required",true);
   width: 170px;
   top: -75px;
   border-radius: 50%;
-  /*background: #fff; */
   background-color: rgba(0, 0, 0, 0.2) !important;
   padding: 10px;
   text-align: center;
@@ -311,7 +316,6 @@ $("#postnum_input").attr("required",true);
   height: 150px;
   width: 150px;
   border-radius: 50%;
-  /*border: 2px solid white;*/
 }
 .form_container {
   margin-top: 100px;
@@ -344,11 +348,4 @@ $("#postnum_input").attr("required",true);
 }
 </style>
 <style>
-/* body{
-    background: url('../assets/background.png') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-} */
 </style>

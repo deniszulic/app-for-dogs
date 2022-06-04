@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div 
+    <div
       class="d-flex justify-content-center"
       style="margin-top: 10px; margin-bottom: -32px"
     >
@@ -74,13 +74,13 @@
               </div>
               <div class="row">
                 <div class="col-sm">
-                  <p>Kastrat: {{data.kastrat}}</p>
+                  <p>Kastrat: {{ data.kastrat }}</p>
                 </div>
                 <div class="col-sm">
-                  <p>Kilaža: {{data.kilaza}}</p>
+                  <p>Kilaža: {{ data.kilaza }}</p>
                 </div>
                 <div class="col-sm">
-                  <p>Opasnost: {{data.opasnost}}</p>
+                  <p>Opasnost: {{ data.opasnost }}</p>
                 </div>
               </div>
               <div class="row">
@@ -90,14 +90,15 @@
               </div>
             </div>
           </div>
-          <!-- <ul class="postcard__tagbox">
-            <li class="tag__item">
-              <i class="fas fa-clock mr-2"></i>Izgubljen:
-              {{ moment(data.datum_izgubljen).format("DD.MM.YYYY.") }}
-            </li>
-          </ul> -->
-          <div class="d-flex justify-content-center" v-if="email_prijavljen!=data.email">
-            <button class="btn btn-primary" @click="$emit('alldata', data)" v-if="store.tipkorisnika!='admin'">
+          <div
+            class="d-flex justify-content-center"
+            v-if="email_prijavljen != data.email"
+          >
+            <button
+              class="btn btn-primary"
+              @click="$emit('alldata', data)"
+              v-if="store.tipkorisnika != 'admin'"
+            >
               Udomi psa
             </button>
           </div>
@@ -107,11 +108,10 @@
   </div>
 </template>
 <script>
-//import store from "@/store.js";
 import moment from "moment";
 import { dog_data } from "@/services";
 import { Auth } from "@/services";
-import store from '../store.js'
+import store from "../store.js";
 export default {
   props: ["data"],
   data() {
@@ -119,27 +119,17 @@ export default {
       moment,
       url: "",
       komentar: "",
-      id:"",
-      email_prijavljen:Auth.state.email,
-      store
+      id: "",
+      email_prijavljen: Auth.state.email,
+      store,
     };
   },
   mounted() {
     moment.locale("hr");
   },
-  created() {
-  },
-  watch: {
-    // $route: "getcomm",
-  },
-  methods: {
-      // udomi(a){
-        
-      //     $("#prijavaudomipsa").modal("show");
-      //   this.id=a
-      //   console.log(this.id)
-      // }
-  },
+  created() {},
+  watch: {},
+  methods: {},
 };
 </script>
 <style scoped>

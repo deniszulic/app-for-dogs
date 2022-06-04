@@ -65,10 +65,7 @@ app.patch('/updatemydata/:id', db.updatemydata)
 app.patch('/updatepass/:id', db.updatepass)
 app.delete('/deletedata/:id', db.deletedatamissingdog)
 app.delete('/deleteadopted/:id', db.deletedataadopteddog)
-//app.patch('/updatedatamissingdogs/:id', db.updatedatamissingdogs)
-// app.patch('/updateadoptad/:id', db.updateadoptad)
-// app.patch('/updatemissingad/:id', db.updatemissingad)
 
 app.listen(port, () => {
-    console.log(`App running on port ${port}.`);
-  });
+  console.log(`App running on port ${port}.`);
+});

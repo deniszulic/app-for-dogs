@@ -6,83 +6,83 @@ let Service = axios.create({
   timeout: 1000,
 });
 
-let login_signup={
-    async register_user(data) {
-        return await Service.post("/register", data);
-      },
-      async register_asylum(data) {
-        return await Service.post("/registerasylum", data);
-      },
-      async deleteuser(id){
-        return await Service.delete(`delete/${id}`)
-      },
-      async login(data){
-        let response= await Service.post("/login", data);
-        let user=response.data
-        localStorage.setItem("user", JSON.stringify(user))
-      }
+let login_signup = {
+  async register_user(data) {
+    return await Service.post("/register", data);
+  },
+  async register_asylum(data) {
+    return await Service.post("/registerasylum", data);
+  },
+  async deleteuser(id) {
+    return await Service.delete(`delete/${id}`)
+  },
+  async login(data) {
+    let response = await Service.post("/login", data);
+    let user = response.data
+    localStorage.setItem("user", JSON.stringify(user))
+  }
 }
-let dog_data={
+let dog_data = {
   async missing_dog(data) {
     return await Service.post("/dogmissing", data);
   },
   async adopt_dog(data) {
     return await Service.post("/adoptdog", data);
   },
-  async getmissingdogs(){
+  async getmissingdogs() {
     let response = await Service.get('/getmissingdogs');
     return response.data
   },
-  async getadopteddogs(){
+  async getadopteddogs() {
     let response = await Service.get('/getadopteddogs');
     return response.data
   },
-  async getadopteddogsadmin(){
+  async getadopteddogsadmin() {
     let response = await Service.get('/getadopteddogsadmin');
     return response.data
   },
-  async getadopteddogsadminshelter(){
+  async getadopteddogsadminshelter() {
     let response = await Service.get('/getadopteddogsadminshelter');
     return response.data
   },
-  async getshelters(){
+  async getshelters() {
     let response = await Service.get('/getshelters');
     return response.data
   },
-  async getmissingdogsadmin(){
+  async getmissingdogsadmin() {
     let response = await Service.get('/getmissingdogsadmin');
     return response.data
   },
-  async getmissingdogsid(id){
+  async getmissingdogsid(id) {
     let response = await Service.get(`/getmissingdogs/${id}`);
     return response.data
   },
-  async getspecificdogshelter(id){
+  async getspecificdogshelter(id) {
     let response = await Service.get(`/getspecificdogshelter/${id}`);
     return response.data
   },
-  async comments(data){
+  async comments(data) {
     return await Service.post("/getcommentsfordog", data);
   },
-  async getcomments(id){
+  async getcomments(id) {
     let response = await Service.get(`/getcomments/${id}`);
     return response.data
   },
-  async deletecomment(id){
+  async deletecomment(id) {
     return await Service.delete(`deletecomment/${id}`)
   },
-  async getmymissingdogs(email){
+  async getmymissingdogs(email) {
     let response = await Service.get(`/getmymissingdogs/${email}`);
     return response.data
   },
-  async getmyadopteddogs(email){
+  async getmyadopteddogs(email) {
     let response = await Service.get(`/getmyadopteddogs/${email}`);
     return response.data
   },
-  async updatemydataadopteddog(id, data){
+  async updatemydataadopteddog(id, data) {
     return await Service.patch(`/updateadopteddog/${id}`, data)
   },
-  async updatemydatamissingddog(id, data){
+  async updatemydatamissingddog(id, data) {
     return await Service.patch(`/updatemissingdog/${id}`, data)
   },
   async report_missing_dog(data) {
@@ -99,17 +99,17 @@ let dog_data={
     let response = await Service.get(`/getmyreportadoptdog/${email}`);
     return response.data
   },
-  async update_adoptdog_report(id, data){
+  async update_adoptdog_report(id, data) {
     return await Service.patch(`/updateadoptdogreport/${id}`, data)
   },
   async reportsonmyadopteddogs(email) {
     let response = await Service.get(`/reportsonmyadopteddogs/${email}`);
     return response.data
   },
-  async update_my_adoptdog_report(id, data){
+  async update_my_adoptdog_report(id, data) {
     return await Service.patch(`/updatemyadopteddogreports/${id}`, data)
   },
-  async update_my_missingdog_report(id, data){
+  async update_my_missingdog_report(id, data) {
     return await Service.patch(`/updatemymissingdogreport/${id}`, data)
   },
   async reportsonmymissingdogs(email) {
@@ -123,7 +123,7 @@ let dog_data={
     let response = await Service.get(`/getmissingdogsshelterreports/${email}`);
     return response.data
   },
-  async updatereportmissingdog(id, data){
+  async updatereportmissingdog(id, data) {
     return await Service.patch(`/updatereportmissingdog/${id}`, data)
   },
   async getacceptedmissingdogsshelterreports(email) {
@@ -149,89 +149,83 @@ let dog_data={
     let response = await Service.get(`/getrejectedadopteddogsshelterreports/${email}`);
     return response.data
   },
-  async updatereportadopteddog(id, data){
+  async updatereportadopteddog(id, data) {
     return await Service.patch(`/updatereportadopteddog/${id}`, data)
   },
-  // async updateadoptad(id, data){
-  //   return await Service.patch(`/updateadoptad/${id}`, data)
-  // },
-  async getadopteddogsshelter(){
+  async getadopteddogsshelter() {
     let response = await Service.get('/getadopteddogsshelter');
     return response.data
   },
-  async getmissingdogsshelter(){
+  async getmissingdogsshelter() {
     let response = await Service.get('/getmissingdogsshelter');
     return response.data
   },
-  async getmissingdogsadminshelter(){
+  async getmissingdogsadminshelter() {
     let response = await Service.get('/getmissingdogsadminshelter');
     return response.data
   },
-  async updatedatamissingdogs(id, data){
+  async updatedatamissingdogs(id, data) {
     return await Service.patch(`/updatedatamissingdogs/${id}`, data)
   },
-  async deletespecificdata(id){
+  async deletespecificdata(id) {
     return await Service.delete(`/deletedata/${id}`)
   },
-  async deleteadopted(id){
+  async deleteadopted(id) {
     return await Service.delete(`/deleteadopted/${id}`)
   }
-  // async updatemissingad(id, data){
-  //   return await Service.patch(`/updatemissingad/${id}`, data)
-  // },
 }
-let profile={
-  async changeuserdata(email){
+let profile = {
+  async changeuserdata(email) {
     let response = await Service.get(`/changeuserdata/${email}`);
     return response.data
   },
-  async updatemydata(id, data){
+  async updatemydata(id, data) {
     return await Service.patch(`/updatemydata/${id}`, data)
   },
-  async updatepass(id, data){
+  async updatepass(id, data) {
     return await Service.patch(`/updatepass/${id}`, data)
   }
 }
 let Auth = {
-  getUser(){
+  getUser() {
     return JSON.parse(localStorage.getItem("user"))
-},
-logout(){
+  },
+  logout() {
     localStorage.removeItem('user');
-},
-state:{
-  get name(){
-    let user=Auth.getUser();
-    if(user){
-      return user[0].ime;
-    }
   },
-  get surname(){
-    let user=Auth.getUser();
-    if(user){
-      return user[0].prezime;
-    }
-  },
-  get id(){
-    let user=Auth.getUser();
-    if(user){
-      return user[0].id;
-    }
-  },
-  get email(){
-    let user=Auth.getUser();
-    if(user){
-      return user[0].email;
-    }
-  },
-  get typeofuser(){
-    let user=Auth.getUser();
-    if(user){
-      store.tipkorisnika=user[0].tipkorisnika;
-      return user[0].tipkorisnika;
-    }
-  },
-}
+  state: {
+    get name() {
+      let user = Auth.getUser();
+      if (user) {
+        return user[0].ime;
+      }
+    },
+    get surname() {
+      let user = Auth.getUser();
+      if (user) {
+        return user[0].prezime;
+      }
+    },
+    get id() {
+      let user = Auth.getUser();
+      if (user) {
+        return user[0].id;
+      }
+    },
+    get email() {
+      let user = Auth.getUser();
+      if (user) {
+        return user[0].email;
+      }
+    },
+    get typeofuser() {
+      let user = Auth.getUser();
+      if (user) {
+        store.tipkorisnika = user[0].tipkorisnika;
+        return user[0].tipkorisnika;
+      }
+    },
+  }
 }
 
-export {login_signup, Auth, dog_data, profile};
+export { login_signup, Auth, dog_data, profile };
