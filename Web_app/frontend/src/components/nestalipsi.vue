@@ -24,7 +24,7 @@
 				<h1 class="postcard__title blue">Ime psa: {{data.ime_psa}}</h1>
 				<div class="postcard__subtitle small">
 					<time>
-						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data.postavljeno)).format('DD.MM.YYYY')}}
+						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data.postavljeno)).format('DD.MM.YYYY.')}}
 					</time>
 				</div>
 				<div class="postcard__bar"></div>
@@ -162,7 +162,7 @@
 </div>             
                 </div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-clock mr-2"></i>Izgubljen: {{moment(data[0].datum_izgubljen).format("DD.MM.YYYY")}}</li>
+					<li class="tag__item"><i class="fas fa-clock mr-2"></i>Izgubljen: {{moment(data[0].datum_izgubljen).format("DD.MM.YYYY.")}}</li>
 				</ul>
 			<div class="comments list-group">
             <!-- <a

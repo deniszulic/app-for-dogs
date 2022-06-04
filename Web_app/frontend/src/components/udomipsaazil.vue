@@ -115,7 +115,7 @@
           <div class="postcard__subtitle small">
             <time>
               <i class="fas fa-calendar-alt mr-2"></i>Postavljeno:
-              {{ moment(parseInt(data.postavljeno)).format("DD.MM.YYYY") }}
+              {{ moment(parseInt(data.postavljeno)).format("DD.MM.YYYY.") }}
             </time>
           </div>
           <div class="postcard__bar"></div>

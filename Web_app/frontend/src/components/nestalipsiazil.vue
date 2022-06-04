@@ -9,7 +9,7 @@
 				<h1 class="postcard__title blue">Naziv azila: {{data.naziv}}</h1>
 				<div class="postcard__subtitle small">
 					<time>
-						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data.postavljeno)).format('DD.MM.YYYY')}}
+						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data.postavljeno)).format('DD.MM.YYYY.')}}
 					</time>
 				</div>
 				<div class="postcard__bar"></div>
@@ -162,7 +162,7 @@
 				<h1 class="postcard__title blue">Naziv azila: {{data[0].naziv}}</h1>
 				<div class="postcard__subtitle small">
 					<time>
-						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data[0].postavljeno)).format('DD.MM.YYYY')}}
+						<i class="fas fa-calendar-alt mr-2"></i>Postavljeno: {{ moment(parseInt(data[0].postavljeno)).format('DD.MM.YYYY.')}}
 					</time>
 				</div>
 				<div class="postcard__bar"></div>
