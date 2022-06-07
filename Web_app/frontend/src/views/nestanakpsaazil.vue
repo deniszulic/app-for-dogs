@@ -336,7 +336,7 @@ form {
 .img {
 }
 .dogimg {
-  background: url("../assets/dog.jpg") top left/cover no-repeat;
+  background: url("../assets/missingdog.jpg") top left/cover no-repeat;
   display: block;
   width: 100%;
   height: auto;
