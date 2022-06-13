@@ -158,29 +158,31 @@ public class missingdog_useradopt_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                             if(response.code()==200){
-                                Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
-                                userreq_missingdog_data data = new userreq_missingdog_data(user_req_missingdog_adopadapter.getIme(),
-                                        user_req_missingdog_adopadapter.getPrezime(),
-                                        user_req_missingdog_adopadapter.getAdresa(),
-                                        user_req_missingdog_adopadapter.getTelefonskibr(),
-                                        user_req_missingdog_adopadapter.getGrad(),
-                                        user_req_missingdog_adopadapter.getPostanski_broj(),
-                                        user_req_missingdog_adopadapter.getBoja(),
-                                        user_req_missingdog_adopadapter.getStarost(),
-                                        user_req_missingdog_adopadapter.getDlaka(),
-                                        user_req_missingdog_adopadapter.getVet_lokacija(),
-                                        user_req_missingdog_adopadapter.getIme_psa(),
-                                        user_req_missingdog_adopadapter.getSpol(),
-                                        user_req_missingdog_adopadapter.getPasmina(),
-                                        user_req_missingdog_adopadapter.getDatum_izgubljen(),
-                                        user_req_missingdog_adopadapter.getNestanak_napomena(),
-                                        user_req_missingdog_adopadapter.getUrl_slike(),
-                                        napomena_userreq_missingdog.getEditText().getText().toString(),
-                                        "true", user_req_missingdog_adopadapter.getid(),
-                                        user_req_missingdog_adopadapter.getAzil_nestanak_nestanak_id(),
-                                        user_req_missingdog_adopadapter.getPostavljeno(),
-                                        user_req_missingdog_adopadapter.getNestanak_id());
-                                userreq_mis_adopt.setListItemschange(user_req_missingdog_adopadapter.getChange(), data);
+                                try {
+                                    Toast.makeText(getActivity(), "Zahtjev ažuriran!", Toast.LENGTH_SHORT).show();
+                                    userreq_missingdog_data data = new userreq_missingdog_data(user_req_missingdog_adopadapter.getIme(),
+                                            user_req_missingdog_adopadapter.getPrezime(),
+                                            user_req_missingdog_adopadapter.getAdresa(),
+                                            user_req_missingdog_adopadapter.getTelefonskibr(),
+                                            user_req_missingdog_adopadapter.getGrad(),
+                                            user_req_missingdog_adopadapter.getPostanski_broj(),
+                                            user_req_missingdog_adopadapter.getBoja(),
+                                            user_req_missingdog_adopadapter.getStarost(),
+                                            user_req_missingdog_adopadapter.getDlaka(),
+                                            user_req_missingdog_adopadapter.getVet_lokacija(),
+                                            user_req_missingdog_adopadapter.getIme_psa(),
+                                            user_req_missingdog_adopadapter.getSpol(),
+                                            user_req_missingdog_adopadapter.getPasmina(),
+                                            user_req_missingdog_adopadapter.getDatum_izgubljen(),
+                                            user_req_missingdog_adopadapter.getNestanak_napomena(),
+                                            user_req_missingdog_adopadapter.getUrl_slike(),
+                                            napomena_userreq_missingdog.getEditText().getText().toString(),
+                                            "true", user_req_missingdog_adopadapter.getid(),
+                                            user_req_missingdog_adopadapter.getAzil_nestanak_nestanak_id(),
+                                            user_req_missingdog_adopadapter.getPostavljeno(),
+                                            user_req_missingdog_adopadapter.getNestanak_id());
+                                    userreq_mis_adopt.setListItemschange(user_req_missingdog_adopadapter.getChange(), data);
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 
@@ -197,8 +199,10 @@ public class missingdog_useradopt_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                             if(response.code()==200){
-                                userreq_mis_adopt.setListItems(user_req_missingdog_adopadapter.getChange());
-                                Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                try{
+                                    userreq_mis_adopt.setListItems(user_req_missingdog_adopadapter.getChange());
+                                    Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 

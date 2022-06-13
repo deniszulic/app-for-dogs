@@ -165,32 +165,34 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updatemyadopteddog[]> call, Response<updatemyadopteddog[]> response) {
                             if(response.code()==200){
-                                myadopteddogsdata a = new myadopteddogsdata(
-                                    myadoptdog_user_adapter.getid(),
-                                        ime_mydata_adoptdog.getEditText().getText().toString(),
-                                        prezime_mydata_adoptdog.getEditText().getText().toString(),
-                                        adresa_mydata_adoptdog.getEditText().getText().toString(),
-                                        kontakt_mydata_adoptdog.getEditText().getText().toString(),
-                                        grad_mydata_adoptdog.getEditText().getText().toString(),
-                                        postnum_mydata_adoptdog.getEditText().getText().toString(),
-                                        boja_mydata_adoptdog.getEditText().getText().toString(),
-                                        starost_mydata_adoptdog.getEditText().getText().toString(),
-                                        dlaka_mydata_adoptdog.getText().toString(),
-                                        vetlokacija_mydata_adoptdog.getEditText().getText().toString(),
-                                        imepsa_mydata_adoptdog.getEditText().getText().toString(),
-                                        spol_mydata_adoptdog.getText().toString(),
-                                        napomena_mydata_adoptdog.getEditText().getText().toString(),
-                                        myadoptdog_user_adapter.getUrl(),
-                                        myadoptdog_user_adapter.getPostavljeno(),
-                                        pasmina_mydata_adoptdog.getEditText().getText().toString(),
-                                        kilaza_mydata_adoptdog.getEditText().getText().toString(),
-                                        kastrat_mydata_adoptdog.getText().toString(),
-                                        opasnost_mydata_adoptdog.getText().toString(),
-                                        true, myadoptdog_user_adapter.getNapomena_azil(),
-                                        myadoptdog_user_adapter.getPrihvaceno()
-                                );
-                                mojioglasi_udomipsa.setListItems(myadoptdog_user_adapter.getChange(), a);
-                                Toast.makeText(getActivity(),"Ažurirano!",Toast.LENGTH_SHORT).show();
+                                try{
+                                    myadopteddogsdata a = new myadopteddogsdata(
+                                        myadoptdog_user_adapter.getid(),
+                                            ime_mydata_adoptdog.getEditText().getText().toString(),
+                                            prezime_mydata_adoptdog.getEditText().getText().toString(),
+                                            adresa_mydata_adoptdog.getEditText().getText().toString(),
+                                            kontakt_mydata_adoptdog.getEditText().getText().toString(),
+                                            grad_mydata_adoptdog.getEditText().getText().toString(),
+                                            postnum_mydata_adoptdog.getEditText().getText().toString(),
+                                            boja_mydata_adoptdog.getEditText().getText().toString(),
+                                            starost_mydata_adoptdog.getEditText().getText().toString(),
+                                            dlaka_mydata_adoptdog.getText().toString(),
+                                            vetlokacija_mydata_adoptdog.getEditText().getText().toString(),
+                                            imepsa_mydata_adoptdog.getEditText().getText().toString(),
+                                            spol_mydata_adoptdog.getText().toString(),
+                                            napomena_mydata_adoptdog.getEditText().getText().toString(),
+                                            myadoptdog_user_adapter.getUrl(),
+                                            myadoptdog_user_adapter.getPostavljeno(),
+                                            pasmina_mydata_adoptdog.getEditText().getText().toString(),
+                                            kilaza_mydata_adoptdog.getEditText().getText().toString(),
+                                            kastrat_mydata_adoptdog.getText().toString(),
+                                            opasnost_mydata_adoptdog.getText().toString(),
+                                            true, myadoptdog_user_adapter.getNapomena_azil(),
+                                            myadoptdog_user_adapter.getPrihvaceno()
+                                    );
+                                    mojioglasi_udomipsa.setListItems(myadoptdog_user_adapter.getChange(), a);
+                                    Toast.makeText(getActivity(),"Ažurirano!",Toast.LENGTH_SHORT).show();
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 
@@ -226,33 +228,34 @@ public class mydata_adopteddog_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updatemyadopteddog[]> call, Response<updatemyadopteddog[]> response) {
                             if(response.code()==200){
-
-                                myadopteddogsdata a = new myadopteddogsdata(
-                                        myadoptdog_user_adapter.getid(),
-                                        ime_mydata_adoptdog.getEditText().getText().toString(),
-                                        prezime_mydata_adoptdog.getEditText().getText().toString(),
-                                        adresa_mydata_adoptdog.getEditText().getText().toString(),
-                                        kontakt_mydata_adoptdog.getEditText().getText().toString(),
-                                        grad_mydata_adoptdog.getEditText().getText().toString(),
-                                        postnum_mydata_adoptdog.getEditText().getText().toString(),
-                                        boja_mydata_adoptdog.getEditText().getText().toString(),
-                                        starost_mydata_adoptdog.getEditText().getText().toString(),
-                                        dlaka_mydata_adoptdog.getText().toString(),
-                                        vetlokacija_mydata_adoptdog.getEditText().getText().toString(),
-                                        imepsa_mydata_adoptdog.getEditText().getText().toString(),
-                                        spol_mydata_adoptdog.getText().toString(),
-                                        napomena_mydata_adoptdog.getEditText().getText().toString(),
-                                        myadoptdog_user_adapter.getUrl(),
-                                        myadoptdog_user_adapter.getPostavljeno(),
-                                        pasmina_mydata_adoptdog.getEditText().getText().toString(),
-                                        kilaza_mydata_adoptdog.getEditText().getText().toString(),
-                                        kastrat_mydata_adoptdog.getText().toString(),
-                                        opasnost_mydata_adoptdog.getText().toString(),
-                                        false, myadoptdog_user_adapter.getNapomena_azil(),
-                                        myadoptdog_user_adapter.getPrihvaceno()
-                                );
-                                mojioglasi_udomipsa.setListItems(myadoptdog_user_adapter.getChange(), a);
-                                Toast.makeText(getActivity(),"Ažurirano!",Toast.LENGTH_SHORT).show();
+                                try{
+                                    myadopteddogsdata a = new myadopteddogsdata(
+                                            myadoptdog_user_adapter.getid(),
+                                            ime_mydata_adoptdog.getEditText().getText().toString(),
+                                            prezime_mydata_adoptdog.getEditText().getText().toString(),
+                                            adresa_mydata_adoptdog.getEditText().getText().toString(),
+                                            kontakt_mydata_adoptdog.getEditText().getText().toString(),
+                                            grad_mydata_adoptdog.getEditText().getText().toString(),
+                                            postnum_mydata_adoptdog.getEditText().getText().toString(),
+                                            boja_mydata_adoptdog.getEditText().getText().toString(),
+                                            starost_mydata_adoptdog.getEditText().getText().toString(),
+                                            dlaka_mydata_adoptdog.getText().toString(),
+                                            vetlokacija_mydata_adoptdog.getEditText().getText().toString(),
+                                            imepsa_mydata_adoptdog.getEditText().getText().toString(),
+                                            spol_mydata_adoptdog.getText().toString(),
+                                            napomena_mydata_adoptdog.getEditText().getText().toString(),
+                                            myadoptdog_user_adapter.getUrl(),
+                                            myadoptdog_user_adapter.getPostavljeno(),
+                                            pasmina_mydata_adoptdog.getEditText().getText().toString(),
+                                            kilaza_mydata_adoptdog.getEditText().getText().toString(),
+                                            kastrat_mydata_adoptdog.getText().toString(),
+                                            opasnost_mydata_adoptdog.getText().toString(),
+                                            false, myadoptdog_user_adapter.getNapomena_azil(),
+                                            myadoptdog_user_adapter.getPrihvaceno()
+                                    );
+                                    mojioglasi_udomipsa.setListItems(myadoptdog_user_adapter.getChange(), a);
+                                    Toast.makeText(getActivity(),"Ažurirano!",Toast.LENGTH_SHORT).show();
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 

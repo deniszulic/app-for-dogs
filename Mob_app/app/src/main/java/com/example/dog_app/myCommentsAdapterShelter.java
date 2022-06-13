@@ -72,8 +72,10 @@ public class myCommentsAdapterShelter extends RecyclerView.Adapter<myCommentsAda
                 delete.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        commentsList.remove(holder.getAdapterPosition());
-                        notifyItemRemoved(holder.getAdapterPosition());
+                        try{
+                            commentsList.remove(holder.getAdapterPosition());
+                            notifyItemRemoved(holder.getAdapterPosition());
+                        }catch(Exception e){System.out.println(e);}
                     }
 
                     @Override

@@ -155,24 +155,27 @@ public class mydata_missingdog_dialog_shelter extends BottomSheetDialogFragment 
                         @Override
                         public void onResponse(Call<updatemymissingdog[]> call, Response<updatemymissingdog[]> response) {
                             if(response.code()==200){
-                                mymissingdogsdata a= new mymissingdogsdata(mymissingdogsadapter_shelter.getid(),
-                                        null, null, null,
-                                        kontakt_mydata_missingdog.getEditText().getText().toString(),
-                                        null,
-                                        mymissingdogsadapter_shelter.getPostnum(),
-                                        boja_mydata_missingdog.getEditText().getText().toString(),
-                                        starost_mydata_missingdog.getEditText().getText().toString(),
-                                        dlaka_mydata_missingdog.getText().toString(),
-                                        null,
-                                        imepsa_mydata_missingdog.getEditText().getText().toString(),
-                                        spol_mydata_missingdog.getText().toString(), datum,
-                                        napomena_mydata_missingdog.getEditText().getText().toString(),
-                                        mymissingdogsadapter_shelter.getUrl(),
-                                        mymissingdogsadapter_shelter.getPostavljeno(),
-                                        pasmina_mydata_missingdog.getEditText().getText().toString(), true,
-                                        mymissingdogsadapter_shelter.getPrihvaceno(),
-                                        mymissingdogsadapter_shelter.getNapomena_azil());
-                                mojioglasi_nestalipsi_azil.setListItems(mymissingdogsadapter_shelter.getChange(), a);
+                                try{
+                                    Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
+                                    mymissingdogsdata a= new mymissingdogsdata(mymissingdogsadapter_shelter.getid(),
+                                            null, null, null,
+                                            kontakt_mydata_missingdog.getEditText().getText().toString(),
+                                            null,
+                                            mymissingdogsadapter_shelter.getPostnum(),
+                                            boja_mydata_missingdog.getEditText().getText().toString(),
+                                            starost_mydata_missingdog.getEditText().getText().toString(),
+                                            dlaka_mydata_missingdog.getText().toString(),
+                                            null,
+                                            imepsa_mydata_missingdog.getEditText().getText().toString(),
+                                            spol_mydata_missingdog.getText().toString(), datum,
+                                            napomena_mydata_missingdog.getEditText().getText().toString(),
+                                            mymissingdogsadapter_shelter.getUrl(),
+                                            mymissingdogsadapter_shelter.getPostavljeno(),
+                                            pasmina_mydata_missingdog.getEditText().getText().toString(), true,
+                                            mymissingdogsadapter_shelter.getPrihvaceno(),
+                                            mymissingdogsadapter_shelter.getNapomena_azil());
+                                    mojioglasi_nestalipsi_azil.setListItems(mymissingdogsadapter_shelter.getChange(), a);
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 
@@ -187,7 +190,7 @@ public class mydata_missingdog_dialog_shelter extends BottomSheetDialogFragment 
                             null, null, null,
                             Integer.parseInt(kontakt_mydata_missingdog.getEditText().getText().toString()),
                             null,
-                            Integer.parseInt(mymissingdogsadapter_shelter.getPostnum()),
+                            0,
                             boja_mydata_missingdog.getEditText().getText().toString(),
                             Integer.parseInt(starost_mydata_missingdog.getEditText().getText().toString()),
                             dlaka_mydata_missingdog.getText().toString(),
@@ -203,24 +206,27 @@ public class mydata_missingdog_dialog_shelter extends BottomSheetDialogFragment 
                         @Override
                         public void onResponse(Call<updatemymissingdog[]> call, Response<updatemymissingdog[]> response) {
                             if(response.code()==200){
-                                mymissingdogsdata a= new mymissingdogsdata(mymissingdogsadapter_shelter.getid(),
-                                        null, null, null,
-                                        kontakt_mydata_missingdog.getEditText().getText().toString(),
-                                        null,
-                                        mymissingdogsadapter_shelter.getPostnum(),
-                                        boja_mydata_missingdog.getEditText().getText().toString(),
-                                        starost_mydata_missingdog.getEditText().getText().toString(),
-                                        dlaka_mydata_missingdog.getText().toString(),
-                                        null,
-                                        imepsa_mydata_missingdog.getEditText().getText().toString(),
-                                        spol_mydata_missingdog.getText().toString(), datum,
-                                        napomena_mydata_missingdog.getEditText().getText().toString(),
-                                        mymissingdogsadapter_shelter.getUrl(),
-                                        mymissingdogsadapter_shelter.getPostavljeno(),
-                                        pasmina_mydata_missingdog.getEditText().getText().toString(), false,
-                                        mymissingdogsadapter_shelter.getPrihvaceno(),
-                                        mymissingdogsadapter_shelter.getNapomena_azil());
-                                mojioglasi_nestalipsi_azil.setListItems(mymissingdogsadapter_shelter.getChange(), a);
+                                try{
+                                    Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
+                                    mymissingdogsdata a= new mymissingdogsdata(mymissingdogsadapter_shelter.getid(),
+                                            null, null, null,
+                                            kontakt_mydata_missingdog.getEditText().getText().toString(),
+                                            null,
+                                            mymissingdogsadapter_shelter.getPostnum(),
+                                            boja_mydata_missingdog.getEditText().getText().toString(),
+                                            starost_mydata_missingdog.getEditText().getText().toString(),
+                                            dlaka_mydata_missingdog.getText().toString(),
+                                            null,
+                                            imepsa_mydata_missingdog.getEditText().getText().toString(),
+                                            spol_mydata_missingdog.getText().toString(), datum,
+                                            napomena_mydata_missingdog.getEditText().getText().toString(),
+                                            mymissingdogsadapter_shelter.getUrl(),
+                                            mymissingdogsadapter_shelter.getPostavljeno(),
+                                            pasmina_mydata_missingdog.getEditText().getText().toString(), false,
+                                            mymissingdogsadapter_shelter.getPrihvaceno(),
+                                            mymissingdogsadapter_shelter.getNapomena_azil());
+                                    mojioglasi_nestalipsi_azil.setListItems(mymissingdogsadapter_shelter.getChange(), a);
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 

@@ -136,31 +136,33 @@ public class adopteddog_userapproved_dialog extends BottomSheetDialogFragment {
                             @Override
                             public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                                 if(response.code()==200){
-                                    Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
-                                    userreq_adoptdog_data data = new userreq_adoptdog_data(
-                                            user_req_adoptdog_approved_adapter.getIme(),
-                                            user_req_adoptdog_approved_adapter.getPrezime(),
-                                            user_req_adoptdog_approved_adapter.getAdresa(),
-                                            user_req_adoptdog_approved_adapter.getTelefonskibr(),
-                                            user_req_adoptdog_approved_adapter.getGrad(),
-                                            user_req_adoptdog_approved_adapter.getPostanski_broj(),
-                                            user_req_adoptdog_approved_adapter.getBoja(),
-                                            user_req_adoptdog_approved_adapter.getStarost(),
-                                            user_req_adoptdog_approved_adapter.getDlaka(),
-                                            user_req_adoptdog_approved_adapter.getVet_lokacija(),
-                                            user_req_adoptdog_approved_adapter.getIme_psa(),
-                                            user_req_adoptdog_approved_adapter.getSpol(),
-                                            user_req_adoptdog_approved_adapter.getPasmina(),
-                                            user_req_adoptdog_approved_adapter.getKilaza(),
-                                            user_req_adoptdog_approved_adapter.getKastrat(),
-                                            user_req_adoptdog_approved_adapter.getOpasnost(),
-                                            user_req_adoptdog_approved_adapter.getNapomena(),
-                                            user_req_adoptdog_approved_adapter.getUrl_slike(),
-                                            azilnapomena_userreq_adopteddog.getEditText().getText().toString(),
-                                            "true", user_req_adoptdog_approved_adapter.getPostavljeno(),
-                                            user_req_adoptdog_approved_adapter.getid(),
-                                            user_req_adoptdog_approved_adapter.getUdomljavanje_id());
-                                    userreq_adoptdog_approve.setListItemschange(user_req_adoptdog_approved_adapter.getChange(), data);
+                                    try{
+                                        Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                        userreq_adoptdog_data data = new userreq_adoptdog_data(
+                                                user_req_adoptdog_approved_adapter.getIme(),
+                                                user_req_adoptdog_approved_adapter.getPrezime(),
+                                                user_req_adoptdog_approved_adapter.getAdresa(),
+                                                user_req_adoptdog_approved_adapter.getTelefonskibr(),
+                                                user_req_adoptdog_approved_adapter.getGrad(),
+                                                user_req_adoptdog_approved_adapter.getPostanski_broj(),
+                                                user_req_adoptdog_approved_adapter.getBoja(),
+                                                user_req_adoptdog_approved_adapter.getStarost(),
+                                                user_req_adoptdog_approved_adapter.getDlaka(),
+                                                user_req_adoptdog_approved_adapter.getVet_lokacija(),
+                                                user_req_adoptdog_approved_adapter.getIme_psa(),
+                                                user_req_adoptdog_approved_adapter.getSpol(),
+                                                user_req_adoptdog_approved_adapter.getPasmina(),
+                                                user_req_adoptdog_approved_adapter.getKilaza(),
+                                                user_req_adoptdog_approved_adapter.getKastrat(),
+                                                user_req_adoptdog_approved_adapter.getOpasnost(),
+                                                user_req_adoptdog_approved_adapter.getNapomena(),
+                                                user_req_adoptdog_approved_adapter.getUrl_slike(),
+                                                azilnapomena_userreq_adopteddog.getEditText().getText().toString(),
+                                                "true", user_req_adoptdog_approved_adapter.getPostavljeno(),
+                                                user_req_adoptdog_approved_adapter.getid(),
+                                                user_req_adoptdog_approved_adapter.getUdomljavanje_id());
+                                        userreq_adoptdog_approve.setListItemschange(user_req_adoptdog_approved_adapter.getChange(), data);
+                                        }catch(Exception e){System.out.println(e);}
                                 }
                             }
 
@@ -176,8 +178,10 @@ public class adopteddog_userapproved_dialog extends BottomSheetDialogFragment {
                             @Override
                             public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                                 if(response.code()==200){
-                                    userreq_adoptdog_approve.setListItems(user_req_adoptdog_approved_adapter.getChange());
-                                    Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                    try{
+                                        userreq_adoptdog_approve.setListItems(user_req_adoptdog_approved_adapter.getChange());
+                                        Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                    }catch(Exception e){System.out.println(e);}
                                 }
                             }
 

@@ -191,37 +191,39 @@ public class myreports_missingdogs_dialog extends BottomSheetDialogFragment {
                     @Override
                     public void onResponse(Call<updatemymissingdog_report[]> call, Response<updatemymissingdog_report[]> response) {
                         if(response.code()==200){
-                            Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
-                            myreportsdisapp_data data1= new myreportsdisapp_data(
-                                    ime_myreports_missingdogs.getEditText().getText().toString(),
-                                    prezime_myreports_missingdogs.getEditText().getText().toString(),
-                                    adresa_pronalaska_myreports_missingdogs.getEditText().getText().toString(),
-                                    adresa_za_preuzimanje_psa_myreports_missingdogs.getEditText().getText().toString(),
-                                    napomena_myreports_missingdogs.getEditText().getText().toString(),
-                                    myreports_missingdogs_adapter.getPostavljeno(),
-                                    kontakt_myreports_missingdogs.getEditText().getText().toString(),
-                                    myreports_missingdogs_adapter.getid(),
-                                    myreports_missingdogs_adapter.getIme_nestanak(),
-                                    myreports_missingdogs_adapter.getPrezime_nestanak(),
-                                    myreports_missingdogs_adapter.getAdresa(),
-                                    myreports_missingdogs_adapter.getTelefonskibr(),
-                                    myreports_missingdogs_adapter.getGrad(),
-                                    myreports_missingdogs_adapter.getPostnum(),
-                                    myreports_missingdogs_adapter.getBoja(),
-                                    myreports_missingdogs_adapter.getStarost(),
-                                    myreports_missingdogs_adapter.getDlaka(),
-                                    myreports_missingdogs_adapter.getVetlokacija(),
-                                    myreports_missingdogs_adapter.getImepsa(),
-                                    myreports_missingdogs_adapter.getSpol(),
-                                    myreports_missingdogs_adapter.getPasmina(),
-                                    myreports_missingdogs_adapter.getDatumizgubljen(),
-                                    myreports_missingdogs_adapter.getNapomena_nestanak(),
-                                    myreports_missingdogs_adapter.getUrl(),
-                                    myreports_missingdogs_adapter.isOglas_azila(),
-                                    myreports_missingdogs_adapter.getNaziv_azila(),
-                                    myreports_missingdogs_adapter.getGrad_azila()
-                            );
-                            myreports_missingdogs.setListItems(myreports_missingdogs_adapter.getChange(), data1);
+                            try{
+                                Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
+                                myreportsdisapp_data data1= new myreportsdisapp_data(
+                                        ime_myreports_missingdogs.getEditText().getText().toString(),
+                                        prezime_myreports_missingdogs.getEditText().getText().toString(),
+                                        adresa_pronalaska_myreports_missingdogs.getEditText().getText().toString(),
+                                        adresa_za_preuzimanje_psa_myreports_missingdogs.getEditText().getText().toString(),
+                                        napomena_myreports_missingdogs.getEditText().getText().toString(),
+                                        myreports_missingdogs_adapter.getPostavljeno(),
+                                        kontakt_myreports_missingdogs.getEditText().getText().toString(),
+                                        myreports_missingdogs_adapter.getid(),
+                                        myreports_missingdogs_adapter.getIme_nestanak(),
+                                        myreports_missingdogs_adapter.getPrezime_nestanak(),
+                                        myreports_missingdogs_adapter.getAdresa(),
+                                        myreports_missingdogs_adapter.getTelefonskibr(),
+                                        myreports_missingdogs_adapter.getGrad(),
+                                        myreports_missingdogs_adapter.getPostnum(),
+                                        myreports_missingdogs_adapter.getBoja(),
+                                        myreports_missingdogs_adapter.getStarost(),
+                                        myreports_missingdogs_adapter.getDlaka(),
+                                        myreports_missingdogs_adapter.getVetlokacija(),
+                                        myreports_missingdogs_adapter.getImepsa(),
+                                        myreports_missingdogs_adapter.getSpol(),
+                                        myreports_missingdogs_adapter.getPasmina(),
+                                        myreports_missingdogs_adapter.getDatumizgubljen(),
+                                        myreports_missingdogs_adapter.getNapomena_nestanak(),
+                                        myreports_missingdogs_adapter.getUrl(),
+                                        myreports_missingdogs_adapter.isOglas_azila(),
+                                        myreports_missingdogs_adapter.getNaziv_azila(),
+                                        myreports_missingdogs_adapter.getGrad_azila()
+                                );
+                                myreports_missingdogs.setListItems(myreports_missingdogs_adapter.getChange(), data1);
+                            }catch(Exception e){System.out.println(e);}
                         }
                     }
 

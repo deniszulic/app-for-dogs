@@ -153,7 +153,61 @@ public class reportsonmyadopteddog_dialog_shelter extends BottomSheetDialogFragm
                         @Override
                         public void onResponse(Call<updatereportsonmyadopteddog[]> call, Response<updatereportsonmyadopteddog[]> response) {
                             if(response.code()==200) {
-                                Toast.makeText(getActivity(), "Ažurirano", Toast.LENGTH_SHORT).show();
+                                try{
+                                    Toast.makeText(getActivity(), "Ažurirano", Toast.LENGTH_SHORT).show();
+                                    reportsonmyadopteddog_data data= new reportsonmyadopteddog_data(
+                                            reportsonmy_adopteddogs_adapter_shelter.getIme(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getPrezime(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getAdresa(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getGrad(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getPostnum(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getKontakt(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getRazlog_prijave(),
+                                            "True",
+                                            reportsonmy_adopteddogs_adapter_shelter.getPostavljeno(),
+                                            razlog_myreports_adopteddogs.getEditText().getText().toString(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getid(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getIme_udomljavanje(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getPrezime_udomljavanje(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getAdresa_udomljavanje(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getTelefonskibr(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getGrad_udomljavanje(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getPostanski_broj_udomljavanje(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getBoja(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getStarost(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getDlaka(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getVetlokacija(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getImepsa(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getSpol(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getPasmina(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getKilaza(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getKastrat(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getOpasnost(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getNapomena_udomljavanje(),
+                                            reportsonmy_adopteddogs_adapter_shelter.getUrl()
+                                    );
+                                    reportsonmy_adopteddogs_shelter.setListItems(reportsonmy_adopteddogs_adapter_shelter.getChange(), data);
+                                }catch(Exception e){System.out.println(e);}
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<updatereportsonmyadopteddog[]> call, Throwable t) {
+                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else if(radioButton.getText().toString().equals("Odbijeno")) {
+                    updatereportsonmyadopteddog data = new updatereportsonmyadopteddog(
+                            razlog_myreports_adopteddogs.getEditText().getText().toString(),
+                            "False"
+                    );
+                    Call<updatereportsonmyadopteddog[]> call=retrofitInterface.reportsupdateonadopt(reportsonmy_adopteddogs_adapter_shelter.getid(), data);
+                    call.enqueue(new Callback<updatereportsonmyadopteddog[]>() {
+                        @Override
+                        public void onResponse(Call<updatereportsonmyadopteddog[]> call, Response<updatereportsonmyadopteddog[]> response) {
+                            try{
+                                Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
                                 reportsonmyadopteddog_data data= new reportsonmyadopteddog_data(
                                         reportsonmy_adopteddogs_adapter_shelter.getIme(),
                                         reportsonmy_adopteddogs_adapter_shelter.getPrezime(),
@@ -162,7 +216,7 @@ public class reportsonmyadopteddog_dialog_shelter extends BottomSheetDialogFragm
                                         reportsonmy_adopteddogs_adapter_shelter.getPostnum(),
                                         reportsonmy_adopteddogs_adapter_shelter.getKontakt(),
                                         reportsonmy_adopteddogs_adapter_shelter.getRazlog_prijave(),
-                                        "True",
+                                        "False",
                                         reportsonmy_adopteddogs_adapter_shelter.getPostavljeno(),
                                         razlog_myreports_adopteddogs.getEditText().getText().toString(),
                                         reportsonmy_adopteddogs_adapter_shelter.getid(),
@@ -186,57 +240,7 @@ public class reportsonmyadopteddog_dialog_shelter extends BottomSheetDialogFragm
                                         reportsonmy_adopteddogs_adapter_shelter.getUrl()
                                 );
                                 reportsonmy_adopteddogs_shelter.setListItems(reportsonmy_adopteddogs_adapter_shelter.getChange(), data);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<updatereportsonmyadopteddog[]> call, Throwable t) {
-                            Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                else if(radioButton.getText().toString().equals("Odbijeno")) {
-                    updatereportsonmyadopteddog data = new updatereportsonmyadopteddog(
-                            razlog_myreports_adopteddogs.getEditText().getText().toString(),
-                            "False"
-                    );
-                    Call<updatereportsonmyadopteddog[]> call=retrofitInterface.reportsupdateonadopt(reportsonmy_adopteddogs_adapter_shelter.getid(), data);
-                    call.enqueue(new Callback<updatereportsonmyadopteddog[]>() {
-                        @Override
-                        public void onResponse(Call<updatereportsonmyadopteddog[]> call, Response<updatereportsonmyadopteddog[]> response) {
-                            Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
-                            reportsonmyadopteddog_data data= new reportsonmyadopteddog_data(
-                                    reportsonmy_adopteddogs_adapter_shelter.getIme(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPrezime(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getAdresa(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getGrad(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPostnum(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getKontakt(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getRazlog_prijave(),
-                                    "False",
-                                    reportsonmy_adopteddogs_adapter_shelter.getPostavljeno(),
-                                    razlog_myreports_adopteddogs.getEditText().getText().toString(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getid(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getIme_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPrezime_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getAdresa_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getTelefonskibr(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getGrad_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPostanski_broj_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getBoja(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getStarost(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getDlaka(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getVetlokacija(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getImepsa(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getSpol(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPasmina(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getKilaza(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getKastrat(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getOpasnost(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getNapomena_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getUrl()
-                            );
-                            reportsonmy_adopteddogs_shelter.setListItems(reportsonmy_adopteddogs_adapter_shelter.getChange(), data);
+                            }catch(Exception e){System.out.println(e);}
                         }
 
                         @Override
@@ -254,39 +258,41 @@ public class reportsonmyadopteddog_dialog_shelter extends BottomSheetDialogFragm
                     call.enqueue(new Callback<updatereportsonmyadopteddog[]>() {
                         @Override
                         public void onResponse(Call<updatereportsonmyadopteddog[]> call, Response<updatereportsonmyadopteddog[]> response) {
-                            Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
-                            reportsonmyadopteddog_data data= new reportsonmyadopteddog_data(
-                                    reportsonmy_adopteddogs_adapter_shelter.getIme(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPrezime(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getAdresa(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getGrad(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPostnum(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getKontakt(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getRazlog_prijave(),
-                                    "Obrada",
-                                    reportsonmy_adopteddogs_adapter_shelter.getPostavljeno(),
-                                    razlog_myreports_adopteddogs.getEditText().getText().toString(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getid(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getIme_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPrezime_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getAdresa_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getTelefonskibr(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getGrad_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPostanski_broj_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getBoja(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getStarost(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getDlaka(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getVetlokacija(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getImepsa(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getSpol(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getPasmina(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getKilaza(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getKastrat(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getOpasnost(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getNapomena_udomljavanje(),
-                                    reportsonmy_adopteddogs_adapter_shelter.getUrl()
-                            );
-                            reportsonmy_adopteddogs_shelter.setListItems(reportsonmy_adopteddogs_adapter_shelter.getChange(), data);
+                            try{
+                                Toast.makeText(getActivity(),"Ažurirano",Toast.LENGTH_SHORT).show();
+                                reportsonmyadopteddog_data data= new reportsonmyadopteddog_data(
+                                        reportsonmy_adopteddogs_adapter_shelter.getIme(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getPrezime(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getAdresa(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getGrad(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getPostnum(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getKontakt(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getRazlog_prijave(),
+                                        "Obrada",
+                                        reportsonmy_adopteddogs_adapter_shelter.getPostavljeno(),
+                                        razlog_myreports_adopteddogs.getEditText().getText().toString(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getid(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getIme_udomljavanje(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getPrezime_udomljavanje(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getAdresa_udomljavanje(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getTelefonskibr(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getGrad_udomljavanje(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getPostanski_broj_udomljavanje(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getBoja(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getStarost(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getDlaka(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getVetlokacija(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getImepsa(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getSpol(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getPasmina(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getKilaza(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getKastrat(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getOpasnost(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getNapomena_udomljavanje(),
+                                        reportsonmy_adopteddogs_adapter_shelter.getUrl()
+                                );
+                                reportsonmy_adopteddogs_shelter.setListItems(reportsonmy_adopteddogs_adapter_shelter.getChange(), data);
+                            }catch(Exception e){System.out.println(e);}
                         }
 
                         @Override

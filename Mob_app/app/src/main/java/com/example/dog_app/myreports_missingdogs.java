@@ -84,10 +84,12 @@ public class myreports_missingdogs extends Fragment {
             @Override
             public void onResponse(Call<myreportsdisapp_data[]> call, Response<myreportsdisapp_data[]> response) {
                 if(response.code()==200) {
-                    myreportsdisapp_data[] data = response.body();
-                    listItems.addAll(Arrays.asList(data));
-                    adapter= new myreports_missingdogs_adapter(listItems, getContext());
-                    recyclerView.setAdapter(adapter);
+                    try{
+                        myreportsdisapp_data[] data = response.body();
+                        listItems.addAll(Arrays.asList(data));
+                        adapter= new myreports_missingdogs_adapter(listItems, getContext());
+                        recyclerView.setAdapter(adapter);
+                    }catch(Exception e){System.out.println(e);}
                 }
             }
 

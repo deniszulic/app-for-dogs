@@ -97,15 +97,17 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
             @Override
             public void onResponse(Call<shelters[]> call, Response<shelters[]> response) {
                 if(response.code()==200) {
-                    shelters[] data = response.body();
-                    listItems.addAll(Arrays.asList(data));
-                    String[] sh = new String[listItems.size()];
-                    for (int i = 0; i < listItems.size(); i++) {
-                        sh[i] = listItems.get(i).getNaziv() + "," + listItems.get(i).getGrad();
-                        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), R.layout.dropdown_item, sh);
-                        azili_reporttoshelter.setText(listItems.get(0).getNaziv() + "," + listItems.get(0).getGrad(), false);
-                        azili_reporttoshelter.setAdapter(arrayAdapter);
-                    }
+                    try{
+                        shelters[] data = response.body();
+                        listItems.addAll(Arrays.asList(data));
+                        String[] sh = new String[listItems.size()];
+                        for (int i = 0; i < listItems.size(); i++) {
+                            sh[i] = listItems.get(i).getNaziv() + "," + listItems.get(i).getGrad();
+                            ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), R.layout.dropdown_item, sh);
+                            azili_reporttoshelter.setText(listItems.get(0).getNaziv() + "," + listItems.get(0).getGrad(), false);
+                            azili_reporttoshelter.setAdapter(arrayAdapter);
+                        }
+                    }catch(Exception e){System.out.println(e);}
                 }
             }
 
@@ -127,34 +129,36 @@ public class reporttoshelter_dialog extends BottomSheetDialogFragment {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.code()==201) {
-                                    Toast.makeText(getActivity(), "Podaci poslani azilu!", Toast.LENGTH_SHORT).show();
-                                    textView48.setVisibility(View.GONE);
-                                    dropdown_reporttoshelter.setVisibility(View.GONE);
-                                    sendreqtoshelter.setVisibility(View.GONE);
-                                    line_reporttoshelter.setVisibility(View.GONE);
+                                    try{
+                                        Toast.makeText(getActivity(), "Podaci poslani azilu!", Toast.LENGTH_SHORT).show();
+                                        textView48.setVisibility(View.GONE);
+                                        dropdown_reporttoshelter.setVisibility(View.GONE);
+                                        sendreqtoshelter.setVisibility(View.GONE);
+                                        line_reporttoshelter.setVisibility(View.GONE);
 
-                                    mymissingdogsdata a = new mymissingdogsdata(mymissingdogsadapter.getid(),
-                                            mymissingdogsadapter.getIme(),
-                                            mymissingdogsadapter.getPrezime(),
-                                            mymissingdogsadapter.getAdresa(),
-                                            mymissingdogsadapter.getKontakt(),
-                                            mymissingdogsadapter.getGrad(),
-                                            mymissingdogsadapter.getPostnum(),
-                                            mymissingdogsadapter.getBoja(),
-                                            mymissingdogsadapter.getStarost(),
-                                            mymissingdogsadapter.getDlaka(),
-                                            mymissingdogsadapter.getVetlokacija(),
-                                            mymissingdogsadapter.getImepsa(),
-                                            mymissingdogsadapter.getSpol(),
-                                            mymissingdogsadapter.getDatumizgubljen(),
-                                            mymissingdogsadapter.getNapomena(),
-                                            mymissingdogsadapter.getUrl(),
-                                            mymissingdogsadapter.getPostavljeno(),
-                                            mymissingdogsadapter.getPasmina(),
-                                            mymissingdogsadapter.isAktivan(),
-                                            "obrada",
-                                            mymissingdogsadapter.getNapomena_azil());
-                                    mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
+                                        mymissingdogsdata a = new mymissingdogsdata(mymissingdogsadapter.getid(),
+                                                mymissingdogsadapter.getIme(),
+                                                mymissingdogsadapter.getPrezime(),
+                                                mymissingdogsadapter.getAdresa(),
+                                                mymissingdogsadapter.getKontakt(),
+                                                mymissingdogsadapter.getGrad(),
+                                                mymissingdogsadapter.getPostnum(),
+                                                mymissingdogsadapter.getBoja(),
+                                                mymissingdogsadapter.getStarost(),
+                                                mymissingdogsadapter.getDlaka(),
+                                                mymissingdogsadapter.getVetlokacija(),
+                                                mymissingdogsadapter.getImepsa(),
+                                                mymissingdogsadapter.getSpol(),
+                                                mymissingdogsadapter.getDatumizgubljen(),
+                                                mymissingdogsadapter.getNapomena(),
+                                                mymissingdogsadapter.getUrl(),
+                                                mymissingdogsadapter.getPostavljeno(),
+                                                mymissingdogsadapter.getPasmina(),
+                                                mymissingdogsadapter.isAktivan(),
+                                                "obrada",
+                                                mymissingdogsadapter.getNapomena_azil());
+                                        mojioglasi_nestalipsi.setListItems(mymissingdogsadapter.getChange(), a);
+                                    }catch(Exception e){System.out.println(e);}
                                 }
                             }
 

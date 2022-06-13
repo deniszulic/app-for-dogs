@@ -180,13 +180,15 @@ public class obrazac_udomipsa_azil extends Fragment {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.code() == 201) {
-                                boja_udomipsa_korisnik.getEditText().getText().clear();
-                                starost_udomipsa_korisnik.getEditText().getText().clear();
-                                imepsa_udomipsa_korisnik.getEditText().getText().clear();
-                                napomena_udomipsa_korisnik.getEditText().getText().clear();
-                                telefonskibr_udomipsa_korisnik.getEditText().getText().clear();
-                                pasmina_udomipsa_korisnik.getEditText().getText().clear();
-                                kilaza_udomipsa_korisnik.getEditText().getText().clear();
+                                try{
+                                    boja_udomipsa_korisnik.getEditText().getText().clear();
+                                    starost_udomipsa_korisnik.getEditText().getText().clear();
+                                    imepsa_udomipsa_korisnik.getEditText().getText().clear();
+                                    napomena_udomipsa_korisnik.getEditText().getText().clear();
+                                    telefonskibr_udomipsa_korisnik.getEditText().getText().clear();
+                                    pasmina_udomipsa_korisnik.getEditText().getText().clear();
+                                    kilaza_udomipsa_korisnik.getEditText().getText().clear();
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 
@@ -290,15 +292,17 @@ public class obrazac_udomipsa_azil extends Fragment {
                         call.enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
-                                boja_udomipsa_korisnik.getEditText().getText().clear();
-                                starost_udomipsa_korisnik.getEditText().getText().clear();
-                                imepsa_udomipsa_korisnik.getEditText().getText().clear();
-                                napomena_udomipsa_korisnik.getEditText().getText().clear();
-                                telefonskibr_udomipsa_korisnik.getEditText().getText().clear();
-                                pasmina_udomipsa_korisnik.getEditText().getText().clear();
-                                kilaza_udomipsa_korisnik.getEditText().getText().clear();
-                                imageurl=null;
-                                Picasso.get().load(imageurl).into(slikapsa_udomipsa_korisnik);
+                                try{
+                                    boja_udomipsa_korisnik.getEditText().getText().clear();
+                                    starost_udomipsa_korisnik.getEditText().getText().clear();
+                                    imepsa_udomipsa_korisnik.getEditText().getText().clear();
+                                    napomena_udomipsa_korisnik.getEditText().getText().clear();
+                                    telefonskibr_udomipsa_korisnik.getEditText().getText().clear();
+                                    pasmina_udomipsa_korisnik.getEditText().getText().clear();
+                                    kilaza_udomipsa_korisnik.getEditText().getText().clear();
+                                    imageurl=null;
+                                    Picasso.get().load(imageurl).into(slikapsa_udomipsa_korisnik);
+                                }catch(Exception e){System.out.println(e);}
                             }
 
                             @Override

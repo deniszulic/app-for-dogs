@@ -78,10 +78,12 @@ public class udomipsa_oglasi_azil extends Fragment {
             @Override
             public void onResponse(Call<shelteradopteddogdata[]> call, Response<shelteradopteddogdata[]> response) {
                 if(response.code()==200) {
-                    shelteradopteddogdata[] data = response.body();
-                    listItems.addAll(Arrays.asList(data));
-                    adapter = new adopt_shelter_adapter(listItems, getContext());
-                    recyclerView.setAdapter(adapter);
+                    try{
+                        shelteradopteddogdata[] data = response.body();
+                        listItems.addAll(Arrays.asList(data));
+                        adapter = new adopt_shelter_adapter(listItems, getContext());
+                        recyclerView.setAdapter(adapter);
+                    }catch(Exception e){System.out.println(e);}
                 }
             }
 

@@ -81,10 +81,12 @@ public class userreq_adoptdog_reject extends Fragment {
             @Override
             public void onResponse(Call<userreq_adoptdog_data[]> call, Response<userreq_adoptdog_data[]> response) {
                 if(response.code()==200) {
-                    userreq_adoptdog_data[] data = response.body();
-                    listItems.addAll(Arrays.asList(data));
-                    adapter= new user_req_adoptdog_rejected_adapter(listItems, getContext());
-                    recyclerView.setAdapter(adapter);
+                    try{
+                        userreq_adoptdog_data[] data = response.body();
+                        listItems.addAll(Arrays.asList(data));
+                        adapter= new user_req_adoptdog_rejected_adapter(listItems, getContext());
+                        recyclerView.setAdapter(adapter);
+                    }catch(Exception e){System.out.println(e);}
                 }
             }
 

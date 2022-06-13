@@ -82,27 +82,29 @@ public class mojikomentari_azil extends AppCompatActivity {
         data.enqueue(new Callback<ListItem[]>() {
             @Override
             public void onResponse(Call<ListItem[]> call, Response<ListItem[]> response) {
-                ListItem[] data=response.body();
-                Date date = new Date(data[0].getPostavljeno());
-                DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
-                postavljeno.setText(format.format(date));
-                telbr.setText(data[0].getTelefonskibr());
-                boja.setText(data[0].getBoja());
-                dlaka.setText(data[0].getDlaka());
-                pasmina.setText(data[0].getPasmina());
-                Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
-                chip.setText("Datum nestanka: "+format.format(date1));
-                spol.setText(data[0].getSpol());
-                starost.setText(String.valueOf(data[0].getStarost()));
-                napomena.setText(data[0].getNapomena());
+                try{
+                    ListItem[] data=response.body();
+                    Date date = new Date(data[0].getPostavljeno());
+                    DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
+                    postavljeno.setText(format.format(date));
+                    telbr.setText(data[0].getTelefonskibr());
+                    boja.setText(data[0].getBoja());
+                    dlaka.setText(data[0].getDlaka());
+                    pasmina.setText(data[0].getPasmina());
+                    Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
+                    chip.setText("Datum nestanka: "+format.format(date1));
+                    spol.setText(data[0].getSpol());
+                    starost.setText(String.valueOf(data[0].getStarost()));
+                    napomena.setText(data[0].getNapomena());
 
-                if(data[0].getUrl_slike()!=null) {
-                    slika.setVisibility(View.VISIBLE);
-                    Picasso.get().load(data[0].getUrl_slike()).into(slika);
-                }
-                else{
-                    slika.setVisibility(View.GONE);
-                }
+                    if(data[0].getUrl_slike()!=null) {
+                        slika.setVisibility(View.VISIBLE);
+                        Picasso.get().load(data[0].getUrl_slike()).into(slika);
+                    }
+                    else{
+                        slika.setVisibility(View.GONE);
+                    }
+                }catch(Exception e){System.out.println(e);}
             }
 
             @Override
@@ -115,11 +117,12 @@ public class mojikomentari_azil extends AppCompatActivity {
         datacomments.enqueue(new Callback<Comments[]>() {
             @Override
             public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
-                Comments[] data=response.body();
-                commentsList.addAll(Arrays.asList(data));
-                adapter = new myCommentsAdapterShelter(commentsList, id);
-                recyclerView.setAdapter(adapter);
-
+                try{
+                    Comments[] data=response.body();
+                    commentsList.addAll(Arrays.asList(data));
+                    adapter = new myCommentsAdapterShelter(commentsList, id);
+                    recyclerView.setAdapter(adapter);
+                }catch(Exception e){System.out.println(e);}
             }
 
             @Override
@@ -140,25 +143,30 @@ public class mojikomentari_azil extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
 
-                        insertcomment.getEditText().getText().clear();
+                        try{
 
-                        Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
-                        commentsList=new ArrayList<>();
-                        datacomments.enqueue(new Callback<Comments[]>() {
-                            @Override
-                            public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
-                                Comments[] data=response.body();
-                                commentsList.addAll(Arrays.asList(data));
-                                adapter = new myCommentsAdapterShelter(commentsList, id);
-                                recyclerView.setAdapter(adapter);
+                            insertcomment.getEditText().getText().clear();
 
-                            }
+                            Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
+                            commentsList=new ArrayList<>();
+                            datacomments.enqueue(new Callback<Comments[]>() {
+                                @Override
+                                public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
+                                    try{
+                                        Comments[] data=response.body();
+                                        commentsList.addAll(Arrays.asList(data));
+                                        adapter = new myCommentsAdapterShelter(commentsList, id);
+                                        recyclerView.setAdapter(adapter);
+                                    }catch(Exception e){System.out.println(e);}
 
-                            @Override
-                            public void onFailure(Call<Comments[]> call, Throwable t) {
-                                Toast.makeText(mojikomentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                }
+
+                                @Override
+                                public void onFailure(Call<Comments[]> call, Throwable t) {
+                                    Toast.makeText(mojikomentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }catch(Exception e){System.out.println(e);}
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {

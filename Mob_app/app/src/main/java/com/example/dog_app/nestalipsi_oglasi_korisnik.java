@@ -79,10 +79,12 @@ public class nestalipsi_oglasi_korisnik extends Fragment {
         data.enqueue(new Callback<ListItem[]>() {
             @Override
             public void onResponse(Call<ListItem[]> call, Response<ListItem[]> response) {
-                ListItem[] data = response.body();
-                listItems.addAll(Arrays.asList(data));
-                adapter = new MyAdapter(listItems, getContext());
-                recyclerView.setAdapter(adapter);
+                try{
+                    ListItem[] data = response.body();
+                    listItems.addAll(Arrays.asList(data));
+                    adapter = new MyAdapter(listItems, getContext());
+                    recyclerView.setAdapter(adapter);
+                }catch(Exception e){System.out.println(e);}
             }
 
             @Override

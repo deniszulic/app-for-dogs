@@ -144,12 +144,14 @@ public class register extends Fragment {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if(response.code()==201){
-                                ime_reg.getEditText().getText().clear();
-                                prezime_reg.getEditText().getText().clear();
-                                email.getEditText().getText().clear();
-                                password.getEditText().getText().clear();
-                                ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
-                                dialog.show(getParentFragmentManager(), "exampleBottomSheet");
+                                try{
+                                    ime_reg.getEditText().getText().clear();
+                                    prezime_reg.getEditText().getText().clear();
+                                    email.getEditText().getText().clear();
+                                    password.getEditText().getText().clear();
+                                    ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                                    dialog.show(getParentFragmentManager(), "exampleBottomSheet");
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
                         @Override
@@ -173,6 +175,7 @@ public class register extends Fragment {
                         @Override
                         public void onResponse(Call<Integer> call, Response<Integer> response) {
                             if (response.code() == 201) {
+                                try{
                                 int userid=response.body();
                                 if(response.body()>=0){
                                     registershelter shelter= new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), response.body());
@@ -181,18 +184,20 @@ public class register extends Fragment {
                                         @Override
                                         public void onResponse(Call<Integer> call, Response<Integer> response) {
                                             if(response.code()==201){
-                                                ime_reg.getEditText().getText().clear();
-                                                prezime_reg.getEditText().getText().clear();
-                                                email.getEditText().getText().clear();
-                                                password.getEditText().getText().clear();
-                                                oib.getEditText().getText().clear();
-                                                naziv.getEditText().getText().clear();
-                                                ulica_reg.getEditText().getText().clear();
-                                                kucnibr_reg.getEditText().getText().clear();
-                                                grad_reg.getEditText().getText().clear();
-                                                postnum_reg.getEditText().getText().clear();
-                                                ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
-                                                dialog.show(getParentFragmentManager(), "exampleBottomSheet");
+                                                try{
+                                                    ime_reg.getEditText().getText().clear();
+                                                    prezime_reg.getEditText().getText().clear();
+                                                    email.getEditText().getText().clear();
+                                                    password.getEditText().getText().clear();
+                                                    oib.getEditText().getText().clear();
+                                                    naziv.getEditText().getText().clear();
+                                                    ulica_reg.getEditText().getText().clear();
+                                                    kucnibr_reg.getEditText().getText().clear();
+                                                    grad_reg.getEditText().getText().clear();
+                                                    postnum_reg.getEditText().getText().clear();
+                                                    ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                                                    dialog.show(getParentFragmentManager(), "exampleBottomSheet");
+                                                }catch(Exception e){System.out.println(e);}
                                             }
                                         }
 
@@ -216,6 +221,7 @@ public class register extends Fragment {
                                         }
                                     });
                                 }
+                            }catch(Exception e){System.out.println(e);}
                             }
                         }
 

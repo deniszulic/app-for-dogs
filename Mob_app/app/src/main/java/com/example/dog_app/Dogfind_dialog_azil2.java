@@ -70,13 +70,15 @@ public class Dogfind_dialog_azil2 extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.code() == 201) {
-                                Toast.makeText(getActivity(),"Poslano!",Toast.LENGTH_SHORT).show();
-                                ime_dogfind_form.getEditText().getText().clear();
-                                prezime_dogfind_form.getEditText().getText().clear();
-                                adresapreuzimanje_dogfind_form.getEditText().getText().clear();
-                                adresapronalaska_dogfind_form.getEditText().getText().clear();
-                                kontakt_dogfind_form.getEditText().getText().clear();
-                                napomena_dogfind_form.getEditText().getText().clear();
+                                try{
+                                    Toast.makeText(getActivity(),"Poslano!",Toast.LENGTH_SHORT).show();
+                                    ime_dogfind_form.getEditText().getText().clear();
+                                    prezime_dogfind_form.getEditText().getText().clear();
+                                    adresapreuzimanje_dogfind_form.getEditText().getText().clear();
+                                    adresapronalaska_dogfind_form.getEditText().getText().clear();
+                                    kontakt_dogfind_form.getEditText().getText().clear();
+                                    napomena_dogfind_form.getEditText().getText().clear();
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 

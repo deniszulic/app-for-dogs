@@ -160,29 +160,31 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                             if(response.code()==200){
-                                Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
-                                userreq_missingdog_data data = new userreq_missingdog_data(user_req_missingdog_waiting_adapter.getIme(),
-                                        user_req_missingdog_waiting_adapter.getPrezime(),
-                                        user_req_missingdog_waiting_adapter.getAdresa(),
-                                        user_req_missingdog_waiting_adapter.getTelefonskibr(),
-                                        user_req_missingdog_waiting_adapter.getGrad(),
-                                        user_req_missingdog_waiting_adapter.getPostanski_broj(),
-                                        user_req_missingdog_waiting_adapter.getBoja(),
-                                        user_req_missingdog_waiting_adapter.getStarost(),
-                                        user_req_missingdog_waiting_adapter.getDlaka(),
-                                        user_req_missingdog_waiting_adapter.getVet_lokacija(),
-                                        user_req_missingdog_waiting_adapter.getIme_psa(),
-                                        user_req_missingdog_waiting_adapter.getSpol(),
-                                        user_req_missingdog_waiting_adapter.getPasmina(),
-                                        user_req_missingdog_waiting_adapter.getDatum_izgubljen(),
-                                        user_req_missingdog_waiting_adapter.getNestanak_napomena(),
-                                        user_req_missingdog_waiting_adapter.getUrl_slike(),
-                                        napomena_userreq_missingdog.getEditText().getText().toString(),
-                                        "obrada", user_req_missingdog_waiting_adapter.getid(),
-                                        user_req_missingdog_waiting_adapter.getAzil_nestanak_nestanak_id(),
-                                        user_req_missingdog_waiting_adapter.getPostavljeno(),
-                                        user_req_missingdog_waiting_adapter.getNestanak_id());
-                                userreq_mis_req.setListItemschange(user_req_missingdog_waiting_adapter.getChange(), data);
+                                try{
+                                    Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                    userreq_missingdog_data data = new userreq_missingdog_data(user_req_missingdog_waiting_adapter.getIme(),
+                                            user_req_missingdog_waiting_adapter.getPrezime(),
+                                            user_req_missingdog_waiting_adapter.getAdresa(),
+                                            user_req_missingdog_waiting_adapter.getTelefonskibr(),
+                                            user_req_missingdog_waiting_adapter.getGrad(),
+                                            user_req_missingdog_waiting_adapter.getPostanski_broj(),
+                                            user_req_missingdog_waiting_adapter.getBoja(),
+                                            user_req_missingdog_waiting_adapter.getStarost(),
+                                            user_req_missingdog_waiting_adapter.getDlaka(),
+                                            user_req_missingdog_waiting_adapter.getVet_lokacija(),
+                                            user_req_missingdog_waiting_adapter.getIme_psa(),
+                                            user_req_missingdog_waiting_adapter.getSpol(),
+                                            user_req_missingdog_waiting_adapter.getPasmina(),
+                                            user_req_missingdog_waiting_adapter.getDatum_izgubljen(),
+                                            user_req_missingdog_waiting_adapter.getNestanak_napomena(),
+                                            user_req_missingdog_waiting_adapter.getUrl_slike(),
+                                            napomena_userreq_missingdog.getEditText().getText().toString(),
+                                            "obrada", user_req_missingdog_waiting_adapter.getid(),
+                                            user_req_missingdog_waiting_adapter.getAzil_nestanak_nestanak_id(),
+                                            user_req_missingdog_waiting_adapter.getPostavljeno(),
+                                            user_req_missingdog_waiting_adapter.getNestanak_id());
+                                    userreq_mis_req.setListItemschange(user_req_missingdog_waiting_adapter.getChange(), data);
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 
@@ -199,8 +201,10 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                             if(response.code()==200){
-                                userreq_mis_req.setListItems(user_req_missingdog_waiting_adapter.getChange());
-                                Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                try{
+                                    userreq_mis_req.setListItems(user_req_missingdog_waiting_adapter.getChange());
+                                    Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 
@@ -216,8 +220,10 @@ public class missingdog_userreq_dialog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                             if(response.code()==200){
-                                userreq_mis_req.setListItems(user_req_missingdog_waiting_adapter.getChange());
-                                Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                try{
+                                    userreq_mis_req.setListItems(user_req_missingdog_waiting_adapter.getChange());
+                                    Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 

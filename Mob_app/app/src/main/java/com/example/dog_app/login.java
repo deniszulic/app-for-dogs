@@ -92,25 +92,27 @@ public class login extends Fragment {
                     @Override
                     public void onResponse(Call<getlogindata[]> call, Response<getlogindata[]> response) {
                             if (response.code() == 200) {
-                                getlogindata[] result= response.body();
-                                SharedPreferences sp=getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor data=sp.edit();
-                                data.putString("email", result[0].getEmail());
-                                data.putString("tipkorisnika", result[0].getTipkorisnika());
-                                data.putInt("id", result[0].getId());
-                                data.putString("ime", result[0].getIme());
-                                data.putString("prezime", result[0].getPrezime());
-                                data.commit();
-                                if(result[0].getTipkorisnika().equalsIgnoreCase("korisnik")) {
-                                    Intent i = new Intent(getActivity(), pocetni_zaslon_korisnik.class);
-                                    startActivity(i);
-                                    getActivity().finish();
-                                }
-                                else if(result[0].getTipkorisnika().equalsIgnoreCase("azil")) {
-                                    Intent i = new Intent(getActivity(), pocetni_zaslon_azil.class);
-                                    startActivity(i);
-                                    getActivity().finish();
-                                }
+                                try{
+                                    getlogindata[] result= response.body();
+                                    SharedPreferences sp=getActivity().getSharedPreferences("userdata", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor data=sp.edit();
+                                    data.putString("email", result[0].getEmail());
+                                    data.putString("tipkorisnika", result[0].getTipkorisnika());
+                                    data.putInt("id", result[0].getId());
+                                    data.putString("ime", result[0].getIme());
+                                    data.putString("prezime", result[0].getPrezime());
+                                    data.commit();
+                                    if(result[0].getTipkorisnika().equalsIgnoreCase("korisnik")) {
+                                        Intent i = new Intent(getActivity(), pocetni_zaslon_korisnik.class);
+                                        startActivity(i);
+                                        getActivity().finish();
+                                    }
+                                    else if(result[0].getTipkorisnika().equalsIgnoreCase("azil")) {
+                                        Intent i = new Intent(getActivity(), pocetni_zaslon_azil.class);
+                                        startActivity(i);
+                                        getActivity().finish();
+                                    }
+                                }catch(Exception e){System.out.println(e);}
                             }
                     }
 

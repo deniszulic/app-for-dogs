@@ -189,14 +189,16 @@ public class obrazac_nestalipsi_azil extends Fragment {
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-                            boja_nestalipsi_korisnik.getEditText().getText().clear();
-                            starost_nestalipsi_korisnik.getEditText().getText().clear();
-                            vet_lokacija_nestalipsi_korisnik.getEditText().getText().clear();
-                            imepsa_nestalipsi_korisnik.getEditText().getText().clear();
-                            datum=null;
-                            napomena_nestalipsi_korisnik.getEditText().getText().clear();
-                            telefonskibr_nestalipsi_korisnik.getEditText().getText().clear();
-                            pasmina_nestalipsi_korisnik.getEditText().getText().clear();
+                            try{
+                                boja_nestalipsi_korisnik.getEditText().getText().clear();
+                                starost_nestalipsi_korisnik.getEditText().getText().clear();
+                                vet_lokacija_nestalipsi_korisnik.getEditText().getText().clear();
+                                imepsa_nestalipsi_korisnik.getEditText().getText().clear();
+                                datum=null;
+                                napomena_nestalipsi_korisnik.getEditText().getText().clear();
+                                telefonskibr_nestalipsi_korisnik.getEditText().getText().clear();
+                                pasmina_nestalipsi_korisnik.getEditText().getText().clear();
+                            }catch(Exception e){System.out.println(e);}
                         }
 
                         @Override
@@ -273,16 +275,18 @@ public class obrazac_nestalipsi_azil extends Fragment {
                         call.enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
-                                boja_nestalipsi_korisnik.getEditText().getText().clear();
-                                starost_nestalipsi_korisnik.getEditText().getText().clear();
-                                vet_lokacija_nestalipsi_korisnik.getEditText().getText().clear();
-                                imepsa_nestalipsi_korisnik.getEditText().getText().clear();
-                                datum=null;
-                                napomena_nestalipsi_korisnik.getEditText().getText().clear();
-                                telefonskibr_nestalipsi_korisnik.getEditText().getText().clear();
-                                pasmina_nestalipsi_korisnik.getEditText().getText().clear();
-                                imageurl=null;
-                                Picasso.get().load(imageurl).into(slikapsa_nestalipsi_korisnik);
+                                try{
+                                    boja_nestalipsi_korisnik.getEditText().getText().clear();
+                                    starost_nestalipsi_korisnik.getEditText().getText().clear();
+                                    vet_lokacija_nestalipsi_korisnik.getEditText().getText().clear();
+                                    imepsa_nestalipsi_korisnik.getEditText().getText().clear();
+                                    datum=null;
+                                    napomena_nestalipsi_korisnik.getEditText().getText().clear();
+                                    telefonskibr_nestalipsi_korisnik.getEditText().getText().clear();
+                                    pasmina_nestalipsi_korisnik.getEditText().getText().clear();
+                                    imageurl=null;
+                                    Picasso.get().load(imageurl).into(slikapsa_nestalipsi_korisnik);
+                                }catch(Exception e){System.out.println(e);}
                             }
 
                             @Override

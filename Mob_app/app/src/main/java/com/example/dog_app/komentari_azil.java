@@ -95,34 +95,36 @@ public class komentari_azil extends AppCompatActivity {
         data.enqueue(new Callback<ListItem[]>() {
             @Override
             public void onResponse(Call<ListItem[]> call, Response<ListItem[]> response) {
-                ListItem[] data=response.body();
-                ime.setText(data[0].getIme());
-                imepsa.setText(data[0].getIme_psa());
-                Date date = new Date(data[0].getPostavljeno());
-                DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
-                postavljeno.setText(format.format(date));
-                adresa.setText(data[0].getAdresa());
-                telbr.setText(data[0].getTelefonskibr());
-                boja.setText(data[0].getBoja());
-                dlaka.setText(data[0].getDlaka());
-                pasmina.setText(data[0].getPasmina());
-                prezime.setText(data[0].getPrezime());
-                Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
-                chip.setText("Izgubljen: "+format.format(date1));
-                postnum.setText(String.valueOf(data[0].getPostanski_broj()));
-                vet_lok.setText(data[0].getVet_lokacija());
-                spol.setText(data[0].getSpol());
-                starost.setText(String.valueOf(data[0].getStarost()));
-                grad.setText(data[0].getGrad());
-                napomena.setText(data[0].getNapomena());
+                try{
+                    ListItem[] data=response.body();
+                    ime.setText(data[0].getIme());
+                    imepsa.setText(data[0].getIme_psa());
+                    Date date = new Date(data[0].getPostavljeno());
+                    DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
+                    postavljeno.setText(format.format(date));
+                    adresa.setText(data[0].getAdresa());
+                    telbr.setText(data[0].getTelefonskibr());
+                    boja.setText(data[0].getBoja());
+                    dlaka.setText(data[0].getDlaka());
+                    pasmina.setText(data[0].getPasmina());
+                    prezime.setText(data[0].getPrezime());
+                    Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
+                    chip.setText("Izgubljen: "+format.format(date1));
+                    postnum.setText(String.valueOf(data[0].getPostanski_broj()));
+                    vet_lok.setText(data[0].getVet_lokacija());
+                    spol.setText(data[0].getSpol());
+                    starost.setText(String.valueOf(data[0].getStarost()));
+                    grad.setText(data[0].getGrad());
+                    napomena.setText(data[0].getNapomena());
 
-                if(data[0].getUrl_slike()!=null) {
-                    slika.setVisibility(View.VISIBLE);
-                    Picasso.get().load(data[0].getUrl_slike()).into(slika);
-                }
-                else{
-                    slika.setVisibility(View.GONE);
-                }
+                    if(data[0].getUrl_slike()!=null) {
+                        slika.setVisibility(View.VISIBLE);
+                        Picasso.get().load(data[0].getUrl_slike()).into(slika);
+                    }
+                    else{
+                        slika.setVisibility(View.GONE);
+                    }
+                }catch(Exception e){System.out.println(e);}
             }
 
             @Override
@@ -135,11 +137,12 @@ public class komentari_azil extends AppCompatActivity {
         datacomments.enqueue(new Callback<Comments[]>() {
             @Override
             public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
-                Comments[] data=response.body();
-                commentsList.addAll(Arrays.asList(data));
-                adapter = new CommentsAdaptershelter(commentsList, id);
-                recyclerView.setAdapter(adapter);
-
+                try{
+                    Comments[] data=response.body();
+                    commentsList.addAll(Arrays.asList(data));
+                    adapter = new CommentsAdaptershelter(commentsList, id);
+                    recyclerView.setAdapter(adapter);
+                }catch(Exception e){System.out.println(e);}
             }
 
             @Override
@@ -159,26 +162,28 @@ public class komentari_azil extends AppCompatActivity {
                 senddata.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
+                        try{
+                            insertcomment.getEditText().getText().clear();
 
-                        insertcomment.getEditText().getText().clear();
+                            Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
+                            commentsList=new ArrayList<>();
+                            datacomments.enqueue(new Callback<Comments[]>() {
+                                @Override
+                                public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
+                                    try{
+                                        Comments[] data=response.body();
+                                        commentsList.addAll(Arrays.asList(data));
+                                        adapter = new CommentsAdaptershelter(commentsList, id);
+                                        recyclerView.setAdapter(adapter);
+                                    }catch(Exception e){System.out.println(e);}
+                                }
 
-                        Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
-                        commentsList=new ArrayList<>();
-                        datacomments.enqueue(new Callback<Comments[]>() {
-                            @Override
-                            public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
-                                Comments[] data=response.body();
-                                commentsList.addAll(Arrays.asList(data));
-                                adapter = new CommentsAdaptershelter(commentsList, id);
-                                recyclerView.setAdapter(adapter);
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<Comments[]> call, Throwable t) {
-                                Toast.makeText(komentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                @Override
+                                public void onFailure(Call<Comments[]> call, Throwable t) {
+                                    Toast.makeText(komentari_azil.this,t.toString(),Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }catch(Exception e){System.out.println(e);}
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {

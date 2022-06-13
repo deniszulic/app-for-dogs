@@ -87,31 +87,33 @@ public class komentari_shelter extends AppCompatActivity {
         data.enqueue(new Callback<Missingdogs_user_shelter_data[]>() {
             @Override
             public void onResponse(Call<Missingdogs_user_shelter_data[]> call, Response<Missingdogs_user_shelter_data[]> response) {
-                Missingdogs_user_shelter_data[] data=response.body();
-                imeazila_user_shelter.setText(data[0].getNaziv());
-                grad_user_shelter.setText(data[0].getGrad());
-                ulica_user_shelter.setText(data[0].getUlica());
-                postnum_user_shelter.setText(data[0].getPostanski_broj());
-                Date date = new Date(data[0].getPostavljeno());
-                DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
-                postavljeno_nestalipsi_korisnik_azil.setText(format.format(date));
-                imepsa_nestalipsi_korisnik_azil.setText(data[0].getIme_psa());
-                telbr_nestalipsi_korisnik_azil.setText(data[0].getTelefonskibr());
-                boja_nestalipsi_korisnik_azil.setText(data[0].getBoja());
-                dlaka_nestalipsi_korisnik_azil.setText(data[0].getDlaka());
-                pasmina_nestalipsi_korisnik_azil.setText(data[0].getPasmina());
-                spol_nestalipsi_korisnik_azil.setText(data[0].getSpol());
-                starost_nestalipsi_korisnik_azil.setText(data[0].getStarost());
-                Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
-                chip_nestalipsi_korisnik_azil.setText("Izgubljen: "+format.format(date1));
-                napomena_nestalipsi_korisnik_azil_komentar.setText(data[0].getNapomena());
-                if(data[0].getUrl_slike()!=null) {
-                    slika_nestalipsi_korisnik_azil.setVisibility(View.VISIBLE);
-                    Picasso.get().load(data[0].getUrl_slike()).into(slika_nestalipsi_korisnik_azil);
-                }
-                else{
-                    slika_nestalipsi_korisnik_azil.setVisibility(View.GONE);
-                }
+                try{
+                    Missingdogs_user_shelter_data[] data=response.body();
+                    imeazila_user_shelter.setText(data[0].getNaziv());
+                    grad_user_shelter.setText(data[0].getGrad());
+                    ulica_user_shelter.setText(data[0].getUlica());
+                    postnum_user_shelter.setText(data[0].getPostanski_broj());
+                    Date date = new Date(data[0].getPostavljeno());
+                    DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
+                    postavljeno_nestalipsi_korisnik_azil.setText(format.format(date));
+                    imepsa_nestalipsi_korisnik_azil.setText(data[0].getIme_psa());
+                    telbr_nestalipsi_korisnik_azil.setText(data[0].getTelefonskibr());
+                    boja_nestalipsi_korisnik_azil.setText(data[0].getBoja());
+                    dlaka_nestalipsi_korisnik_azil.setText(data[0].getDlaka());
+                    pasmina_nestalipsi_korisnik_azil.setText(data[0].getPasmina());
+                    spol_nestalipsi_korisnik_azil.setText(data[0].getSpol());
+                    starost_nestalipsi_korisnik_azil.setText(data[0].getStarost());
+                    Date date1 = new Date(String.valueOf(data[0].getDatum_izgubljen()));
+                    chip_nestalipsi_korisnik_azil.setText("Izgubljen: "+format.format(date1));
+                    napomena_nestalipsi_korisnik_azil_komentar.setText(data[0].getNapomena());
+                    if(data[0].getUrl_slike()!=null) {
+                        slika_nestalipsi_korisnik_azil.setVisibility(View.VISIBLE);
+                        Picasso.get().load(data[0].getUrl_slike()).into(slika_nestalipsi_korisnik_azil);
+                    }
+                    else{
+                        slika_nestalipsi_korisnik_azil.setVisibility(View.GONE);
+                    }
+                }catch(Exception e){System.out.println(e);}
             }
 
             @Override
@@ -123,10 +125,12 @@ public class komentari_shelter extends AppCompatActivity {
         datacomments.enqueue(new Callback<Comments[]>() {
             @Override
             public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
-                Comments[] data=response.body();
-                commentsList.addAll(Arrays.asList(data));
-                adapter = new CommentsAdaptershelter(commentsList, id);
-                recyclerView.setAdapter(adapter);
+                try{
+                    Comments[] data=response.body();
+                    commentsList.addAll(Arrays.asList(data));
+                    adapter = new CommentsAdaptershelter(commentsList, id);
+                    recyclerView.setAdapter(adapter);
+                }catch(Exception e){System.out.println(e);}
             }
 
             @Override
@@ -147,25 +151,28 @@ public class komentari_shelter extends AppCompatActivity {
                 senddata.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
+                        try{
+                            insertcomment.getEditText().getText().clear();
 
-                        insertcomment.getEditText().getText().clear();
+                            Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
+                            commentsList=new ArrayList<>();
+                            datacomments.enqueue(new Callback<Comments[]>() {
+                                @Override
+                                public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
+                                    try{
+                                        Comments[] data=response.body();
+                                        commentsList.addAll(Arrays.asList(data));
+                                        adapter = new CommentsAdaptershelter(commentsList, id);
+                                        recyclerView.setAdapter(adapter);
+                                    }catch(Exception e){System.out.println(e);}
+                                }
 
-                        Call<Comments[]> datacomments= retrofitInterface.getcomments(id);
-                        commentsList=new ArrayList<>();
-                        datacomments.enqueue(new Callback<Comments[]>() {
-                            @Override
-                            public void onResponse(Call<Comments[]> call, Response<Comments[]> response) {
-                                Comments[] data=response.body();
-                                commentsList.addAll(Arrays.asList(data));
-                                adapter = new CommentsAdaptershelter(commentsList, id);
-                                recyclerView.setAdapter(adapter);
-                            }
-
-                            @Override
-                            public void onFailure(Call<Comments[]> call, Throwable t) {
-                                Toast.makeText(komentari_shelter.this,t.toString(),Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                @Override
+                                public void onFailure(Call<Comments[]> call, Throwable t) {
+                                    Toast.makeText(komentari_shelter.this,t.toString(),Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }catch(Exception e){System.out.println(e);}
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {

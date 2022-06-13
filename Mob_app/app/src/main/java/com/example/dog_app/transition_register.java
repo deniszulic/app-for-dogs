@@ -123,12 +123,14 @@ public class transition_register extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.code()==201) {
-                                    ime_reg.getEditText().getText().clear();
-                                    prezime_reg.getEditText().getText().clear();
-                                    email.getEditText().getText().clear();
-                                    password.getEditText().getText().clear();
-                                    ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
-                                    dialog.show(getSupportFragmentManager(), "exampleBottomSheet");
+                                    try{
+                                        ime_reg.getEditText().getText().clear();
+                                        prezime_reg.getEditText().getText().clear();
+                                        email.getEditText().getText().clear();
+                                        password.getEditText().getText().clear();
+                                        ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                                        dialog.show(getSupportFragmentManager(), "exampleBottomSheet");
+                                    }catch(Exception e){System.out.println(e);}
                                 }
                             }
                             @Override
@@ -151,49 +153,53 @@ public class transition_register extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Integer> call, Response<Integer> response) {
                                 if (response.code() == 201) {
-                                    int userid=response.body();
-                                    if(response.body()>=0){
-                                        registershelter shelter= new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), response.body());
-                                        Call<Integer> regshelter =retrofitInterface.shelterregister(shelter);
-                                        regshelter.enqueue(new Callback<Integer>() {
-                                            @Override
-                                            public void onResponse(Call<Integer> call, Response<Integer> response) {
-                                                if(response.code()==201){
-                                                    ime_reg.getEditText().getText().clear();
-                                                    prezime_reg.getEditText().getText().clear();
-                                                    email.getEditText().getText().clear();
-                                                    password.getEditText().getText().clear();
-                                                    oib.getEditText().getText().clear();
-                                                    naziv.getEditText().getText().clear();
-                                                    ulica_reg.getEditText().getText().clear();
-                                                    kucnibr_reg.getEditText().getText().clear();
-                                                    grad_reg.getEditText().getText().clear();
-                                                    postnum_reg.getEditText().getText().clear();
-                                                    ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
-                                                    dialog.show(getSupportFragmentManager(), "exampleBottomSheet");
+                                    try{
+                                        int userid=response.body();
+                                        if(response.body()>=0){
+                                            registershelter shelter= new registershelter(oib.getEditText().getText().toString(), ulica_reg.getEditText().getText().toString(), kucnibr_reg.getEditText().getText().toString(), grad_reg.getEditText().getText().toString(), postnum_reg.getEditText().getText().toString(), naziv.getEditText().getText().toString(), response.body());
+                                            Call<Integer> regshelter =retrofitInterface.shelterregister(shelter);
+                                            regshelter.enqueue(new Callback<Integer>() {
+                                                @Override
+                                                public void onResponse(Call<Integer> call, Response<Integer> response) {
+                                                    if(response.code()==201){
+                                                        try{
+                                                            ime_reg.getEditText().getText().clear();
+                                                            prezime_reg.getEditText().getText().clear();
+                                                            email.getEditText().getText().clear();
+                                                            password.getEditText().getText().clear();
+                                                            oib.getEditText().getText().clear();
+                                                            naziv.getEditText().getText().clear();
+                                                            ulica_reg.getEditText().getText().clear();
+                                                            kucnibr_reg.getEditText().getText().clear();
+                                                            grad_reg.getEditText().getText().clear();
+                                                            postnum_reg.getEditText().getText().clear();
+                                                            ExampleBottomSheetDialog dialog = new ExampleBottomSheetDialog();
+                                                            dialog.show(getSupportFragmentManager(), "exampleBottomSheet");
+                                                        }catch(Exception e){System.out.println(e);}
+                                                    }
                                                 }
-                                            }
 
-                                            @Override
-                                            public void onFailure(Call<Integer> call, Throwable t) {
-                                                Call<Void> delete=retrofitInterface.deleteuser(userid);
-                                                Toast.makeText(transition_register.this, t.toString(),
-                                                        Toast.LENGTH_LONG).show();
-                                                delete.enqueue(new Callback<Void>() {
-                                                    @Override
-                                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                                @Override
+                                                public void onFailure(Call<Integer> call, Throwable t) {
+                                                    Call<Void> delete=retrofitInterface.deleteuser(userid);
+                                                    Toast.makeText(transition_register.this, t.toString(),
+                                                            Toast.LENGTH_LONG).show();
+                                                    delete.enqueue(new Callback<Void>() {
+                                                        @Override
+                                                        public void onResponse(Call<Void> call, Response<Void> response) {
 
-                                                    }
+                                                        }
 
-                                                    @Override
-                                                    public void onFailure(Call<Void> call, Throwable t) {
-                                                        Toast.makeText(transition_register.this, t.toString(),
-                                                                Toast.LENGTH_LONG).show();
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }
+                                                        @Override
+                                                        public void onFailure(Call<Void> call, Throwable t) {
+                                                            Toast.makeText(transition_register.this, t.toString(),
+                                                                    Toast.LENGTH_LONG).show();
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    }catch(Exception e){System.out.println(e);}
                                 }
                             }
 

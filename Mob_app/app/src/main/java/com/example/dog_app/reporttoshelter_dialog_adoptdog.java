@@ -88,15 +88,17 @@ public class reporttoshelter_dialog_adoptdog extends BottomSheetDialogFragment {
             @Override
             public void onResponse(Call<shelters[]> call, Response<shelters[]> response) {
                 if(response.code()==200) {
-                    shelters[] data = response.body();
-                    listItems.addAll(Arrays.asList(data));
-                    String[] sh = new String[listItems.size()];
-                    for (int i = 0; i < listItems.size(); i++) {
-                        sh[i] = listItems.get(i).getNaziv() + "," + listItems.get(i).getGrad();
-                        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), R.layout.dropdown_item, sh);
-                        azili_reporttoshelter.setText(listItems.get(0).getNaziv() + "," + listItems.get(0).getGrad(), false);
-                        azili_reporttoshelter.setAdapter(arrayAdapter);
-                    }
+                    try{
+                        shelters[] data = response.body();
+                        listItems.addAll(Arrays.asList(data));
+                        String[] sh = new String[listItems.size()];
+                        for (int i = 0; i < listItems.size(); i++) {
+                            sh[i] = listItems.get(i).getNaziv() + "," + listItems.get(i).getGrad();
+                            ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), R.layout.dropdown_item, sh);
+                            azili_reporttoshelter.setText(listItems.get(0).getNaziv() + "," + listItems.get(0).getGrad(), false);
+                            azili_reporttoshelter.setAdapter(arrayAdapter);
+                        }
+                    }catch(Exception e){System.out.println(e);}
                 }
             }
 
@@ -118,36 +120,38 @@ public class reporttoshelter_dialog_adoptdog extends BottomSheetDialogFragment {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.code()==201) {
-                                    Toast.makeText(getActivity(), "Podaci poslani azilu!", Toast.LENGTH_SHORT).show();
-                                    textView48.setVisibility(View.GONE);
-                                    dropdown_reporttoshelter.setVisibility(View.GONE);
-                                    sendreqtoshelter.setVisibility(View.GONE);
-                                    line_reporttoshelter.setVisibility(View.GONE);
-                                    myadopteddogsdata a = new myadopteddogsdata(myadoptdog_user_adapter.getid(),
-                                            myadoptdog_user_adapter.getIme(),
-                                            myadoptdog_user_adapter.getPrezime(),
-                                            myadoptdog_user_adapter.getAdresa(),
-                                            myadoptdog_user_adapter.getKontakt(),
-                                            myadoptdog_user_adapter.getGrad(),
-                                            myadoptdog_user_adapter.getPostnum(),
-                                            myadoptdog_user_adapter.getBoja(),
-                                            myadoptdog_user_adapter.getStarost(),
-                                            myadoptdog_user_adapter.getDlaka(),
-                                            myadoptdog_user_adapter.getVetlokacija(),
-                                            myadoptdog_user_adapter.getImepsa(),
-                                            myadoptdog_user_adapter.getSpol(),
-                                            myadoptdog_user_adapter.getNapomena(),
-                                            myadoptdog_user_adapter.getUrl(),
-                                            myadoptdog_user_adapter.getPostavljeno(),
-                                            myadoptdog_user_adapter.getPasmina(),
-                                            myadoptdog_user_adapter.getKilaza(),
-                                            myadoptdog_user_adapter.getKastrat(),
-                                            myadoptdog_user_adapter.getOpasnost(),
-                                            myadoptdog_user_adapter.isAktivan(),
-                                            myadoptdog_user_adapter.getNapomena_azil(),
-                                            "obrada"
-                                            );
-                                    mojioglasi_udomipsa.setListItems(myadoptdog_user_adapter.getChange(), a);
+                                    try{
+                                        Toast.makeText(getActivity(), "Podaci poslani azilu!", Toast.LENGTH_SHORT).show();
+                                        textView48.setVisibility(View.GONE);
+                                        dropdown_reporttoshelter.setVisibility(View.GONE);
+                                        sendreqtoshelter.setVisibility(View.GONE);
+                                        line_reporttoshelter.setVisibility(View.GONE);
+                                        myadopteddogsdata a = new myadopteddogsdata(myadoptdog_user_adapter.getid(),
+                                                myadoptdog_user_adapter.getIme(),
+                                                myadoptdog_user_adapter.getPrezime(),
+                                                myadoptdog_user_adapter.getAdresa(),
+                                                myadoptdog_user_adapter.getKontakt(),
+                                                myadoptdog_user_adapter.getGrad(),
+                                                myadoptdog_user_adapter.getPostnum(),
+                                                myadoptdog_user_adapter.getBoja(),
+                                                myadoptdog_user_adapter.getStarost(),
+                                                myadoptdog_user_adapter.getDlaka(),
+                                                myadoptdog_user_adapter.getVetlokacija(),
+                                                myadoptdog_user_adapter.getImepsa(),
+                                                myadoptdog_user_adapter.getSpol(),
+                                                myadoptdog_user_adapter.getNapomena(),
+                                                myadoptdog_user_adapter.getUrl(),
+                                                myadoptdog_user_adapter.getPostavljeno(),
+                                                myadoptdog_user_adapter.getPasmina(),
+                                                myadoptdog_user_adapter.getKilaza(),
+                                                myadoptdog_user_adapter.getKastrat(),
+                                                myadoptdog_user_adapter.getOpasnost(),
+                                                myadoptdog_user_adapter.isAktivan(),
+                                                myadoptdog_user_adapter.getNapomena_azil(),
+                                                "obrada"
+                                                );
+                                        mojioglasi_udomipsa.setListItems(myadoptdog_user_adapter.getChange(), a);
+                                    }catch(Exception e){System.out.println(e);}
                                 }
                             }
 

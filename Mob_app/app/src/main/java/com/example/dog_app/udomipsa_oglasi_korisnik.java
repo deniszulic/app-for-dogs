@@ -79,10 +79,12 @@ public class udomipsa_oglasi_korisnik extends Fragment {
             @Override
             public void onResponse(Call<useradopteddogdata[]> call, Response<useradopteddogdata[]> response) {
                 if(response.code()==200) {
-                    useradopteddogdata[] data = response.body();
-                    listItems.addAll(Arrays.asList(data));
-                    adapter = new adoptdog_user_adapter(listItems, getContext());
-                    recyclerView.setAdapter(adapter);
+                    try{
+                        useradopteddogdata[] data = response.body();
+                        listItems.addAll(Arrays.asList(data));
+                        adapter = new adoptdog_user_adapter(listItems, getContext());
+                        recyclerView.setAdapter(adapter);
+                    }catch(Exception e){System.out.println(e);}
                 }
             }
 

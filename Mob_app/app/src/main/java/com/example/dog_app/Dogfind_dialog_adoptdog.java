@@ -99,14 +99,16 @@ public class Dogfind_dialog_adoptdog extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.code() == 201) {
-                                ime_adoptdog_form.getEditText().getText().clear();
-                                prezime_adoptdog_form.getEditText().getText().clear();
-                                adresa_adoptdog_form.getEditText().getText().clear();
-                                kontakt_adoptdog_form.getEditText().getText().clear();
-                                grad_adoptdog_form.getEditText().getText().clear();
-                                postnum_adoptdog_form.getEditText().getText().clear();
-                                razlogprijave_adoptdog_form.getEditText().getText().clear();
-                                Toast.makeText(getActivity(),"Poslano!",Toast.LENGTH_SHORT).show();
+                                try{
+                                    ime_adoptdog_form.getEditText().getText().clear();
+                                    prezime_adoptdog_form.getEditText().getText().clear();
+                                    adresa_adoptdog_form.getEditText().getText().clear();
+                                    kontakt_adoptdog_form.getEditText().getText().clear();
+                                    grad_adoptdog_form.getEditText().getText().clear();
+                                    postnum_adoptdog_form.getEditText().getText().clear();
+                                    razlogprijave_adoptdog_form.getEditText().getText().clear();
+                                    Toast.makeText(getActivity(),"Poslano!",Toast.LENGTH_SHORT).show();
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 

@@ -81,12 +81,14 @@ public class profil extends Fragment {
             @Override
             public void onResponse(Call<profildata[]> call, Response<profildata[]> response) {
                 if(response.code()==200){
-                    profildata[] data=response.body();
-                    ime_profil.getEditText().setText(data[0].getIme());
-                    prezime_profil.getEditText().setText(data[0].getPrezime());
-                    Date date = new Date(data[0].getDatumreg());
-                    DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
-                    datum_profil.getEditText().setText(format.format(date));
+                    try{
+                        profildata[] data=response.body();
+                        ime_profil.getEditText().setText(data[0].getIme());
+                        prezime_profil.getEditText().setText(data[0].getPrezime());
+                        Date date = new Date(data[0].getDatumreg());
+                        DateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
+                        datum_profil.getEditText().setText(format.format(date));
+                    }catch(Exception e){System.out.println(e);}
                 }
             }
 
@@ -125,8 +127,10 @@ public class profil extends Fragment {
                     @Override
                     public void onResponse(Call<passworddata[]> call, Response<passworddata[]> response) {
                         if(response.code()==200){
-                            Toast.makeText(getActivity(),"Lozinka je uspješno ažurirana!",Toast.LENGTH_SHORT).show();
-                            lozinka_profil.getEditText().getText().clear();
+                            try{
+                                Toast.makeText(getActivity(),"Lozinka je uspješno ažurirana!",Toast.LENGTH_SHORT).show();
+                                lozinka_profil.getEditText().getText().clear();
+                            }catch(Exception e){System.out.println(e);}
                         }
                     }
 

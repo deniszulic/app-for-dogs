@@ -75,11 +75,13 @@ public class nestalipsi_oglasi_azil_azil extends Fragment {
         data.enqueue(new Callback<Missingdogs_user_shelter_data[]>() {
             @Override
             public void onResponse(Call<Missingdogs_user_shelter_data[]> call, Response<Missingdogs_user_shelter_data[]> response) {
-                Missingdogs_user_shelter_data[] data = response.body();
-                listItems.addAll(Arrays.asList(data));
+                try{
+                    Missingdogs_user_shelter_data[] data = response.body();
+                    listItems.addAll(Arrays.asList(data));
 
-                adapter = new Missingdogs_shelter_adapter(listItems, getContext());
-                recyclerView.setAdapter(adapter);
+                    adapter = new Missingdogs_shelter_adapter(listItems, getContext());
+                    recyclerView.setAdapter(adapter);
+                }catch(Exception e){System.out.println(e);}
             }
 
             @Override

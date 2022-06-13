@@ -85,10 +85,12 @@ public class userreq_mis_adopt extends Fragment {
             @Override
             public void onResponse(Call<userreq_missingdog_data[]> call, Response<userreq_missingdog_data[]> response) {
                 if(response.code()==200) {
-                    userreq_missingdog_data[] data = response.body();
-                    listItems.addAll(Arrays.asList(data));
-                    adapter= new user_req_missingdog_adopadapter(listItems, getContext());
-                    recyclerView.setAdapter(adapter);
+                    try{
+                        userreq_missingdog_data[] data = response.body();
+                        listItems.addAll(Arrays.asList(data));
+                        adapter= new user_req_missingdog_adopadapter(listItems, getContext());
+                        recyclerView.setAdapter(adapter);
+                    }catch(Exception e){System.out.println(e);}
                 }
             }
 

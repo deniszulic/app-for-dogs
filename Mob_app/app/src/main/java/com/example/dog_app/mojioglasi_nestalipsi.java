@@ -83,11 +83,13 @@ public class mojioglasi_nestalipsi extends Fragment {
         data.enqueue(new Callback<mymissingdogsdata[]>() {
             @Override
             public void onResponse(Call<mymissingdogsdata[]> call, Response<mymissingdogsdata[]> response) {
-                mymissingdogsdata[] data = response.body();
-                listItems.addAll(Arrays.asList(data));
+                try{
+                    mymissingdogsdata[] data = response.body();
+                    listItems.addAll(Arrays.asList(data));
 
-                adapter = new mymissingdogsadapter(listItems, getContext());
-                recyclerView.setAdapter(adapter);
+                    adapter = new mymissingdogsadapter(listItems, getContext());
+                    recyclerView.setAdapter(adapter);
+                }catch(Exception e){System.out.println(e);}
             }
 
             @Override

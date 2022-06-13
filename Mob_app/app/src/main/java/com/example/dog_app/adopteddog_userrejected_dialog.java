@@ -136,8 +136,10 @@ public class adopteddog_userrejected_dialog extends BottomSheetDialogFragment {
                             @Override
                             public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                                 if(response.code()==200){
-                                    userreq_adoptdog_reject.setListItems(user_req_adoptdog_rejected_adapter.getChange());
-                                    Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                    try{
+                                        userreq_adoptdog_reject.setListItems(user_req_adoptdog_rejected_adapter.getChange());
+                                        Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                    }catch(Exception e){System.out.println(e);}
                                 }
                             }
 
@@ -153,31 +155,33 @@ public class adopteddog_userrejected_dialog extends BottomSheetDialogFragment {
                             @Override
                             public void onResponse(Call<updateuserreq_missingdog[]> call, Response<updateuserreq_missingdog[]> response) {
                                 if(response.code()==200){
-                                    Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
-                                    userreq_adoptdog_data data = new userreq_adoptdog_data(
-                                            user_req_adoptdog_rejected_adapter.getIme(),
-                                            user_req_adoptdog_rejected_adapter.getPrezime(),
-                                            user_req_adoptdog_rejected_adapter.getAdresa(),
-                                            user_req_adoptdog_rejected_adapter.getTelefonskibr(),
-                                            user_req_adoptdog_rejected_adapter.getGrad(),
-                                            user_req_adoptdog_rejected_adapter.getPostanski_broj(),
-                                            user_req_adoptdog_rejected_adapter.getBoja(),
-                                            user_req_adoptdog_rejected_adapter.getStarost(),
-                                            user_req_adoptdog_rejected_adapter.getDlaka(),
-                                            user_req_adoptdog_rejected_adapter.getVet_lokacija(),
-                                            user_req_adoptdog_rejected_adapter.getIme_psa(),
-                                            user_req_adoptdog_rejected_adapter.getSpol(),
-                                            user_req_adoptdog_rejected_adapter.getPasmina(),
-                                            user_req_adoptdog_rejected_adapter.getKilaza(),
-                                            user_req_adoptdog_rejected_adapter.getKastrat(),
-                                            user_req_adoptdog_rejected_adapter.getOpasnost(),
-                                            user_req_adoptdog_rejected_adapter.getNapomena(),
-                                            user_req_adoptdog_rejected_adapter.getUrl_slike(),
-                                            azilnapomena_userreq_adopteddog.getEditText().getText().toString(),
-                                            "false", user_req_adoptdog_rejected_adapter.getPostavljeno(),
-                                            user_req_adoptdog_rejected_adapter.getid(),
-                                            user_req_adoptdog_rejected_adapter.getUdomljavanje_id());
-                                    userreq_adoptdog_reject.setListItemschange(user_req_adoptdog_rejected_adapter.getChange(), data);
+                                    try{
+                                        Toast.makeText(getActivity(),"Zahtjev ažuriran!",Toast.LENGTH_SHORT).show();
+                                        userreq_adoptdog_data data = new userreq_adoptdog_data(
+                                                user_req_adoptdog_rejected_adapter.getIme(),
+                                                user_req_adoptdog_rejected_adapter.getPrezime(),
+                                                user_req_adoptdog_rejected_adapter.getAdresa(),
+                                                user_req_adoptdog_rejected_adapter.getTelefonskibr(),
+                                                user_req_adoptdog_rejected_adapter.getGrad(),
+                                                user_req_adoptdog_rejected_adapter.getPostanski_broj(),
+                                                user_req_adoptdog_rejected_adapter.getBoja(),
+                                                user_req_adoptdog_rejected_adapter.getStarost(),
+                                                user_req_adoptdog_rejected_adapter.getDlaka(),
+                                                user_req_adoptdog_rejected_adapter.getVet_lokacija(),
+                                                user_req_adoptdog_rejected_adapter.getIme_psa(),
+                                                user_req_adoptdog_rejected_adapter.getSpol(),
+                                                user_req_adoptdog_rejected_adapter.getPasmina(),
+                                                user_req_adoptdog_rejected_adapter.getKilaza(),
+                                                user_req_adoptdog_rejected_adapter.getKastrat(),
+                                                user_req_adoptdog_rejected_adapter.getOpasnost(),
+                                                user_req_adoptdog_rejected_adapter.getNapomena(),
+                                                user_req_adoptdog_rejected_adapter.getUrl_slike(),
+                                                azilnapomena_userreq_adopteddog.getEditText().getText().toString(),
+                                                "false", user_req_adoptdog_rejected_adapter.getPostavljeno(),
+                                                user_req_adoptdog_rejected_adapter.getid(),
+                                                user_req_adoptdog_rejected_adapter.getUdomljavanje_id());
+                                        userreq_adoptdog_reject.setListItemschange(user_req_adoptdog_rejected_adapter.getChange(), data);
+                                    }catch(Exception e){System.out.println(e);}
                                 }
                             }
 

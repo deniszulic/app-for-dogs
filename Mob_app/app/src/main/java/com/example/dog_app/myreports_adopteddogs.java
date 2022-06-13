@@ -83,10 +83,12 @@ public class myreports_adopteddogs extends Fragment {
             @Override
             public void onResponse(Call<myreportsadopteddogs_data[]> call, Response<myreportsadopteddogs_data[]> response) {
                 if(response.code()==200) {
-                    myreportsadopteddogs_data[] data = response.body();
-                    listItems.addAll(Arrays.asList(data));
-                    adapter= new myreports_adopteddogs_adapter(listItems, getContext());
-                    recyclerView.setAdapter(adapter);
+                    try{
+                        myreportsadopteddogs_data[] data = response.body();
+                        listItems.addAll(Arrays.asList(data));
+                        adapter= new myreports_adopteddogs_adapter(listItems, getContext());
+                        recyclerView.setAdapter(adapter);
+                    }catch(Exception e){System.out.println(e);}
                 }
             }
 

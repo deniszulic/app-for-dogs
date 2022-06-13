@@ -96,14 +96,16 @@ public class dogfind_dialog_adoptdog_shelter extends BottomSheetDialogFragment {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.code() == 201) {
-                                ime_adoptdog_form_shelter.getEditText().getText().clear();
-                                prezime_adoptdog_form_shelter.getEditText().getText().clear();
-                                adresa_adoptdog_form_shelter.getEditText().getText().clear();
-                                kontakt_adoptdog_form_shelter.getEditText().getText().clear();
-                                grad_adoptdog_form_shelter.getEditText().getText().clear();
-                                postnum_adoptdog_form_shelter.getEditText().getText().clear();
-                                razlogprijave_adoptdog_form_shelter.getEditText().getText().clear();
-                                Toast.makeText(getActivity(),"Poslano!",Toast.LENGTH_SHORT).show();
+                                try{
+                                    ime_adoptdog_form_shelter.getEditText().getText().clear();
+                                    prezime_adoptdog_form_shelter.getEditText().getText().clear();
+                                    adresa_adoptdog_form_shelter.getEditText().getText().clear();
+                                    kontakt_adoptdog_form_shelter.getEditText().getText().clear();
+                                    grad_adoptdog_form_shelter.getEditText().getText().clear();
+                                    postnum_adoptdog_form_shelter.getEditText().getText().clear();
+                                    razlogprijave_adoptdog_form_shelter.getEditText().getText().clear();
+                                    Toast.makeText(getActivity(),"Poslano!",Toast.LENGTH_SHORT).show();
+                                }catch(Exception e){System.out.println(e);}
                             }
                         }
 
