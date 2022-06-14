@@ -24,7 +24,7 @@
           />
           <div class="carousel-caption d-none d-md-block">
             <h5 style="color: black">
-              Dobrodošao na aplikaciju za udomljavanje i prijavu nestanka psa
+              Dobrodošao na aplikaciju za udomljavanje i prijavu nestanka pasa
             </h5>
           </div>
         </div>
@@ -53,7 +53,7 @@
             <h5 style="color: black">Oglasi</h5>
             <p style="color: black">
               Pregledajte ili postavite oglase za udomljavanje ili prijavu
-              nestanka psa
+              nestanka pasa
             </p>
           </div>
         </div>

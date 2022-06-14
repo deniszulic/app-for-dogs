@@ -27,9 +27,9 @@ public class home extends Fragment {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
 
         int[] images={R.drawable.firstpic,R.drawable.secondpic,R.drawable.thirdpic};
-        String[] heading ={"Dobrodošao na aplikaciju za udomljavanje i prijavu nestanka psa","Registracija","Oglasi"};
+        String[] heading ={"Dobrodošao na aplikaciju za udomljavanje i prijavu nestanka pasa","Registracija","Oglasi"};
         String[] desc={"","U ovoj aplikaciji se mogu registrirati korisnici i azili",
-        "Pregledajte ili postavite oglase za udomljavanje ili prijavu nestanka psa"};
+        "Pregledajte ili postavite oglase za udomljavanje ili prijavu nestanka pasa"};
         viewPagerItemArrayList=new ArrayList<>();
         for(int i=0;i<images.length;i++){
             ViewPagerItem viewPagerItem=new ViewPagerItem(images[i],heading[i],desc[i]);
