@@ -4,21 +4,6 @@
       class="d-flex justify-content-center"
       style="margin-top: 10px; margin-bottom: -32px"
     >
-      <!-- <div class="card">
-        <div v-if="data.url_slike!=null">
-  <img class="card-img-top" :src="data.url_slike" alt="Card image cap">
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Pas je nestao {{moment(data.datum_izgubljen).format("DD.MM.YYYY")}}</h5>
-    <p class="card-text">
-        Ime vlasnika:{{data.ime}} <br> Prezime vlasnika{{data.prezime}} <br> Adresa vlasnika:{{data.adresa}}<br>Telefonski broj:{{data.telefonskibr}}
-        <br>Grad:{{data.grad}}<br>Poštanski broj:{{data.postanski_broj}}<br>Boja psa:{{data.boja}}<br>Starost:{{data.starost}}<br>Dlaka:{{data.dlaka}}
-        <br>Veterinarska lokacija:{{data.vet_lokacija}}<br>Ime psa:{{data.ime_psa}}<br>Spol:{{data.spol}}<br>Postavljeno:{{moment.unix(data.postavljeno).toDate()}}
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div> -->
-
       <article class="postcard light blue" v-if="showcomments == null">
         <a
           class="postcard__img_link"
@@ -81,27 +66,19 @@
                   <p>Vet. lokacija: {{ data.vet_lokacija }}</p>
                 </div>
                 <div class="col-sm">
-                  <!-- <p>Ime psa: {{data.ime_psa}}</p> -->
                   <p>Spol: {{ data.spol }}</p>
                 </div>
                 <div class="col-sm">
                   <p>Pasmina: {{ data.pasmina }}</p>
                 </div>
-                <!-- <div class="col-sm">
-      <p>Spol: {{data.spol}}</p>
-    </div> -->
               </div>
             </div>
           </div>
           <ul class="postcard__tagbox">
-            <!-- <li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li> -->
             <li class="tag__item">
               <i class="fas fa-clock mr-2"></i>Izgubljen:
               {{ moment(data.datum_izgubljen).format("DD.MM.YYYY.") }}
             </li>
-            <!-- <li class="tag__item play blue">
-						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
-					</li> -->
           </ul>
           <div
             class="d-flex justify-content-center"
@@ -271,13 +248,13 @@
         >
         <a
           @click="deletecom(a.id)"
-          v-if="email != data[0].email && email == a.email"
+          v-else-if="email != data[0].email && email == a.email"
           href="javascript:void(0)"
           >Obriši</a
         >
         <a
           @click="deletecom(a.id)"
-          v-if="store.tipkorisnika == 'admin'"
+          v-else-if="store.tipkorisnika == 'admin'"
           href="javascript:void(0)"
           >Obriši</a
         >

@@ -6,7 +6,6 @@
   >
     <div class="row">
       <div class="col-sm-6 dogimg">
-        <!-- <img src="../assets/dog.jpg" class="img-fluid"/> -->
       </div>
       <div class="col-sm-6">
         <form @submit.prevent="send_data">

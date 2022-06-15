@@ -263,13 +263,13 @@
         >
         <a
           @click="deletecom(a.id)"
-          v-if="email != data[0].email && email == a.email"
+          v-else-if="email != data[0].email && email == a.email"
           href="javascript:void(0)"
           >Obriši</a
         >
         <a
           @click="deletecom(a.id)"
-          v-if="store.tipkorisnika == 'admin'"
+          v-else-if="store.tipkorisnika=='admin'"
           href="javascript:void(0)"
           >Obriši</a
         >
